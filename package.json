@@ -16,5 +16,7 @@
   "scripts": {
     "start": "nw ."
   },
-  "dependencies": {}
+  "dependencies": {
+    "express": "^4.16.2"
+  }
 }

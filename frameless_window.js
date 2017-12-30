@@ -1,4 +1,11 @@
+// ---------------------------  OPEN-AUTOMATION -------------------------------- //
+// --------------  https://github.com/physiii/open-automation  ----------------- //
+// ----------------------------- dashboard.js ---------------------------------- //
+
 var gui = require("nw.gui");
+var exec = require('child_process').exec;
+var spawn = require('child_process').spawn;
+var fs = require('fs');
 
 // Extend application menu for Mac OS
 if (process.platform == "darwin") {
@@ -56,7 +63,34 @@ window.onresize = function() {
   updateContentStyle();
 };
 
+function start_vnc() {
+  exec("vinagre -f 192.168.0.14::5900", (error, stdout, stderr) => {
+    if (error) {
+      console.error(`exec error: ${error}`);
+      return;
+    }
+    console.log(`stdout: ${stdout}`);
+    console.log(`stderr: ${stderr}`);
+  });
+}
+
+const express = require('express')
+const app = express()
+app.get('/mdd', (req, res) => res.send('Hello MDD!'));
+app.get('/switch-to-vnc', (req, res) => {
+  start_vnc();
+  res.send('Hello MDD!');
+})
+app.listen(3000, () => console.log('Example app listening on port 3000!'))
+
+
+
 window.onload = function() {
+
+  document.getElementById("vnc_dashboard_btn").onclick = function() {
+    start_vnc();
+    gui.Window.get().minimize();
+  };
 
   /*initCheckbox("top-box", "top-titlebar", "top-titlebar.png", "Top Titlebar");
   initCheckbox("bottom-box", "bottom-titlebar", "bottom-titlebar.png", "Bottom Titlebar");
