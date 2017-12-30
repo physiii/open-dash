@@ -63,7 +63,7 @@ window.onresize = function() {
   updateContentStyle();
 };
 
-function start_vnc() {
+/*function start_vnc() {
   exec("vinagre -f 192.168.0.14::5900", (error, stdout, stderr) => {
     if (error) {
       console.error(`exec error: ${error}`);
@@ -74,7 +74,7 @@ function start_vnc() {
   });
 }
 
-/*const express = require('express')
+const express = require('express')
 const app = express()
 app.get('/mdd', (req, res) => res.send('Hello MDD!'));
 app.get('/switch-to-vnc', (req, res) => {
@@ -87,10 +87,10 @@ app.listen(3000, () => console.log('Example app listening on port 3000!'))*/
 
 window.onload = function() {
 
-  document.getElementById("vnc_dashboard_btn").onclick = function() {
+  /*document.getElementById("vnc_dashboard_btn").onclick = function() {
     start_vnc();
     gui.Window.get().minimize();
-  };
+  };*/
 
   /*initCheckbox("top-box", "top-titlebar", "top-titlebar.png", "Top Titlebar");
   initCheckbox("bottom-box", "bottom-titlebar", "bottom-titlebar.png", "Bottom Titlebar");
