@@ -92,6 +92,6 @@ window.onload = function() {
   updateContentStyle();
   gui.Window.get().show();
 
-  gui.Window.get().maximize();
+  //gui.Window.get().maximize();
   //addTitlebar("top-titlebar", "top-titlebar.png", "United States Post Office");
 };
