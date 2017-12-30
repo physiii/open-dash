@@ -74,14 +74,14 @@ function start_vnc() {
   });
 }
 
-const express = require('express')
+/*const express = require('express')
 const app = express()
 app.get('/mdd', (req, res) => res.send('Hello MDD!'));
 app.get('/switch-to-vnc', (req, res) => {
   start_vnc();
   res.send('Hello MDD!');
 })
-app.listen(3000, () => console.log('Example app listening on port 3000!'))
+app.listen(3000, () => console.log('Example app listening on port 3000!'))*/
 
 
 
