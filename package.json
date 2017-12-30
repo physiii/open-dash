@@ -17,6 +17,7 @@
     "start": "nw ."
   },
   "dependencies": {
+    "exec": "^0.2.1",
     "express": "^4.16.2"
   }
 }
