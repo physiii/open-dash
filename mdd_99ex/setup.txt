@@ -4,6 +4,8 @@ Info: Windows CE is a diverse platform. A lot of industrial use cases. Alot of t
 
 We are going to install the correct versions of Visual Studio that support Windows CE, Gather the correct SDK for the Honeywell Dolphin 99EX so we can start developing solutions targeted at the correct environment.
 
+The Machine I built this on: Windows 7 Professional Service Pack 1 - Dell, Intel Core i3-3220, 8GB RAM, 64-bit
+
 1. Install Visual Studio 2008 Professional. It's the latest version that is compatible with windows CE 5.x
   link: Visual Studio 2008 Professional iso download link -http://download.microsoft.com/download/8/1/d/81d3f35e-fa03-485b-953b-ff952e402520/VS2008ProEdition90dayTrialENUX1435622.iso
 
