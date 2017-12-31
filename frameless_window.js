@@ -66,7 +66,7 @@ window.onresize = function() {
 
 function start_vnc() {
 
-exec("vinagre -f 192.168.0.14::5900", function(err, out, code) {
+exec("vinagre -f 192.168.0.16::5900", function(err, out, code) {
   if (err instanceof Error)
     throw err;
   process.stderr.write(err);
