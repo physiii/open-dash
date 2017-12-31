@@ -9,7 +9,7 @@ We are going to install the correct versions of Visual Studio that support Windo
 
   Unpack iso and run setup.exe
 
-  Next install the Windows Mobile 6 Professional SDK ( if you check the systeminfo.txt file in this repo, you will see that Windows CE 5.2 is also called Windows Mobile Handheld 6 Classic )
+  Next install the Windows Mobile 6 Professional SDK ( if you check the Sysinfo.txt file in this directory, you will see that Windows CE 5.2 is also called Windows Mobile Handheld 6 Classic )
 
   Windows Mobile 6 requirements for install: Visual Studio 2005 or greater and Windows Mobile Device Management.
 
