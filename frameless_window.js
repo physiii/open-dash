@@ -65,10 +65,28 @@ window.onresize = function() {
   updateContentStyle();
 };
 
+var vnc_ip = "192.168.0.16";
+
+
+var vnc_client;
 vnc_started = false;
 function start_vnc() {
   if (vnc_started) return;
-  exec("vinagre -f 192.168.0.16::5900", function(err, out, code) {
+  vnc_started = true;
+  vnc_client = spawn('vinagre', ['-f', '192.168.0.16::5900']);
+  vnc_client.stdout.on('data', function (data) {
+    console.log('stdout: ' + data);
+  });
+
+  vnc_client.stderr.on('data', function (data) {
+    console.log('stderr: ' + data);
+  });
+
+  vnc_client.on('close', function (code) {
+    console.log('child process exited with code ' + code);
+  });
+
+/*  exec("vinagre -f 192.168.0.16::5900", function(err, out, code) {
     if (err instanceof Error)
       throw err;
     console.log("started vnc");
@@ -76,12 +94,14 @@ function start_vnc() {
     process.stderr.write(err);
     process.stdout.write(out);
     process.exit(code);
-  });
+  });*/
 }
 
 function close_vnc() {
   if (!vnc_started) return;
-  exec("pkill vinagre", function(err, out, code) {
+  vnc_client.kill();
+  vnc_started = false;
+  /*exec("pkill vinagre", function(err, out, code) {
     if (err instanceof Error)
       throw err;
     console.log("closed vnc");
@@ -89,7 +109,7 @@ function close_vnc() {
     process.stderr.write(err);
     process.stdout.write(out);
     process.exit(code);
-  });
+  });*/
 }
 
 timeout();
@@ -101,12 +121,12 @@ function timeout() {
   }, 1*1000);
 }
 
-var vnc_ip = "192.168.0.16";
+
 function check_mdd_conn() {
 
     ping.sys.probe(vnc_ip, function(isAlive){
         var msg = isAlive ? 'host ' + vnc_ip + ' is alive' : 'host ' + vnc_ip + ' is dead';
-        console.log(msg);
+        //console.log(msg);
         if (isAlive) {
 	  start_vnc();
         }
