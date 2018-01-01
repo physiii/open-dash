@@ -3,11 +3,11 @@
 // ----------------------------- dashboard.js ---------------------------------- //
 
 var gui = require("nw.gui");
-//var exec = require('child_process').exec;
+var exec = require('child_process').exec;
 var spawn = require('child_process').spawn;
 var fs = require('fs');
 var ping = require('ping');
-var exec = require('exec');
+//var exec = require('exec');
 
 // Extend application menu for Mac OS
 if (process.platform == "darwin") {
@@ -65,39 +65,56 @@ window.onresize = function() {
   updateContentStyle();
 };
 
+vnc_started = false;
 function start_vnc() {
+  if (vnc_started) return;
+  exec("vinagre -f 192.168.0.16::5900", function(err, out, code) {
+    if (err instanceof Error)
+      throw err;
+    console.log("started vnc");
+    vnc_started = true;
+    process.stderr.write(err);
+    process.stdout.write(out);
+    process.exit(code);
+  });
+}
 
-exec("vinagre -f 192.168.0.16::5900", function(err, out, code) {
-  if (err instanceof Error)
-    throw err;
-  process.stderr.write(err);
-  process.stdout.write(out);
-  process.exit(code);
-});
+function close_vnc() {
+  if (!vnc_started) return;
+  exec("pkill vinagre", function(err, out, code) {
+    if (err instanceof Error)
+      throw err;
+    console.log("closed vnc");
+    vnc_started = false;
+    process.stderr.write(err);
+    process.stdout.write(out);
+    process.exit(code);
+  });
 }
 
 timeout();
 function timeout() {
   setTimeout(function () {
+    console.log("checking mdd connection...")
     check_mdd_conn();
     timeout();
   }, 1*1000);
 }
 
-
+var vnc_ip = "192.168.0.16";
 function check_mdd_conn() {
 
-var hosts = ['192.168.0.16'];
-hosts.forEach(function(host){
-    ping.sys.probe(host, function(isAlive){
-        var msg = isAlive ? 'host ' + host + ' is alive' : 'host ' + host + ' is dead';
+    ping.sys.probe(vnc_ip, function(isAlive){
+        var msg = isAlive ? 'host ' + vnc_ip + ' is alive' : 'host ' + vnc_ip + ' is dead';
+        console.log(msg);
         if (isAlive) {
 	  start_vnc();
-	  console.log("START VNC!");
         }
-        console.log(msg);
+
+        if (!isAlive) {
+	  close_vnc();
+        }
     });
-});
 
 }
 
