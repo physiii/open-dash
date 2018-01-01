@@ -6,6 +6,7 @@ var gui = require("nw.gui");
 //var exec = require('child_process').exec;
 var spawn = require('child_process').spawn;
 var fs = require('fs');
+var ping = require('ping');
 var exec = require('exec');
 
 // Extend application menu for Mac OS
@@ -73,6 +74,31 @@ exec("vinagre -f 192.168.0.16::5900", function(err, out, code) {
   process.stdout.write(out);
   process.exit(code);
 });
+}
+
+timeout();
+function timeout() {
+  setTimeout(function () {
+    check_mdd_conn();
+    timeout();
+  }, 1*1000);
+}
+
+
+function check_mdd_conn() {
+
+var hosts = ['192.168.0.16'];
+hosts.forEach(function(host){
+    ping.sys.probe(host, function(isAlive){
+        var msg = isAlive ? 'host ' + host + ' is alive' : 'host ' + host + ' is dead';
+        if (isAlive) {
+	  start_vnc();
+	  console.log("START VNC!");
+        }
+        console.log(msg);
+    });
+});
+
 }
 
 
