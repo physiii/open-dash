@@ -1,6 +1,6 @@
-// ---------------------------  OPEN-AUTOMATION -------------------------------- //
-// --------------  https://github.com/physiii/open-automation  ----------------- //
-// ----------------------------- dashboard.js ---------------------------------- //
+// ---------------------------  USPS Project -------------------------------- //
+// --------------  https://github.com/physiii/open-dash  ----------------- //
+// ----------------------------- index.js ---------------------------------- //
 
 var gui = require("nw.gui");
 var exec = require('child_process').exec;
@@ -92,8 +92,8 @@ window.onresize = function() {
   updateContentStyle();
 };
 
+// Functions to Launch and Close VNC Client
 var vnc_ip = "192.168.0.16";
-
 
 var vnc_client;
 vnc_started = false;
@@ -113,32 +113,15 @@ function start_vnc() {
     console.log('child process exited with code ' + code);
   });
 
-/*  exec("vinagre -f 192.168.0.16::5900", function(err, out, code) {
-    if (err instanceof Error)
-      throw err;
-    console.log("started vnc");
-    vnc_started = true;
-    process.stderr.write(err);
-    process.stdout.write(out);
-    process.exit(code);
-  });*/
-}
 
 function close_vnc() {
   if (!vnc_started) return;
   vnc_client.kill();
   vnc_started = false;
-  /*exec("pkill vinagre", function(err, out, code) {
-    if (err instanceof Error)
-      throw err;
-    console.log("closed vnc");
-    vnc_started = false;
-    process.stderr.write(err);
-    process.stdout.write(out);
-    process.exit(code);
-  });*/
+
 }
 
+// Timeout with connection testing
 timeout();
 function timeout() {
   setTimeout(function () {
@@ -148,24 +131,19 @@ function timeout() {
   }, 1*1000);
 }
 
-
 function check_mdd_conn() {
-
     ping.sys.probe(vnc_ip, function(isAlive){
         var msg = isAlive ? 'host ' + vnc_ip + ' is alive' : 'host ' + vnc_ip + ' is dead';
-        //console.log(msg);
         if (isAlive) {
 	  start_vnc();
         }
-
         if (!isAlive) {
 	  close_vnc();
         }
     });
-
 }
 
-
+// Main application running moduiles
 const express = require('express')
 const app = express()
 
@@ -182,9 +160,6 @@ app.listen(3000, function() {console.log('Example app listening on port 3000!')}
 console.log("HELLO!!!!!!");
 
 
-// -------------Test Function for Update.js------------//
-//console.log(update.add(1,100));
-
 window.onload = function() {
 
   document.getElementById("vnc_dashboard_btn").onclick = function() {
@@ -193,17 +168,12 @@ window.onload = function() {
   };
 
   document.getElementById("settings_btn").onclick = function() {
-    //start_vnc();
-    //gui.Window.get().minimize();
     update.pull()
-
 
   };
 
   updateContentStyle();
   gui.Window.get().show();
-  //gui.Window.get().maximize();
-  //addTitlebar("top-titlebar", "top-titlebar.png", "United States Post Office");
 };
 
 
