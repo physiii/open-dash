@@ -7,7 +7,34 @@ var exec = require('child_process').exec;
 var spawn = require('child_process').spawn;
 var fs = require('fs');
 var ping = require('ping');
-//var exec = require('exec');
+var utils = require('./utils.js');
+var database = require('./database.js');
+var update = require('./update.js');
+/*
+var dashboard = require('./dashboard.js');
+var settings = require('./settings.js');
+var socket = require('./socket.js');
+var website = require('./website.js');
+var express = require('express');
+var http = require('http');
+var app = express();
+var exec = require('exec');
+*/
+
+
+/*
+// ---------------- //
+// global variables //
+// ---------------- //
+accounts = [];
+groups = [];
+device_objects = [];
+device_sockets = [];
+status_objects = [];
+user_objects = [];
+user_sockets = [];
+*/
+
 
 // Extend application menu for Mac OS
 if (process.platform == "darwin") {
@@ -152,7 +179,11 @@ app.get('/switch-to-vnc', function(req, res) {
 })
 app.listen(3000, function() {console.log('Example app listening on port 3000!')})
 
+console.log("HELLO!!!!!!");
 
+
+// -------------Test Function for Update.js------------//
+//console.log(update.add(1,100));
 
 window.onload = function() {
 
@@ -161,39 +192,23 @@ window.onload = function() {
     gui.Window.get().minimize();
   };
 
-  /*initCheckbox("top-box", "top-titlebar", "top-titlebar.png", "Top Titlebar");
-  initCheckbox("bottom-box", "bottom-titlebar", "bottom-titlebar.png", "Bottom Titlebar");
-  initCheckbox("left-box", "left-titlebar", "left-titlebar.png", "Left Titlebar");
-  initCheckbox("right-box", "right-titlebar", "right-titlebar.png", "Right Titlebar");
+  document.getElementById("settings_btn").onclick = function() {
+    //start_vnc();
+    //gui.Window.get().minimize();
+    update.pull()
 
-  document.getElementById("close-window-button").onclick = function() {
-    window.close();
-  };
 
-  document.querySelector('#minimize-window-button').onclick = function () {
-    gui.Window.get().minimize();
   };
-
-  document.querySelector('#maximize-window-button').onclick = function () {
-    gui.Window.get().maximize();
-  };
-  document.querySelector('#unmaximize-window-button').onclick = function () {
-    gui.Window.get().unmaximize();
-  };
-
-  document.querySelector('#open-inspector-button').onclick = function () {
-    var win = gui.Window.get();
-    if (win.isDevToolsOpen()) {
-      win.closeDevTools();
-      this.innerText = "Open Developer Tools";
-    } else {
-      win.showDevTools();
-      this.innerText = "Close Developer Tools";
-    }
-  };*/
 
   updateContentStyle();
   gui.Window.get().show();
-  gui.Window.get().maximize();
+  //gui.Window.get().maximize();
   //addTitlebar("top-titlebar", "top-titlebar.png", "United States Post Office");
 };
+
+
+// ------------- //
+// start servers //
+// ------------- //
+//website.start(app);
+
