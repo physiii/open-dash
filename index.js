@@ -112,7 +112,7 @@ function start_vnc() {
   vnc_client.on('close', function (code) {
     console.log('child process exited with code ' + code);
   });
-
+}
 
 function close_vnc() {
   if (!vnc_started) return;
@@ -174,6 +174,8 @@ window.onload = function() {
 
   updateContentStyle();
   gui.Window.get().show();
+
+
 };
 
 
