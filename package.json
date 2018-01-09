@@ -1,6 +1,6 @@
 {
-  "name": "Frameless-Window",
-  "description": "Chrome platform app.",
+  "name": "open-dash",
+  "description": "indash multimedia player",
   "version": "0.1.0",
   "main": "dashboard.html",
   "window": {
