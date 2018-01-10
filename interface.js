@@ -183,6 +183,12 @@ window.onload = function() {
   
   };
 
+  document.getElementById("radio_btn").onclick = function() {
+    //win.close();
+    nwpm_socket.emit('canc_reboot', true)
+  
+  };
+
   document.getElementById("settings_btn").onclick = function() {
     //update.pull()
 

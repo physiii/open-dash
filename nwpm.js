@@ -46,6 +46,10 @@ function reboot_sys() {
   });
 }
 
+function canc_reboot() {
+  clearTimeout(cancVar);
+
+}
 
 process_io.on('connection', function (socket) {
   //console.info(socket.id + " | client connected" );
@@ -97,7 +101,13 @@ process_io.on('connection', function (socket) {
 
   socket.on('reboot', function (data) {
     console.log("entire system rebooting in 5 seconds");
-    setTimeout(function() {reboot_sys();}, 5000);
+    cancVar = setTimeout(function() {reboot_sys();}, 5000);
+
+  });
+
+  socket.on('canc_reboot', function (data) {
+    console.log("aborting reboot")
+    canc_reboot();
 
   });
 
