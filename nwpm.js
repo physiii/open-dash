@@ -29,11 +29,11 @@ var process_io = require('socket.io').listen(server);
 var main_app = spawn('nw',['.']);
 
 function update_app() {
-  //console.log("Killing application for update in 5 seconds.")
-  //setTimeout(function() {main_app.kill();}, 5000);
   update.pull()
-  //setTimeout(function() {console.log("Update complete: Creating new session in 3 second.");}, 8000);
-  //setTimeout(function() {var main_app = spawn('nw',['.']);}, 11000);
+}
+
+function restart_app() {
+  return;
 
 }
 
