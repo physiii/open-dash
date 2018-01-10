@@ -12,7 +12,7 @@ module.exports = {
   shutdown: shutdown,
 }
 
-
+var remote = require('./remote');
 var http = require('http');
 const crypto = require('crypto');
 var os = require('os');
@@ -108,6 +108,12 @@ process_io.on('connection', function (socket) {
   socket.on('canc_reboot', function (data) {
     console.log("aborting reboot")
     canc_reboot();
+
+  });
+
+  socket.on('start_vnc', function (data) {
+    console.log("launching vnc")
+    remote.start_vnc();
 
   });
 

@@ -102,6 +102,8 @@ window.onresize = function() {
 
 
 // Main application running modules
+
+
 const express = require('express')
 const app = express()
 
@@ -115,6 +117,7 @@ app.get('/switch-to-vnc', function(req, res) {
 })
 app.listen(3000, function() {console.log('Example app listening on port 3000!')})
 
+
 console.log("HELLO!!!!!!");
 
 
@@ -122,6 +125,7 @@ window.onload = function() {
 
   document.getElementById("vnc_dashboard_btn").onclick = function() {
     remote.start_vnc();
+    //nwpm_socket.emit('start_vnc', true)
     win.minimize();
   };
   
