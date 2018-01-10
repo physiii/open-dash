@@ -7,16 +7,14 @@ REMOTE=$(git rev-parse "$UPSTREAM")
 BASE=$(git merge-base @ "$UPSTREAM")
 
 if [ $LOCAL = $REMOTE ]; then
-    echo "Up-to-date"
+    echo "up-to-date"
 elif [ $LOCAL = $BASE ]; then
     git pull
     echo "pulled"    
 elif [ $REMOTE = $BASE ]; then
-    echo "Need to push"
+    echo "need to push"
 else
-    echo "Diverged"
+    echo "diverged"
 fi
-
-#echo "restart_system"
 
 

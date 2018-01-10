@@ -11,18 +11,22 @@ var exec = require('child_process').exec;
 var spawn = require('child_process').spawn;
 var fs = require('fs');
 var console = require('console');
-//var update_socket = require('socket.io-client')("http://127.0.0.1:1235");
+var update_socket = require('socket.io-client')("http://127.0.0.1:1235");
 
 function pull() {
-  console.log("Performing Update. One moment please.", __dirname);
+  console.log("checking for updates in", __dirname);
   exec(__dirname+'/update.sh', function(err,stdout,stderr) {
-    if (err) {
-      console.log(err)
-      return;
-    }
-    console.log(stdout);
-  });
 
+    if (err) return console.log(err);
+
+    if (stdout.search("pulled") == -1) {
+      console.log("restart test. moving to socket...")
+      update_socket.emit('restart', true);
+    };
+
+    if (stdout.search("pulled") != -1) return console.log("update complete. restart needed");
+
+  });
 };
 
 
@@ -30,5 +34,5 @@ module.exports = {
   pull: pull,
   
 };
-
+ 
 

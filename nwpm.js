@@ -29,11 +29,13 @@ var process_io = require('socket.io').listen(server);
 var main_app = spawn('nw',['.']);
 
 function update_app() {
-  update.pull()
+  update.pull() 
 }
 
 function restart_app() {
-  return;
+  main_app.kill();
+  setTimeout(function() {var main_app = spawn('nw',['.']);}, 50);
+
 
 }
 
@@ -74,8 +76,15 @@ process_io.on('connection', function (socket) {
   });
 
   socket.on('update', function (data) {
-    console.log("Performing update...", data)
-    update_app(); 
+    console.log("update socket running =", data)
+    update_app();
+
+  });
+
+  socket.on('restart', function (data) {
+    console.log("restart socket running =", data)
+    restart_app();
+
   });
 
 });
