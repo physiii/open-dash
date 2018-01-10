@@ -13,6 +13,11 @@ var ping = require('ping');
 var utils = require('./utils.js');
 var database = require('./database.js');
 var update = require('./update.js');
+var nwpm_socket = require('socket.io-client')("http://127.0.0.1:1235");
+
+
+//nwpm_socket.emit('command result',data);
+
 
 /*
 var dashboard = require('./dashboard.js');
@@ -176,14 +181,14 @@ window.onload = function() {
   };
 
   document.getElementById("settings_btn").onclick = function() {
-    update.pull()
+    //update.pull()
 
     //Hide currently window session prior to reload of session with 5 sec delay.
     
-
-    console.warn("We are reloading the window in 5 seconds.")
-    setTimeout(function() {win.hide();}, 5000);
-    setTimeout(function() {win.reload();}, 5000);
+    nwpm_socket.emit('update',true);
+    //console.warn("We are reloading the window in 5 seconds.")
+    //setTimeout(function() {win.hide();}, 5000);
+    //setTimeout(function() {win.reload();}, 5000);
 
 
   };

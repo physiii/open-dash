@@ -13,7 +13,7 @@ module.exports = {
 }
 
 
-
+var http = require('http');
 const crypto = require('crypto');
 var os = require('os');
 var request = require('request');
@@ -22,18 +22,67 @@ const exec = require('child_process').exec;
 const spawn = require('child_process').spawn;
 var console = require('console');
 var update = require('./update.js');
-
+var main_app_socket = require('socket.io-client')("http://127.0.0.1:1234");
+const server = http.createServer().listen("1235");
+var process_io = require('socket.io').listen(server);
 
 var main_app = spawn('nw',['.']);
 
 function update_app() {
-  console.log("Killing application for update in 5 seconds.")
-  setTimeout(function() {main_app.kill();}, 5000);
-  setTimeout(function() {update.pull();}, 6000);
-  setTimeout(function() {console.log("Update complete: Creating new session in 3 second.");}, 8000);
-  setTimeout(function() {var main_app = spawn('nw',['.']);}, 11000);
+  //console.log("Killing application for update in 5 seconds.")
+  //setTimeout(function() {main_app.kill();}, 5000);
+  update.pull()
+  //setTimeout(function() {console.log("Update complete: Creating new session in 3 second.");}, 8000);
+  //setTimeout(function() {var main_app = spawn('nw',['.']);}, 11000);
 
 }
+
+process_io.on('connection', function (socket) {
+  //console.info(socket.id + " | client connected" );
+
+  socket.on('get token', function (data) {
+    var mac = data.mac;
+    //var name = data.name;
+    //var salt = data.salt //some random value
+    var token = crypto.createHash('sha512').update(mac).digest('hex');
+    data.token = token;
+    var public_ip = socket.request.connection.remoteAddress;
+    public_ip = public_ip.slice(7);
+    data.public_ip = public_ip;
+    socket.emit('get token',data);
+    var index = find_index(device_objects,'token',token);
+    if (index > -1) {
+      //database.store_device_object(data);
+      device_objects[index].socket = socket;
+      console.log('get token | updated socket',mac);
+    } else {
+      data.groups = [mac];
+      data.socket = socket;
+      device_objects.push(data);
+      database.store_device_object(data);
+      console.log('get token | added device',mac);
+    }
+
+    //if (!groups) groups = [];
+    index = find_index(groups,'group_id',mac);
+    if (index < 0) {
+      var group = {group_id:mac, mode:'init', type:['alarm'], members:[mac]};
+      groups.push(group);
+      database.store_group(group);
+    }
+    console.log("get token",mac);
+  });
+
+  socket.on('update', function (data) {
+    console.log("Performing update...", data)
+    update_app(); 
+  });
+
+});
+
+
+
+
 
 //update_app();
 
