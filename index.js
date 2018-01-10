@@ -3,8 +3,11 @@
 // ----------------------------- index.js ---------------------------------- //
 
 var gui = require("nw.gui");
-var exec = require('child_process').exec;
-var spawn = require('child_process').spawn;
+var win = gui.Window.get();
+var child_process = require('child_process')
+var exec = child_process.exec;
+var spawn = child_process.spawn;
+var child = child_process.spawn(process.execPath, [], {detached: true});
 var fs = require('fs');
 var ping = require('ping');
 var utils = require('./utils.js');
@@ -40,7 +43,7 @@ user_sockets = [];
 if (process.platform == "darwin") {
   var menu = new gui.Menu({type: "menubar"});
   menu.createMacBuiltin && menu.createMacBuiltin(window.document.title);
-  gui.Window.get().menu = menu;
+  win.menu = menu;
 }
 
 function updateCheckbox() {
@@ -164,16 +167,27 @@ window.onload = function() {
 
   document.getElementById("vnc_dashboard_btn").onclick = function() {
     start_vnc();
-    gui.Window.get().minimize();
+    win.minimize();
+  };
+  
+  document.getElementById("phone_btn").onclick = function() {
+    win.close();
+  
   };
 
   document.getElementById("settings_btn").onclick = function() {
     update.pull()
 
+    //Hide currently window session prior to reload of session with 5 sec delay.
+    console.warn("We are reloading the window in 5 seconds.")
+    setTimeout(function() {win.hide();}, 5000);
+    setTimeout(function() {win.reload();}, 5000);
+
+
   };
 
   updateContentStyle();
-  gui.Window.get().show();
+  win.show();
 
 
 };
