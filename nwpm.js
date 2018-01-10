@@ -19,8 +19,12 @@ var os = require('os');
 var request = require('request');
 var fs = require('fs');
 const exec = require('child_process').exec;
-var spawn = require('child_process').spawn(process.execPath, [], {detached: true});
+const spawn = require('child_process').spawn;
 var console = require('console');
+
+
+var main_app = spawn('nw',['.']);
+
 
 // ---------------------- device info  ------------------- //
 var local_ip = "init";
