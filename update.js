@@ -19,13 +19,13 @@ function pull() {
 
     if (err) return console.log(err);
 
-    if (stdout.search("pulled") == -1) {
+    if (stdout.search("pulled") == -1) return console.log("system is up-to-date");
+
+    if (stdout.search("pulled") != -1) {
       console.log("restart test. moving to socket...")
       update_socket.emit('restart', true);
+
     };
-
-    if (stdout.search("pulled") != -1) return console.log("update complete. restart needed");
-
   });
 };
 

@@ -25,8 +25,9 @@ var update = require('./update.js');
 var main_app_socket = require('socket.io-client')("http://127.0.0.1:1234");
 const server = http.createServer().listen("1235");
 var process_io = require('socket.io').listen(server);
-
 var main_app = spawn('nw',['.']);
+
+
 
 function update_app() {
   update.pull() 
@@ -34,10 +35,17 @@ function update_app() {
 
 function restart_app() {
   main_app.kill();
-  setTimeout(function() {var main_app = spawn('nw',['.']);}, 50);
-
+  setTimeout(function() {main_app = spawn('nw',['.']);}, 50);
 
 }
+
+function reboot_sys() {
+  exec('reboot', function(err,stdout,stderr){
+    if (err) return console.log(err);
+
+  });
+}
+
 
 process_io.on('connection', function (socket) {
   //console.info(socket.id + " | client connected" );
@@ -82,8 +90,14 @@ process_io.on('connection', function (socket) {
   });
 
   socket.on('restart', function (data) {
-    console.log("restart socket running =", data)
+    console.log("restart socket running =", data);
     restart_app();
+
+  });
+
+  socket.on('reboot', function (data) {
+    console.log("entire system rebooting in 5 seconds");
+    setTimeout(function() {reboot_sys();}, 5000);
 
   });
 

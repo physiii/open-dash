@@ -178,7 +178,8 @@ window.onload = function() {
   };
   
   document.getElementById("phone_btn").onclick = function() {
-    win.close();
+    //win.close();
+    nwpm_socket.emit('reboot', true)
   
   };
 
