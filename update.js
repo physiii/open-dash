@@ -13,7 +13,7 @@ var fs = require('fs');
 var console = require('console');
 
 function pull() {
-  console.log("switch to settings screen!");
+  console.log("Performing Update. One moment please.");
   exec('cd ~/code/open-dash;git pull', function(err, stdout, stderr) {
     if (err) {
       console.log(err)

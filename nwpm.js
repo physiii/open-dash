@@ -21,9 +21,21 @@ var fs = require('fs');
 const exec = require('child_process').exec;
 const spawn = require('child_process').spawn;
 var console = require('console');
+var update = require('./update.js');
 
 
 var main_app = spawn('nw',['.']);
+
+function update_app() {
+  console.log("Killing application for update in 5 seconds.")
+  setTimeout(function() {main_app.kill();}, 5000);
+  setTimeout(function() {update.pull();}, 6000);
+  setTimeout(function() {console.log("Update complete: Creating new session in 3 second.");}, 8000);
+  setTimeout(function() {var main_app = spawn('nw',['.']);}, 11000);
+
+}
+
+//update_app();
 
 
 // ---------------------- device info  ------------------- //

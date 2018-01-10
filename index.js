@@ -13,6 +13,7 @@ var ping = require('ping');
 var utils = require('./utils.js');
 var database = require('./database.js');
 var update = require('./update.js');
+
 /*
 var dashboard = require('./dashboard.js');
 var settings = require('./settings.js');
@@ -37,7 +38,6 @@ status_objects = [];
 user_objects = [];
 user_sockets = [];
 */
-
 
 // Extend application menu for Mac OS
 if (process.platform == "darwin") {
@@ -179,6 +179,8 @@ window.onload = function() {
     update.pull()
 
     //Hide currently window session prior to reload of session with 5 sec delay.
+    
+
     console.warn("We are reloading the window in 5 seconds.")
     setTimeout(function() {win.hide();}, 5000);
     setTimeout(function() {win.reload();}, 5000);
