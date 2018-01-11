@@ -12,21 +12,20 @@ module.exports = {
   shutdown: shutdown,
 }
 
-var remote = require('./modules/remote.js');
 var http = require('http');
 const crypto = require('crypto');
+const exec = require('child_process').exec;
+const spawn = require('child_process').spawn;
+var remote = require('./modules/remote.js');
 var os = require('os');
 var request = require('request');
 var fs = require('fs');
-const exec = require('child_process').exec;
-const spawn = require('child_process').spawn;
 var console = require('console');
 var update = require('./update.js');
 var main_app_socket = require('socket.io-client')("http://127.0.0.1:1234");
 const server = http.createServer().listen("1235");
 var process_io = require('socket.io').listen(server);
 var main_app = spawn('nw',['.']);
-
 
 
 function update_app() {
@@ -123,6 +122,9 @@ process_io.on('connection', function (socket) {
 
 
 
+//----------------------------------------------------------------------------//
+
+
 //update_app();
 
 
@@ -206,7 +208,7 @@ function remove_old_files() {
       var oldest_dir = getMostRecentFileName('/var/lib/motion');
       try {
        var result = findRemoveSync('/var/lib/motion/' + oldest_dir, {age: {seconds: 0}}, {files: '*'});
-rimraf('/var/lib/motion/' + oldest_dir, function(error) {
+       rimraf('/var/lib/motion/' + oldest_dir, function(error) {
         if(error) {
           console.log(error);
         } else {
@@ -232,11 +234,11 @@ function get_mac () {
 }
 
 function main_loop () {
-setTimeout(function () {
-  get_public_ip();
-  main_loop();
-  //console.log("main loop");
-}, 60*1000);
+  setTimeout(function () {
+    get_public_ip();
+    main_loop();
+    //console.log("main loop");
+  }, 60*1000);
 }
 
 function find_index(array, key, value) {
@@ -261,4 +263,19 @@ function shutdown() {
   console.log("Program Terminating");
   process.exit()
   return;
-};
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
