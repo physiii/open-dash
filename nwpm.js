@@ -12,7 +12,7 @@ module.exports = {
   shutdown: shutdown,
 }
 
-var remote = require('./remote');
+var remote = require('./modules/remote.js');
 var http = require('http');
 const crypto = require('crypto');
 var os = require('os');

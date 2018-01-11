@@ -7,9 +7,9 @@ var exec = child_process.exec;
 var spawn = child_process.spawn;
 var fs = require('fs');
 var ping = require('ping');
-var utils = require('./utils.js');
-var database = require('./database.js');
-var update = require('./update.js');
+var utils = require('../utils.js');
+var database = require('../database.js');
+var update = require('../update.js');
 var remote_socket= require('socket.io-client')("http://127.0.0.1:1236");
 
 module.exports = {

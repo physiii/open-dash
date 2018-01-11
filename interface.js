@@ -12,7 +12,7 @@ var ping = require('ping');
 var utils = require('./utils.js');
 var database = require('./database.js');
 var update = require('./update.js');
-var remote = require('./remote');
+var remote = require('./modules/remote.js');
 var nwpm_socket = require('socket.io-client')("http://127.0.0.1:1235");
 
 
