@@ -82,4 +82,4 @@ app.get('/switch-to-vnc', function(req, res) {
   remote.start_vnc();
   res.send('Hello MDD!');
 })
-app.listen(3000, function() {console.log('Example app listening on port 3000!')})
+app.listen(3001, function() {console.log('Example app listening on port 3001!')})
