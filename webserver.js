@@ -13,8 +13,6 @@ var web_io = require('socket.io').listen(webserv);
 
 //var webserv_launch = spawn('node', ['./webserver.js'])
 
-app.get('/', function(req, res) {
-   res.sendfile('index.html');
 
 web_io.on('connection', function(socket) {
    console.log('A user connected');
@@ -28,4 +26,4 @@ web_io.on('connection', function(socket) {
 
 //http.listen(3000, function() {
 //   console.log('listening on *:3000');
-//});
+//});as
