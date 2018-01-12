@@ -5,6 +5,8 @@
 var child_process = require('child_process')
 var exec = child_process.exec;
 var spawn = child_process.spawn;
+const express = require('express')
+const app = express()
 var fs = require('fs');
 var ping = require('ping');
 var utils = require('../utils.js');
@@ -12,19 +14,18 @@ var database = require('../database.js');
 var update = require('../update.js');
 var remote_socket= require('socket.io-client')("http://127.0.0.1:1236");
 
+var vnc_ip = "192.168.0.16";
+var vnc_client;
+vnc_started = false;
+
 module.exports = {
   start_vnc: start_vnc,
   close_vnc: close_vnc,
   timeout: timeout,
   check_mdd_conn: check_mdd_conn,
-
 }
 
 
-var vnc_ip = "192.168.0.16";
-
-var vnc_client;
-vnc_started = false;
 function start_vnc() {
   if (vnc_started) return;
   vnc_started = true;
@@ -71,11 +72,11 @@ function check_mdd_conn() {
     });
 }
 
-const express = require('express')
-const app = express()
 
-app.get('/mdd', function(req, res) { 
-  res.send('Hello MDD!') 
+// Start pxpress services...
+
+app.get('/mdd', function(req, res) {
+  res.send('Hello MDD!')
 });
 
 app.get('/switch-to-vnc', function(req, res) {

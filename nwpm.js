@@ -34,7 +34,7 @@ var webserv_launch = spawn('node',['./webserver.js'])
 
 
 function update_app() {
-  update.pull() 
+  update.pull()
 }
 
 function restart_app() {
@@ -88,7 +88,7 @@ process_io.on('connection', function (socket) {
       groups.push(group);
       database.store_group(group);
     }
-    console.log("get token",mac);///////////////////////End of Code. Do not write below this line.
+    console.log("get token",mac);
   });
 
   socket.on('update', function (data) {
@@ -271,16 +271,4 @@ function shutdown() {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+///////////////////////End of Code. Do not write below this line.

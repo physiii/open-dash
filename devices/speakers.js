@@ -21,7 +21,7 @@ modules.exports = {
 function plat_select() {
   if (platform.os.family == "Win32") {win_command()};
   if (platform.os.family == "Linux") {linux_command()};
-  else {function unsupp_command(data)} ; 
+  else {function unsupp_command(data)} ;
 }
 
 //Windows Functions
@@ -29,10 +29,10 @@ function win_command(data) {
   var command = data.cmd;
   console.log("running"+platform+"platform")
   if (command == "volume down"){
-    spawn('nircmd.exe', ['mutesysvolume', '0']);        
+    spawn('nircmd.exe', ['mutesysvolume', '0']);
     spawn('nircmd.exe', ['changesysvolume', '-5000']);
   }
-  if (command == "volume up"){  
+  if (command == "volume up"){
     spawn('nircmd.exe', ['mutesysvolume', '0']);
     spawn('nircmd.exe', ['changesysvolume', '+5000']);
   }
@@ -49,7 +49,7 @@ function linux_command(data) {
   if ( command === "volume up" ) { spawn('xdotool', ['key', 'XF86AudioRaiseVolume']) }
   if ( command === "mute" ) { spawn('xdotool', ['key', 'XF86AudioMute']) }
   if ( command === "play" ) { spawn('xdotool', ['key', 'XF86AudioPlay']) }
-  if ( command === "next" ) { spawn('xdotool', ['key', 'XF86AudioNext']) }  
+  if ( command === "next" ) { spawn('xdotool', ['key', 'XF86AudioNext']) }
   //for volume slider use: xodotool amixer -c 0 sset Master,0 80%
 
 }
@@ -72,5 +72,3 @@ function speaker_test() {
   return;
 
 }
-
-

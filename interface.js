@@ -86,12 +86,12 @@ function initCheckbox(checkboxId, titlebar_name, titlebar_icon_url, titlebar_tex
   }
 }
 
-window.onfocus = function() { 
+window.onfocus = function() {
   console.log("focus");
   focusTitlebars(true);
 };
 
-window.onblur = function() { 
+window.onblur = function() {
   console.log("blur");
   focusTitlebars(false);
 };
@@ -109,17 +109,17 @@ window.onload = function() {
     remote.start_vnc();
     win.minimize();
   };
-  
+
   document.getElementById("phone_btn").onclick = function() {
     //Socket to nwpm to reboot function
     nwpm_socket.emit('reboot', true)
-  
+
   };
 
   document.getElementById("radio_btn").onclick = function() {
     //Socket to nwpm to cancel reboot function
     nwpm_socket.emit('canc_reboot', true)
-  
+
   };
 
   document.getElementById("settings_btn").onclick = function() {
@@ -138,4 +138,3 @@ window.onload = function() {
 // start servers //
 // ------------- //
 //website.start(app);
-
