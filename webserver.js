@@ -5,20 +5,54 @@
 
 
 
-
+var express = require('express');
+var app = express();
+var fs = require('fs');
 var http = require('http');
-var io = require('socket.io')(http);
-const webserv = http.createServer().listen("8080");
-var web_io = require('socket.io').listen(webserv);
+var https = require('https');
+var console = require('console');
 
-//var webserv_launch = spawn('node', ['./webserver.js'])
+var options = {
+   key  : fs.readFileSync('server.key'),
+   cert : fs.readFileSync('server.crt')
+};
 
+const webserv = https.createServer(handler);
+webserv.listen(8080);
+
+const server = http.createServer().listen("1235");
+var web_io = require('socket.io').listen(server);
+var nwpm_socket = require('socket.io-client')("http://127.0.0.1:1235");
+
+
+module.exports = {}
+
+
+
+function handler (req, res) {
+  fs.readFile(__dirname + './interface.js',
+  function (err, data) {
+    if (err) {
+      res.writeHead(500);
+      return res.end('Error loading interface.js');
+    }
+
+    res.writeHead(200);
+    res.end(data);
+  });
+}
 
 web_io.on('connection', function(socket) {
    console.log('A user connected');
-   
+
+   socket.emit('news', { hello: 'world' });
+
+   socket.on('my other event', function (data) {
+     console.log(data); 
+   });
+  
    socket.on('disconnect', function () {
-      console.log('A user disconnected');
+     console.log('A user disconnected');
    });
 
 
