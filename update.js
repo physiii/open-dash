@@ -2,11 +2,15 @@
 // -----------------  https://github.com/physiii/open-dash -------------------- //
 // ---------------------------------- update.js ------------------------------------ //
 
+var http = require('http');
 var exec = require('child_process').exec;
 var spawn = require('child_process').spawn;
 var fs = require('fs');
 var console = require('console');
 var update_socket = require('socket.io-client')("http://127.0.0.1:1235");
+
+const server = http.createServer().listen("1240");
+var process_io = require('socket.io').listen(server);
 
 module.exports = {
   pull: pull,
@@ -26,8 +30,19 @@ function pull() {
       update_socket.emit('restart', true);
 
     };
-  });
+  })
 };
+
+
+process_io.on('connection', function (socket) {
+  console.log("System Socket connected");
+
+  socket.on('update', function (data) {
+    console.log("update socket running =", data)
+    pull();
+
+  });
+});
 
 function test() {
   return;

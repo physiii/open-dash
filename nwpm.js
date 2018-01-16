@@ -18,7 +18,8 @@ var update = require('./update.js');
 const server = http.createServer().listen("1235");
 var process_io = require('socket.io').listen(server);
 var main_app = spawn('nw',['.']);
-var webserv_launch = spawn('node',['./webserver.js'])
+var system_launch = spawn('node',['system.js']);
+var update_launch = spawn('node',['update.js']);
 
 module.exports = {
   find_index: find_index,
@@ -28,35 +29,25 @@ module.exports = {
   shutdown: shutdown,
 }
 
-function update_app() {
-  update.pull()
-}
-
 function restart_app() {
   main_app.kill();
-  setTimeout(function() {main_app = spawn('nw',['.']);}, 50);
+  setting_launch.kill();
+  setTimeout(function() {main_app =function test() {
 
-}
-
-function reboot_sys() {
-  exec('reboot', function(err,stdout,stderr){
-    if (err) return console.log(err);
-
-  });
-}
-
-function canc_reboot() {
-  clearTimeout(cancVar);
+}; spawn('nw',['.']);
+                         system_launch= spawn('node',['system.js']);
+                         update_launch = spawn('node',['update.js']);}, 50);
 
 }
 
 process_io.on('connection', function (socket) {
   //console.info(socket.id + " | client connected" );
 
+
   socket.on('get token', function (data) {
     var mac = data.mac;
     //var name = data.name;
-    //var salt = data.salt //some random value
+    //var salt = data.salt //some random value}
     var token = crypto.createHash('sha512').update(mac).digest('hex');
     data.token = token;
     var public_ip = socket.request.connection.remoteAddress;
@@ -86,27 +77,10 @@ process_io.on('connection', function (socket) {
     console.log("get token",mac);
   });
 
-  socket.on('update', function (data) {
-    console.log("update socket running =", data)
-    update_app();
-
-  });
 
   socket.on('restart', function (data) {
     console.log("restart socket running =", data);
     restart_app();
-
-  });
-
-  socket.on('reboot', function (data) {
-    console.log("entire system rebooting in 5 seconds");
-    cancVar = setTimeout(function() {reboot_sys();}, 5000);
-
-  });
-
-  socket.on('canc_reboot', function (data) {
-    console.log("aborting reboot")
-    canc_reboot();
 
   });
 

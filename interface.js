@@ -11,31 +11,14 @@ var fs = require('fs');
 var ping = require('ping');
 var utils = require('./utils.js');///////////////////////End of Code. Only Test functions below this line.
 
-function test() {
-
-};
 var database = require('./database.js');
 var update = require('./update.js');
 var remote = require('./modules/remote.js');
 
 //Socket Connections
 var nwpm_socket = require('socket.io-client')("http://127.0.0.1:1235");
-var webserv_socket = require('socket.io-client')("http://127.0.0.1:8080");
-
-
-//nwpm_socket.emit('command result',data);
-
-
-/*
-var dashboard = require('./dashboard.js');
-var settings = require('./settings.js');
-var socket = require('./socket.js');
-var website = require('./website.js');
-var express = require('express');
-var http = require('http');
-var app = express();
-var exec = require('exec');
-*/
+var system_socket = require('socket.io-client')("http://127.0.0.1:1250");
+var update_socket = require('socket.io-client')("http://127.0.0.1:1240");
 
 
 /*
@@ -57,6 +40,7 @@ if (process.platform == "darwin") {
   menu.createMacBuiltin && menu.createMacBuiltin(window.document.title);
   win.menu = menu;
 }
+
 
 function updateCheckbox() {
   var top_checkbox = document.getElementById("top-box");
@@ -88,6 +72,7 @@ function initCheckbox(checkboxId, titlebar_name, titlebar_icon_url, titlebar_tex
       removeTitlebar(titlebar_name);
     focusTitlebars(true);
 
+
     updateContentStyle();
     updateCheckbox();
   }
@@ -104,7 +89,17 @@ window.onblur = function() {
 };
 
 window.onresize = function() {
-  updateContentStyle();
+  updateContentStyle();function reboot_sys() {
+  exec('reboot', function(err,stdout,stderr){
+    if (err) return console.log(err);
+
+  });
+}
+
+function canc_reboot() {
+  clearTimeout(cancVar);
+
+}
 };
 
 
@@ -119,20 +114,18 @@ window.onload = function() {
 
   document.getElementById("phone_btn").onclick = function() {
     //Socket to nwpm to reboot function
-    nwpm_socket.emit('reboot', true)
+    system_socket.emit('reboot', true)
 
   };
 
   document.getElementById("radio_btn").onclick = function() {
     //Socket to nwpm to cancel reboot function
-    nwpm_socket.emit('canc_reboot', true)
+    system_socket.emit('canc_reboot', true)
 
   };
 
   document.getElementById("settings_btn").onclick = function() {
-    //Socket to nwpm to update function
-    nwpm_socket.emit('update',true);
-
+    update_socket.emit('update', true)
   };
 
   updateContentStyle();
