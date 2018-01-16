@@ -9,11 +9,15 @@ var http = require('http');
 var https = require('https');
 var console = require('console');
 var socket = require('socket.io');
+var system = require('./system.js');
+var update = require('./update.js');
+
 var port = 8080
 
 var options = {
    key  : fs.readFileSync('server.key'),
    cert : fs.readFileSync('server.crt'),
+   ca: fs.readFileSync('server.csr'),
 };
 
 //Create SSL Server
@@ -48,5 +52,5 @@ process_io.on('connection', function(socket) {
 //});as
 
 function test() {
-  return;
+  console.log("Testing Webserver Module");
 };

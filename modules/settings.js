@@ -1,12 +1,10 @@
-// ------------------------------  OPEN-AUTOMATION ----------------------------------- //
-// -----------------  https://github.com/physiii/open-automation  -------------------- //
-// ---------------------------------- settings.js ------------------------------------ //
-
 // ------------------------------  OPEN-DASH ----------------------------------- //
 // -----------------  https://github.com/physiii/Open-Dash -------------------- //
 // ---------------------------------- settings.js ------------------------------------ //
 
-var blank = null;
+var console = require('console');
+var system = require('./system.js');
+var update = require('./update.js');
 
 
 module.exports = {
@@ -25,4 +23,5 @@ function blank() {
 
 //--End of code prior to test function for module--//
 function test() {
+  console.log("Testing Settings Module")
 };

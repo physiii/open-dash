@@ -29,5 +29,5 @@ function canc_reboot() {
 
 
 function test() {
-  return;
+  console.log("Testing System Module")
 };

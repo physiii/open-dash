@@ -240,5 +240,5 @@ function shutdown() {
 ///////////////////////End of Code. Only Test functions below this line.
 
 function test() {
-  return;
+  console.log("Testing NWPM Module");
 };

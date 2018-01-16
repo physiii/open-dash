@@ -34,5 +34,5 @@ function pull() {
 
 
 function test() {
-  return;
+  console.log("Testing Update Module")
 };

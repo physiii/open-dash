@@ -17,9 +17,15 @@ var remote = require('./modules/remote.js');
 var system = require('./system.js');
 var console = require('console');
 
-//Socket Connections
 var nwpm_socket = c_socket("http://127.0.0.1:1235");
-var webserv_socket = c_socket("https://127.0.0.1:8080", {secure: true, reconnect: true});
+
+/*
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+var webserv_socket = c_socket.connect("https://127.0.0.1:8080");
+  webserv_socket.on('connect', function(){
+    console.log("Connected SSL webserver");
+  });
+*/
 
 /*
 // ---------------- //
@@ -32,7 +38,7 @@ device_sockets = [];
 status_objects = [];
 user_objects = [];
 user_sockets = [];
-*/
+*/return
 
 // Extend application menu for Mac OS
 if (process.platform == "darwin") {
@@ -147,5 +153,5 @@ window.onload = function() {
 ///////////////////////End of Code. Only Test functions below this line.
 
 function test() {
-  return;
+  console.log("Testing Interface Module");
 };
