@@ -9,13 +9,14 @@ var exec = child_process.exec;
 var spawn = child_process.spawn;
 var fs = require('fs');
 var ping = require('ping');
-var utils = require('./utils.js');///////////////////////End of Code. Only Test functions below this line.
+var utils = require('./utils.js');
 
 var database = require('./database.js');
 var update = require('./update.js');
 var remote = require('./modules/remote.js');
 var system = require('./system.js');
 var console = require('console');
+
 //Socket Connections
 var nwpm_socket = require('socket.io-client')("http://127.0.0.1:1235");
 
