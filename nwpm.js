@@ -29,12 +29,7 @@ module.exports = {
 
 function restart_app() {
   main_app.kill();
-  setting_launch.kill();
-  setTimeout(function() {main_app =function test() {
-
-}; spawn('nw',['.']);
-                         system_launch= spawn('node',['system.js']);
-                         update_launch = spawn('node',['update.js']);}, 50);
+  setTimeout(function() {main_app = spawn('nw',['.']);}, 50);
 
 }
 

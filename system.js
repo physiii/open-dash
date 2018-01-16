@@ -16,10 +16,11 @@ module.exports = {
 
 
 function reboot_sys() {
-  exec('reboot', function(err,stdout,stderr){
-    if (err) return console.log(err);
-  });
-}
+  console.log("Rebooting system in 5 seconds.");
+  cancVar = setTimeout(function() {
+    exec('reboot');}, 5000);
+
+};
 
 function canc_reboot() {
   clearTimeout(cancVar);

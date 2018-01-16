@@ -15,7 +15,7 @@ var database = require('./database.js');
 var update = require('./update.js');
 var remote = require('./modules/remote.js');
 var system = require('./system.js');
-
+var console = require('console');
 //Socket Connections
 var nwpm_socket = require('socket.io-client')("http://127.0.0.1:1235");
 
@@ -86,6 +86,7 @@ window.onblur = function() {
   focusTitlebars(false);
 };
 
+/*
 window.onresize = function() {
   updateContentStyle();function reboot_sys() {function test() {
   return;
@@ -96,12 +97,12 @@ window.onresize = function() {
   });
 }
 
-function canc_reboot() {
-  clearTimeout(cancVar);
+  function canc_reboot() {
+    clearTimeout(cancVar);
 
-}
+  }
 };
-
+*/
 
 // Main application running modules
 
