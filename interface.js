@@ -1,6 +1,6 @@
-// ----------------------------  open-dash --- ----------------------------- //
-// ---------------  https://github.com/physiii/open-dash  ------------------ //
-// ----------------------------- index.js ---------------------------------- //
+// ------------------------------  OPEN-DASH ----------------------------------- //
+// -----------------  https://github.com/physiii/open-dash -------------------- //
+// ---------------------------------- interface.js ------------------------------------ //
 
 var gui = require("nw.gui");
 var win = gui.Window.get();
@@ -138,3 +138,9 @@ window.onload = function() {
 // start servers //
 // ------------- //
 //website.start(app);
+
+///////////////////////End of Code. Only Test functions below this line.
+
+function test() {
+  return;
+};

@@ -1,5 +1,6 @@
-// -------------------  author: Andy Payne andy@pyfi.org ----------------------- //
-// -----------------  https://plus.google.com/+AndyPayne42  -------------------- //
+// ------------------------------  OPEN-DASH ----------------------------------- //
+// -----------------  https://github.com/physiii/open-dash -------------------- //
+// ---------------------------------- utils.js ------------------------------------ //
 
 
 module.exports = {
@@ -154,5 +155,9 @@ function getMostRecentFileName(dir) {
 function shutdown() {
   console.log("Program Terminating");
   process.exit()
+  return;
+};
+
+function test() {
   return;
 };

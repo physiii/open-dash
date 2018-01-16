@@ -1,6 +1,6 @@
-// ---------------------------  USPS Project -------------------------------- //
-// --------------  https://github.com/physiii/open-dash  ----------------- //
-// ----------------------------- webserver.js ---------------------------------- //
+// ------------------------------  OPEN-DASH ----------------------------------- //
+// -----------------  https://github.com/physiii/open-dash -------------------- //
+// ---------------------------------- webserver.js ------------------------------------ //
 
 
 
@@ -25,7 +25,9 @@ var web_io = require('socket.io').listen(server);
 var nwpm_socket = require('socket.io-client')("http://127.0.0.1:1235");
 
 
-module.exports = {}
+module.exports = {
+
+};
 
 
 
@@ -48,9 +50,9 @@ web_io.on('connection', function(socket) {
    socket.emit('news', { hello: 'world' });
 
    socket.on('my other event', function (data) {
-     console.log(data); 
+     console.log(data);
    });
-  
+
    socket.on('disconnect', function () {
      console.log('A user disconnected');
    });
@@ -61,3 +63,7 @@ web_io.on('connection', function(socket) {
 //http.listen(3000, function() {
 //   console.log('listening on *:3000');
 //});as
+
+function test() {
+  return;
+};

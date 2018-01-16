@@ -1,5 +1,5 @@
-// ------------------------------  OPEN-AUTOMATION ----------------------------------- //
-// -----------------  https://github.com/physiii/open-automation  -------------------- //
+// ------------------------------  OPEN-DASH ----------------------------------- //
+// -----------------  https://github.com/physiii/open-dash -------------------- //
 // ---------------------------------- database.js ------------------------------------ //
 
 var mongodb = require('mongodb');
@@ -35,11 +35,11 @@ function get_settings() {
     } else {
       var collection = db.collection('settings');
       collection.find().toArray(function (err, result) {
-        if (err) { 
+        if (err) {
 	  console.log("get_settings",err);
         } else if (result.length) {
 	  settings_obj = result[0];
-  	//console.log('load settings',settings_obj);	
+  	//console.log('load settings',settings_obj);
         } else {
           console.log(TAG,'get_settings | no results');
         }
@@ -70,12 +70,12 @@ function store_settings(data) {
 //-- get things --//
 function get_groups() {
 MongoClient.connect('mongodb://127.0.0.1:27017/relay', function (err, db) {
-  if (err) {console.log('Unable to connect to the mongoDB server. Error:', err)} 
+  if (err) {console.log('Unable to connect to the mongoDB server. Error:', err)}
   else {
     var collection = db.collection('groups');
     collection.find().toArray(function (err, result) {
       if (err) return err;
-      if (result.length) {  
+      if (result.length) {
          groups = result;
          //console.log("!! get_groups !!",groups);
       }
@@ -93,11 +93,11 @@ function get_device_objects() {
     } else {
       var collection = db.collection('devices');
       collection.find().toArray(function (err, result) {
-        if (err) { 
+        if (err) {
 	  console.log("get_device_objects",err);
         } else if (result.length) {
 	  device_objects = result;
-  	  //console.log('get_device_objects',device_objects);	
+  	  //console.log('get_device_objects',device_objects);
         } else {
           console.log(TAG,'get_device_objects | no results');
         }
@@ -114,11 +114,11 @@ function get_accounts() {
     } else {
       var collection = db.collection('accounts');
       collection.find().toArray(function (err, result) {
-        if (err) { 
+        if (err) {
 	  console.log("get_account_objects",err);
         } else if (result.length) {
 	  accounts = result;
-  	  //console.log('get_accounts',accounts);	
+  	  //console.log('get_accounts',accounts);
         } else {
           console.log(TAG,'get_accounts | no results');
         }
@@ -137,8 +137,8 @@ function get_status_objects() {
         if (err) console.log("get_status_objects",err);
         else if (result.length) {
 	  status_objects = result;
-  	  //console.log('get_status_objects',status_objects);	
-        } 
+  	  //console.log('get_status_objects',status_objects);
+        }
           console.log(TAG,'get_status_objects | no results');
         db.close();
       });
@@ -246,3 +246,9 @@ function store_status_object(mac, status) {
     }
   });
 }
+
+///////////////////////End of Code. Only Test functions below this line.
+
+function test() {
+  return;
+};

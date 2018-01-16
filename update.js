@@ -1,17 +1,17 @@
-// ------------------------------  OPEN-AUTOMATION ----------------------------------- //
-// -----------------  https://github.com/physiii/open-automation  -------------------- //
+// ------------------------------  OPEN-DASH ----------------------------------- //
+// -----------------  https://github.com/physiii/open-dash -------------------- //
 // ---------------------------------- update.js ------------------------------------ //
-
-//module.exports = {
-// pull: pull
-//};
-
 
 var exec = require('child_process').exec;
 var spawn = require('child_process').spawn;
 var fs = require('fs');
 var console = require('console');
 var update_socket = require('socket.io-client')("http://127.0.0.1:1235");
+
+module.exports = {
+  pull: pull,
+};
+
 
 function pull() {
   console.log("checking for updates in", __dirname);
@@ -29,10 +29,6 @@ function pull() {
   });
 };
 
-
-module.exports = {
-  pull: pull,
-  
+function test() {
+  return;
 };
- 
-

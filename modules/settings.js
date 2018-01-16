@@ -2,22 +2,27 @@
 // -----------------  https://github.com/physiii/open-automation  -------------------- //
 // ---------------------------------- settings.js ------------------------------------ //
 
+// ------------------------------  OPEN-DASH ----------------------------------- //
+// -----------------  https://github.com/physiii/Open-Dash -------------------- //
+// ---------------------------------- settings.js ------------------------------------ //
+
+var blank = null;
+
+
 module.exports = {
-}
 
-
-
-window.onload = function() {
-
-  document.getElementById("settings_btn").onclick = function() {
-    //start_vnc();
-    //gui.Window.get().minimize();
-    console.log("switch to settings screen!");
-  };
-
-  //updateContentStyle();
-  //gui.Window.get().show();
-  //gui.Window.get().maximize();
-  //addTitlebar("top-titlebar", "top-titlebar.png", "United States Post Office");
 };
 
+
+function blank() {
+  return;
+};
+
+
+//Socket.io functionality if needed
+
+
+
+//--End of code prior to test function for module--//
+function test() {
+};
