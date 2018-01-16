@@ -13,7 +13,7 @@ var fs = require('fs');
 var console = require('console');
 var update = require('./update.js');
 
-//var main_app_socket = require('socket.io-client')("http://127.0.0.1:1234");
+//var main_app_socket = require('socket.io-clientnpm install -g nodemon')("http://127.0.0.1:1234");
 //var webserv_socket = require('socket.io-client')("http://127.0.0.1:8080");
 const server = http.createServer().listen("1235");
 var process_io = require('socket.io').listen(server);
@@ -209,7 +209,7 @@ function main_loop () {
 }
 
 function find_index(array, key, value) {
-  for (var i=0; i < array.length; i++) {
+  for (var i=0; i < array.length; i++) {    
     if (array[i][key] == value) {
       return i;
     }
@@ -237,4 +237,5 @@ function shutdown() {
 
 function test() {
   return;
+
 };
