@@ -18,8 +18,6 @@ var update = require('./update.js');
 const server = http.createServer().listen("1235");
 var process_io = require('socket.io').listen(server);
 var main_app = spawn('nw',['.']);
-var system_launch = spawn('node',['system.js']);
-var update_launch = spawn('node',['update.js']);
 
 module.exports = {
   find_index: find_index,

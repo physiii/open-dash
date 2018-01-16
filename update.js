@@ -9,9 +9,6 @@ var fs = require('fs');
 var console = require('console');
 var update_socket = require('socket.io-client')("http://127.0.0.1:1235");
 
-const server = http.createServer().listen("1240");
-var process_io = require('socket.io').listen(server);
-
 module.exports = {
   pull: pull,
 };

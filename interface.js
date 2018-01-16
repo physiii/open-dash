@@ -18,9 +18,6 @@ var system = require('./system.js');
 
 //Socket Connections
 var nwpm_socket = require('socket.io-client')("http://127.0.0.1:1235");
-var system_socket = require('socket.io-client')("http://127.0.0.1:1250");
-var update_socket = require('socket.io-client')("http://127.0.0.1:1240");
-
 
 /*
 // ---------------- //
