@@ -27,20 +27,6 @@ module.exports = {
 };
 
 
-
-function handler (req, res) {
-  fs.readFile(__dirname + './interface.js',
-  function (err, data) {
-    if (err) {
-      res.writeHead(500);
-      return res.end('Error loading interface.js');
-    }
-
-    res.writeHead(200);
-    res.end(data);
-  });
-}
-
 process_io.on('connection', function(socket) {
    console.log('A user connected');
 
