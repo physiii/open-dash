@@ -9,6 +9,7 @@ var http = require('http');
 var https = require('https');
 var console = require('console');
 var socket = require('socket.io');
+var port = 8080
 
 var options = {
    key  : fs.readFileSync('server.key'),
@@ -16,7 +17,9 @@ var options = {
 };
 
 //Create SSL Server
-const server = http.createServer(app).listen("8080");
+const server = https.createServer(app, options).listen(port, function(){
+  console.log("Express Server listening on port " + port);
+});
 var process_io = socket(server);
 
 module.exports = {
