@@ -8,6 +8,7 @@ var fs = require('fs');
 var http = require('http');
 var https = require('https');
 var console = require('console');
+var socket = require('socket.io');
 
 var options = {
    key  : fs.readFileSync('server.key'),
@@ -15,8 +16,8 @@ var options = {
 };
 
 //Create SSL Server
-const server = https.createServer().listen("8080");
-var process_io = require('socket.io').listen(server);
+const server = http.createServer(app).listen("8080");
+var process_io = socket(server);
 
 module.exports = {
 
@@ -37,7 +38,7 @@ function handler (req, res) {
   });
 }
 
-web_io.on('connection', function(socket) {
+process_io.on('connection', function(socket) {
    console.log('A user connected');
 
    socket.emit('news', { hello: 'world' });

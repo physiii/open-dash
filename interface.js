@@ -9,6 +9,7 @@ var spawn = require('child_process').spawn;
 var fs = require('fs');
 var ping = require('ping');
 var utils = require('./utils.js');
+var c_socket = require('socket.io-client');
 
 var database = require('./database.js');
 var update = require('./update.js');
@@ -17,8 +18,8 @@ var system = require('./system.js');
 var console = require('console');
 
 //Socket Connections
-var nwpm_socket = require('socket.io-client')("http://127.0.0.1:1235");
-var webserv_socket = require('socket.io-client')("http://127.0.0.1:8080");
+var nwpm_socket = c_socket("http://127.0.0.1:1235");
+var webserv_socket = c_socket("http://127.0.0.1:8080");
 
 /*
 // ---------------- //
