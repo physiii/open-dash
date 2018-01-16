@@ -13,7 +13,7 @@ var port = 8080
 
 var options = {
    key  : fs.readFileSync('server.key'),
-   cert : fs.readFileSync('server.crt')
+   cert : fs.readFileSync('server.crt'),
 };
 
 //Create SSL Server

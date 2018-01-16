@@ -19,7 +19,7 @@ var console = require('console');
 
 //Socket Connections
 var nwpm_socket = c_socket("http://127.0.0.1:1235");
-var webserv_socket = c_socket("http://127.0.0.1:8080");
+var webserv_socket = c_socket("https://127.0.0.1:8080", {secure: true, reconnect: true});
 
 /*
 // ---------------- //
