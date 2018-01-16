@@ -34,15 +34,7 @@ function pull() {
 };
 
 
-process_io.on('connection', function (socket) {
-  console.log("System Socket connected");
 
-  socket.on('update', function (data) {
-    console.log("update socket running =", data)
-    pull();
-
-  });
-});
 
 function test() {
   return;

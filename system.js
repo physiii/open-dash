@@ -9,10 +9,10 @@ const spawn = require('child_process').spawn;
 var os = require('os');
 var console = require('console');
 
-const server = http.createServer().listen("1250");
-var process_io = require('socket.io').listen(server);
-
-module.exports = {};
+module.exports = {
+  reboot_sys: reboot_sys,
+  canc_reboot: canc_reboot,
+};
 
 
 function reboot_sys() {
@@ -25,19 +25,7 @@ function canc_reboot() {
   clearTimeout(cancVar);
 }
 
-process_io.on('connection', function (socket) {
-  console.log("System Socket connected");
 
-  socket.on('reboot', function (data) {
-    console.log("entire system rebooting in 5 seconds", data);
-    cancVar = setTimeout(function() {reboot_sys();}, 5000);
-
-  });
-
-  socket.on('canc_reboot', function (data) {
-    console.log("aborting reboot", data)
-    canc_reboot();
-
-  });
-
-});
+function test() {
+  return;
+};

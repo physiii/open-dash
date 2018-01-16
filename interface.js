@@ -14,6 +14,7 @@ var utils = require('./utils.js');///////////////////////End of Code. Only Test 
 var database = require('./database.js');
 var update = require('./update.js');
 var remote = require('./modules/remote.js');
+var system = require('./system.js');
 
 //Socket Connections
 var nwpm_socket = require('socket.io-client')("http://127.0.0.1:1235");
@@ -49,7 +50,7 @@ function updateCheckbox() {
   var right_checkbox = document.getElementById("right-box");
   if (top_checkbox.checked || bottom_checkbox.checked) {
     left_checkbox.disabled = true;
-    right_checkbox.disabled = true;
+    right_checkbox.disabled = true;system_socket.emit('canc_reboot', true)
   } else if (left_checkbox.checked || right_checkbox.checked) {
     top_checkbox.disabled = true;
     bottom_checkbox.disabled = true;
@@ -63,7 +64,7 @@ function updateCheckbox() {
 
 function initCheckbox(checkboxId, titlebar_name, titlebar_icon_url, titlebar_text) {
   var elem = document.getElementById(checkboxId);
-  if (!elem)
+  if (!elem)system_socket.emit('canc_reboot', true)
     return;
   elem.onclick = function() {
     if (document.getElementById(checkboxId).checked)
@@ -89,7 +90,9 @@ window.onblur = function() {
 };
 
 window.onresize = function() {
-  updateContentStyle();function reboot_sys() {
+  updateContentStyle();function reboot_sys() {function test() {
+  return;
+};
   exec('reboot', function(err,stdout,stderr){
     if (err) return console.log(err);
 
@@ -114,18 +117,18 @@ window.onload = function() {
 
   document.getElementById("phone_btn").onclick = function() {
     //Socket to nwpm to reboot function
-    system_socket.emit('reboot', true)
+    system.reboot_sys();
 
   };
 
   document.getElementById("radio_btn").onclick = function() {
     //Socket to nwpm to cancel reboot function
-    system_socket.emit('canc_reboot', true)
+    system.canc_reboot();
 
   };
 
   document.getElementById("settings_btn").onclick = function() {
-    update_socket.emit('update', true)
+    update.pull();
   };
 
   updateContentStyle();
