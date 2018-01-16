@@ -4,9 +4,8 @@
 
 var gui = require("nw.gui");
 var win = gui.Window.get();
-var child_process = require('child_process')
-var exec = child_process.exec;
-var spawn = child_process.spawn;
+var exec = require('child_process').exec;
+var spawn = require('child_process').spawn;
 var fs = require('fs');
 var ping = require('ping');
 var utils = require('./utils.js');
@@ -19,6 +18,7 @@ var console = require('console');
 
 //Socket Connections
 var nwpm_socket = require('socket.io-client')("http://127.0.0.1:1235");
+var webserv_socket = require('socket.io-client')("http://127.0.0.1:8080");
 
 /*
 // ---------------- //
@@ -87,7 +87,7 @@ window.onblur = function() {
   focusTitlebars(false);
 };
 
-/*
+
 window.onresize = function() {
   updateContentStyle();function reboot_sys() {function test() {
   return;
@@ -103,8 +103,8 @@ window.onresize = function() {
 
   }
 };
-*/
 
+var nwpm_socket = require('socket.io-client')("http://127.0.0.1:1235");
 // Main application running modules
 
 window.onload = function() {
@@ -115,19 +115,21 @@ window.onload = function() {
   };
 
   document.getElementById("phone_btn").onclick = function() {
-    //Socket to nwpm to reboot function
+    console.log("Rebooting system in 5 seconds.");
     system.reboot_sys();
 
   };
 
   document.getElementById("radio_btn").onclick = function() {
-    //Socket to nwpm to cancel reboot function
+    console.log("Cancelling System reboot");
     system.canc_reboot();
 
   };
 
   document.getElementById("settings_btn").onclick = function() {
+    console.log("checking for updates");
     update.pull();
+
   };
 
   updateContentStyle();

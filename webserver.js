@@ -14,11 +14,9 @@ var options = {
    cert : fs.readFileSync('server.crt')
 };
 
-//Create server & Socket to nwpm.js
+//Create SSL Server
 const server = https.createServer().listen("8080");
-var web_io = require('socket.io').listen(server);
-var nwpm_socket = require('socket.io-client')("http://127.0.0.1:1235");
-
+var process_io = require('socket.io').listen(server);
 
 module.exports = {
 

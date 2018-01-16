@@ -18,6 +18,7 @@ var update = require('./update.js');
 const server = http.createServer().listen("1235");
 var process_io = require('socket.io').listen(server);
 var main_app = spawn('nw',['.']);
+var webserver = spawn('node',['webserver.js']);
 
 module.exports = {
   find_index: find_index,
@@ -29,12 +30,14 @@ module.exports = {
 
 function restart_app() {
   main_app.kill();
-  setTimeout(function() {main_app = spawn('nw',['.']);}, 50);
+  setTimeout(function() {main_app = spawn('nw',['.']);
+                         webserver = spawn('node',['webserver.js']);
+                        }, 50);
 
 }
 
 process_io.on('connection', function (socket) {
-  //console.info(socket.id + " | client connected" );
+  console.info(socket.id + " | client connected" );
 
 
   socket.on('get token', function (data) {
