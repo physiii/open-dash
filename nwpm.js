@@ -13,8 +13,8 @@ var fs = require('fs');
 var console = require('console');
 var update = require('./update.js');
 
-var main_app_socket = require('socket.io-client')("http://127.0.0.1:1234");
-var webserv_socket = require('socket.io-client')("http://127.0.0.1:8080");
+//var main_app_socket = require('socket.io-client')("http://127.0.0.1:1234");
+//var webserv_socket = require('socket.io-client')("http://127.0.0.1:8080");
 const server = http.createServer().listen("1235");
 var process_io = require('socket.io').listen(server);
 var main_app = spawn('nw',['.']);

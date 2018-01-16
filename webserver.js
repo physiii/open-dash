@@ -2,9 +2,6 @@
 // -----------------  https://github.com/physiii/open-dash -------------------- //
 // ---------------------------------- webserver.js ------------------------------------ //
 
-
-
-
 var express = require('express');
 var app = express();
 var fs = require('fs');
@@ -17,10 +14,8 @@ var options = {
    cert : fs.readFileSync('server.crt')
 };
 
-const webserv = https.createServer(handler);
-webserv.listen(8080);
-
-const server = http.createServer().listen("1235");
+//Create server & Socket to nwpm.js
+const server = https.createServer().listen("8080");
 var web_io = require('socket.io').listen(server);
 var nwpm_socket = require('socket.io-client')("http://127.0.0.1:1235");
 

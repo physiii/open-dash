@@ -9,11 +9,18 @@ var exec = child_process.exec;
 var spawn = child_process.spawn;
 var fs = require('fs');
 var ping = require('ping');
-var utils = require('./utils.js');
+var utils = require('./utils.js');///////////////////////End of Code. Only Test functions below this line.
+
+function test() {
+
+};
 var database = require('./database.js');
 var update = require('./update.js');
 var remote = require('./modules/remote.js');
+
+//Socket Connections
 var nwpm_socket = require('socket.io-client')("http://127.0.0.1:1235");
+var webserv_socket = require('socket.io-client')("http://127.0.0.1:8080");
 
 
 //nwpm_socket.emit('command result',data);
