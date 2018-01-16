@@ -23,6 +23,7 @@ function reboot_sys() {
 };
 
 function canc_reboot() {
+  console.log("Cancelling System reboot");
   clearTimeout(cancVar);
 }
 
