@@ -6,19 +6,13 @@ var gui = require("nw.gui");
 var win = gui.Window.get();
 var exec = require('child_process').exec;
 var spawn = require('child_process').spawn;
-const crypto = require('crypto');
-var fs = require('fs');
-var os = require('os');
-var request = require('request');
-var ping = require('ping');
-var utils = require('./utils.js');
 var c_socket = require('socket.io-client');
 
 var database = require('./database.js');
 var update = require('./update.js');
 var remote = require('./modules/remote.js');
 var system = require('./system.js');
-
+var utils = require('./utils.js');
 
 //Socket Connection
 var nwpm_socket = c_socket("http://127.0.0.1:1235");
@@ -84,12 +78,12 @@ function initCheckbox(checkboxId, titlebar_name, titlebar_icon_url, titlebar_tex
   }
 }
 
-window.onfocus = function() { 
+window.onfocus = function() {
   console.log("focus");
   focusTitlebars(true);
 };
 
-window.onblur = function() { 
+window.onblur = function() {
   console.log("blur");
   focusTitlebars(false);
 };
