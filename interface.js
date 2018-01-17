@@ -10,11 +10,9 @@ var c_socket = require('socket.io-client');
 var fs = require('fs');
 var ping = require('ping');
 var os = require('os');
-var database = require('../database.js');
 var update = require('../update.js');
 var remote = require('../modules/remote.js');
 var system = require('../system.js');
-var utils = require('../utils.js');
 
 //Socket Connection
 var nwpm_socket = c_socket("http://127.0.0.1:1235");
@@ -39,11 +37,13 @@ function canc_reboot(){system.canc_reboot();};
 function pull(){update.pull();};
 
 // Extend application menu for Mac OS
+/*
 if (process.platform == "darwin") {
   var menu = new gui.Menu({type: "menubar"});
   menu.createMacBuiltin && menu.createMacBuiltin(window.document.title);
-  gui.Window.get().menu = menu;
+  win.menu = menu;
 }
+*/
 
 function updateCheckbox() {
   var top_checkbox = document.getElementById("top-box");
@@ -123,7 +123,7 @@ window.onload = function() {
 
   };
 
-  //updateContentStyle();
+  updateContentStyle();
   win.show();
 
 };
