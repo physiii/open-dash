@@ -6,7 +6,10 @@ var gui = require("nw.gui");
 var win = gui.Window.get();
 var exec = require('child_process').exec;
 var spawn = require('child_process').spawn;
+const crypto = require('crypto');
 var fs = require('fs');
+var os = require('os');
+var request = require('request');
 var ping = require('ping');
 var utils = require('./utils.js');
 var c_socket = require('socket.io-client');
@@ -34,11 +37,6 @@ user_objects = [];
 user_sockets = [];
 */
 
-module.exports = {
-  sys_reboot: sys_reboot,
-  canc_reboot: canc_reboot,
-  pull: pull
-};
 
 function sys_reboot(){system.reboot_sys();};
 function canc_reboot(){system.canc_reboot();};
@@ -100,7 +98,7 @@ window.onresize = function() {
   updateContentStyle();
 };
 
-test();
+//test();
 
 // Main application running modules
 
