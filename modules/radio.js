@@ -26,5 +26,5 @@ function pull() {
 };
 
 function test() {
-    console.log("Testing radio Module")
+    console.log("Testing radio Module");
 };

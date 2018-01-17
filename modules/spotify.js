@@ -21,5 +21,5 @@ function blank() {
 
 //--End of code prior to test function for module--//
 function test() {
-    console.log("Testing spotify Module")
+    console.log("Testing spotify Module");
 };

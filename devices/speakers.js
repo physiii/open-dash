@@ -69,5 +69,5 @@ function unsupp_command(data) {
 //Test Functions
 
 function speaker_test() {
-  console.log("Testing speaker Module")
+  console.log("Testing speaker Module");
 };

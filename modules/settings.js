@@ -23,5 +23,5 @@ function blank() {
 
 //--End of code prior to test function for module--//
 function test() {
-  console.log("Testing Settings Module")
+  console.log("Testing Settings Module");
 };

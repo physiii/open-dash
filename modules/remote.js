@@ -87,5 +87,5 @@ app.listen(3001, function() {console.log('Example app listening on port 3001!')}
 
 
 function test() {
-  console.log("Testing remote Module")  
+  console.log("Testing remote Module");
 };
