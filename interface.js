@@ -7,12 +7,14 @@ var win = gui.Window.get();
 var exec = require('child_process').exec;
 var spawn = require('child_process').spawn;
 var c_socket = require('socket.io-client');
-
-var database = require('./database.js');
-var update = require('./update.js');
-var remote = require('./modules/remote.js');
-var system = require('./system.js');
-var utils = require('./utils.js');
+var fs = require('fs');
+var ping = require('ping');
+var os = require('os');
+var database = require('../database.js');
+var update = require('../update.js');
+var remote = require('../modules/remote.js');
+var system = require('../system.js');
+var utils = require('../utils.js');
 
 //Socket Connection
 var nwpm_socket = c_socket("http://127.0.0.1:1235");
@@ -27,7 +29,7 @@ groups = [];
 device_objects = [];
 device_sockets = [];
 status_objects = [];
-user_objects = [];
+user_objects = [];./database.js
 user_sockets = [];
 */
 
@@ -121,7 +123,7 @@ window.onload = function() {
 
   };
 
-  updateContentStyle();
+  //updateContentStyle();
   win.show();
 
 };
