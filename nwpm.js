@@ -10,7 +10,6 @@ var remote = require('./modules/remote.js');
 var os = require('os');
 var request = require('request');
 var fs = require('fs');
-var console = require('console');
 var update = require('./update.js');
 var socket = require('socket.io');
 

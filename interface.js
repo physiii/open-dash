@@ -15,7 +15,6 @@ var database = require('./database.js');
 var update = require('./update.js');
 var remote = require('./modules/remote.js');
 var system = require('./system.js');
-var console = require('console');
 
 var nwpm_socket = c_socket("http://127.0.0.1:1235");
 
@@ -38,7 +37,11 @@ device_sockets = [];
 status_objects = [];
 user_objects = [];
 user_sockets = [];
-*/return
+*/
+
+function sys_reboot(){system.reboot_sys();};
+function canc_reboot(){system.canc_reboot();};
+function pull(){update.pull();};
 
 // Extend application menu for Mac OS
 if (process.platform == "darwin") {
@@ -96,7 +99,7 @@ window.onblur = function() {
 
 
 window.onresize = function() {
-  updateContentStyle();function reboot_sys() {function test() {
+  updateContentStyle();function reboot_sysreboot_sys() {function test() {
   return;
 };
   exec('reboot', function(err,stdout,stderr){
@@ -111,6 +114,7 @@ window.onresize = function() {
   }
 };
 
+test();
 var nwpm_socket = require('socket.io-client')("http://127.0.0.1:1235");
 // Main application running modules
 
@@ -123,19 +127,19 @@ window.onload = function() {
 
   document.getElementById("phone_btn").onclick = function() {
     console.log("Rebooting system in 5 seconds.");
-    system.reboot_sys();
+    sys_reboot();
 
   };
 
   document.getElementById("radio_btn").onclick = function() {
     console.log("Cancelling System reboot");
-    system.canc_reboot();
+    canc_reboot();
 
   };
 
   document.getElementById("settings_btn").onclick = function() {
     console.log("checking for updates");
-    update.pull();
+    pull();
 
   };
 
@@ -151,6 +155,7 @@ window.onload = function() {
 //website.start(app);
 
 ///////////////////////End of Code. Only Test functions below this line.
+
 
 function test() {
   console.log("Testing Interface Module");
