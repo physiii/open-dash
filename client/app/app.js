@@ -1,12 +1,5 @@
 'use strict';
 
-angular.module('actifioApp', ['ngRoute']).config(['$routeProvider',
-    function($routeProvider) {
-        $routeProvider.when('/', {
-            templateUrl : 'app/main/view/dashboard.html',
-            controller : 'Dashboardcontroller'
-        }).otherwise({
-            redirectTo : '/'
-        });
-    }]);
+angular.module('openDashApp', ['ngResource','ngRoute']);
+
 
