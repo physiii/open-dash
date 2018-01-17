@@ -16,15 +16,10 @@ var update = require('./update.js');
 var remote = require('./modules/remote.js');
 var system = require('./system.js');
 
+
+//Socket Connection
 var nwpm_socket = c_socket("http://127.0.0.1:1235");
 
-/*
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-var webserv_socket = c_socket.connect("https://127.0.0.1:8080");
-  webserv_socket.on('connect', function(){
-    console.log("Connected SSL webserver");
-  });
-*/
 
 /*
 // ---------------- //
@@ -38,8 +33,8 @@ status_objects = [];
 user_objects = [];
 user_sockets = [];
 */
+
 module.exports = {
-  test: test,
   sys_reboot: sys_reboot,
   canc_reboot: canc_reboot,
   pull: pull
@@ -53,9 +48,8 @@ function pull(){update.pull();};
 if (process.platform == "darwin") {
   var menu = new gui.Menu({type: "menubar"});
   menu.createMacBuiltin && menu.createMacBuiltin(window.document.title);
-  win.menu = menu;
+  gui.Window.get().menu = menu;
 }
-
 
 function updateCheckbox() {
   var top_checkbox = document.getElementById("top-box");
@@ -64,7 +58,7 @@ function updateCheckbox() {
   var right_checkbox = document.getElementById("right-box");
   if (top_checkbox.checked || bottom_checkbox.checked) {
     left_checkbox.disabled = true;
-    right_checkbox.disabled = true;system_socket.emit('canc_reboot', true)
+    right_checkbox.disabled = true;
   } else if (left_checkbox.checked || right_checkbox.checked) {
     top_checkbox.disabled = true;
     bottom_checkbox.disabled = true;
@@ -78,7 +72,7 @@ function updateCheckbox() {
 
 function initCheckbox(checkboxId, titlebar_name, titlebar_icon_url, titlebar_text) {
   var elem = document.getElementById(checkboxId);
-  if (!elem)system_socket.emit('canc_reboot', true)
+  if (!elem)
     return;
   elem.onclick = function() {
     if (document.getElementById(checkboxId).checked)
@@ -87,41 +81,27 @@ function initCheckbox(checkboxId, titlebar_name, titlebar_icon_url, titlebar_tex
       removeTitlebar(titlebar_name);
     focusTitlebars(true);
 
-
     updateContentStyle();
     updateCheckbox();
   }
 }
 
-window.onfocus = function() {
+window.onfocus = function() { 
   console.log("focus");
   focusTitlebars(true);
 };
 
-window.onblur = function() {
+window.onblur = function() { 
   console.log("blur");
   focusTitlebars(false);
 };
 
-
 window.onresize = function() {
-  updateContentStyle();function reboot_sysreboot_sys() {function test() {
-  return;
-};
-  exec('reboot', function(err,stdout,stderr){
-    if (err) return console.log(err);
-
-  });
-}
-
-  function canc_reboot() {
-    clearTimeout(cancVar);
-
-  }
+  updateContentStyle();
 };
 
 test();
-var nwpm_socket = require('socket.io-client')("http://127.0.0.1:1235");
+
 // Main application running modules
 
 window.onload = function() {

@@ -27,8 +27,7 @@ const server = https.createServer(app, options).listen(port, function(){
 var process_io = socket(server);
 
 module.exports = {
-  test: test,
-  
+
 };
 
 
@@ -50,7 +49,7 @@ process_io.on('connection', function(socket) {
 
 //http.listen(3000, function() {
 //   console.log('listening on *:3000');
-//});as
+//});
 
 function test() {
   console.log("Testing Webserver Module");

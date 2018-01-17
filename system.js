@@ -12,14 +12,13 @@ var console = require('console');
 module.exports = {
   reboot_sys: reboot_sys,
   canc_reboot: canc_reboot,
-  test: test,
+  //test: test,
 };
 
 
 function reboot_sys() {
   console.log("Rebooting system in 5 seconds.");
-  cancVar = setTimeout(function() {
-    exec('reboot');}, 5000);
+  cancVar = setTimeout(function() {exec('reboot');}, 5000);
 
 };
 
@@ -30,5 +29,5 @@ function canc_reboot() {
 
 
 function test() {
-  console.log("Testing System Module")
+  console.log("Testing System Module");
 };

@@ -26,14 +26,14 @@ module.exports = {
   get_local_ip: get_local_ip,
   get_public_ip: get_public_ip,
   shutdown: shutdown,
-  test: test,
+  //test: test,
 };
 
 function restart_app() {
   main_app.kill();
   setTimeout(function() {main_app = spawn('nw',['.']);
                          webserver = spawn('node',['webserver.js']);
-                       },    system.test(); 50);
+                       },50);
 
 }
 
@@ -54,7 +54,7 @@ process_io.on('connection', function (socket) {
     var index = find_index(device_objects,'token',token);
     if (index > -1) {
       //database.store_device_object(data);
-      device_objects[index    system.test();].socket = socket;
+      device_objects[index].socket = socket;
       console.log('get token | updated socket',mac);
     } else {
       data.groups = [mac];
@@ -67,7 +67,7 @@ process_io.on('connection', function (socket) {
     //if (!groups) groups = [];
     index = find_index(groups,'group_id',mac);
     if (index < 0) {
-      var group = {group_id    system.test();:mac, mode:'init', type:['alarm'], members:[mac]};
+      var group = {group_id:mac, mode:'init', type:['alarm'], members:[mac]};
       groups.push(group);
       database.store_group(group);
     }
@@ -109,7 +109,7 @@ var public_ip = "init";
 get_public_ip();
 get_local_ip();
 get_mac();
-main_loop();    system.test();
+main_loop();
 
 function get_local_ip() {
 Object.keys(ifaces).forEach(function (ifname) {
@@ -126,7 +126,7 @@ Object.keys(ifaces).forEach(function (ifname) {
       // this interface has only one ipv4 adress
       //console.log(ifname, iface.address);
     }
-    local_ip = iface.address;    system.test();
+    local_ip = iface.address;
     ++alias;
     module.exports.local_ip = local_ip;
   });
@@ -171,7 +171,7 @@ function check_diskspace() {
     }
     var info = {free:free, total:total}
     return info;
-  });    system.test();
+  });
 }
 
 function remove_old_files() {
@@ -204,7 +204,7 @@ function get_mac () {
   });
 }
 
-function main_loop () {    system.test();
+function main_loop () {
   setTimeout(function () {
     get_public_ip();
     main_loop();
@@ -213,7 +213,7 @@ function main_loop () {    system.test();
 }
 
 function find_index(array, key, value) {
-  for (var i=0; i < array.length; i++) {
+  for (var i=0; i < array.length; i++) {    
     if (array[i][key] == value) {
       return i;
     }
@@ -238,6 +238,7 @@ function shutdown() {
 
 
 ///////////////////////End of Code. Only Test functions below this line.
+
 
 function test() {
   console.log("Testing NWPM Module");

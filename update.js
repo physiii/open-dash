@@ -11,7 +11,7 @@ var update_socket = require('socket.io-client')("http://127.0.0.1:1235");
 
 module.exports = {
   pull: pull,
-  test: test,
+  //test: test,
 };
 
 
@@ -35,5 +35,5 @@ function pull() {
 
 
 function test() {
-  console.log("Testing Update Module")
+  console.log("Testing Update Module");
 };
