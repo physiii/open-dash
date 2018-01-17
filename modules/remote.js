@@ -10,7 +10,7 @@ const app = express()
 var fs = require('fs');
 var ping = require('ping');
 var database = require('../database.js');
-var update = require('../update.js');
+var update = require('./update.js');
 var remote_socket= require('socket.io-client')("http://127.0.0.1:1236");
 
 var vnc_ip = "192.168.0.16";

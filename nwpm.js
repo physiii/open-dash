@@ -10,7 +10,7 @@ var remote = require('./modules/remote.js');
 var os = require('os');
 var request = require('request');
 var fs = require('fs');
-var update = require('./update.js');
+var update = require('./modules/update.js');
 var socket = require('socket.io');
 
 //var main_app_socket = require('socket.io-client')("http://127.0.0.1:1234");

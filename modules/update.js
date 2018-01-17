@@ -35,5 +35,6 @@ function pull() {
 
 
 function test() {
-  console.log("Testing Update Module");
+  console.log("Testing Update Module with pull function...");
+  pull()
 };

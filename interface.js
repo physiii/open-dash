@@ -10,7 +10,7 @@ var c_socket = require('socket.io-client');
 var fs = require('fs');
 var ping = require('ping');
 var os = require('os');
-var update = require('../update.js');
+var update = require('../modules/update.js');
 var remote = require('../modules/remote.js');
 var system = require('../system.js');
 
