@@ -38,6 +38,12 @@ status_objects = [];
 user_objects = [];
 user_sockets = [];
 */
+module.exports = {
+  test: test,
+  sys_reboot: sys_reboot,
+  canc_reboot: canc_reboot,
+  pull: pull
+};
 
 function sys_reboot(){system.reboot_sys();};
 function canc_reboot(){system.canc_reboot();};

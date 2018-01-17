@@ -12,6 +12,7 @@ var console = require('console');
 module.exports = {
   reboot_sys: reboot_sys,
   canc_reboot: canc_reboot,
+  test: test,
 };
 
 

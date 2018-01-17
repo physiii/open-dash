@@ -27,7 +27,8 @@ const server = https.createServer(app, options).listen(port, function(){
 var process_io = socket(server);
 
 module.exports = {
-
+  test: test,
+  
 };
 
 
