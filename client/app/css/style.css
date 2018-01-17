@@ -9,6 +9,49 @@ body {
   padding: 0px;
 }
 
+.logo {
+  border-radius: 8px;
+  width:40%;
+  margin:10px auto 10px auto;
+}
+
+
+.dash_btn_img {
+  border-radius: 8px;
+  width:65%;
+  height:65%;
+  margin:10px auto 10px auto;
+}
+
+.dashboard_button {
+  float:left;
+  background:#555;
+  margin:20px;
+  padding:auto;
+  width:25%;
+  height:40%;
+  text-align:center;
+  font-size:150%;
+  color:#fff;
+  border: 3px solid #000;
+  border-radius: 10px;
+}
+
+.footer {
+  float:left;
+  background:#222;
+  border-color:#eee;
+  padding:auto;
+  width:100%;
+  height:10%;
+  text-align:center;
+  font-size:100%;
+}
+
+.dashboard_container {
+  height: calc( 100% - 140px );
+}
+
 ::-webkit-scrollbar-thumb {
   display: none;
 }
