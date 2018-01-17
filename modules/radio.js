@@ -24,3 +24,7 @@ function pull() {
 
   });
 };
+
+function test() {
+    console.log("Testing radio Module");
+};

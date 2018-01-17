@@ -10,7 +10,6 @@ var remote = require('./modules/remote.js');
 var os = require('os');
 var request = require('request');
 var fs = require('fs');
-var console = require('console');
 var update = require('./update.js');
 var socket = require('socket.io');
 
@@ -27,13 +26,14 @@ module.exports = {
   get_local_ip: get_local_ip,
   get_public_ip: get_public_ip,
   shutdown: shutdown,
-}
+  //test: test,
+};
 
 function restart_app() {
   main_app.kill();
   setTimeout(function() {main_app = spawn('nw',['.']);
                          webserver = spawn('node',['webserver.js']);
-                        }, 50);
+                        },50);
 
 }
 
@@ -112,25 +112,26 @@ get_mac();
 main_loop();
 
 function get_local_ip() {
-Object.keys(ifaces).forEach(function (ifname) {
-  var alias = 0;
-  ifaces[ifname].forEach(function (iface) {
-    if ('IPv4' !== iface.family || iface.internal !== false) {
+  Object.keys(ifaces).forEach(function (ifname) {
+    var alias = 0;
+    ifaces[ifname].forEach(function (iface) {
+      if ('IPv4' !== iface.family || iface.internal !== false) {
       // skip over internal (i.e. 127.0.0.1) and non-ipv4 addresses
       return;
-    }
-    if (alias >= 1) {
+	    }
+      if (alias >= 1) {
       // this single interface has multiple ipv4 addresses
       //console.log(ifname + ':' + alias, iface.address);
-    } else {
-      // this interface has only one ipv4 adress
-      //console.log(ifname, iface.address);
-    }
-    local_ip = iface.address;
-    ++alias;
-    module.exports.local_ip = local_ip;
+      } else {
+
+	// this interface has only one ipv4 adress
+	      //console.log(ifname, iface.address);
+	    }
+      local_ip = iface.address;
+      ++alias;
+      module.exports.local_ip = local_ip;
+    });
   });
-});
 }
 
 function get_public_ip() {
@@ -163,8 +164,7 @@ function timeout() {
 }
 
 function check_diskspace() {
-  diskspace.check('/', function (err, total, free, status)
-  {
+  diskspace.check('/', function (err, total, free, status) { 
     //console.log("free space: " + free);
     if (free < 2000000000) {
       remove_old_files();
@@ -213,7 +213,7 @@ function main_loop () {
 }
 
 function find_index(array, key, value) {
-  for (var i=0; i < array.length; i++) {
+  for (var i=0; i < array.length; i++) {    
     if (array[i][key] == value) {
       return i;
     }
@@ -239,6 +239,7 @@ function shutdown() {
 
 ///////////////////////End of Code. Only Test functions below this line.
 
+
 function test() {
-  return;
+  console.log("Testing NWPM Module");
 };
