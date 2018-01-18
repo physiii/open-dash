@@ -10,7 +10,7 @@ var https = require('https');
 var console = require('console');
 var socket = require('socket.io');
 var system = require('./system.js');
-var update = require('./update.js');
+var update = require('./modules/update.js');
 
 var port = 8080
 
