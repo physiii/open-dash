@@ -42,6 +42,7 @@ function playSoundFile(filename) {
 //--End of code prior to test function for module--//
 
 function testSoundsInSequence() {
+  console.log("Testing audio Module");
   playSoundFile('./sounds/mouse-click.wav').then(function() {
      playSoundFile('./sounds/alert_snd.wav');
   });
