@@ -13,7 +13,7 @@ var fs = require('fs');
 var update = require('./modules/update.js');
 var socket = require('socket.io');
 
-//var main_app_socket = require('socket.io-client')("http://127.0.0.1:1234");
+//var main_app_socket = require('socket.io-clientnpm install -g nodemon')("http://127.0.0.1:1234");
 //var webserv_socket = require('socket.io-client')("http://127.0.0.1:8080");
 const server = http.createServer().listen("1235");
 var process_io = socket(server);
@@ -242,4 +242,5 @@ function shutdown() {
 
 function test() {
   console.log("Testing NWPM Module");
+  return;
 };

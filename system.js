@@ -19,7 +19,6 @@ module.exports = {
 function reboot_sys() {
   console.log("Rebooting system in 5 seconds.");
   cancVar = setTimeout(function() {exec('reboot');}, 5000);
-
 };
 
 function canc_reboot() {
