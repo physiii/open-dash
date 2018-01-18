@@ -16,6 +16,7 @@ ffmpeg_timer = setTimeout(function () {}, 1);
 module.exports = {
   btn_click: btn_click,
   alert_snd: alert_snd,
+  test: test,
 
 };
 
