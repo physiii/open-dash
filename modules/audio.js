@@ -31,12 +31,9 @@ function alert_snd() {
 
 //--End of code prior to test function for module--//
 
-function test1() {
+function test() {
   console.log("Testing audio Module");
   btn_click()
-}
-
-function test2() {
-  console.log("Testing audio Module");
   alert_snd();
 }
+
