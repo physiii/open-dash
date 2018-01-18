@@ -4,21 +4,19 @@
 
 var gui = require("nw.gui");
 var win = gui.Window.get();
-var child_process = require('child_process')
-var exec = child_process.exec;
-var spawn = child_process.spawn;
+var exec = require('child_process').exec;
+var spawn = require('child_process').spawn;
+var c_socket = require('socket.io-client');
 var fs = require('fs');
 var ping = require('ping');
-var utils = require('./utils.js');
+var os = require('os');
+var update = require('../modules/update.js');
+var remote = require('../modules/remote.js');
+var system = require('../system.js');
 
-var database = require('./database.js');
-var update = require('./update.js');
-var remote = require('./modules/remote.js');
-var system = require('./system.js');
-var console = require('console');
+//Socket Connection
+var nwpm_socket = c_socket("http://127.0.0.1:1235");
 
-//Socket Connections
-var nwpm_socket = require('socket.io-client')("http://127.0.0.1:1235");
 
 /*
 // ---------------- //
@@ -29,11 +27,17 @@ groups = [];
 device_objects = [];
 device_sockets = [];
 status_objects = [];
-user_objects = [];
+user_objects = [];./database.js
 user_sockets = [];
 */
 
+
+function sys_reboot(){system.reboot_sys();};
+function canc_reboot(){system.canc_reboot();};
+function pull(){update.pull();};
+
 // Extend application menu for Mac OS
+
 if (process.platform == "darwin") {
   var menu = new gui.Menu({type: "menubar"});
   menu.createMacBuiltin && menu.createMacBuiltin(window.document.title);
@@ -48,7 +52,7 @@ function updateCheckbox() {
   var right_checkbox = document.getElementById("right-box");
   if (top_checkbox.checked || bottom_checkbox.checked) {
     left_checkbox.disabled = true;
-    right_checkbox.disabled = true;system_socket.emit('canc_reboot', true)
+    right_checkbox.disabled = true;
   } else if (left_checkbox.checked || right_checkbox.checked) {
     top_checkbox.disabled = true;
     bottom_checkbox.disabled = true;
@@ -62,7 +66,7 @@ function updateCheckbox() {
 
 function initCheckbox(checkboxId, titlebar_name, titlebar_icon_url, titlebar_text) {
   var elem = document.getElementById(checkboxId);
-  if (!elem)system_socket.emit('canc_reboot', true)
+  if (!elem)
     return;
   elem.onclick = function() {
     if (document.getElementById(checkboxId).checked)
@@ -70,7 +74,6 @@ function initCheckbox(checkboxId, titlebar_name, titlebar_icon_url, titlebar_tex
     else
       removeTitlebar(titlebar_name);
     focusTitlebars(true);
-
 
     updateContentStyle();
     updateCheckbox();
@@ -87,23 +90,11 @@ window.onblur = function() {
   focusTitlebars(false);
 };
 
-/*
 window.onresize = function() {
-  updateContentStyle();function reboot_sys() {function test() {
-  return;
+  updateContentStyle();
 };
-  exec('reboot', function(err,stdout,stderr){
-    if (err) return console.log(err);
 
-  });
-}
-
-  function canc_reboot() {
-    clearTimeout(cancVar);
-
-  }
-};
-*/
+//test();
 
 // Main application running modules
 
@@ -115,19 +106,21 @@ window.onload = function() {
   };
 
   document.getElementById("phone_btn").onclick = function() {
-    //Socket to nwpm to reboot function
-    system.reboot_sys();
+    console.log("Rebooting system in 5 seconds.");
+    sys_reboot();
 
   };
 
   document.getElementById("radio_btn").onclick = function() {
-    //Socket to nwpm to cancel reboot function
-    system.canc_reboot();
+    console.log("Cancelling System reboot");
+    canc_reboot();
 
   };
 
   document.getElementById("settings_btn").onclick = function() {
-    update.pull();
+    console.log("checking for updates");
+    pull();
+
   };
 
   updateContentStyle();
@@ -143,6 +136,7 @@ window.onload = function() {
 
 ///////////////////////End of Code. Only Test functions below this line.
 
+
 function test() {
-  return;
+  console.log("Testing Interface Module");
 };

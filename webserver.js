@@ -8,38 +8,30 @@ var fs = require('fs');
 var http = require('http');
 var https = require('https');
 var console = require('console');
+var socket = require('socket.io');
+var system = require('./system.js');
+var update = require('./modules/update.js');
+
+var port = 8080
 
 var options = {
    key  : fs.readFileSync('server.key'),
-   cert : fs.readFileSync('server.crt')
+   cert : fs.readFileSync('server.crt'),
+   ca: fs.readFileSync('server.csr'),
 };
 
-//Create server & Socket to nwpm.js
-const server = https.createServer().listen("8080");
-var web_io = require('socket.io').listen(server);
-var nwpm_socket = require('socket.io-client')("http://127.0.0.1:1235");
-
+//Create SSL Server
+const server = https.createServer(app, options).listen(port, function(){
+  console.log("Express Server listening on port " + port);
+});
+var process_io = socket(server);
 
 module.exports = {
 
 };
 
 
-
-function handler (req, res) {
-  fs.readFile(__dirname + './interface.js',
-  function (err, data) {
-    if (err) {
-      res.writeHead(500);
-      return res.end('Error loading interface.js');
-    }
-
-    res.writeHead(200);
-    res.end(data);
-  });
-}
-
-web_io.on('connection', function(socket) {
+process_io.on('connection', function(socket) {
    console.log('A user connected');
 
    socket.emit('news', { hello: 'world' });
@@ -57,8 +49,8 @@ web_io.on('connection', function(socket) {
 
 //http.listen(3000, function() {
 //   console.log('listening on *:3000');
-//});as
+//});
 
 function test() {
-  return;
+  console.log("Testing Webserver Module");
 };

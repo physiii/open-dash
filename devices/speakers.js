@@ -39,7 +39,7 @@ function win_command(data) {
   if (command == "mute"){ spawn('nircmd.exe', ['mutesysvolume', '1']) }
   if (command == "play"){ spawn('nircmd.exe', ['mutesysvolume', '1']) }
 
-}
+};
 
 //Linux Functions
 function linux_command(data) {
@@ -52,7 +52,7 @@ function linux_command(data) {
   if ( command === "next" ) { spawn('xdotool', ['key', 'XF86AudioNext']) }
   //for volume slider use: xodotool amixer -c 0 sset Master,0 80%
 
-}
+};
 
 //Unsupported platform
 function unsupp_command(data) {
@@ -64,11 +64,10 @@ function unsupp_command(data) {
   if ( command === "play" ) { spawn('xdotool', ['key', 'XF86AudioPlay']) }
   if ( command === "next" ) { spawn('xdotool', ['key', 'XF86AudioNext']) }
 
-}
+};
 
 //Test Functions
 
 function speaker_test() {
-  return;
-
-}
+  console.log("Testing speaker Module");
+};

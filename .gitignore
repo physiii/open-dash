@@ -1,3 +1,5 @@
 # Project-specific ignores
 
 .DS_Store
+node_modules/
+.idea/
