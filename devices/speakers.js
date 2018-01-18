@@ -56,7 +56,7 @@ function linux_command(data) {
 
 //Unsupported platform
 function unsupp_command(data) {
-  var command = data.cmd:
+  var command = data.cmd;
   console.log("Unsupported platform"+ platform);
   if ( command === "volume down" ) { spawn('xdotool', ['key', 'XF86AudioLowerVolume']) }
   if ( command === "volume up" ) { spawn('xdotool', ['key', 'XF86AudioRaiseVolume']) }
