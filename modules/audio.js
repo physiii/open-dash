@@ -28,9 +28,24 @@ function alert_snd() {
   new Sound().play('./sounds/alert_snd.wav');
 }
 
+function playSoundFile(filename) {
+  var music = new Sound();
+  music.play(filename);
+  return new Promise(function(resolve, reject) {
+    music.on('complete', function() {
+       resolve(true);
+    });
+  });
+}
 //Socket.io functionality if needed
 
 //--End of code prior to test function for module--//
+
+function testSoundsInSequence() {
+  playSoundFile('./sounds/mouse-click.wav').then(function() {
+     playSoundFile('./sounds/alert_snd.wav');
+  });
+}
 
 function test() {
   console.log("Testing audio Module");
