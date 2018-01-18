@@ -33,7 +33,5 @@ function alert_snd() {
 
 function test() {
   console.log("Testing audio Module");
-  btn_click()
-  alert_snd();
-}
-
+  btn_click();
+  setTimeout(function() {alert_snd();}, 750);
