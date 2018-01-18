@@ -19,8 +19,8 @@ modules.exports = {
 
 //Determine what platform is being used
 function plat_select() {
-  if (platform.os.family == "Win32") {win_command()};
-  if (platform.os.family == "Linux") {linux_command()};
+  if (platform.os.family == "Win32") {win_command(data)};
+  if (platform.os.family == "Linux") {linux_command(data)};
   else {function unsupp_command(data)} ;
 }
 
