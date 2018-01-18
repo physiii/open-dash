@@ -3,8 +3,9 @@
   "description": "indash multimedia player",
   "version": "0.1.0",
   "main": "client/index.html",
+   "chromium-args": "--enable-logging=stderr",
   "window": {
-    "show": false,
+    "show": true,
     "toolbar": false,
     "frame": false,
     "position": "center",
