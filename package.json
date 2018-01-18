@@ -3,7 +3,7 @@
   "description": "indash multimedia player",
   "version": "0.1.0",
   "main": "client/index.html",
-   "chromium-args": "--enable-logging=stderr",
+  "chromium-args": "--enable-logging=stderr",
   "window": {
     "show": true,
     "toolbar": false,
@@ -24,6 +24,7 @@
     "angular-material": "^1.1.6",
     "angular-messages": "^1.6.8",
     "angular-route": "^1.6.8",
+    "aplay": "^1.2.0",
     "body-parser": "^1.16.0",
     "co": "^4.6.0",
     "co-from-stream": "0.0.0",
