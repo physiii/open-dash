@@ -13,6 +13,7 @@ var os = require('os');
 var update = require('../modules/update.js');
 var remote = require('../modules/remote.js');
 var system = require('../system.js');
+var audio = require('../modules/audio.js')
 
 //Socket Connection
 var nwpm_socket = c_socket("http://127.0.0.1:1235");

@@ -15,18 +15,28 @@ ffmpeg_timer = setTimeout(function () {}, 1);
 
 module.exports = {
   btn_click: btn_click,
+  alert_snd: alert_snd,
 
 };
 
 function btn_click() {
-  new Sound().play('./mouse-click.wav');
+  new Sound().play('./sounds/mouse-click.wav');
+}
+
+function alert_snd() {
+  new Sound().play('./sounds/alert_snd.wav');
 }
 
 //Socket.io functionality if needed
 
 //--End of code prior to test function for module--//
 
-function test() {
+function test1() {
   console.log("Testing audio Module");
   btn_click()
+}
+
+function test2() {
+  console.log("Testing audio Module");
+  alert_snd();
 }
