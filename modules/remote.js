@@ -13,7 +13,7 @@ var database = require('../database.js');
 var update = require('./update.js');
 var remote_socket= require('socket.io-client')("http://127.0.0.1:1236");
 
-var vnc_ip = "192.168.0.16";
+var vnc_ip = "192.168.80.16";
 var vnc_client;
 vnc_started = false;
 
