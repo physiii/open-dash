@@ -36,6 +36,7 @@ function getVolume() {
 }
 
 //volume range is 0-100
+
 function setVolume(vol) {
   return promise=new Promise( function(resolve, reject) {
     loudness.setVolume(vol, function(err) {
@@ -44,6 +45,8 @@ function setVolume(vol) {
     });
   });
 }
+
+
 
 //raise volume by 5 units
 function raiseVolume() {
@@ -168,5 +171,3 @@ function speaker_test() {
     console.log("Finished running test.") 
   })
 };
-
-mute();
