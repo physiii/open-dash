@@ -11,7 +11,7 @@ var fs = require('fs');
 var TAG = "[audio.js]";
 var ffmpeg_pass = [];
 var command = [];
-ffmpeg_timer = setTimeout(function () {}, 1);
+var ffmpeg_timer = setTimeout(function () {}, 1);
 
 
 module.exports = {
