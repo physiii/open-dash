@@ -21,12 +21,27 @@ module.exports = {
 };
 
 function btn_click() {
-  new Sound().play('./sounds/mouse-click.wav');
+  new Promise(function(resolve, reject) {
+    var click = new Sound();
+    click.play('./sounds/mouse-click.wav');
+    click.on('complete', function() {
+      resolve(true);
+    });
+  });
+  //new Sound().play('./sounds/mouse-click.wav');
 }
 
 function alert_snd() {
-  new Sound().play('./sounds/alert_snd.wav');
+  new Promise(function(resolve, reject) {
+    var alert = new Sound();
+    alert.play('./sounds/mouse-click.wav');
+    alert.on('complete', function() {
+      resolve(true);
+    });
+  });
+  //new Sound().play('./sounds/alert_snd.wav');
 }
+ 
 
 function playSoundFile(filename) {
   var music = new Sound();
@@ -53,3 +68,13 @@ function test() {
   btn_click();
   setTimeout(function() {alert_snd();}, 750);
 }
+
+function test2() {
+  console.log("Testing audio Module");
+  btn_click().then(function(){
+     alert_snd();
+  })
+
+}
+
+test2()
