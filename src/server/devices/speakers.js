@@ -164,7 +164,7 @@ function speaker_test() {
   console.log("Testing speaker Module");
   getVolume().then(function(){
     return raiseVolume();
-  }).then(function(vo) {
+  }).then(function() {
     return lowerVolume();
   }).then(function() {
     console.log("Finished running test.") 
