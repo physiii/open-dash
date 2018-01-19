@@ -9,13 +9,15 @@
     "toolbar": false,
     "frame": false,
     "position": "center",
-    "width": 600,
-    "height": 1024,
+    "width": 800,
+    "height": 480,
     "min_width": 220,
     "min_height": 220
   },
   "scripts": {
-    "start": "nw ."
+    "start": "nw .",
+    "test": "jasmine JASMINE_CONFIG_PATH=test/config/jasmine.json || true",
+    "karma": "karma start karma.conf.js --log-level debug --single-run"
   },
   "dependencies": {
     "angular": "^1.6.8",
@@ -60,6 +62,7 @@
     "le-sni-auto": "^2.1.1",
     "le-store-certbot": "^2.0.5",
     "letsencrypt": "^2.1.8",
+    "loudness": "^0.2.2",
     "mongodb": "^2.2.1",
     "node-hue-api": "^2.2.0",
     "node-php": "0.0.1",
