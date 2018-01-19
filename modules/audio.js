@@ -48,6 +48,10 @@ function alert_snd() {
 function test() {
   console.log("Testing audio Module");
   btn_click().then(function(){
-     alert_snd();
+    return alert_snd();
+  }).then(function(){
+    console.log("Finishing testing sounds");
   })
 }
+
+test()
