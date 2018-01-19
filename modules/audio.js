@@ -52,5 +52,3 @@ function test() {
     console.log("Finishing testing sounds");
   })
 }
-
-test()
