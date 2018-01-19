@@ -49,24 +49,24 @@ function setVolume(vol) {
 function raiseVolume() {
   return promise=new Promise( function(resolve, reject) {
      getVolume().then(function(err, vol) {
-     if(err) return reject(err);
-     loudness.setVolume(vol+5, function(seterr) {
-        if(seterr) reject(seterr);
-        else resolve(vol);
+      if(err) return reject(err);
+      loudness.setVolume(vol+5, function(seterr) {
+          if(seterr) reject(seterr);
+          else resolve(vol);
+      });
      });
-  });
   });
 }
 //lower volume by 5 units
 function lowerVolume() {
   return promise=new Promise( function(resolve, reject) {
      getVolume().then(function(err, vol) {
-     if(err) return reject(err);
-     loudness.setVolume(vol-5, function(seterr) {
-        if(seterr) reject(seterr);
-        else resolve(vol);
+      if(err) return reject(err);
+      loudness.setVolume(vol-5, function(seterr) {
+          if(seterr) reject(seterr);
+          else resolve(vol);
+      });
      });
-  });
   });
 }
 
