@@ -91,12 +91,12 @@ function setMuted(mute) {
 function mute() {
   return promise=new Promise( function(resolve, reject) {
      getMuted().then(function(err, mute) {
-     if(err) return reject(err);
-     loudness.setMuted(!mute, function(seterr) {
-        if(seterr) reject(seterr);
-        else resolve(!mute);
+       if(err) return reject(err);
+       loudness.setMuted(!mute, function(seterr) {
+          if(seterr) reject(seterr);
+          else resolve(!mute);
+       });
      });
-  });
   });
 }
 
