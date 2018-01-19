@@ -1,33 +1,26 @@
+<div class="gridListdemoBasicUsage">
+    <md-grid-list  md-cols="3"  md-row-height="10em" md-gutter="1em">
+
+        <md-grid-tile class="gray md-whiteframe-10dp">
+            <img src="app/images/applications.png" class="dash_btn_img">
+        </md-grid-tile>
+        <md-grid-tile class="gray md-whiteframe-10dp">
+            <img src="app/images/bluetooth.png" class="dash_btn_img">
+        </md-grid-tile>
+
+        <md-grid-tile class="gray md-whiteframe-10dp"  ng-click="showSettings()">
+            <img src="app/images/settings.svg" class="dash_btn_img">
+        </md-grid-tile>
+
+        <md-grid-tile class="gray md-whiteframe-10dp">
+            <img src="app/images/File Media.png" class="dash_btn_img">
+        </md-grid-tile>
+
+        <md-grid-tile class="gray md-whiteframe-10dp">
+            <img src="app/images/fm_radio.png" class="dash_btn_img">
+        </md-grid-tile>
 
 
-<div class="dashboard_container" style="width:100%;padding:10px;background: #444444;">
-  <div class="dashboard_button"  ng-click="showNavigation()">
-    Navigation <br>
-    <img src="app/images/navigation.png" class="dash_btn_img">
-  </div>
 
-  <div class="dashboard_button">
-    FM Radio <br>
-    <img src="app/images/fm_radio.png" class="dash_btn_img">
-  </div>
-
-  <div class="dashboard_button">
-    Phone <br>
-    <img src="app/images/phone.png" class="dash_btn_img">
-  </div>
-
-  <div class="dashboard_button">
-    Apps<br>
-    <img src="app/images/applications.png" class="dash_btn_img">
-  </div>
-
-  <div id="vnc_dashboard_btn" class="dashboard_button">
-    Remote <br>
-    <img src="app/images/mdd_remote_control.png" class="dash_btn_img">
-  </div>
-
-  <div id="settings_btn" class="dashboard_button">
-    Settings <br>
-    <img src="app/images/settings.svg" class="dash_btn_img">
-  </div>
+    </md-grid-list>
 </div>
