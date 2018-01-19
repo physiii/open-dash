@@ -28,20 +28,20 @@ module.exports = {
 
 function getVolume() {
   return promise=new Promise( function(resolve, reject) {
-     loudness.getVolume(function(err, vol) {
-        if(err) reject(err);
-        else resolve(vol);
-     });
+    loudness.getVolume(function(err, vol) {
+      if(err) reject(err);
+      else resolve(vol);
+    });
   });
 }
 
 //volume range is 0-100
 function setVolume(vol) {
   return promise=new Promise( function(resolve, reject) {
-     loudness.setVolume(vol, function(err) {
-        if(err) reject(err);
-        else resolve(vol);
-     });
+    loudness.setVolume(vol, function(err) {
+      if(err) reject(err);
+      else resolve(vol);
+    });
   });
 }
 
@@ -60,43 +60,45 @@ function raiseVolume() {
 //lower volume by 5 units
 function lowerVolume() {
   return promise=new Promise( function(resolve, reject) {
-     getVolume().then(function(err, vol) {
+    getVolume().then(function(err, vol) {
       if(err) return reject(err);
       loudness.setVolume(vol-5, function(seterr) {
-          if(seterr) reject(seterr);
-          else resolve(vol);
+        if(seterr) reject(seterr);
+        else resolve(vol);
       });
-     });
+    });
   });
 }
 
 function getMuted() {
   return promise=new Promise( function(resolve, reject) {
-     loudness.getMuted(function(err, mute) {
-        if(err) reject(err);
-        else resolve(mute);
-     });
+    loudness.getMuted(function(err, mute) {
+      if(err) reject(err);
+      else resolve(mute);
+    });
   });
 }
 function setMuted(mute) {
   return promise=new Promise( function(resolve, reject) {
-     loudness.setMuted(mute, function(err) {
-        if(err) reject(err);
-        else resolve(mute);
-     });
+    loudness.setMuted(mute, function(err) {
+      if(err) reject(err);
+      else resolve(mute);
+    });
   });
 }
 
 //mute if not-muted, unmute if muted
 function mute() {
+  loudness.setVolume(45, function (err) { 
+  });
   return promise=new Promise( function(resolve, reject) {
-     getMuted().then(function(err, mute) {
-       if(err) return reject(err);
-       loudness.setMuted(!mute, function(seterr) {
-          if(seterr) reject(seterr);
-          else resolve(!mute);
-       });
-     });
+    getMuted().then(function(err, mute) {
+      if(err) return reject(err);
+      loudness.setMuted(!mute, function(seterr) {
+        if(seterr) reject(seterr);
+        else resolve(!mute);
+      });
+    });
   });
 }
 
@@ -111,7 +113,9 @@ function next() {
 
 
 //Windows Functions
-function win_command(data) {
+function win_command(data) {loudness.setVolume(45, function (err) {
+  // Done 
+});
   var command = data.cmd;
   console.log("running"+platform+"platform")
   if (command == "volume down"){
@@ -156,4 +160,13 @@ function unsupp_command(data) {
 
 function speaker_test() {
   console.log("Testing speaker Module");
+  getVolume().then(function(){
+    return raiseVolume();
+  }).then(function(vo) {
+    return lowerVolume();
+  }).then(function() {
+    console.log("Finished running test.") 
+  })
 };
+
+mute();
