@@ -4,6 +4,7 @@
 
 //var ffmpeg = require('ffmpeg');
 var Sound = require('aplay');
+var p_snd = new Sound();
 var exec = require('child_process').exec;
 var spawn = require('child_process').spawn;
 var fs = require('fs');
@@ -21,20 +22,18 @@ module.exports = {
 };
 
 function btn_click() {
-  var click = new Sound();
-  click.play('./sounds/mouse-click.wav');
+  p_snd.play('./sounds/mouse-click.wav');
   return new Promise(function(resolve, reject) {
-    click.on('complete', function() {
+    p_snd.on('complete', function() {
       resolve(true);
     });
   });
 }
 
 function alert_snd() {
-  var alert = new Sound();
-  alert.play('./sounds/alert_snd.wav');
+  p_snd.play('./sounds/alert_snd.wav');
   return new Promise(function(resolve, reject) {
-    alert.on('complete', function() {
+    p_snd.on('complete', function() {
       resolve(true);
     });
   });
