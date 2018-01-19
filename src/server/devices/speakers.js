@@ -9,6 +9,7 @@
 
 var platform = require('platform')
 var spawn = require('child_process').spawn;
+var exec = require('child_process').exec;
 var loudness = require('loudness');
 
 module.exports = {
@@ -92,8 +93,6 @@ function setMuted(mute) {
 
 //mute if not-muted, unmute if muted
 function mute() {
-  loudness.setVolume(45, function (err) { 
-  });
   return promise=new Promise( function(resolve, reject) {
     getMuted().then(function(err, mute) {
       if(err) return reject(err);
