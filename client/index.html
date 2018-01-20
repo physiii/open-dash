@@ -3,37 +3,40 @@
 <head>
     <title>United States Postal Service</title>
 
-    <link rel="stylesheet" type="text/css" href="app/css/style.css" />
-    <link rel="stylesheet" type="text/css" href="app/css/angular-material.min.css" />
-    <link rel="stylesheet" type="text/css" href="app/css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="src/app/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="src/app/css/angular-material.min.css" />
+    <link rel="stylesheet" type="text/css" href="../node_modules/font-awesome/css/font-awesome.min.css"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 </head>
-<body >
-<div ng-include="'app/main/header/header.html'"></div>
-<div ng-view></div>
-<div ng-include="'app/main/footer/footer.html'"></div>
-
-<script src="app/main/js/titlebar.js"></script>
+<body>
+    <div ng-include="'src/app/main/header/header.html'"></div>
+    <div class="main-content" ng-view ></div>
+    <div ng-include="'src/app/main/footer/footer.html'"></div>
+<script src="src/app/main/js/titlebar.js"></script>
 <script src="../interface.js"></script>
-<script type="text/javascript" src="app/scripts/jquery.min.js"></script>
-<script type="text/javascript" src="app/scripts/angular.min.js"></script>
-<script type="text/javascript" src="app/scripts/angular-route.min.js"></script>
-<script type="text/javascript" src="app/scripts/angular-aria.min.js"></script>
-<script type="text/javascript" src="app/scripts/angular-animate.min.js"></script>
-<script type="text/javascript" src="app/scripts/angular-messages.min.js"></script>
-<script type="text/javascript" src="app/scripts/angular-material.min.js"></script>
-<script type="text/javascript" src="app/app.js"></script>
-<script type="text/javascript" src="app/main/js/dashboard.controller.js"></script>
-<script type="text/javascript" src="app/main/dashboard/apps/apps.controller.js"></script>
-<script type="text/javascript" src="app/main/dashboard/apps/appview/appview.controller.js"></script>
-<script type="text/javascript" src="app/main/dashboard/remote/remote.controller.js"></script>
-<script type="text/javascript" src="app/main/dashboard/media/media.controller.js"></script>
-<script type="text/javascript" src="app/main/dashboard/media/media.controller.js"></script>
-<script type="text/javascript" src="app/main/dashboard/settings/settings.controller.js"></script>
-<script type="text/javascript" src="app/main/dashboard/settings/system/system.controller.js"></script>
-<script type="text/javascript" src="app/main/dashboard/settings/update/update.controller.js"></script>
-<script type="text/javascript" src="app/main/dashboard/settings/bluetooth/bluetooth.controller.js"></script>
-<script type="text/javascript" src="app/main/dashboard/settings/wifi/wifi.controller.js"></script>
+<script type="text/javascript" src="src/app/scripts/jquery.min.js"></script>
+<script type="text/javascript" src="src/app/scripts/angular.min.js"></script>
+<script type="text/javascript" src="src/app/scripts/angular-route.min.js"></script>
+<script type="text/javascript" src="src/app/scripts/angular-aria.min.js"></script>
+<script type="text/javascript" src="src/app/scripts/angular-animate.min.js"></script>
+<script type="text/javascript" src="src/app/scripts/angular-messages.min.js"></script>
+<script type="text/javascript" src="src/app/scripts/angular-material.min.js"></script>
+<script type="text/javascript" src="src/app/app.js"></script>
+<script type="text/javascript" src="../src/server/devices/speakers.js"></script>
+<script type="text/javascript" src="../src/server/modules/audio.js"></script>
+<script type="text/javascript" src="src/app/main/header/header.controller.js"></script>
+<script type="text/javascript" src="src/app/main/footer/footer.controller.js"></script>
+<script type="text/javascript" src="src/app/main/js/dashboard.controller.js"></script>
+<script type="text/javascript" src="src/app/main/dashboard/apps/apps.controller.js"></script>
+<script type="text/javascript" src="src/app/main/dashboard/apps/appview/appview.controller.js"></script>
+<script type="text/javascript" src="src/app/main/dashboard/remote/remote.controller.js"></script>
+<script type="text/javascript" src="src/app/main/dashboard/media/media.controller.js"></script>
+<script type="text/javascript" src="src/app/main/dashboard/media/media.controller.js"></script>
+<script type="text/javascript" src="src/app/main/dashboard/settings/settings.controller.js"></script>
+<script type="text/javascript" src="src/app/main/dashboard/settings/system/system.controller.js"></script>
+<script type="text/javascript" src="src/app/main/dashboard/settings/update/update.controller.js"></script>
+<script type="text/javascript" src="src/app/main/dashboard/settings/bluetooth/bluetooth.controller.js"></script>
+<script type="text/javascript" src="src/app/main/dashboard/settings/wifi/wifi.controller.js"></script>
 </body>
 </html>

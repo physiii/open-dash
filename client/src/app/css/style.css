@@ -1,30 +1,56 @@
-html {
-  margin: 0px;
-  padding: 0px;
+@font-face {
+  font-family:"icomoon";
+  src:url("https://cdn.rawgit.com/angular/material/master/docs/app/fonts/icomoon.eot");
+  font-weight:normal;
+  font-style:normal;
 }
 
+@font-face {
+  font-family: 'icomoon';
+  src:url('https://cdn.rawgit.com/angular/material/master/docs/app/fonts/icomoon.eot?-cmq1um');
+  src:url('https://cdn.rawgit.com/angular/material/master/docs/app/fonts/icomoon.eot?#iefix-cmq1um') format('embedded-opentype'),
+  url('https://cdn.rawgit.com/angular/material/master/docs/app/fonts/icomoon.woff?-cmq1um') format('woff'),
+  url('https://cdn.rawgit.com/angular/material/master/docs/app/fonts/icomoon.ttf?-cmq1um') format('truetype'),
+  url('https://cdn.rawgit.com/angular/material/master/docs/app/fonts/icomoon.svg?-cmq1um#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
 body {
-    margin: 0px;
-    padding: 0px;
-    background: black;
-
+  background: black;
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
 }
 
 h1{
     color:white;
 }
-
-.logo {
-  border-radius: 8px;
-  width:40%;
-  margin:10px auto 10px auto;
+.header{
+  width:100%;
+  background:#222;
+  padding: 2em;
+}
+.main-content{
+  overflow-y: auto;
 }
 
+.footer {
+  position:fixed;
+  bottom: 0;
+  background:#222;
+  border-color:#eee;
+  width:100%;
+  color: white;
+}
+.logo {
+  border-radius: 8px;
+  height:3em;
+  text-align: center;
+}
 
 .dash_btn_img {
-  border-radius: 8px;
-  width:65%;
-  height:65%;
+  width:50%;
+  height:50%;
   margin:10px auto 10px auto;
 }
 
@@ -42,14 +68,11 @@ h1{
   border-radius: 10px;
 }
 
-.footer {
-    position:absolute;
-    bottom: 0;
-    background:#222;
-    border-color:#eee;
-    width:100%;
-    color: white;
+
+.volume-slide{
+  width: 5em;
 }
+
 
 .dashboard_container {
   height: calc( 100% - 140px );
@@ -249,23 +272,16 @@ div#inner-content {
 }
 .gridListdemoBasicUsage{
     margin:1em;
+  text-align: left;
 }
 .gridListdemoBasicUsage .gray {
     background: gray }
 
-.gridListdemoBasicUsage .green {
-    background: #b9f6ca; }
 
-.gridListdemoBasicUsage .yellow {
-    background: #ffff8d; }
+.tile-content{
+  width: 100%;
+  padding: 2em;
+}
 
-.gridListdemoBasicUsage .blue {
-    background: #84ffff; }
-
-.gridListdemoBasicUsage .purple {
-    background: #b388ff; }
-
-.gridListdemoBasicUsage .red {
-    background: #ff8a80; }
 
 

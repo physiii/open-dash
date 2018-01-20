@@ -50,6 +50,7 @@ function setVolume(vol) {
 
 //raise volume by 5 units
 function raiseVolume() {
+  alert('volume raise');
   return promise=new Promise( function(resolve, reject) {
      getVolume().then(function(err, vol) {
       if(err) return reject(err);
