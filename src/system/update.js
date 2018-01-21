@@ -38,5 +38,3 @@ function test() {
   console.log("Testing Update Module with pull function...");
   pull()
 };
-
-pull();
