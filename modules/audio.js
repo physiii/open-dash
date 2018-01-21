@@ -22,7 +22,7 @@ module.exports = {
 };
 
 function btn_click() {
-  p_snd.play('./sounds/mouse-click.wav');
+  p_snd.play('../src/sounds/mouse-click.wav');
   return new Promise(function(resolve, reject) {
     p_snd.on('complete', function() {
       resolve(true);
@@ -31,7 +31,7 @@ function btn_click() {
 }
 
 function alert_snd() {
-  p_snd.play('./sounds/alert_snd.wav');
+  p_snd.play('../src/sounds/alert_snd.wav');
   return new Promise(function(resolve, reject) {
     p_snd.on('complete', function() {
       resolve(true);
@@ -52,3 +52,5 @@ function test() {
     console.log("Finishing testing sounds");
   })
 }
+
+btn_click();
