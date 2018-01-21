@@ -18,7 +18,7 @@ var socket = require('socket.io');
 const server = http.createServer().listen("1235");
 var process_io = socket(server);
 var main_app = spawn('nw',['.']);
-var webserver = spawn('node',['./src/server/webserver.js']);
+var webserver = spawn('node',['src/server/webserver.js']);
 
 module.exports = {
   find_index: find_index,
@@ -32,7 +32,7 @@ module.exports = {
 function restart_app() {
   main_app.kill();
   setTimeout(function() {main_app = spawn('nw',['.']);
-                         webserver = spawn('node',['./src/server/webserver.js']);
+                         webserver = spawn('node',['src/server/webserver.js']);
                         },50);
 
 }
@@ -164,7 +164,7 @@ function timeout() {
 }
 
 function check_diskspace() {
-  diskspace.check('/', function (err, total, free, status) { 
+  diskspace.check('/', function (err, total, free, status) {
     //console.log("free space: " + free);
     if (free < 2000000000) {
       remove_old_files();
@@ -213,7 +213,7 @@ function main_loop () {
 }
 
 function find_index(array, key, value) {
-  for (var i=0; i < array.length; i++) {    
+  for (var i=0; i < array.length; i++) {
     if (array[i][key] == value) {
       return i;
     }

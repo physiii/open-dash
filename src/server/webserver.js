@@ -9,18 +9,20 @@ var http = require('http');
 var https = require('https');
 var console = require('console');
 var socket = require('socket.io');
-var system = require('./system/system.js');
+var system = require('../system/system.js');
 
 var port = 8080
 
+/*
 var options = {
    key  : fs.readFileSync('./server.key'),
    cert : fs.readFileSync('./server.crt'),
    ca: fs.readFileSync('./server.csr'),
 };
+*/
 
 //Create SSL Server
-const server = https.createServer(app, options).listen(port, function(){
+const server = http.createServer(app).listen(port, function(){
   console.log("Express Server listening on port " + port);
 });
 var process_io = socket(server);
