@@ -4,7 +4,7 @@ var app = angular.module('app', ['ngRoute','ngMaterial','ngMessages']);
 app.config(function ($routeProvider) {
     $routeProvider.
     when('/', {
-        templateUrl: 'main/view/dashboard.html',
+        templateUrl: 'main/dashboard/dashboard.html',
         controller: 'DashboardController'
     }).
     when('/apps', {
