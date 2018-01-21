@@ -7,6 +7,7 @@
 
 //module for system (master) volume controls
 
+var module = require('module');
 var platform = require('platform')
 var spawn = require('child_process').spawn;
 var loudness = require('loudness');

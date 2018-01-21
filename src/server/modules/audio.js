@@ -5,6 +5,7 @@
 //var ffmpeg = require('ffmpeg');
 var Sound = require('aplay');
 var p_snd = new Sound();
+var module = require('module');
 var exec = require('child_process').exec;
 var spawn = require('child_process').spawn;
 var fs = require('fs');
