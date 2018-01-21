@@ -2,7 +2,7 @@
   "name": "open-dash",
   "description": "indash multimedia player",
   "version": "0.1.0",
-  "main": "client/index.html",
+  "main": "src/client/index.html",
   "chromium-args": "--enable-logging=stderr",
   "window": {
     "show": true,
