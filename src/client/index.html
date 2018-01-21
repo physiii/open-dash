@@ -1,0 +1,42 @@
+
+<html ng-app="app">
+<head>
+    <title>open-dash</title>
+
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/angular-material.min.css" />
+    <link rel="stylesheet" type="text/css" href="../node_modules/font-awesome/css/font-awesome.min.css"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+<body>
+    <div ng-include="'main/header/header.html'"></div>
+    <div class="main-content" ng-view ></div>
+    <div ng-include="'main/footer/footer.html'"></div>
+<script src="main/js/titlebar.js"></script>
+<script src="../interface.js"></script>
+<script type="text/javascript" src="scripts/jquery.min.js"></script>
+<script type="text/javascript" src="scripts/angular.min.js"></script>
+<script type="text/javascript" src="scripts/angular-route.min.js"></script>
+<script type="text/javascript" src="scripts/angular-aria.min.js"></script>
+<script type="text/javascript" src="scripts/angular-animate.min.js"></script>
+<script type="text/javascript" src="scripts/angular-messages.min.js"></script>
+<script type="text/javascript" src="scripts/angular-material.min.js"></script>
+<script type="text/javascript" src="app.js"></script>
+<script type="text/javascript" src="../src/server/devices/speakers.js"></script>
+<script type="text/javascript" src="../src/server/modules/audio.js"></script>
+<script type="text/javascript" src="main/header/header.controller.js"></script>
+<script type="text/javascript" src="main/footer/footer.controller.js"></script>
+<script type="text/javascript" src="main/js/dashboard.controller.js"></script>
+<script type="text/javascript" src="main/dashboard/apps/apps.controller.js"></script>
+<script type="text/javascript" src="main/dashboard/apps/appview/appview.controller.js"></script>
+<script type="text/javascript" src="main/dashboard/remote/remote.controller.js"></script>
+<script type="text/javascript" src="main/dashboard/media/media.controller.js"></script>
+<script type="text/javascript" src="main/dashboard/media/media.controller.js"></script>
+<script type="text/javascript" src="main/dashboard/settings/settings.controller.js"></script>
+<script type="text/javascript" src="main/dashboard/settings/system/system.controller.js"></script>
+<script type="text/javascript" src="main/dashboard/settings/update/update.controller.js"></script>
+<script type="text/javascript" src="main/dashboard/settings/bluetooth/bluetooth.controller.js"></script>
+<script type="text/javascript" src="main/dashboard/settings/wifi/wifi.controller.js"></script>
+</body>
+</html>
