@@ -18,7 +18,7 @@ var socket = require('socket.io');
 const server = http.createServer().listen("1235");
 var process_io = socket(server);
 var main_app = spawn('nw',['.']);
-var webserver = spawn('node',['webserver.js']);
+var webserver = spawn('node',['./src/server/webserver.js']);
 
 module.exports = {
   find_index: find_index,
@@ -32,7 +32,7 @@ module.exports = {
 function restart_app() {
   main_app.kill();
   setTimeout(function() {main_app = spawn('nw',['.']);
-                         webserver = spawn('node',['webserver.js']);
+                         webserver = spawn('node',['./src/server/webserver.js']);
                         },50);
 
 }

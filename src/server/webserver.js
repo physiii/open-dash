@@ -9,15 +9,14 @@ var http = require('http');
 var https = require('https');
 var console = require('console');
 var socket = require('socket.io');
-var system = require('./system.js');
-var update = require('./modules/update.js');
+var system = require('./system/system.js');
 
 var port = 8080
 
 var options = {
-   key  : fs.readFileSync('server.key'),
-   cert : fs.readFileSync('server.crt'),
-   ca: fs.readFileSync('server.csr'),
+   key  : fs.readFileSync('./server.key'),
+   cert : fs.readFileSync('./server.crt'),
+   ca: fs.readFileSync('./server.csr'),
 };
 
 //Create SSL Server
