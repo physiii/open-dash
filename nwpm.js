@@ -6,11 +6,11 @@ var http = require('http');
 const crypto = require('crypto');
 const exec = require('child_process').exec;
 const spawn = require('child_process').spawn;
-var remote = require('./modules/remote.js');
+var remote = require('./src/server/modules/remote.js');
 var os = require('os');
 var request = require('request');
 var fs = require('fs');
-var update = require('./modules/update.js');
+var update = require('./src/system/update.js');
 var socket = require('socket.io');
 
 //var main_app_socket = require('socket.io-clientnpm install -g nodemon')("http://127.0.0.1:1234");
