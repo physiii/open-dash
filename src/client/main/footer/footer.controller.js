@@ -1,4 +1,5 @@
 var app = angular.module('app');
+var speakers = require('../server/devices/speakers.js');
 
 app.controller('FooterController', function($scope,$location){
     $scope.showVolumeSlider = false;
@@ -6,6 +7,6 @@ app.controller('FooterController', function($scope,$location){
         $scope.showVolumeSlider = !val;
     }
     $scope.raiseVolume =function(){
-        raiseVolume();
+        speakers.raiseVolume();
     }
 });
