@@ -7,6 +7,12 @@ app.controller('FooterController', function($scope,$location){
         $scope.showVolumeSlider = !val;
     }
     $scope.raiseVolume =function(){
-        speakers.raiseVolume();
+      speakers.raiseVolume();
+    }
+    $scope.lowerVolume =function() {
+      speakers.lowerVolume();
+    }
+    $scope.muteVolume =function() {
+      speakers.mute();
     }
 });
