@@ -11,8 +11,8 @@
 #
 
 # Configure these to match your hardware (names taken from `xinput` output).
-TOUCHPAD='SynPS/2 Synaptics TouchPad'
-TOUCHSCREEN='Atmel Atmel maXTouch Digitizer'
+TOUCHPAD='Virtual core XTEST pointer'
+TOUCHSCREEN='TPK USA LLC Touch Fusion 4.'
 
 if [ -z "$1" ]; then
   echo "Missing orientation."
