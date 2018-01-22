@@ -9,7 +9,6 @@
 
 var spawn = require('child_process').spawn;
 var module = require('module');
-
 module.exports = {
   raiseVolume: raiseVolume,
   lowerVolume: lowerVolume,

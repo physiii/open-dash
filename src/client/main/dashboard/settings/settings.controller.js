@@ -2,7 +2,7 @@ var app = angular.module('app');
 
 app.controller('SettingsController', function($scope,$location){
     $scope.back=function(){
-        $location.path('dashboard');
+        $location.path('/');
     }
     $scope.goToSystemSettings = function(){
         $location.path('settings/system');

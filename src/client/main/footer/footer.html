@@ -1,20 +1,15 @@
-
-<div class="footer"  ng-controller="FooterController">
-
-    <div  layout="row" layout-align="space-between none">
-        <p>
-            Pyfi Technologies
-        </p>
-        <p ng-click="showVolume(showVolumeSlider)">
-            <i class="fa fa-volume-up" aria-hidden="true"></i>
-        </p>
-        <md-slider-container flex="50" ng-show="showVolumeSlider" >
-            <md-slider ng-model="vol" min="0" max="100" aria-label="volume" id="volume-slider" class="md-accent volume-slide"
-                       md-range ng-click="raiseVolume()"></md-slider>
-            </md-slider>
-        </md-slider-container>
-        <p>
-            i3designs
-        </p>
+<div ng-controller="FooterController" layout="row" layout-xs="column" class="footer">
+    <div flex>
+        <img src="images/remote.png" class="header-icon" ng-click="showRemote()">
+    </div>
+    <div flex>
+        <img src="images/dashboard.png" class="header-icon" ng-click="showDashboard()">
+    </div>
+    <div flex>
+        <img src="images/volumedown.png" class="header-icon" ng-click="lowerVolume()">
+    </div>
+    <div flex>
+        <img src="images/volumeup.png" class="header-icon" ng-click="raiseVolume()">
     </div>
 </div>
+

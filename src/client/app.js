@@ -35,6 +35,10 @@ app.config(function ($routeProvider) {
         templateUrl: 'main/dashboard/settings/wifi/wifi.html',
         controller: 'WifiController'
     }).
+    when('/remote', {
+        templateUrl: 'main/dashboard/remote/remote.html',
+        controller: 'RemoteController'
+    }).
     otherwise({
         redirectTo: '/'
     });
