@@ -3,9 +3,9 @@ var player = require('../server/modules/player.js');
 
 app.controller('MediaController', function ($scope, $location) {
 
-  player.getAudioFiles("../../../media").then(function (files) {
+  player.getAudioFiles("../../../media/music").then(function (files) {
     $scope.audioFiles = files.map(function (file) {
-      return "../../media/" + file;
+      return "../../media/music/" + file;
     });
     $scope.currentIndex = 0;
   });

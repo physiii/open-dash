@@ -45,7 +45,8 @@ function getFiles(dir, files_, subfolder, types) {
     var name = dir + '/' + files[i];
     var relativeName = subfolder ? subfolder + '/' + files[i] : files[i];
     if (fs.statSync(name).isDirectory()) {
-      getFiles(name, files_, relativeName, types);
+      // don't look in subfolders
+      // getFiles(name, files_, relativeName, types);
     } else {
       if (types && types.indexOf(path.extname(name)) != -1) files_.push(relativeName);
       else if (!types) files_.push(relativeName);
