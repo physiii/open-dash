@@ -10,17 +10,19 @@
         <div>
           <h1>Play Music</h1>
         </div>
-        <audio id="audioTrack" src="../../media/music/26_The Beatles_Let It Be.mp3"></audio>
-        <audio ng-model="currentTrack"><source ng-model="currentSrc" type="audio/mpeg" /></audio>
+        <audio id="audioTrack">
+          <source ng-repeat="x in audioFiles" currentSrc="{{x}}" />
+        </audio>
+
       </div>
     </md-grid-tile>
     <md-grid-tile class="md-whiteframe-10dp">
       <div layout="row" layout-align="space-between center" class="tile-content">
         <div class="controls">
           <i class="material-icons" style="font-size: 48px; background-color: blue">repeat</i>
-          <i class="material-icons" style="font-size: 48px; background-color: blue">skip_previous</i>
+          <i class="material-icons" style="font-size: 48px; background-color: blue" ng-click="skipPrevious()">skip_previous</i>
           <i class="material-icons" style="font-size: 48px; background-color: blue" ng-click="playMedia()" id="playButton">play_arrow</i>
-          <i class="material-icons" style="font-size: 48px; background-color: blue">skip_next</i>
+          <i class="material-icons" style="font-size: 48px; background-color: blue" ng-click="skipNext()">skip_next</i>
 
         </div>
 
