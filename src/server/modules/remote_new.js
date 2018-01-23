@@ -45,7 +45,7 @@ function runScan(){
   });
 };
 
-function connect() {
+function connect(ip, port) {
   if (vnc_started) return;
   vnc_started = true;
   if (!port) port=5900;
