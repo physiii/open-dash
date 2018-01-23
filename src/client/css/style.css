@@ -78,11 +78,9 @@ h1{
 .menu_icon{
     padding-top: 1em;
     text-align: center;
-    border-right: 1px solid;
+    border: 1px solid;
     height: 5em;
     width: 9.3em;
-    box-shadow:0px 0px 15px 5px,
-            inset 0px -11px 8px -1px;
 
 }
 .menu_material_icon{
@@ -100,7 +98,15 @@ h1{
 .white{
   color: #f6f5f8;
 }
+.remote-data{
+    font-size: 1.2em;
+    font-weight: 600;
+}
 
+.back-menu{
+    bottom: 6em;
+    margin-left: 3em;
+}
 
 
 

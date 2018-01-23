@@ -1,4 +1,9 @@
-<md-button class="md-fab md-primary" aria-label="FAB" ng-click="back()">
-    <img src="images/arrow-left-bold.png" />
-</md-button>
-<md-icon class="icon_home" aria-label="Home"></md-icon>
+<div layout="row" layout-align="center center">
+    <h1>Remote Connections</h1>
+</div>
+<div layout="column" layout-align="center center" class="remote-data white">
+    <div ng-repeat="info in remoteAddressInfo">
+        <p>Local IP : {{info.local_IP}}</p>
+        <p>Host Name : {{info.hostname}}</p>
+    </div>
+</div>
