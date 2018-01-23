@@ -1,4 +1,32 @@
-<md-button class="md-raised"ng-click="back()">
-    back
-</md-button>
-<md-icon class="icon_home" aria-label="Home"></md-icon>
+<div class="back-menu">
+  <md-button class="md-fab md-primary" aria-label="FAB" ng-click="back()">
+    <img src="images/arrow-left-bold.png" />
+  </md-button>
+</div>
+<div>
+  <md-grid-list md-cols="1" md-row-height="4em" md-gutter="1em">
+    <md-grid-tile class="md-whiteframe-10dp">
+      <div layout="row" layout-align="space-between center" class="tile-content">
+        <div>
+          <h1>Play Music</h1>
+        </div>
+        <audio id="audioTrack">
+          <source ng-repeat="x in audioFiles" currentSrc="{{x}}" />
+        </audio>
+
+      </div>
+    </md-grid-tile>
+    <md-grid-tile class="md-whiteframe-10dp">
+      <div layout="row" layout-align="space-between center" class="tile-content">
+        <div class="controls">
+          <i class="material-icons" style="font-size: 48px; background-color: blue">repeat</i>
+          <i class="material-icons" style="font-size: 48px; background-color: blue" ng-click="skipPrevious()">skip_previous</i>
+          <i class="material-icons" style="font-size: 48px; background-color: blue" ng-click="playMedia()" id="playButton">play_arrow</i>
+          <i class="material-icons" style="font-size: 48px; background-color: blue" ng-click="skipNext()">skip_next</i>
+
+        </div>
+
+      </div>
+    </md-grid-tile>
+  </md-grid-list>
+</div>

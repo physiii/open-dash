@@ -52,6 +52,7 @@
     "grunt-contrib-watch": "^1.0.0",
     "grunt-html-build": "^0.7.1",
     "http-proxy": "^1.14.0",
+    "ip": "^1.1.5",
     "jquery": "^3.2.1",
     "koa": "^2.2.0",
     "koa-bodyparser": "^4.2.0",
