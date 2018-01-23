@@ -21,11 +21,15 @@ module.exports = {
 }
 
 function runScan(){
-  exec('sudo nmap -sn 192.168.'+my_ip[8]+'.1/24',function(err,stdout,stderr){
-    if (err){
-      console.error('exec error: ' + err);
-    }
-    console.log(stdout);
+  return new Promise(function(resolve, reject){
+    exec('sudo nmap -sn 192.168.'+my_ip[8]+'.1/24',function(err,stdout,stderr){
+      if (err){
+        console.error('exec error: ' + err);
+        reject(true)
+      }
+      console.log(stdout);
+      resolve(true)
+    });
   });
 };
 
@@ -50,3 +54,5 @@ function remoteTest(){
     console.log(result);
   });
 };
+
+runScan();
