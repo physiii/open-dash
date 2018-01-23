@@ -45,10 +45,23 @@ function runScan(){
   });
 };
 
-function start_vnc() {
-  console.log("Starting vnc services. . .")
-  vnc_client = spawn('vncviewer', [vnc_ip + ":" + vnc_port]);
-  vnc_started= true;
+function connect() {
+  if (vnc_started) return;
+  vnc_started = true;
+  if (!port) port=5900;
+
+  vnc_client = spawn('vncviewer', [ip + ":" + port]);
+  vnc_client.stdout.on('data', function (data) {
+    console.log('stdout: ' + data);
+  });
+
+  vnc_client.stderr.on('data', function (data) {
+    console.log('stderr: ' + data);
+  });
+
+  vnc_client.on('close', function (code) {
+    console.log('child process exited with code ' + code);
+  });
 }
 
 function close_vnc() {
@@ -66,5 +79,3 @@ function remoteTest(){
     console.log(result);
   });
 };
-
-runScan();
