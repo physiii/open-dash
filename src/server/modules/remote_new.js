@@ -27,8 +27,20 @@ function runScan(){
         console.error('exec error: ' + err);
         reject(true)
       }
-      console.log(stdout);
-      resolve(true)
+      first = stdout.replace(/Nmap scan report for /g,"Hostname: ");
+      res = first.split("\n");
+
+      //Reverse iteration of array so iteration isnt skipped during splice.
+      //Array spliced at index if array includes info in text.
+      for (i = res.length - 1; i >= 0; --i){
+        result = res[i].includes("Host is");
+        result2 = res[i].includes("done");
+        result3 = res[i].includes("Starting");
+        if (result == true || result2 == true ||result3 == true) res.splice(i,1);
+      };
+
+      console.log(res);
+      resolve(true);
     });
   });
 };
