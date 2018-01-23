@@ -43,6 +43,10 @@ app.config(function ($routeProvider) {
         templateUrl: 'main/dashboard/media/media.html',
         controller: 'MediaController'
     }).
+        when('/radio',{
+        templateUrl: 'main/dashboard/radio/radio.html',
+        controller: 'RadioController'
+    }).
     otherwise({
         redirectTo: '/'
     });

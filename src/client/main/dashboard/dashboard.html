@@ -1,30 +1,41 @@
 <div class="gridListdemoBasicUsage">
     <md-grid-list  md-cols="2"  md-row-height="10em" md-gutter="1em">
-
-        <md-grid-tile ng-click="showRemote()">
-            <img src="images/remote1.png" class="dash_btn_img md-whiteframe-10dp">
-        </md-grid-tile>
-
-        <md-grid-tile ng-click="showMedia()">
-            <img src="images/Media.png" class="dash_btn_img">
-        </md-grid-tile>
-
-        <md-grid-tile >
-            <img src="images/Bluetooth.png" class="dash_btn_img">
-        </md-grid-tile>
-
-        <md-grid-tile>
-            <img src="images/fmradio.png" class="dash_btn_img">
-        </md-grid-tile>
-
         <md-grid-tile ng-click="showSettings()">
-            <img src="images/Settings.png" class="dash_btn_img">
+            <div class="icon icon-color">
+                <i class="fa fa-globe fa-5x white" aria-hidden="true"></i>
+                <div class="icon-text white">Navigation</div>
+            </div>        </md-grid-tile>
+        <md-grid-tile ng-click="showRemote()">
+            <div class="icon icon-color">
+                <i class="fa fa-mobile fa-5x white" aria-hidden="true"></i>
+                <div class="icon-text white">Remote</div>
+            </div>
+        </md-grid-tile>
+        <md-grid-tile ng-click="showMedia()">
+                <div class="icon icon-color">
+                    <i class="fa fa-headphones fa-5x white" aria-hidden="true"></i>
+                    <div class="icon-text white">Media</div>
+                </div>
+        </md-grid-tile>
+        <md-grid-tile>
+            <div class="icon icon-color">
+                <i class="fa fa-bluetooth-b fa-5x white" aria-hidden="true"></i>
+                <div class="icon-text white">Bluetooth</div>
+            </div>
         </md-grid-tile>
 
         <md-grid-tile>
-            <img src="images/Navigation.png" class="dash_btn_img">
+            <div class="icon icon-color">
+            <i class="fa fa-music fa-5x white" aria-hidden="true"></i>
+            <div class="icon-text white">Radio</div>
+        </div>
         </md-grid-tile>
-
+        <md-grid-tile ng-click="showSettings()">
+            <div class="icon icon-color">
+                <i class="fa fa-cogs fa-5x white" aria-hidden="true"></i>
+                <div class="icon-text white">Settings</div>
+            </div>
+        </md-grid-tile>
     </md-grid-list>
 </div>
 

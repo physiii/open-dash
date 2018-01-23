@@ -12,4 +12,8 @@ app.controller('FooterController', function($scope,$location){
         speakers.lowerVolume();
 
     }
+    $scope.mute=function () {
+        speakers.mute();
+
+    }
 });
