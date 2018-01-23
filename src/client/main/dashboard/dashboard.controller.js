@@ -17,4 +17,7 @@ app.controller('DashboardController', function($scope,$location){
     $scope.showRemote = function(){
         $location.path("remote")
     }
+    $scope.showMedia = function(){
+        $location.path("media")
+    }
 });

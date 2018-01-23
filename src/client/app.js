@@ -39,6 +39,10 @@ app.config(function ($routeProvider) {
         templateUrl: 'main/dashboard/remote/remote.html',
         controller: 'RemoteController'
     }).
+    when('/media', {
+        templateUrl: 'main/dashboard/media/media.html',
+        controller: 'MediaController'
+    }).
     otherwise({
         redirectTo: '/'
     });

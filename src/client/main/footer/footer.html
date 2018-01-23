@@ -1,15 +1,25 @@
 <div ng-controller="FooterController" layout="row" layout-xs="column" class="footer">
-    <div flex>
-        <img src="images/remote.png" class="header-icon" ng-click="showRemote()">
-    </div>
-    <div flex>
-        <img src="images/dashboard.png" class="header-icon" ng-click="showDashboard()">
-    </div>
-    <div flex>
-        <img src="images/volumedown.png" class="header-icon" ng-click="lowerVolume()">
-    </div>
-    <div flex>
-        <img src="images/volumeup.png" class="header-icon" ng-click="raiseVolume()">
+    <div layout="row" layout-align="center" class="menu icon-color">
+        <div flex="25">
+            <div class="menu_icon" ng-click="showRemote()">
+                <i class="fa fa-mobile fa-4x white" aria-hidden="true"></i>
+            </div>
+        </div>
+        <div flex="25">
+            <div class="menu_icon">
+                <i class="material-icons menu_material_icon white">volume_off</i>
+            </div>
+        </div>
+        <div flex="25">
+            <div class="menu_icon" ng-click="lowerVolume()">
+                <i class="material-icons menu_material_icon white">volume_down</i>
+            </div>
+        </div>
+        <div flex="25">
+            <div class="menu_icon">
+                <i class="material-icons menu_material_icon white">volume_up</i>
+            </div>
+        </div>
     </div>
 </div>
 
