@@ -1,18 +1,17 @@
 var app = angular.module('app');
 var speakers = require('../server/devices/speakers.js');
-
 app.controller('FooterController', function($scope,$location){
-    $scope.showVolumeSlider = false;
-    $scope.showVolume=function(val){
-        $scope.showVolumeSlider = !val;
+    $scope.showDashboard=function(){
+        $location.path('/');
+    }
+    $scope.showRemote=function(){
+        $location.path('remote');
     }
     $scope.raiseVolume =function(){
-      speakers.raiseVolume();
+        speakers.raiseVolume();
     }
-    $scope.lowerVolume =function() {
-      speakers.lowerVolume();
-    }
-    $scope.muteVolume =function() {
-      speakers.mute();
+    $scope.lowerVolume=function () {
+        speakers.lowerVolume();
+
     }
 });

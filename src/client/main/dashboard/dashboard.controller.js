@@ -14,4 +14,7 @@ app.controller('DashboardController', function($scope,$location){
  $scope.showApps = function(){
      $location.path("apps")
  }
+    $scope.showRemote = function(){
+        $location.path("remote")
+    }
 });
