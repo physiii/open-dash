@@ -9,14 +9,12 @@ var spawn = child_process.spawn;
 var database = require('../database.js');
 var ip = require("ip");
 
-var vnc_ip = "127.0.0.1";
-var vnc_port= "5900";
 var vnc_client;
 vnc_started = false;
 my_ip = ip.address();
 
 module.exports = {
-  start_vnc: start_vnc,
+  connect: connect,
   close_vnc: close_vnc,
 }
 
@@ -33,10 +31,15 @@ function runScan(){
       //Reverse iteration of array so iteration isnt skipped during splice.
       //Array spliced at index if array includes info in text.
       for (i = res.length - 1; i >= 0; --i){
-        result = res[i].includes("Host is");
-        result2 = res[i].includes("done");
-        result3 = res[i].includes("Starting");
-        if (result == true || result2 == true ||result3 == true) res.splice(i,1);
+        var item = res[i].toString();
+        item = item.replace("(", "-").replace(")","-");
+        if (item.includes("Hostname")) {
+          continue;
+        };
+        if (item.includes("MAC")) {
+          continue;
+        };
+        res.splice(i,1);
       };
 
       console.log(res);
@@ -47,8 +50,10 @@ function runScan(){
 
 function connect(ip, port) {
   if (vnc_started) return;
-  vnc_started = true;
+  if (!ip) return;
   if (!port) port=5900;
+
+  vnc_started = true;
 
   vnc_client = spawn('vncviewer', [ip + ":" + port]);
   vnc_client.stdout.on('data', function (data) {
@@ -79,3 +84,5 @@ function remoteTest(){
     console.log(result);
   });
 };
+
+runScan();
