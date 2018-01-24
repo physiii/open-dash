@@ -4,6 +4,9 @@ app.controller('RemoteController', function($scope,$location){
     $scope.back=function(){
         $location.path('/');
     }
+    $scope.data = remote.runScan();
+    $scope.remoteData = remote.device_list;
+    console.log($scope.remoteData);
     $scope.remoteAddressInfo =[
         {
             local_IP:"10.10.10.10",
@@ -32,6 +35,7 @@ app.controller('RemoteController', function($scope,$location){
         }
     ]
     $scope.connectRemote = function(ip){
+
         remote.connect(ip,null);
     }
 });

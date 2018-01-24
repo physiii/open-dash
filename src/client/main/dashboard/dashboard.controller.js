@@ -2,22 +2,25 @@
 var app = angular.module('app');
 
 app.controller('DashboardController', function($scope,$location){
- $scope.showNavigation = function() {
+    $scope.showNavigation = function() {
       console.log(os.platform());
     };
- $scope.showMedia = function() {
+    $scope.showMedia = function() {
      $location.path("media");
- };
- $scope.showSettings = function(){
+    };
+    $scope.showSettings = function(){
      $location.path("settings");
- }
- $scope.showApps = function(){
+    }
+    $scope.showApps = function(){
      $location.path("apps")
- }
+    }
     $scope.showRemote = function(){
         $location.path("remote")
     }
     $scope.showMedia = function(){
         $location.path("media")
+    }
+    showNavigation = function(){
+        $location.path('navigation');
     }
 });

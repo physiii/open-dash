@@ -67,6 +67,7 @@
     "letsencrypt": "^2.1.8",
     "loudness": "^0.2.2",
     "mongodb": "^2.2.1",
+    "nmap": "^1.1.0",
     "node-hue-api": "^2.2.0",
     "node-php": "0.0.1",
     "nw": "^0.27.5",
