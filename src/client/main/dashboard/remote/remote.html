@@ -1,9 +1,13 @@
 <div layout="row" layout-align="center center">
     <h1>Remote Connections</h1>
 </div>
-<div layout="column" layout-align="center center" class="remote-data white">
-    <div ng-repeat="info in remoteAddressInfo">
-        <p>Local IP : {{info.local_IP}}</p>
-        <p>Host Name : {{info.hostname}}</p>
+<div layout="row" layout-align="space-between none"  class="md-whiteframe-10dp remote-data" ng-repeat="info in remoteAddressInfo" >
+    <div layout="column" layout-align="space-between none">
+        <span class="white">{{info.hostname}}</span>
+        <span class="link" ng-click="connectRemote(info.local_IP)">{{info.local_IP}}</span>
+    </div>
+    <div layout="column" layout-align="space-between none" class="white">
+        <span>{{info.networkName}}</span>
+        <span>{{info.networkId}}</span>
     </div>
 </div>

@@ -101,6 +101,13 @@ h1{
 .remote-data{
     font-size: 1.2em;
     font-weight: 600;
+    padding: 1em 3em;
+    width:100%;
+}
+.link{
+    color: rgb(102, 204, 255);
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 .back-menu{

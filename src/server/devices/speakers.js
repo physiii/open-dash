@@ -8,7 +8,6 @@
 
 
 var spawn = require('child_process').spawn;
-
 module.exports = {
   raiseVolume: raiseVolume,
   lowerVolume: lowerVolume,
@@ -20,6 +19,7 @@ module.exports = {
 
 //raise volume by 5 units
 function raiseVolume() {
+  console.log('testing raise volume');
   return new Promise( function(resolve, reject) {
     spawn('xdotool', ['key', 'XF86AudioRaiseVolume']);
     resolve(true);
