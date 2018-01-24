@@ -21,6 +21,7 @@ module.exports = {
 
 var device_list = [];
 
+runScan();
 function runScan(){
   exec('sudo nmap -sn 192.168.'+my_ip[8]+'.1/24',function(err,stdout,stderr){
     if (err){
