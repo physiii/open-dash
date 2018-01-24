@@ -16,12 +16,12 @@ my_ip = ip.address();
 module.exports = {
   connect: connect,
   close_vnc: close_vnc,
-  device_list: device_list
+  device_list: device_list,
+  runScan: runScan
 }
 
-var device_list = [];
+var device_list = runScan();
 
-runScan();
 function runScan(){
   exec('sudo nmap -sn 192.168.'+my_ip[8]+'.1/24',function(err,stdout,stderr){
     if (err){
@@ -56,8 +56,8 @@ function runScan(){
 
     };
     res = res.join().split(",");
-    //console.log(res)
     device_obj = {};
+    device_list = []
 
 
       //for (i = 0; i < res.length; ++i){
@@ -99,7 +99,7 @@ function runScan(){
         continue;
       }
     };
-    //console.log(device_list)
+    return device_list;
   });
 
 };
