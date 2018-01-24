@@ -1,5 +1,5 @@
 var app = angular.module('app');
-var remote = require('../server/modules/remote_new.js');
+var remote = require('../server/modules/remote.js');
 app.controller('RemoteController', function($scope,$location){
     $scope.back=function(){
         $location.path('/');
