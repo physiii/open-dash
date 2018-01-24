@@ -25,24 +25,78 @@ function runScan(){
         console.error('exec error: ' + err);
         reject(true)
       }
-      first = stdout.replace(/Nmap scan report for /g,"Hostname: ");
-      res = first.split("\n");
+      res = stdout.split("\n");
 
       //Reverse iteration of array so iteration isnt skipped during splice.
       //Array spliced at index if array includes info in text.
       for (i = res.length - 1; i >= 0; --i){
-        var item = res[i].toString();
-        item = item.replace("(", "-").replace(")","-");
-        if (item.includes("Hostname")) {
+        res[i] = res[i].toString();
+        res[i] = res[i].replace("Nmap scan report for", ",Hostname: ");
+
+        if (res[i].includes("Hostname")) {
+          res[i] = res[i].replace("(", ",IP Address: ").replace(")","")
           continue;
         };
-        if (item.includes("MAC")) {
+        if (res[i].includes("MAC")) {
+          res[i] = res[i].replace("(", ",Device: ").replace(")","")
+          continue;
+        };
+        if (res[i].includes("latency")) {
+          res[i] = res[i].replace("(", "with ").replace("latency).","latency")
+          continue;
+        };
+        if (res[i].includes("Host is up.")) {
+          res[i] = res[i].replace("Host is up.", "")
           continue;
         };
         res.splice(i,1);
-      };
 
-      console.log(res);
+      };
+      res = res.join().split(",");
+      device_list = [];
+      device_obj = {}    
+
+
+      for (i = 0; i < res.length; ++i){
+
+        if (res[i].includes("Hostname:")){
+          res[i] = res[i].replace("Hostname: ","");
+          device_obj.hostname=res[i];
+          continue;
+
+        }
+        if (res[i].includes("IP Address:")){
+          res[i] = res[i].replace("IP Address: ","");
+          device_obj.local_ip = res[i];
+          continue;
+
+        }
+        if (res[i].includes("MAC Address:")){
+          res[i] = res[i].replace("MAC Address: ","");
+          device_obj.mac = res[i];
+          continue;
+
+        }
+        if (res[i].includes("Device:")){
+          res[i] = res[i].replace("Device: ","");
+          device_obj.device = res[i];
+          continue;
+
+        }
+        if (res[i].includes("latency")){
+          res[i] = res[i].replace("Host is up with ","").replace("latency","");
+          device_obj.latency = res[i];
+          continue;
+        }
+        else {
+          device_obj.latency =
+          device_obj.device =
+          device_obj.mac =
+          device_obj.local_ip =
+          device_obj.hostname =
+          console.log(device_obj);
+        }
+      };
       resolve(true);
     });
   });
