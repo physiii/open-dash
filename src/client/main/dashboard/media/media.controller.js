@@ -1,57 +1,39 @@
 var app = angular.module('app');
-var player = require('../server/modules/player.js');
 
-app.controller('MediaController', function ($scope, $location) {
-
-  player.getAudioFiles("../../../media/music").then(function (files) {
-    $scope.audioFiles = files.map(function (file) {
-      return "../../media/music/" + file;
-    });
-    $scope.currentIndex = 0;
-  });
+app.controller('MediaController', function ($scope, $rootScope, $location) {
 
   $scope.back = function () {
     $location.path('dashboard');
   }
-  $scope.playMedia = function () {
-    var audio = document.getElementById("audioTrack");
-    if (!$scope.audio) {
-      $scope.audio = audio;
-      if (!audio.src) {
-        audio.src = $scope.audioFiles[0];
-        $scope.currentIndex = 0;
-      }
-      $scope.audio.load();
-    }
+  $scope.$on("audio-file-list", function (list) {
+    $scope.audioFiles = list;
+  });
+  $scope.$on("audio-duration", function (duration) {
+    $scope.duration = duration;
+  });
+  $scope.$on("audio-timechanged", function (currentTime) {
+    $scope.currentTime = currentTime;
+  });
+  $scope.$on("audio-changed", function (currentIndex) {
+    $scope.currentIndex = currentIndex;
+  });
+  $scope.$on("audio-play", function (currentIndex) {
     var button = document.getElementById("playButton");
-    audio.addEventListener('loadedmetadata', function (metadata) {
-      console.log("duration=", audio.duration);
-    });
-    if (audio.paused) {
-      audio.play();
-      button.innerHTML = "pause";
-    }
-    else {
-      audio.pause();
-      button.innerHTML = "play_arrow";
-    }
+    button.innerHTML = "pause";
+  });
+  $scope.$on("audio-pause", function (currentIndex) {
+    var button = document.getElementById("playButton");
+    button.innerHTML = "play_arrow";
+  });
+  $scope.playMedia = function () {
+    $scope.$emit('play-audio');
+    
   }
   $scope.skipPrevious = function () {
-    if ($scope.currentIndex > 0) {
-      var audioPaused = $scope.audio.paused;
-      $scope.currentIndex -= 1;
-      $scope.audio.src = $scope.audioFiles[$scope.currentIndex];
-      $scope.audio.load();
-      if (!audioPaused) $scope.audio.play();
-    }
+    $scope.$emit("audio-skip-previous");
+    
   }
   $scope.skipNext = function () {
-    if ($scope.currentIndex < ($scope.audioFiles.length - 1)) {
-      var audioPaused = $scope.audio.paused;
-      $scope.currentIndex += 1;
-      $scope.audio.src = $scope.audioFiles[$scope.currentIndex];
-      $scope.audio.load();
-      if (!audioPaused) $scope.audio.play();
-    }
+    $scope.$emit("audio-skip-next");
   }
 });

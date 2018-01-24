@@ -1,4 +1,6 @@
 'use strict';
+var player = require('../server/modules/player.js');
+var path = require('path');
 
 var app = angular.module('app', ['ngRoute','ngMaterial','ngMessages']);
 app.config(function ($routeProvider) {
@@ -59,5 +61,104 @@ app.config(function ($routeProvider) {
         }
 
     })
+    $rootScope.$on('get-audio-play-list', function (dir) {
+      if (dir) {
+        dir = path.join("../../..", dir);
+      } else {
+        dir = "../../../media/music";
+      }
+      player.getAudioFiles(dir).then(function (files) {
+        var audioFiles = files.map(function (file) {
+          return path.join(dir, file);
+        });
+        $rootScope.audioFiles = audioFiles;
+        $rootScope.currentIndex = 0;
+      });
+      $rootScope.$broadcast('audio-play-list', $rootScope.audioFiles);
+    });
+    $rootScope.$on('play-audio', function () {
+      $rootScope.playAudio();
+    });
+    $rootScope.$on('pause-audio', function () {
+      $rootScope.playAudio();
+    });
+    $rootScope.$on('play-pause-audio', function () {
+      $rootScope.playAudio();
+    });
+    $rootScope.$on('audio-skip-previous', function () {
+      $rootScope.skipPrevious();
+    });
+    $rootScope.$on('audio-skip-next', function () {
+      $rootScope.skipNext();
+    });
+    $rootScope.playAudio = function () {
+      if (!$rootScope.audioFiles) {
+        var dir = "../../../media/music";
+        player.getAudioFiles(dir).then(function (files) {
+          var audioFiles = files.map(function (file) {
+            return path.join(dir, file);
+          });
+          $rootScope.audioFiles = audioFiles;
+          $rootScope.currentIndex = 0;
+          $rootScope.$broadcast('audio-play-list', $rootScope.audioFiles);
+          playPauseAudio();
+        });
+        
+      } else {
+        playPauseAudio();
+      }
+      function playPauseAudio() {
+        var audio = document.getElementById("audioTrack");
+        if (!$rootScope.audio) {
+          $rootScope.audio = audio;
+          if (!audio.src) {
+            audio.src = $rootScope.audioFiles[0];
+            $rootScope.currentIndex = 0;
+          }
+          $rootScope.audio.load();
+          audio.addEventListener('loadedmetadata', function (metadata) {
+            $rootScope.$broadcast('audio-duration', audio.duration);
+          });
+          audio.addEventListener('play', function (metadata) {
+            $rootScope.$broadcast('audio-play');
+          });
+          audio.addEventListener('pause', function (metadata) {
+            $rootScope.$broadcast('audio-pause');
+          });
+          audio.addEventListener('timeupdate', function (metadata) {
+            $rootScope.$broadcast('audio-timeupdate', audio.currentTime);
+          });
+        }
+        if (audio.paused) {
+          audio.play();
+        }
+        else {
+          audio.pause();
+        }
+      }
+      
+    }
+    $rootScope.skipPrevious = function () {
+      if (!$rootScope.audioFiles) return;
+      if ($rootScope.currentIndex > 0) {
+        var audioPaused = $rootScope.audio.paused;
+        $rootScope.currentIndex -= 1;
+        $rootScope.audio.src = $rootScope.audioFiles[$rootScope.currentIndex];
+        $rootScope.audio.load();
+        if (!audioPaused) $rootScope.audio.play();
+        $rootScope.$broadcast("audio-changed", $rootScope.currentIndex);
+      }
+    }
+    $rootScope.skipNext = function () {
+      if (!$rootScope.audioFiles) return;
+      if ($rootScope.currentIndex < ($rootScope.audioFiles.length - 1)) {
+        var audioPaused = $rootScope.audio.paused;
+        $rootScope.currentIndex += 1;
+        $rootScope.audio.src = $rootScope.audioFiles[$rootScope.currentIndex];
+        $rootScope.audio.load();
+        if (!audioPaused) $rootScope.audio.play();
+        $rootScope.$broadcast("audio-changed", $rootScope.currentIndex);
+      }
+    }
 
 }]);
