@@ -2,32 +2,115 @@
 // ---------------  https://github.com/physiii/open-dash  ------------------ //
 // ----------------------------- remote.js ---------------------------------- //
 
-var child_process = require('child_process')
+
+var child_process = require('child_process');
 var exec = child_process.exec;
 var spawn = child_process.spawn;
-const express = require('express')
-const app = express()
-var fs = require('fs');
-var ping = require('ping');
 var database = require('../database.js');
-var remote_socket= require('socket.io-client')("http://127.0.0.1:1236");
+var ip = require("ip");
 
-var vnc_ip = "192.168.80.16";
 var vnc_client;
 vnc_started = false;
+my_ip = ip.address();
 
 module.exports = {
-  start_vnc: start_vnc,
+  connect: connect,
   close_vnc: close_vnc,
-  timeout: timeout,
-  check_mdd_conn: check_mdd_conn,
+  device_list: device_list
 }
 
+var device_list = [];
 
-function start_vnc() {
+function runScan(){
+  exec('sudo nmap -sn 192.168.'+my_ip[8]+'.1/24',function(err,stdout,stderr){
+    if (err){
+      console.error('exec error: ' + err);
+      reject(true)
+    }
+    res = stdout.split("\n");
+
+    //Reverse iteration of array so iteration isnt skipped during splice.
+    //Array spliced at index if array includes info in text.
+    for (i = res.length - 1; i >= 0; --i){
+      res[i] = res[i].toString();
+      res[i] = res[i].replace("Nmap scan report for", "Hostname: ");
+
+      if (res[i].includes("Hostname")) {
+        res[i] = res[i].replace("(", ",IP Address: ").replace(")","")
+        continue;
+      };
+      if (res[i].includes("MAC")) {
+        res[i] = res[i].replace("(", ",Device: ").replace(")",",none")
+        continue;
+      };
+      if (res[i].includes("latency")) {
+        res[i] = res[i].replace("(", "with ").replace("latency).","latency")
+        continue;
+      };
+      if (res[i].includes("Host is up.")) {
+        res[i] = res[i].replace("Host is up.", "")
+        continue;
+      };
+      res.splice(i,1);
+
+    };
+    res = res.join().split(",");
+    //console.log(res)
+    device_obj = {};
+
+
+      //for (i = 0; i < res.length; ++i){
+    for (var i = 0; i < res.length; i++) {
+
+      if (res[i].includes("Hostname:")){
+        res[i] = res[i].replace("Hostname: ","");
+        device_obj = {};
+        device_obj.hostname=res[i];
+        continue;
+
+      }
+      if (res[i].includes("IP Address:")){
+        res[i] = res[i].replace("IP Address: ","");
+        device_obj.local_ip = res[i];
+        continue;
+
+      }
+      if (res[i].includes("MAC Address:")){
+        res[i] = res[i].replace("MAC Address: ","");
+        device_obj.mac = res[i];
+        continue;
+
+      }
+      if (res[i].includes("Device:")){
+        res[i] = res[i].replace("Device: ","");
+        device_obj.device = res[i];
+        continue;
+
+      }
+      if (res[i].includes("latency")){
+        res[i] = res[i].replace("Host is up with ","").replace("latency","");
+        device_obj.latency = res[i];
+        continue;
+
+      }
+      if (res[i].includes("none")){
+        device_list.push(device_obj);
+        continue;
+      }
+    };
+    //console.log(device_list)
+  });
+
+};
+
+function connect(ip, port) {
   if (vnc_started) return;
+  if (!ip) return;
+  if (!port) port=5900;
+
   vnc_started = true;
-  vnc_client = spawn('vinagre', ['-f', '192.168.0.16::5900']);
+
+  vnc_client = spawn('vncviewer', [ip + ":" + port]);
   vnc_client.stdout.on('data', function (data) {
     console.log('stdout: ' + data);
   });
@@ -45,45 +128,11 @@ function close_vnc() {
   if (!vnc_started) return;
   vnc_client.kill();
   vnc_started = false;
-
-}
-
-// Timeout with connection testing
-timeout();
-function timeout() {
-  setTimeout(function () {
-    console.log("checking mdd connection...")
-    check_mdd_conn();
-    timeout();
-  }, 1*1000);
-}
-
-function check_mdd_conn() {
-    ping.sys.probe(vnc_ip, function(isAlive){
-        var msg = isAlive ? 'host ' + vnc_ip + ' is alive' : 'host ' + vnc_ip + ' is dead';
-        if (isAlive) {
-	  start_vnc();
-        }
-        if (!isAlive) {
-	  close_vnc();
-        }
-    });
 }
 
 
-// Start pxpress services...
-
-app.get('/mdd', function(req, res) {
-  res.send('Hello MDD!')
-});
-
-app.get('/switch-to-vnc', function(req, res) {
-  remote.start_vnc();
-  res.send('Hello MDD!');
-})
-app.listen(3001, function() {console.log('Example app listening on port 3001!')})
-
-
-function test() {
-  console.log("Testing remote Module");
+function remoteTest(){
+  console.log('Running host discovery scan. Please wait. . .');
+  runScan();
+  console.log(device_list);
 };
