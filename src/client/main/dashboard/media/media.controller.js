@@ -1,7 +1,11 @@
 var app = angular.module('app');
 
-app.controller('MediaController', function ($scope, $rootScope, $location) {
+app.controller('MediaController', function ($scope, $rootScope, $location, $timeout) {
 
+  $scope.playIcon = "play_arrow";
+  if ($rootScope.audio && !$rootScope.audio.paused) {
+    $scope.playIcon = "pause";
+  }
   $scope.back = function () {
     $location.path('dashboard');
   }
@@ -18,12 +22,14 @@ app.controller('MediaController', function ($scope, $rootScope, $location) {
     $scope.currentIndex = currentIndex;
   });
   $scope.$on("audio-play", function (currentIndex) {
-    var button = document.getElementById("playButton");
-    button.innerHTML = "pause";
+    $timeout(function () {
+      $scope.playIcon = "pause";
+    }, 500);
   });
   $scope.$on("audio-pause", function (currentIndex) {
-    var button = document.getElementById("playButton");
-    button.innerHTML = "play_arrow";
+    $timeout(function () {
+      $scope.playIcon = "play_arrow";
+    }, 500);
   });
   $scope.playMedia = function () {
     $scope.$emit('play-audio');

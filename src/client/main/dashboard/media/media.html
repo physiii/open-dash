@@ -14,7 +14,7 @@
         <div class="controls">
           <i class="material-icons" style="font-size: 48px; background-color: blue">repeat</i>
           <i class="material-icons" style="font-size: 48px; background-color: blue" ng-click="skipPrevious()">skip_previous</i>
-          <i class="material-icons" style="font-size: 48px; background-color: blue" ng-click="playMedia()" id="playButton">play_arrow</i>
+          <i class="material-icons" style="font-size: 48px; background-color: blue" ng-click="playMedia()" ng-model="playIcon" id="playButton">{{playIcon}}</i>
           <i class="material-icons" style="font-size: 48px; background-color: blue" ng-click="skipNext()">skip_next</i>
 
         </div>
