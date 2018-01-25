@@ -116,10 +116,8 @@ function runScan(){
 
 };
 
-function connect(ip, port) {
+function connect() {
   if (vnc_started) return;
-  if (!ip) return;
-  if (!port) port=5900;
 
   vnc_started = true;
 
