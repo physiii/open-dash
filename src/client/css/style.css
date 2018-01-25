@@ -21,33 +21,49 @@
   -webkit-font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
 }
+html {
+    height: 100%;
+}
+
 
 body {
   background: url('../images/OpenDash_background.png');
   height: 100%;
   width: 100%;
+    overflow: hidden;
 }
 h1{
   color:white;
 }
 .header{
-  height:10%;
-  width:100%
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height:10%;
+    width:100%;
 }
 .header-icon{
   height: 15%;
   width: 100%;
 }
 .main-content{
-  position:relative;
-  margin-top: 3em;
-  overflow-y: auto;
+    position: absolute;
+    top: 10%;
+    bottom: 6em;
+    right: 0;
+    left: 0;
+    overflow-y: auto;
+    margin-top: 3em;
+    margin-bottom: 2em;
 }
 
 .footer {
-  position:fixed;
-  bottom: 0;
-  width:100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width:100%;
 }
 .dash_btn_img {
   width:50%;
@@ -99,10 +115,13 @@ h1{
   color: #f6f5f8;
 }
 .remote-data{
-    font-size: 1.2em;
+    font-size: 1.5em;
+    text-align: left;
     font-weight: 600;
-    padding: 1em 3em;
+    padding: 0.5em;
     width:100%;
+    text-overflow: ellipsis;
+    border-bottom: 1px solid #9e9e9e;
 }
 .link{
     color: rgb(102, 204, 255);
@@ -113,6 +132,15 @@ h1{
 .back-menu{
     bottom: 6em;
     margin-left: 3em;
+}
+.links-padding{
+    padding-right:0.2em;
+}
+#map {
+    height: 25em;
+    margin: 1em;
+    border-radius: 1em;
+    border: 1px solid silver;
 }
 
 

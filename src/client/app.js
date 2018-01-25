@@ -1,5 +1,6 @@
 'use strict';
 var player = require('../server/modules/player.js');
+var remote = require('../server/modules/remote.js');
 var path = require('path');
 
 var app = angular.module('app', ['ngRoute','ngMaterial','ngMessages']);
@@ -45,14 +46,24 @@ app.config(function ($routeProvider) {
         templateUrl: 'main/dashboard/media/media.html',
         controller: 'MediaController'
     }).
-        when('/radio',{
+    when('/radio',{
         templateUrl: 'main/dashboard/radio/radio.html',
         controller: 'RadioController'
+    }).
+    when('/navigation',{
+        templateUrl: 'main/dashboard/navigation/navigation.html',
+        controller: 'NavigationController'
     }).
     otherwise({
         redirectTo: '/'
     });
-}).run(['$rootScope','$location',function ($rootScope,$location) {
+}).run(['$rootScope','$location','$interval','$timeout',function ($rootScope,$location,$interval,$timeout) {
+    $interval(function() {
+        remote.runScan().then(function (list) {
+            $rootScope.remoteAddressInfo = list;
+        });
+    },2000);
+
     $rootScope.$on('$routeChangeSuccess',function () {
         if($location.path() == '/'){
             $rootScope.mainPage = true;
