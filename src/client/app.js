@@ -1,5 +1,5 @@
 'use strict';
-var player = require('../server/modules/player.js');
+var media = require('../server/modules/media.js');
 var remote = require('../server/modules/remote.js');
 var path = require('path');
 
@@ -79,7 +79,7 @@ app.config(function ($routeProvider) {
       } else {
         dir = "../../../media/music";
       }
-      player.getAudioFiles(dir).then(function (files) {
+      media.getAudioFiles(dir).then(function (files) {
         var audioFiles = files.map(function (file) {
           return path.join(dir, file);
         });
@@ -106,7 +106,7 @@ app.config(function ($routeProvider) {
     $rootScope.playAudio = function () {
       if (!$rootScope.audioFiles) {
         var dir = "../../../media/music";
-        player.getAudioFiles(dir).then(function (files) {
+        media.getAudioFiles(dir).then(function (files) {
           var audioFiles = files.map(function (file) {
             return path.join(dir, file);
           });
