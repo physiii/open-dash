@@ -1,43 +1,11 @@
 var app = angular.module('app');
 var remote = require('../server/modules/remote.js');
-app.controller('RemoteController', function($scope,$location, $timeout){
+app.controller('RemoteController', function($scope,$rootScope,$location){
     $scope.back=function(){
         $location.path('/');
     }
-    remote.runScan().then(function(list) {
-      $timeout(function() {
-        $scope.remoteAddressInfo = list;
-        console.log(list);
-      }, 500);
-    });
-    
-    $scope.remoteAddressInfo1 =[
-        {
-            local_IP:"10.10.10.10",
-            hostname:"hostname1",
-            networkName : 'NetworkId1',
-            networkId:'00:00:00:00'
 
-        },
-        {
-            local_IP:"10.10.10.11",
-            hostname:"hostname2",
-            networkName : 'NetworkId1',
-            networkId:'00:00:00:00'
-        },
-        {
-            local_IP:"10.10.10.10",
-            hostname:"hostname1",
-            networkName : 'NetworkId1',
-            networkId:'00:00:00:00'
-        },
-        {
-            local_IP:"10.10.10.11",
-            hostname:"hostname2",
-            networkName : 'NetworkId1',
-            networkId:'00:00:00:00'
-        }
-    ]
+    console.log($rootScope.remoteAddressInfo);
     $scope.connectRemote = function(ip){
         remote.connect(ip,null);
     }

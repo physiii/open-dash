@@ -20,7 +20,7 @@ app.controller('DashboardController', function($scope,$location){
     $scope.showMedia = function(){
         $location.path("media")
     }
-    showNavigation = function(){
+    $scope.showNavigation = function(){
         $location.path('navigation');
     }
 });
