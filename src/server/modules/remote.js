@@ -8,6 +8,7 @@ var exec = child_process.exec;
 var spawn = child_process.spawn;
 var database = require('../database.js');
 var ip = require("ip");
+var path = require('path');
 
 var vnc_client;
 vnc_started = false;
@@ -123,7 +124,12 @@ function connect(ip, port) {
 
   vnc_started = true;
 
-  vnc_client = spawn('remmina', ["-c", "../../../scripts/mdd.remmina"]);
+  //vnc_client = spawn('vncviewer', [ip + ":" + port]);
+  var dir = path.join(__dirname, "../../../scripts");
+  var mdd = path.join(dir, "mdd.remmina");
+  var mddtmp = path.join(dir, "mddtmp.remmina");
+  console.log("sed s/server=.*/server="+ip+":"+port+"/ " +mdd + " > " + mddtmp + " && remmina -c "+mddtmp);
+  vnc_client = exec("sed s/server=.*/server="+ip+":"+port+"/ " +mdd + " > " + mddtmp + " && remmina -c "+mddtmp);
   vnc_client.stdout.on('data', function (data) {
     console.log('stdout: ' + data);
   });
