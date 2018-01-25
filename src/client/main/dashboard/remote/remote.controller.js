@@ -5,7 +5,6 @@ app.controller('RemoteController', function($scope,$rootScope,$location){
         $location.path('/');
     }
 
-    console.log($rootScope.remoteAddressInfo);
     $scope.connectRemote = function(ip){
         remote.connect(ip,null);
     }

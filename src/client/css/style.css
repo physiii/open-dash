@@ -116,11 +116,9 @@ h1{
 }
 .remote-data{
     font-size: 1.5em;
-    text-align: left;
     font-weight: 600;
     padding: 0.5em;
     width:100%;
-    text-overflow: ellipsis;
     border-bottom: 1px solid #9e9e9e;
 }
 .link{
@@ -135,6 +133,11 @@ h1{
 }
 .links-padding{
     padding-right:0.2em;
+    word-wrap: break-word;
+    text-align: left;
+}
+.mac-device{
+    text-align: right;
 }
 #map {
     height: 25em;
