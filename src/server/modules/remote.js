@@ -20,22 +20,28 @@ module.exports = {
   runScan: runScan
 }
 
-var device_list = runScan().then(function(){
-  return console.log(device_list);
+var device_list;
+runScan().then(function(list){
+  device_list = list;
+  console.log(device_list);
 });
 
 function runScan(){
   return new Promise(function(resolve,reject){
-    exec('sudo nmap -sn 192.168.'+my_ip[8]+'.1/24',function(err,stdout,stderr){
+    var lastIndex = my_ip.lastIndexOf(".");
+    console.log('nmap -sn '+my_ip.substring(0,lastIndex)+'.1/24');
+    exec('nmap -sn '+my_ip.substring(0,lastIndex)+'.1/24',function(err,stdout,stderr){
       if (err){
         console.error('exec error: ' + err);
         reject(true)
       }
-      res = stdout.split("\n");
+      var res = stdout.split("\n");
+      console.log(res);
 
       //Reverse iteration of array so iteration isnt skipped during splice.
       //Array spliced at index if array includes info in text.
       for (i = res.length - 1; i >= 0; --i){
+        console.log(res);
         res[i] = res[i].toString();
         res[i] = res[i].replace("Nmap scan report for", "Hostname: ");
 
@@ -66,28 +72,30 @@ function runScan(){
         //for (i = 0; i < res.length; ++i){
       for (var i = 0; i < res.length; i++) {
 
+        if(!res[i]) continue;
         if (res[i].includes("Hostname:")){
           res[i] = res[i].replace("Hostname: ","");
           device_obj = {};
-          device_obj.hostname=res[i];
+          device_obj.hostname=res[i].trim();
+          device_list.push(device_obj);
           continue;
 
         }
         if (res[i].includes("IP Address:")){
           res[i] = res[i].replace("IP Address: ","");
-          device_obj.local_ip = res[i];
+          device_obj.local_ip = res[i].trim();
           continue;
 
         }
         if (res[i].includes("MAC Address:")){
           res[i] = res[i].replace("MAC Address: ","");
-          device_obj.mac = res[i];
+          device_obj.mac = res[i].trim();
           continue;
 
         }
         if (res[i].includes("Device:")){
           res[i] = res[i].replace("Device: ","");
-          device_obj.device = res[i];
+          device_obj.device = res[i].trim();
           continue;
 
         }
@@ -97,10 +105,12 @@ function runScan(){
           continue;
 
         }
+/*
         if (res[i].includes("none")){
           device_list.push(device_obj);
           continue;
         }
+*/
       };
       resolve(device_list);
     });

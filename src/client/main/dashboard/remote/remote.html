@@ -4,7 +4,7 @@
 <div layout="row" layout-align="space-between none"  class="md-whiteframe-10dp remote-data" ng-repeat="info in remoteAddressInfo" >
     <div layout="column" layout-align="space-between none">
         <span class="white">{{info.hostname}}</span>
-        <span class="link" ng-click="connectRemote(info.local_IP)">{{info.local_IP}}</span>
+        <span class="link" ng-click="connectRemote(info.hostname)">{{info.hostname}}</span>
     </div>
     <div layout="column" layout-align="space-between none" class="white">
         <span>{{info.networkName}}</span>

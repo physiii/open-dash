@@ -1,13 +1,17 @@
 var app = angular.module('app');
 var remote = require('../server/modules/remote.js');
-app.controller('RemoteController', function($scope,$location){
+app.controller('RemoteController', function($scope,$location, $timeout){
     $scope.back=function(){
         $location.path('/');
     }
-    $scope.data = remote.runScan();
-    $scope.remoteData = remote.device_list;
-    console.log($scope.remoteData);
-    $scope.remoteAddressInfo =[
+    remote.runScan().then(function(list) {
+      $timeout(function() {
+        $scope.remoteAddressInfo = list;
+        console.log(list);
+      }, 500);
+    });
+    
+    $scope.remoteAddressInfo1 =[
         {
             local_IP:"10.10.10.10",
             hostname:"hostname1",
@@ -35,7 +39,6 @@ app.controller('RemoteController', function($scope,$location){
         }
     ]
     $scope.connectRemote = function(ip){
-
         remote.connect(ip,null);
     }
 });
