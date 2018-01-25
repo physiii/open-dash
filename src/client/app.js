@@ -58,9 +58,10 @@ app.config(function ($routeProvider) {
         redirectTo: '/'
     });
 }).run(['$rootScope','$location','$interval','$timeout',function ($rootScope,$location,$interval,$timeout) {
-    $interval(function() {
+    $timeout(function() {
         remote.runScan().then(function (list) {
             $rootScope.remoteAddressInfo = list;
+            $rootScope.$apply();
         });
     },2000);
 
