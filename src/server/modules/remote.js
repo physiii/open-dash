@@ -123,7 +123,7 @@ function connect(ip, port) {
 
   vnc_started = true;
 
-  vnc_client = spawn('vncviewer', [ip + ":" + port]);
+  vnc_client = spawn('remmina', ["-c", "../../../scripts/mdd.remmina"]);
   vnc_client.stdout.on('data', function (data) {
     console.log('stdout: ' + data);
   });
