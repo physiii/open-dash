@@ -7,7 +7,7 @@ describe("speakers", function() {
   it("get master volume", function(done) {
     speakers.getVolume().then(function(vol) {
      
-    expect(vol >= 0 && vol <= 100).toBeTruthy();
+    expect(vol >= 0 && vol <= 100).toBe(true);
     done();
 
   }).catch(function(err) {
@@ -43,7 +43,7 @@ describe("speakers", function() {
     speakers.setMuted(mute).then(function() {
       speakers.getMuted().then(function(newMuteValue) { 
      
-    expect(newMuteValue).toBeFalsy();
+    expect(newMuteValue).toBe(false);
     done();
     });
   }).catch(function(err) {
