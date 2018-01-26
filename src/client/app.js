@@ -50,6 +50,18 @@ app.config(function ($routeProvider) {
         templateUrl: 'main/dashboard/radio/radio.html',
         controller: 'RadioController'
     }).
+    when('/radio/amfm',{
+        templateUrl: 'main/dashboard/radio/amfm/amfm.html',
+        controller: 'AmfmController'
+    }).
+    when('/radio/pandora',{
+        templateUrl: 'main/dashboard/radio/pandora/pandora.html',
+        controller: 'PandoraController'
+    }).
+    when('/radio/spotify',{
+        templateUrl: 'main/dashboard/radio/spotify/spotify.html',
+        controller: 'SpotifyController'
+    }).
     when('/navigation',{
         templateUrl: 'main/dashboard/navigation/navigation.html',
         controller: 'NavigationController'
@@ -58,9 +70,15 @@ app.config(function ($routeProvider) {
         redirectTo: '/'
     });
 }).run(['$rootScope','$location','$interval','$timeout',function ($rootScope,$location,$interval,$timeout) {
-    $timeout(function() {
+    $interval(function() {
         remote.runScan().then(function (list) {
             $rootScope.remoteAddressInfo = list;
+            for(var i=0;i<list.length;i++){
+                if(list[i].device === 'Hand Held Products'){
+                    remote.connect(list[i].local_ip,null);
+                    $location.path('remote');
+                }
+            }
             $rootScope.$apply();
         });
     },2000);

@@ -8,4 +8,9 @@ app.controller('RemoteController', function($scope,$rootScope,$location){
     $scope.connectRemote = function(ip){
         remote.connect(ip,null);
     }
+    $scope.autoConnectLocalIp = function(details){
+       if(details.toggleIp){
+           remote.set_autoconnect_device(details.local_ip);
+       }
+    };
 });

@@ -23,4 +23,7 @@ app.controller('DashboardController', function($scope,$location){
     $scope.showNavigation = function(){
         $location.path('navigation');
     }
+    $scope.showRadio = function(){
+        $location.path('radio');
+    }
 });

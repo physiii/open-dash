@@ -1,10 +1,11 @@
 
 <div>
-    <md-grid-list  md-cols="1"  md-row-height="4em" md-gutter="1em">
-        <md-grid-tile class="md-whiteframe-10dp">
+    <md-grid-list md-cols="1"  md-row-height="4em" md-gutter="1em">
+        <md-grid-tile class="md-whiteframe-10dp settings">
             <div layout="row" layout-align="space-between center" class="tile-content">
                 <div ng-click="goToWifi()">
-                    <h1>Wifi</h1>
+
+                    <h1><i class="fa fa-wifi fa-lg white " aria-hidden="true"></i> Wifi</h1>
                 </div>
                 <div>
                     <md-switch class="md-primary" ng-model="wifi" >
@@ -12,32 +13,33 @@
                 </div>
             </div>
         </md-grid-tile>
-        <md-grid-tile class="md-whiteframe-10dp" >
+        <md-grid-tile class="md-whiteframe-10dp settings" >
             <div layout="row" layout-align="space-between center" class="tile-content">
                 <div ng-click="goToBluetooth()">
-                    <h1>Bluetooth</h1>
-                </div>
+                   <span>
+                       <h1><i class="fa fa-bluetooth-b fa-lg white bluetooth" aria-hidden="true"></i>Bluetooth</h1>
+                </span></div>
                 <div>
                     <md-switch class="md-primary" ng-model="bluetooth" >
                     </md-switch>
                 </div>
             </div>
         </md-grid-tile>
-        <md-grid-tile class="md-whiteframe-10dp" ng-click="goToSystemSettings()">
+        <md-grid-tile class="md-whiteframe-10dp settings" ng-click="goToSystemSettings()">
             <div layout="row" layout-align="space-between center" class="tile-content">
                 <div >
                     <h1>System</h1>
                 </div>
             </div>
         </md-grid-tile>
-        <md-grid-tile class="md-whiteframe-10dp" ng-click="showApps()">
+        <md-grid-tile class="md-whiteframe-10dp settings" ng-click="showApps()">
             <div layout="row" layout-align="space-between center" class="tile-content">
                 <div >
                     <h1>Apps</h1>
                 </div>
             </div>
         </md-grid-tile>
-        <md-grid-tile class="gray md-whiteframe-10dp" ng-click ="goToUpdateSettings()">
+        <md-grid-tile class="gray md-whiteframe-10dp settings" ng-click ="goToUpdateSettings()">
             <div layout="row" layout-align="space-between center" class="tile-content">
                 <div >
                     <h1>Update</h1>

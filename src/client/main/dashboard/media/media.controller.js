@@ -1,7 +1,19 @@
 var app = angular.module('app');
+var media = require('../server/modules/media.js');
 
 app.controller('MediaController', function ($scope, $rootScope, $location, $timeout) {
+  media.getMediaFiles('../../../media').then(function (list) {
+    console.log(list);
+  });
+  $scope.playList=[
+    'Havana - Camila Cabello',
+      'Rockstar - Post Malone',
+      'Mi Gente - J.Balvin',
+      'Despacito -luis fonsi,Daddy Yankee',
+      'Unforgettable - French Montana',
+      'New Rules - Dua Lipa',
 
+  ];
   $scope.playIcon = "play_arrow";
   if ($rootScope.audio && !$rootScope.audio.paused) {
     $scope.playIcon = "pause";

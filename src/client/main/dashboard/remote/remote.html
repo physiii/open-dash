@@ -1,14 +1,21 @@
-<div layout="row" layout-align="center center">
-    <h1>Remote Connections</h1>
-</div>
-<div layout="row"  class="remote-data white md-whiteframe-30dp" ng-repeat="info in remoteAddressInfo" >
-    <div flex="60" class="links-padding" layout="column" layout-align="space-between none">
-        <div>{{info.hostname}}</div>
-        <div class="link" ng-click="connectRemote(info.local_ip)">{{info.local_ip}}</div>
+<div>
+    <div layout="row" layout-align="center center">
+        <h1>Remote Connections</h1>
     </div>
-    <div flex="40" class="mac-device" layout="column" layout-align="space-between none">
-        <div>{{info.device}}</div>
-        <div>{{info.mac}}</div>
+    <div layout="row"  class="remote-data white md-whiteframe-30dp" ng-repeat="info in remoteAddressInfo" >
+        <div flex="60" class="links-padding" layout="column" layout-align="space-between none">
+            <div>{{info.hostname}}</div>
+            <div class="link" ng-click="connectRemote(info.local_ip)">{{info.local_ip}}</div>
+            <div  ng-click="autoConnectLocalIp(info)">
+                <md-switch md-invert class="md-primary button-switch" ng-model="info.toggleIp" >
+                    Auto Connect
+                </md-switch>
+            </div>
+        </div>
+        <div flex="40" class="mac-device" layout="column" >
+            <div>{{info.device}}</div>
+            <div>{{info.mac}}</div>
+        </div>
     </div>
 </div>
 
