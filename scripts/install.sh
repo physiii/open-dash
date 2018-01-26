@@ -8,6 +8,12 @@ sudo apt-get install -y \
 sudo npm install -g pm2 nw  #--unsafe-perm=true --allow-root
 sudo python -m pip install pymongo numpy opencv-python
 
+git clone https://github.com/oblique/create_ap
+cd create_ap
+make install
+
+create_ap wlx70f11c021d3b enp3s0 dash mypassword
+
 ## install open-dash
 cd ~
 git clone https://github.com/physiii/open-dash
