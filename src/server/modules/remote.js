@@ -117,28 +117,40 @@ function runScan(){
 
 };
 
-function connect(ip, port) {
-  if (vnc_started) return;
+function connect(deviceIP, port) {
+
+  //have only one vnc client running at a time
+  if (vnc_started) {
+    close_vnc();
+  }
+  if (port) deviceIP += ":" + port;
 
   vnc_started = true;
 
-  //vnc_client = spawn('vncviewer', [ip + ":" + port]);
-  var dir = path.join(__dirname, "../../../scripts");
-  var mdd = path.join(dir, "mdd.remmina");
-  var mddtmp = path.join(dir, "mddtmp.remmina");
-  console.log("sed s/server=.*/server="+ip+":"+port+"/ " +mdd + " > " + mddtmp + " && remmina -c "+mddtmp);
-  vnc_client = exec("sed s/server=.*/server="+ip+":"+port+"/ " +mdd + " > " + mddtmp + " && remmina -c "+mddtmp);
-  vnc_client.stdout.on('data', function (data) {
-    console.log('stdout: ' + data);
-  });
+  var promise = new Promise(function (resolve, reject) {
+
+    var dir = path.join(__dirname, "../../../scripts");
+    var mdd = path.join(dir, "mdd.remmina");
+    var mddtmp = path.join(dir, "mddtmp.remmina");
+    console.log("sed s/server=.*/server=" + deviceIP + "/ " + mdd + " > " + mddtmp + " && remmina -c " + mddtmp);
+    exec("sed s/server=.*/server=" + deviceIP + "/ " + mdd + " > " + mddtmp, function (error, stdout, stderr) {
+      if (error) return reject(error);
+      vnc_client = spawn("remmina", ['-c', mddtmp]);
+      vnc_client.stdout.on('data', function (data) {
+        console.log('stdout: ' + data);
+      });
 
   vnc_client.stderr.on('data', function (data) {
     console.log('stderr: ' + data);
   });
 
-  vnc_client.on('close', function (code) {
-    console.log('child process exited with code ' + code);
+      vnc_client.on('close', function (code) {
+        console.log('child process exited with code ' + code);
+      });
+      resolve(true);
+    });
   });
+  return promise;
 }
 
 function close_vnc() {
