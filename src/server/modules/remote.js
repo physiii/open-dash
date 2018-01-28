@@ -53,7 +53,7 @@ function reconnect() {
     }
   });
 }
- 
+
 function setAutoConnect(flag) {
   autoConnectEnabled = flag;
   if(autoConnectTimer) {
@@ -85,7 +85,8 @@ function runScan(){
         res[i] = res[i].replace("Nmap scan report for", "Hostname:");
 
         if (res[i].includes("Hostname")) {
-          res[i] = res[i].replace("(", ",IP Address:").replace(")","")
+          res[i] = res[i].replace("192","(192").replace("((","(")
+                         .replace("(", ",IP Address:").replace(")","");
           continue;
         };
         if (res[i].includes("MAC")) {
