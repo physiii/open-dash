@@ -9,16 +9,21 @@ var spawn = child_process.spawn;
 var database = require('../database.js');
 var ip = require("ip");
 var path = require('path');
+const AUTOCONNECT_INTERVAL = 5000;
 
 var vnc_client;
 vnc_started = false;
 my_ip = ip.address();
+var lastDeviceIP = null;
+var autoConnectEnabled = false;
 
 module.exports = {
   connect: connect,
   close_vnc: close_vnc,
   device_list: device_list,
-  runScan: runScan
+  runScan: runScan,
+  autoConnectEnabled: autoConnectEnabled,
+  setAutoConnect: setAutoConnect
 }
 
 var device_list;
@@ -26,6 +31,39 @@ runScan().then(function(list){
   device_list = list;
   console.log(device_list);
 });
+
+var autoConnectTimer = null;
+
+function reconnect() {
+  if(!lastDeviceIP && device_list.length > 0) {
+     device_list.forEach(function(d) {
+     });
+     var validIPs = device_list.filter(function(d) {
+       return d.local_ip && d.hostname;
+     });
+     lastDeviceIP = validIPs.length ? validIPs[0].local_ip : null;
+  }
+  if(!lastDeviceIP) return;
+  exec("xwininfo -tree -root | grep -i remmina", function(err, stdout, stderr) {
+    console.log(err);
+    if(stdout && (stdout.includes("MDD") || stdout.toString().includes("MDD"))) {
+      console.log(stdout);
+    } else {
+     connect(lastDeviceIP);
+    }
+  });
+}
+ 
+function setAutoConnect(flag) {
+  autoConnectEnabled = flag;
+  if(autoConnectTimer) {
+   clearInterval(autoConnectTimer);
+   autoConnectTimer=null;
+  }
+  if(flag) {
+   autoConnectTimer = setInterval(reconnect, AUTOCONNECT_INTERVAL);
+  }
+}
 
 function runScan(){
   return new Promise(function(resolve,reject){
@@ -123,6 +161,7 @@ function connect(deviceIP, port) {
   if (vnc_started) {
     close_vnc();
   }
+  lastDeviceIP = deviceIP;
   if (port) deviceIP += ":" + port;
 
   vnc_started = true;
@@ -138,6 +177,14 @@ function connect(deviceIP, port) {
       vnc_client = spawn("remmina", ['-c', mddtmp]);
       vnc_client.stdout.on('data', function (data) {
         console.log('stdout: ' + data);
+      });
+      console.log("PROCESS PID = "+vnc_client.pid);
+      vnc_client.on("close", function(closeData) {
+         console.log(closeData);
+      });
+      vnc_client.on("exit", function(exitData) {
+         console.log(exitData);
+         vnc_started = false;
       });
 
   vnc_client.stderr.on('data', function (data) {
