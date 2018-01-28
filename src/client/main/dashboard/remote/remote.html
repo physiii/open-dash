@@ -1,4 +1,4 @@
-<div>
+<div class="">
     <div layout="row" layout-align="center center">
         <h1>Remote Connections</h1>
     </div>
@@ -6,11 +6,7 @@
         <div flex="60" class="links-padding" layout="column" layout-align="space-between none">
             <div>{{info.hostname}}</div>
             <div class="link" ng-click="connectRemote(info.local_ip)">{{info.local_ip}}</div>
-            <div  ng-click="autoConnectLocalIp(info)">
-                <md-switch md-invert class="md-primary button-switch" ng-model="info.toggleIp" >
-                    Auto Connect
-                </md-switch>
-            </div>
+
         </div>
         <div flex="40" class="mac-device" layout="column" >
             <div>{{info.device}}</div>
@@ -18,4 +14,18 @@
         </div>
     </div>
 </div>
-
+<div class="controls">
+    <div layout="row" layout-align=" center od-padding-right">
+        <md-button>
+            <div class="scan white" ng-click="manualRun()">Scan</div>
+        </md-button>
+        <md-switch md-invert class="md-primary button-switch white toggle" value="{{autoconnect_enabled}}" ng-model="autoconnect_enabled" ng-click="autoConnectLocalIp(!autoconnect_enabled)"></md-switch>
+	<!-- 
+        <div  ng-click="autoConnectLocalIp(info)">
+            <md-switch md-invert class="md-primary button-switch white toggle" ng-model="autoconnect_enabled" >
+                Auto Connect
+            </md-switch>
+        </div>
+	-->
+    </div>
+</div>

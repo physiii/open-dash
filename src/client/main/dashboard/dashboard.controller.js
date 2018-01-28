@@ -26,4 +26,7 @@ app.controller('DashboardController', function($scope,$location){
     $scope.showRadio = function(){
         $location.path('radio');
     }
+    $scope.goToBluetooth = function(){
+        $location.path('settings/bluetooth');
+    }
 });

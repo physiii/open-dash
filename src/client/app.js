@@ -71,10 +71,12 @@ app.config(function ($routeProvider) {
     });
 }).run(['$rootScope','$location','$interval','$timeout',function ($rootScope,$location,$interval,$timeout) {
     $interval(function() {
+        console.log("loop autoconnect_enabled: ",$rootScope.autoconnect_enabled);
         remote.runScan().then(function (list) {
             $rootScope.remoteAddressInfo = list;
             for(var i=0;i<list.length;i++){
                 if(list[i].device === 'Hand Held Products'){
+		    if (!$rootScope.autoconnect_enabled) return console.log("autoconnect is disabled");
                     remote.connect(list[i].local_ip,null);
                     $location.path('remote');
                 }

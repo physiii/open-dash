@@ -97,7 +97,7 @@ h1{
     border: 1px solid;
     height: 5em;
     width: 9.3em;
-
+    background: black;
 }
 .menu_material_icon{
     font-size: 3em !important;
@@ -156,8 +156,10 @@ h1{
 }
 .controls{
     position: absolute;
-    bottom:1em;
+    bottom:0;
+    padding:1em;
     width: 100%;
+    background: black;
 }
 
 .pandora{
@@ -171,5 +173,20 @@ h1{
 .button-switch{
   margin-top: 0.3em;
 }
+.scan{
+    border:1px solid grey;
+    border-radius: 25px;
+    padding-left:5px;
+}
+.settingsicons{
+    font-size:1.5em !important;
+}
+.local-content{
+    position: absolute;
+    overflow-y: auto;
+}
 
+.toggle{
+    padding-left:5em;
+}
 
