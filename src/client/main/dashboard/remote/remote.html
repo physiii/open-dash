@@ -19,10 +19,13 @@
         <md-button>
             <div class="scan white" ng-click="manualRun()">Scan</div>
         </md-button>
+        <md-switch md-invert class="md-primary button-switch white toggle" value="{{autoconnect_enabled}}" ng-model="autoconnect_enabled" ng-click="autoConnectLocalIp(!autoconnect_enabled)"></md-switch>
+	<!-- 
         <div  ng-click="autoConnectLocalIp(info)">
-            <md-switch md-invert class="md-primary button-switch white toggle" ng-model="toggleIp" >
+            <md-switch md-invert class="md-primary button-switch white toggle" ng-model="autoconnect_enabled" >
                 Auto Connect
             </md-switch>
         </div>
+	-->
     </div>
 </div>

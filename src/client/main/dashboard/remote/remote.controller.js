@@ -11,10 +11,13 @@ app.controller('RemoteController', function($scope,$rootScope,$location,$timeout
     $scope.runScan = function(ip){
         remote.connect(ip,null);
     }
-    $scope.autoConnectLocalIp = function(details){
-       if(details.toggleIp){
+    $scope.autoConnectLocalIp = function(value){
+	$rootScope.autoconnect_enabled = !value;
+	$scope.autoconnect_enabled = !value;
+	console.log("set autoconnect_enabled to",!value);
+       /*if(details.toggleIp){
            remote.set_autoconnect_device(details.local_ip);
-       }
+       }*/
     };
     $scope.manualRun = function(){
         remote.runScan().then(function (list) {
