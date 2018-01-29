@@ -34,6 +34,36 @@ runScan().then(function(list){
 
 var autoConnectTimer = null;
 
+function getMDD() {
+  return new Promise(function(resolve,reject) {
+    exec('xdotool search --name "MDD"', function(err,stdout,stderr){
+      if (err) return err;
+      console.log(stdout);
+      resolve(stdout)
+    })
+  })
+}
+
+function mdd_WindowSet(stdout) {
+
+  exec('xdotool windowsize '+stdout+' 642 561', function(err,stdout,stderr){
+    if (err) return err;
+    return;
+  });
+    //Moving window to new position X Y
+  exec('xdotool windowmove '+stdout+' 0 0', function(err,stdout,stderr){
+      if (err) return err;
+      return;
+  });
+};
+function mdd_win_set(){
+  getMDD().then(function(stdout){
+    return mdd_WindowSet(stdout)
+    }).then(function(){
+      return console.log("completed windowmove")
+    })
+};
+
 function reconnect() {
   if(!lastDeviceIP && device_list.length > 0) {
      device_list.forEach(function(d) {
