@@ -57,7 +57,7 @@ function mdd_WindowSet(result) {
       //Moving window to new position X Y
       exec('xdotool windowmove '+firstWindow.trim()+' 0 0', function(err,stdout,stderr){
         if (err) return reject(err);
-        console.log("Moving Window")        
+        console.log("Moving Window")
         return resolve(firstWindow);
       });
     });
@@ -75,7 +75,7 @@ function mdd_win_set(){
       console.log("Completed windowmove");
   });
 }
-mdd_win_set();
+
 
 function reconnect() {
   if(!lastDeviceIP && device_list.length > 0) {
