@@ -11,6 +11,7 @@ var ip = require("ip");
 var path = require('path');
 const AUTOCONNECT_INTERVAL = 5000;
 
+var result;
 var vnc_client;
 vnc_started = false;
 my_ip = ip.address();
@@ -41,28 +42,40 @@ function getMDD() {
     result = exec('xdotool search --name "MDD"', function (err, stdout, stderr) {
       if (err) return reject(err);
       console.log(stdout);
-      return stdout
-    })
-  resolve(result)
-  })
+      return resolve(stdout);
+    });
+  });
 }
 
 function mdd_WindowSet(result) {
+  var firstWindow=result && result.split("\n")[0];
   return new Promise(function (resolve,reject) {
     //Window resizing
-    exec('xdotool windowsize '+result+' 642 800', function(err,stdout,stderr){
-      if (err) return err;
+    exec('xdotool windowsize '+firstWindow.trim()+' 642 800', function(err,stdout,stderr){
+      if (err) return reject(err);
       console.log("Resizing Window")
       //Moving window to new position X Y
-      exec('xdotool windowmove '+result+' 0 0', function(err,stdout,stderr){
-        if (err) return err;
-        console.log("Moving Window")
-        return;
+      exec('xdotool windowmove '+firstWindow.trim()+' 0 0', function(err,stdout,stderr){
+        if (err) return reject(err);
+        console.log("Moving Window")        
+        return resolve(firstWindow);
       });
     });
-  resolve(result);
-  })
+  });
 };
+
+function mdd_win_set(){
+  console.log("moving window");
+  getMDD().then(function(stdout) {
+    if(stdout) return mdd_WindowSet(stdout);
+    else {
+      console.log("No window named MDD to move");
+    }
+  }).then(function() {
+      console.log("Completed windowmove");
+  });
+}
+mdd_win_set();
 
 function reconnect() {
   if(!lastDeviceIP && device_list.length > 0) {
