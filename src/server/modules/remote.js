@@ -19,6 +19,7 @@ var autoConnectEnabled = false;
 
 module.exports = {
   connect: connect,
+  connectIfNotConnected: connectIfNotConnected,
   close_vnc: close_vnc,
   device_list: device_list,
   runScan: runScan,
@@ -35,9 +36,9 @@ runScan().then(function(list){
 var autoConnectTimer = null;
 
 function getMDD() {
-  return new Promise(function(resolve,reject) {
-    exec('xdotool search --name "MDD"', function(err,stdout,stderr){
-      if (err) return err;
+  return new Promise(function (resolve, reject) {
+    exec('xdotool search --name "MDD"', function (err, stdout, stderr) {
+      if (err) return reject(err);
       console.log(stdout);
       resolve(stdout)
     })
@@ -86,12 +87,13 @@ function reconnect() {
 
 function setAutoConnect(flag) {
   autoConnectEnabled = flag;
-  if(autoConnectTimer) {
-   clearInterval(autoConnectTimer);
-   autoConnectTimer=null;
+  if (autoConnectTimer) {
+    clearInterval(autoConnectTimer);
+    autoConnectTimer = null;
   }
-  if(flag) {
-   autoConnectTimer = setInterval(reconnect, AUTOCONNECT_INTERVAL);
+  if (flag) {
+    //   the timer for autoconnect runs on the from front-end
+    //   autoConnectTimer = setInterval(reconnect, AUTOCONNECT_INTERVAL);
   }
 }
 
@@ -186,8 +188,17 @@ function runScan(){
 
 };
 
+function connectIfNotConnected(deviceIP, port) {
+  getMDD().then(function (mdd) {
+    if (!mdd) connect(deviceIP, port);
+  }).catch(function (err) {
+    connect(deviceIP, port);
+  });
+}
+
 function connect(deviceIP, port) {
 
+  console.log("Connect called for " + deviceIP);
   //have only one vnc client running at a time
   if (vnc_started) {
     close_vnc();
