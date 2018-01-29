@@ -11,6 +11,7 @@ var ip = require("ip");
 var path = require('path');
 const AUTOCONNECT_INTERVAL = 5000;
 
+var result;
 var vnc_client;
 vnc_started = false;
 my_ip = ip.address();
@@ -56,8 +57,7 @@ function mdd_WindowSet(result) {
       //Moving window to new position X Y
       exec('xdotool windowmove '+firstWindow.trim()+' 0 0', function(err,stdout,stderr){
         if (err) return reject(err);
-        console.log("Moving Window")
-        console.log(stdout);
+        console.log("Moving Window")        
         return resolve(firstWindow);
       });
     });
@@ -75,6 +75,7 @@ function mdd_win_set(){
       console.log("Completed windowmove");
   });
 }
+mdd_win_set();
 
 function reconnect() {
   if(!lastDeviceIP && device_list.length > 0) {
