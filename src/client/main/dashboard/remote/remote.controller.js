@@ -6,6 +6,7 @@ app.controller('RemoteController', function($scope,$rootScope,$location,$timeout
     }
 
     $scope.toggleIp = remote.autoConnectEnabled;
+    $rootScope.autoconnect_enabled =  true;
  
     $scope.connectRemote = function(ip){
         remote.connect(ip,null);
@@ -17,10 +18,6 @@ app.controller('RemoteController', function($scope,$rootScope,$location,$timeout
 	$rootScope.autoconnect_enabled = !value;
 	$scope.autoconnect_enabled = !value;
         remote.setAutoConnect(!value);
-	console.log("set autoconnect_enabled to",!value);
-       /*if(details.toggleIp){
-           remote.set_autoconnect_device(details.local_ip);
-       }*/
     };
     $scope.manualRun = function(){
         remote.runScan().then(function (list) {
