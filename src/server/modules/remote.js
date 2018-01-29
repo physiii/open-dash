@@ -33,36 +33,35 @@ runScan().then(function(list){
   console.log(device_list);
 });
 
+
 var autoConnectTimer = null;
 
 function getMDD() {
   return new Promise(function (resolve, reject) {
-    exec('xdotool search --name "MDD"', function (err, stdout, stderr) {
+    result = exec('xdotool search --name "MDD"', function (err, stdout, stderr) {
       if (err) return reject(err);
       console.log(stdout);
-      resolve(stdout)
+      return stdout
     })
+  resolve(result)
   })
 }
 
-function mdd_WindowSet(stdout) {
-
-  exec('xdotool windowsize '+stdout+' 642 561', function(err,stdout,stderr){
-    if (err) return err;
-    return;
-  });
-    //Moving window to new position X Y
-  exec('xdotool windowmove '+stdout+' 0 0', function(err,stdout,stderr){
+function mdd_WindowSet(result) {
+  return new Promise(function (resolve,reject) {
+    //Window resizing
+    exec('xdotool windowsize '+result+' 642 800', function(err,stdout,stderr){
       if (err) return err;
-      return;
-  });
-};
-function mdd_win_set(){
-  getMDD().then(function(stdout){
-    return mdd_WindowSet(stdout)
-    }).then(function(){
-      return console.log("completed windowmove")
-    })
+      console.log("Resizing Window")
+      //Moving window to new position X Y
+      exec('xdotool windowmove '+result+' 0 0', function(err,stdout,stderr){
+        if (err) return err;
+        console.log("Moving Window")
+        return;
+      });
+    });
+  resolve(result);
+  })
 };
 
 function reconnect() {
