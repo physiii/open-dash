@@ -2,18 +2,9 @@ var app = angular.module('app');
 var media = require('../server/modules/media.js');
 
 app.controller('MediaController', function ($scope, $rootScope, $location, $timeout) {
-  console.log("All media=", media.getMediaFiles('../../../media'));
-    media.getMediaFiles('../../../media').then(function (list) {
-      console.log()
-    });
-  $scope.playList=[
-    'Havana - Camila Cabello',
-      'Rockstar - Post Malone',
-      'Mi Gente - J.Balvin',
-      'Despacito -luis fonsi,Daddy Yankee',
-      'Unforgettable - French Montana',
-      'New Rules - Dua Lipa',
-  ];
+
+ 
+
   $scope.playIcon = "play_arrow";
   if ($rootScope.audio && !$rootScope.audio.paused) {
     $scope.playIcon = "pause";
@@ -21,8 +12,10 @@ app.controller('MediaController', function ($scope, $rootScope, $location, $time
   $scope.back = function () {
     $location.path('dashboard');
   }
-  $scope.$on("audio-file-list", function (list) {
-    $scope.audioFiles = list;
+  $scope.$on("audio-play-list", function (list) {
+    $timeout(function () {
+     // $scope.playList = list.playList;
+    }, 500);
   });
   $scope.$on("audio-duration", function (duration) {
     $scope.duration = duration;
@@ -31,7 +24,7 @@ app.controller('MediaController', function ($scope, $rootScope, $location, $time
     $scope.currentTime = currentTime;
   });
   $scope.$on("audio-changed", function (currentIndex) {
-    $scope.currentIndex = currentIndex;
+   // $scope.currentIndex = currentIndex;
   });
   $scope.$on("audio-play", function (currentIndex) {
     $timeout(function () {
@@ -54,4 +47,10 @@ app.controller('MediaController', function ($scope, $rootScope, $location, $time
   $scope.skipNext = function () {
     $scope.$emit("audio-skip-next");
   }
+  $scope.playSong = function (idx) {
+    $scope.$emit("audio-play-song", idx);
+  }
+  $timeout(function () {
+    $scope.$emit("get-audio-play-list", "");
+  }, 500);
 });
