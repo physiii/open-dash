@@ -21,7 +21,7 @@ module.exports = {
   connect: connect,
   connectIfNotConnected: connectIfNotConnected,
   close_vnc: close_vnc,
-  //device_list: device_list,
+  device_list: device_list,
   runScan: runScan,
   autoConnectEnabled: autoConnectEnabled,
   setAutoConnect: setAutoConnect
@@ -63,16 +63,6 @@ function mdd_WindowSet(result) {
   resolve(result);
   })
 };
-
-//Moving window to new position X Y
-
-
-getMDD().then(function(result){
-  return mdd_WindowSet(result);
-}).then(function(result){
-  return console.log("Finished movement on window "+result);
-})
-
 
 function reconnect() {
   if(!lastDeviceIP && device_list.length > 0) {
