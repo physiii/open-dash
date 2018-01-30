@@ -42,7 +42,7 @@ var autoConnectTimer = null;
 
 function getMDD() {
   return new Promise(function (resolve, reject) {
-    result = exec('xdotool search --sync --name "MDD"', function (err, stdout, stderr) {
+    result = exec('xdotool search --name "MDD"', function (err, stdout, stderr) {
       if (err) return reject(err);
       console.log(stdout);
       return resolve(stdout);
