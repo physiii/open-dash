@@ -25,7 +25,10 @@ module.exports = {
   device_list: device_list,
   runScan: runScan,
   autoConnectEnabled: autoConnectEnabled,
-  setAutoConnect: setAutoConnect
+  setAutoConnect: setAutoConnect,
+  getMDD: getMDD,
+  mdd_WindowSet: mdd_WindowSet,
+  mdd_win_set: mdd_win_set
 }
 
 var device_list;
@@ -39,7 +42,7 @@ var autoConnectTimer = null;
 
 function getMDD() {
   return new Promise(function (resolve, reject) {
-    result = exec('xdotool search --name "MDD"', function (err, stdout, stderr) {
+    result = exec('xdotool search --sync --name "MDD"', function (err, stdout, stderr) {
       if (err) return reject(err);
       console.log(stdout);
       return resolve(stdout);
@@ -51,14 +54,17 @@ function mdd_WindowSet(result) {
   var firstWindow=result && result.split("\n")[0];
   return new Promise(function (resolve,reject) {
     //Window resizing
-    exec('xdotool windowsize '+firstWindow.trim()+' 642 800', function(err,stdout,stderr){
+    exec('xdotool windowsize --sync '+firstWindow.trim()+' 642 800', function(err,stdout,stderr){
       if (err) return reject(err);
       console.log("Resizing Window")
       //Moving window to new position X Y
-      exec('xdotool windowmove '+firstWindow.trim()+' 0 0', function(err,stdout,stderr){
+      exec('xdotool windowmove --sync '+firstWindow.trim()+' 0 0', function(err,stdout,stderr){
         if (err) return reject(err);
         console.log("Moving Window")
-        return resolve(firstWindow);
+        exec('xdotool windowactivate --sync '+firstWindow.trim(), function(err,stdout,stderr){
+          console.log("Making window the active window")
+          return resolve(firstWindow);
+        });
       });
     });
   });
