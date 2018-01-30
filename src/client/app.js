@@ -1,6 +1,6 @@
 'use strict';
-var media = require('../server/modules/media.js');
-var remote = require('../server/modules/remote.js');
+var media = require('./server/modules/media.js');
+var remote = require('./server/modules/remote.js');
 var path = require('path');
 
 var app = angular.module('app', ['ngRoute','ngMaterial','ngMessages']);
