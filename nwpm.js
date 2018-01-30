@@ -17,7 +17,15 @@ var socket = require('socket.io');
 //var webserv_socket = require('socket.io-client')("http://127.0.0.1:8080");
 const server = http.createServer().listen("1235");
 var process_io = socket(server);
-var main_app = spawn('nw',['.']);
+
+var rotate_display_cmd = "sudo scripts/display.sh";
+  exec(rotate_display_cmd, (error, stdout, stderr) => {
+    if (error) return console.error(`exec error: ${error}`);
+    console.log(`stdout: ${stdout}`);
+    console.log(`stderr: ${stderr}`);
+    var main_app = spawn('nw',['.']);
+  });
+
 var webserver = spawn('node',['src/server/webserver.js']);
 
 module.exports = {
