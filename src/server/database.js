@@ -70,7 +70,7 @@ function store_settings(data) {
 //-- get things --//
 function get_groups() {
   MongoClient.connect('mongodb://127.0.0.1:27017/relay', function (err, db) {
-    if (err) console.log('Unable to connect to the mongoDB server. Error:', err);
+    if (err) return console.log('Unable to connect to the mongoDB server. Error:', err);
     else {
      var collection = db.collection('groups');
      collection.find().toArray(function (err, result) {

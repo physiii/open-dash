@@ -3,6 +3,7 @@
   "description": "indash multimedia player",
   "version": "0.1.0",
   "main": "src/client/index.html",
+  "node-main": "src/main.js",
   "chromium-args": "--enable-logging=stderr",
   "window": {
     "show": true,

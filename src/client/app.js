@@ -1,6 +1,6 @@
 'use strict';
-var media = require('../server/modules/media.js');
-var remote = require('../server/modules/remote.js');
+var media = require('./server/modules/media.js');
+var remote = require('./server/modules/remote.js');
 var path = require('path');
 
 var app = angular.module('app', ['ngRoute','ngMaterial','ngMessages']);
@@ -13,6 +13,10 @@ app.config(function ($routeProvider) {
     when('/apps', {
         templateUrl: 'main/dashboard/apps/apps.html',
         controller: 'AppsController'
+    }).
+    when('/media', {
+        templateUrl: 'main/dashboard/media/media.html',
+        controller: 'MediaController'
     }).
     when('/settings', {
         templateUrl: 'main/dashboard/settings/settings.html',
@@ -75,6 +79,7 @@ app.config(function ($routeProvider) {
           for (var i = 0; i < list.length; i++) {
             if ( list[i].device === "Hand Held Products") {
               if (!$rootScope.autoconnect_enabled)
+                return console.log("autoconnect is disabled");
               remote.connectIfNotConnected(list[i].local_ip, null);
               $location.path("remote");
             }
