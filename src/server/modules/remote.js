@@ -54,14 +54,14 @@ function mdd_WindowSet(result) {
   var firstWindow=result && result.split("\n")[0];
   return new Promise(function (resolve,reject) {
     //Window resizing
-    exec('xdotool windowsize --sync '+firstWindow.trim()+' 642 800', function(err,stdout,stderr){
+    exec('xdotool windowsize '+firstWindow.trim()+' 642 800', function(err,stdout,stderr){
       if (err) return reject(err);
       console.log("Resizing Window")
       //Moving window to new position X Y
-      exec('xdotool windowmove --sync '+firstWindow.trim()+' 0 0', function(err,stdout,stderr){
+      exec('xdotool windowmove '+firstWindow.trim()+' 0 0', function(err,stdout,stderr){
         if (err) return reject(err);
         console.log("Moving Window")
-        exec('xdotool windowactivate --sync '+firstWindow.trim(), function(err,stdout,stderr){
+        exec('xdotool windowactivate '+firstWindow.trim(), function(err,stdout,stderr){
           console.log("Making window the active window")
           return resolve(firstWindow);
         });
