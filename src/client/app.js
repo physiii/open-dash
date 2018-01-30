@@ -151,7 +151,9 @@ app.config(function ($routeProvider) {
               return path.join(dir, file);
             });
             $rootScope.audioFiles = audioFiles;
-            $rootScope.currentIndex = 0;
+            if($rootScope.currentIndex < 0 || $rootScope.currentIndex > files.length -1) {
+              $rootScope.currentIndex = 0;
+            }
             $rootScope.$apply();
 
             $rootScope.$broadcast("audio-play-list", { playList: files, currentIndex: currentIndex });
@@ -165,8 +167,10 @@ app.config(function ($routeProvider) {
           if (!$rootScope.audio) {
             $rootScope.audio = audio;
             if (!audio.src) {
-              audio.src = $rootScope.audioFiles[0];
-              $rootScope.currentIndex = 0;
+              if($rootScope.currentIndex < 0 || $rootScope.currentIndex > $rootScope.audioFiles.length -1) {
+                $rootScope.currentIndex = 0;
+              }
+              audio.src = $rootScope.audioFiles[$rootScope.currentIndex];
             }
             $rootScope.audio.load();
             audio.addEventListener("loadedmetadata", function (metadata) {
@@ -214,8 +218,9 @@ app.config(function ($routeProvider) {
       $rootScope.playSong = function (idx) {
         if (!$rootScope.audioFiles) return;
         if (idx >= 0 && idx < $rootScope.audioFiles.length ) {
-          var audioPaused = $rootScope.audio.paused;
           $rootScope.currentIndex = idx;
+          if(!$rootScope.audio) return;
+          var audioPaused = $rootScope.audio.paused;
           $rootScope.audio.src = $rootScope.audioFiles[$rootScope.currentIndex];
           $rootScope.audio.load();
           if (!audioPaused) $rootScope.audio.play();
