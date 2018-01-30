@@ -1,5 +1,5 @@
 var app = angular.module('app');
-var media = require('../server/modules/media.js');
+var media = require('./server/modules/media.js');
 
 app.controller('MediaController', function ($scope, $rootScope, $location, $timeout) {
 
