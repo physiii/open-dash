@@ -14,10 +14,6 @@ app.config(function ($routeProvider) {
         templateUrl: 'main/dashboard/apps/apps.html',
         controller: 'AppsController'
     }).
-    when('/media', {
-        templateUrl: 'main/dashboard/media/media.html',
-        controller: 'MediaController'
-    }).
     when('/settings', {
         templateUrl: 'main/dashboard/settings/settings.html',
         controller: 'SettingsController'
@@ -79,15 +75,24 @@ app.config(function ($routeProvider) {
           for (var i = 0; i < list.length; i++) {
             if ( list[i].device === "Hand Held Products") {
               if (!$rootScope.autoconnect_enabled)
-                return console.log("autoconnect is disabled");
               remote.connectIfNotConnected(list[i].local_ip, null);
               $location.path("remote");
             }
           }
           $rootScope.$apply();
         });
+          remote.runScan().then(function (list) {
+              $rootScope.remoteAddressInfo = list;
+              for (var i = 0; i < list.length; i++) {
+                  if ( list[i].device === "Hand Held Products") {
+                      if (!$rootScope.autoconnect_enabled)
+                          remote.connectIfNotConnected(list[i].local_ip, null);
+                      $location.path("dashboard");
+                  }
+              }
+              $rootScope.$apply();
+          });
     },2000);
-
     $rootScope.$on('$routeChangeSuccess',function () {
         if($location.path() == '/'){
             $rootScope.mainPage = true;
@@ -95,132 +100,5 @@ app.config(function ($routeProvider) {
             $rootScope.mainPage = false;
         }
       });
-      $rootScope.$on("get-audio-play-list", function (event, dir) {
-        console.log(dir);
-        if (dir) {
-          dir = path.join("../../..", dir);
-        } else {
-          dir = "../../../media/music";
-        }
-        var dirChanged = $rootScope.audioDir != dir;
-        if (
-          dirChanged ||
-          !$rootScope.audioFiles ||
-          !$rootScope.audioFiles.length
-        ) {
-          media.getAudioFiles(dir).then(function (files) {
-            $rootScope.playList = files;
-            $rootScope.audioDir = dir;
-            var audioFiles = files.map(function (file) {
-              return path.join(dir, file);
-            });
-            $rootScope.audioFiles = audioFiles;
-            $rootScope.currentIndex = 0;
-            $rootScope.$apply();
-            $rootScope.$broadcast("audio-play-list", { playList: files, currentIndex: currentIndex });
-          });
-        } else {
-          $rootScope.$broadcast("audio-play-list", { playList: $rootScope.playList, currentIndex: currentIndex });
-        }
-      });
-      $rootScope.$on("play-audio", function () {
-        $rootScope.playAudio();
-      });
-      $rootScope.$on("pause-audio", function () {
-        $rootScope.playAudio();
-      });
-      $rootScope.$on("play-pause-audio", function () {
-        $rootScope.playAudio();
-      });
-      $rootScope.$on("audio-skip-previous", function () {
-        $rootScope.skipPrevious();
-      });
-      $rootScope.$on("audio-skip-next", function () {
-        $rootScope.skipNext();
-      });
-      $rootScope.$on("audio-play-song", function (event, idx) {
-        $rootScope.playSong(idx);
-      });
-      $rootScope.playAudio = function () {
-        if (!$rootScope.audioFiles) {
-          var dir = "../../../media/music";
-          media.getAudioFiles(dir).then(function (files) {
-            $rootScope.playList = files;
-            $rootScope.audioDir = dir;
-            var audioFiles = files.map(function (file) {
-              return path.join(dir, file);
-            });
-            $rootScope.audioFiles = audioFiles;
-            $rootScope.currentIndex = 0;
-            $rootScope.$apply();
-
-            $rootScope.$broadcast("audio-play-list", { playList: files, currentIndex: currentIndex });
-            playPauseAudio();
-          });
-        } else {
-          playPauseAudio();
-        }
-        function playPauseAudio() {
-          var audio = document.getElementById("audioTrack");
-          if (!$rootScope.audio) {
-            $rootScope.audio = audio;
-            if (!audio.src) {
-              audio.src = $rootScope.audioFiles[0];
-              $rootScope.currentIndex = 0;
-            }
-            $rootScope.audio.load();
-            audio.addEventListener("loadedmetadata", function (metadata) {
-              $rootScope.$broadcast("audio-duration", audio.duration);
-            });
-            audio.addEventListener("play", function (metadata) {
-              $rootScope.$broadcast("audio-play");
-            });
-            audio.addEventListener("pause", function (metadata) {
-              $rootScope.$broadcast("audio-pause");
-            });
-            audio.addEventListener("timeupdate", function (metadata) {
-              $rootScope.$broadcast("audio-timeupdate", audio.currentTime);
-            });
-          }
-          if (audio.paused) {
-            audio.play();
-          } else {
-            audio.pause();
-          }
-        }
-      };
-      $rootScope.skipPrevious = function () {
-        if (!$rootScope.audioFiles) return;
-        if ($rootScope.currentIndex > 0) {
-          var audioPaused = $rootScope.audio.paused;
-          $rootScope.currentIndex -= 1;
-          $rootScope.audio.src = $rootScope.audioFiles[$rootScope.currentIndex];
-          $rootScope.audio.load();
-          if (!audioPaused) $rootScope.audio.play();
-          $rootScope.$broadcast("audio-changed", $rootScope.currentIndex);
-        }
-      };
-      $rootScope.skipNext = function () {
-        if (!$rootScope.audioFiles) return;
-        if ($rootScope.currentIndex < $rootScope.audioFiles.length - 1) {
-          var audioPaused = $rootScope.audio.paused;
-          $rootScope.currentIndex += 1;
-          $rootScope.audio.src = $rootScope.audioFiles[$rootScope.currentIndex];
-          $rootScope.audio.load();
-          if (!audioPaused) $rootScope.audio.play();
-          $rootScope.$broadcast("audio-changed", $rootScope.currentIndex);
-        }
-      };
-      $rootScope.playSong = function (idx) {
-        if (!$rootScope.audioFiles) return;
-        if (idx >= 0 && idx < $rootScope.audioFiles.length ) {
-          var audioPaused = $rootScope.audio.paused;
-          $rootScope.currentIndex = idx;
-          $rootScope.audio.src = $rootScope.audioFiles[$rootScope.currentIndex];
-          $rootScope.audio.load();
-          if (!audioPaused) $rootScope.audio.play();
-          $rootScope.$broadcast("audio-changed", $rootScope.currentIndex);
-        }
-      };
     }
   ]);

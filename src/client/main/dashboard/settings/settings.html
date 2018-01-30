@@ -1,24 +1,24 @@
 
 <div>
-    <md-grid-list md-cols="1"  md-row-height="4em" md-gutter="1em">
+    <md-grid-list md-cols="1"  md-row-height="4em" md-gutter="1.5em">
         <md-grid-tile class="md-whiteframe-10dp settings">
             <div layout="row" layout-align="space-between center" class="tile-content">
+                <i class="fa fa-wifi fa-lg settings-icon" aria-hidden="true"></i>
                 <div ng-click="goToWifi()">
-
-                    <h1><i class="fa fa-wifi fa-lg white " aria-hidden="true"></i> Wifi</h1>
+                    <h1>Wifi</h1>
                 </div>
-                <div>
-                    <md-switch class="md-primary" ng-model="wifi" >
+                <div class="empty-div">
+                    <md-switch class="md-primary" ng-model="wifi">
                     </md-switch>
                 </div>
             </div>
         </md-grid-tile>
         <md-grid-tile class="md-whiteframe-10dp settings" >
             <div layout="row" layout-align="space-between center" class="tile-content">
+                <i class="fa fa-bluetooth-b fa-lg settings-icon" aria-hidden="true"></i>
                 <div ng-click="goToBluetooth()">
-                   <span>
-                       <h1><i class="fa fa-bluetooth-b fa-lg white bluetooth" aria-hidden="true"></i>Bluetooth</h1>
-                </span></div>
+                    <h1>Bluetooth</h1>
+                </div>
                 <div>
                     <md-switch class="md-primary" ng-model="bluetooth" >
                     </md-switch>
@@ -27,23 +27,23 @@
         </md-grid-tile>
         <md-grid-tile class="md-whiteframe-10dp settings" ng-click="goToSystemSettings()">
             <div layout="row" layout-align="space-between center" class="tile-content">
-                <div>
-                    <h1><i class="material-icons settingsicons">settings</i>System</h1>
-                </div>
+                <i class="material-icons settings-icon">settings</i>
+                <h1>System</h1>
+                <div class="empty-divs"></div>
             </div>
         </md-grid-tile>
         <md-grid-tile class="md-whiteframe-10dp settings" ng-click="showApps()">
             <div layout="row" layout-align="space-between center" class="tile-content">
-                <div>
-                    <h1><i class="material-icons settingsicons">apps</i>Apps</h1>
-                </div>
+                <i class="material-icons settings-icon">apps</i>
+                <h1>Apps</h1>
+                <div class="empty-divs"></div>
             </div>
         </md-grid-tile>
         <md-grid-tile class="gray md-whiteframe-10dp settings" ng-click ="goToUpdateSettings()">
             <div layout="row" layout-align="space-between center" class="tile-content">
-                <div>
-                    <h1><i class="material-icons settingsicons">system_update</i>Update</h1>
-                </div>
+                <i class="material-icons settings-icon">system_update</i>
+                <h1>Update</h1>
+                <div class="empty-divs"></div>
             </div>
         </md-grid-tile>
     </md-grid-list>
