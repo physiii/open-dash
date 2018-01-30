@@ -17,6 +17,7 @@ vnc_started = false;
 my_ip = ip.address();
 var lastDeviceIP = null;
 var autoConnectEnabled = false;
+var connecting = false;
 
 module.exports = {
   connect: connect,
@@ -207,9 +208,16 @@ function runScan(){
 };
 
 function connectIfNotConnected(deviceIP, port) {
+  if(connecting) return;
+  connecting = true;
   getMDD().then(function (mdd) {
-    if (!mdd) connect(deviceIP, port);
+    connecting = false;
+    if (!mdd) {
+      connect(deviceIP, port);
+    }
   }).catch(function (err) {
+    console.log(err);
+    connecting = false;
     connect(deviceIP, port);
   });
 }
