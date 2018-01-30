@@ -1,0 +1,20 @@
+<div layout="row" layout-align="center center">
+    <h1>Play Music</h1>
+</div>
+<div class="local-content">
+  <div class="white">
+    <md-grid-list md-cols="1" md-row-height="3em" md-gutter="1em">
+      <md-grid-tile class="md-whiteframe-10dp" ng-repeat="song in playList">
+        <p ng-click="playSong($index)" ng-class="$index === currentIndex && 'fa fa-check'"><i class="fa fa-music od-padding-right" aria-hidden="true"></i>{{song}}</p>
+      </md-grid-tile>
+    </md-grid-list>
+  </div>
+</div>
+<div class="controls">
+  <div layout="row" layout-align="center center">
+      <i class="material-icons" style="font-size: 48px">repeat</i>
+      <i class="material-icons" style="font-size: 48px " ng-click="skipPrevious()">skip_previous</i>
+      <i class="material-icons" style="font-size: 48px " ng-click="playMedia()" ng-model="playIcon" id="playButton">{{playIcon}}</i>
+      <i class="material-icons" style="font-size: 48px " ng-click="skipNext()">skip_next</i>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="white">
+    <md-grid-list md-cols="1"  md-row-height="4em" md-gutter="1em">
+        <md-grid-tile class="md-whiteframe-10dp">
+            <div class="radioicons">
+                <i class="material-icons radioicons">radio</i>
+            </div>
+            <div ng-click="goToRadio()">
+                <h1>AM/FM Radio</h1>
+            </div>
+        </md-grid-tile>
+        <md-grid-tile class="md-whiteframe-10dp" >
+            <div class="radioicons">
+                <i class="fa fa-spotify fa-2x" aria-hidden="true"></i>
+            </div>
+            <div ng-click="goToSpotify()">
+                <h1>Spotify</h1>
+            </div>
+        </md-grid-tile>
+        <md-grid-tile layout="row" layout-align="space-between center" class="md-whiteframe-10dp" ng-click="goToPandora()">
+            <div>
+                <img src="images/pandora.png/" class="pandora radioicons">
+            </div>
+            <div>
+                <h1>Pandora</h1>
+            </div>
+        </md-grid-tile>
+    </md-grid-list>
+</div>

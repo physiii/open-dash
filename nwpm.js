@@ -6,11 +6,11 @@ var http = require('http');
 const crypto = require('crypto');
 const exec = require('child_process').exec;
 const spawn = require('child_process').spawn;
-var remote = require('./modules/remote.js');
+var remote = require('./src/server/modules/remote.js');
 var os = require('os');
 var request = require('request');
 var fs = require('fs');
-var update = require('./modules/update.js');
+var update = require('./src/system/update.js');
 var socket = require('socket.io');
 
 //var main_app_socket = require('socket.io-clientnpm install -g nodemon')("http://127.0.0.1:1234");
@@ -18,7 +18,7 @@ var socket = require('socket.io');
 const server = http.createServer().listen("1235");
 var process_io = socket(server);
 var main_app = spawn('nw',['.']);
-var webserver = spawn('node',['webserver.js']);
+var webserver = spawn('node',['src/server/webserver.js']);
 
 module.exports = {
   find_index: find_index,
@@ -32,7 +32,7 @@ module.exports = {
 function restart_app() {
   main_app.kill();
   setTimeout(function() {main_app = spawn('nw',['.']);
-                         webserver = spawn('node',['webserver.js']);
+                         webserver = spawn('node',['src/server/webserver.js']);
                         },50);
 
 }
@@ -164,7 +164,7 @@ function timeout() {
 }
 
 function check_diskspace() {
-  diskspace.check('/', function (err, total, free, status) { 
+  diskspace.check('/', function (err, total, free, status) {
     //console.log("free space: " + free);
     if (free < 2000000000) {
       remove_old_files();
@@ -213,7 +213,7 @@ function main_loop () {
 }
 
 function find_index(array, key, value) {
-  for (var i=0; i < array.length; i++) {    
+  for (var i=0; i < array.length; i++) {
     if (array[i][key] == value) {
       return i;
     }
