@@ -275,6 +275,7 @@ function close_vnc() {
   vnc_started = false;
 }
 
+/*
 timeout();
 function timeout() {
   setTimeout(function () {
@@ -292,6 +293,7 @@ function check_mdd_conn() {
         }
     });
 }
+*/
 
 function remoteTest(){
   console.log('Running host discovery scan. Please wait. . .');
