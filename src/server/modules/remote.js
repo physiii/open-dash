@@ -9,6 +9,7 @@ var spawn = child_process.spawn;
 var database = require('../database.js');
 var ip = require("ip");
 var path = require('path');
+var ping = require('ping');
 const AUTOCONNECT_INTERVAL = 5000;
 
 var result;
@@ -274,6 +275,23 @@ function close_vnc() {
   vnc_started = false;
 }
 
+timeout();
+function timeout() {
+  setTimeout(function () {
+    console.log("checking mdd connection...")
+    check_mdd_conn();
+    timeout();
+  }, 1*1000);
+}
+
+function check_mdd_conn() {
+    ping.sys.probe(deviceIP, function(isAlive){
+        var msg = isAlive ? 'host ' + deviceIP + ' is alive' : 'host ' + deviceIP + ' is dead';
+        if (!isAlive) {
+	  close_vnc();
+        }
+    });
+}
 
 function remoteTest(){
   console.log('Running host discovery scan. Please wait. . .');
