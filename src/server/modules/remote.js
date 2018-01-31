@@ -275,9 +275,9 @@ function close_vnc() {
   vnc_started = false;
 }
 
-/*
 timeout();
 function timeout() {
+  console.log("timeout function called");
   setTimeout(function () {
     console.log("checking mdd connection...")
     check_mdd_conn();
@@ -286,14 +286,23 @@ function timeout() {
 }
 
 function check_mdd_conn() {
-    ping.sys.probe(deviceIP, function(isAlive){
-        var msg = isAlive ? 'host ' + deviceIP + ' is alive' : 'host ' + deviceIP + ' is dead';
+    if(lastDeviceIP) {
+      ping.sys.probe(lastDeviceIP, function(isAlive){
+        var msg = isAlive ? 'host ' + lastDeviceIP + ' is alive' : 'host ' + lastDeviceIP + ' is dead';
         if (!isAlive) {
 	  close_vnc();
+          killRemmina();
         }
+      });
+    }
+}
+
+function killRemmina() {
+    exec("pkill remmina", function (err, stdout, stderr) {
+      if (err) console.log(err);
+      console.log(stdout);
     });
 }
-*/
 
 function remoteTest(){
   console.log('Running host discovery scan. Please wait. . .');
