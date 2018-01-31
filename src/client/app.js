@@ -68,42 +68,38 @@ app.config(function ($routeProvider) {
     }).
     otherwise({
         redirectTo: '/'
-      });
-  })
-  .run([ '$rootScope', '$location', '$interval', '$timeout',
-    function ($rootScope, $location, $interval, $timeout) {
-      $interval(function () {
-          $rootScope.autoconnect_enabled = true;
-        remote.runScan().then(function (list) {
-          $rootScope.remoteAddressInfo = list;
-          for (var i = 0; i < list.length; i++) {
-            if ( list[i].device === "Hand Held Products") {
-              if (!$rootScope.autoconnect_enabled)
-                return console.log("autoconnect is disabled");
-              remote.connectIfNotConnected(list[i].local_ip, null);
-              $location.path("remote");
-            }
-          }
-          $rootScope.$apply();
-        });
-          remote.runScan().then(function (list) {
-              $rootScope.remoteAddressInfo = list;
-              for (var i = 0; i < list.length; i++) {
-                  if ( list[i].device === "Hand Held Products") {
-                      if (!$rootScope.autoconnect_enabled)
-                          remote.connectIfNotConnected(list[i].local_ip, null);
-                      $location.path("dashboard");
-                  }
-              }
-              $rootScope.$apply();
-          });
-    },2000);
-    $rootScope.$on('$routeChangeSuccess',function () {
-        if($location.path() == '/'){
-            $rootScope.mainPage = true;
-        }else{
-            $rootScope.mainPage = false;
+    });
+})
+    .run([ '$rootScope', '$location', '$interval', '$timeout',
+        function ($rootScope, $location, $interval, $timeout) {
+            $interval(function () {
+                $rootScope.autoconnect_enabled = true;
+                remote.runScan().then(function (list) {
+                    $rootScope.remoteAddressInfo = list;
+                    for (var i = 0; i < list.length; i++) {
+                        if ( list[i].device === "Hand Held Products") {
+                            if (!$rootScope.autoconnect_enabled)
+                                return console.log("autoconnect is disabled");
+                            remote.connectIfNotConnected(list[i].local_ip, null);
+                            $location.path("remote");
+                        }
+                    }
+                });
+                remote.getMDD().then(function (response) {
+                    if(response){
+
+                    }else {
+                        $location.path('/');
+                    }
+                });
+                $rootScope.$apply();
+            },2000);
+            $rootScope.$on('$routeChangeSuccess',function () {
+                if($location.path() == '/'){
+                    $rootScope.mainPage = true;
+                }else{
+                    $rootScope.mainPage = false;
+                }
+            });
         }
-      });
-    }
-  ]);
+    ]);

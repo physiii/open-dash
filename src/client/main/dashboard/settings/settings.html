@@ -2,10 +2,9 @@
 <div>
     <md-grid-list md-cols="1"  md-row-height="4em" md-gutter="1.5em">
         <md-grid-tile class="md-whiteframe-10dp settings">
-            <div layout="row" layout-align="space-between center" class="tile-content">
-                <i class="fa fa-wifi fa-lg settings-icon" aria-hidden="true"></i>
+            <div layout="row" layout-align="space-between center" class="tile-content od-border-bottom">
                 <div ng-click="goToWifi()">
-                    <h1>Wifi</h1>
+                    <h1><i class="fa fa-wifi fa-lg od-padding-right" aria-hidden="true"></i>Wifi</h1>
                 </div>
                 <div class="empty-div">
                     <md-switch class="md-primary" ng-model="wifi">
@@ -14,10 +13,9 @@
             </div>
         </md-grid-tile>
         <md-grid-tile class="md-whiteframe-10dp settings" >
-            <div layout="row" layout-align="space-between center" class="tile-content">
-                <i class="fa fa-bluetooth-b fa-lg settings-icon" aria-hidden="true"></i>
+            <div layout="row" layout-align="space-between center" class="tile-content od-border-bottom">
                 <div ng-click="goToBluetooth()">
-                    <h1>Bluetooth</h1>
+                    <h1> <i class="fa fa-bluetooth-b fa-lg bluetooth-icon" aria-hidden="true"></i>Bluetooth</h1>
                 </div>
                 <div>
                     <md-switch class="md-primary" ng-model="bluetooth" >
@@ -26,23 +24,26 @@
             </div>
         </md-grid-tile>
         <md-grid-tile class="md-whiteframe-10dp settings" ng-click="goToSystemSettings()">
-            <div layout="row" layout-align="space-between center" class="tile-content">
-                <i class="material-icons settings-icon">settings</i>
-                <h1>System</h1>
+            <div layout="row" layout-align="space-between center" class="tile-content od-border-bottom">
+                <div>
+                    <h1><i class="material-icons settings-icon od-material-padding-right">settings</i>System</h1>
+                </div>
                 <div class="empty-divs"></div>
             </div>
         </md-grid-tile>
         <md-grid-tile class="md-whiteframe-10dp settings" ng-click="showApps()">
-            <div layout="row" layout-align="space-between center" class="tile-content">
-                <i class="material-icons settings-icon">apps</i>
-                <h1>Apps</h1>
+            <div layout="row" layout-align="space-between center" class="tile-content od-border-bottom">
+                <div>
+                    <h1><i class="material-icons settings-icon apps-icon">apps</i> Apps</h1>
+                </div>
                 <div class="empty-divs"></div>
             </div>
         </md-grid-tile>
         <md-grid-tile class="gray md-whiteframe-10dp settings" ng-click ="goToUpdateSettings()">
-            <div layout="row" layout-align="space-between center" class="tile-content">
-                <i class="material-icons settings-icon">system_update</i>
-                <h1>Update</h1>
+            <div layout="row" layout-align="space-between center" class="tile-content od-border-bottom">
+                <div>
+                    <h1><i class="material-icons settings-icon od-material-padding-right">system_update</i>Update</h1>
+                </div>
                 <div class="empty-divs"></div>
             </div>
         </md-grid-tile>

@@ -2,3 +2,41 @@
 <div layout="row" layout-align="center center">
     <h1>System Settings</h1>
 </div>
+<div>
+    <md-grid-list md-cols="1"  md-row-height="4em" md-gutter="1.5em">
+        <md-grid-tile class="md-whiteframe-10dp settings">
+            <div layout="row" layout-align="space-between center" class="tile-content od-border-bottom">
+                <div>
+                    <h1><i class="fa fa-sign-out fa-lg od-padding-right" aria-hidden="true"></i>Exit</h1>
+                </div>
+                <div class="empty-divs">
+                </div>
+            </div>
+        </md-grid-tile>
+        <md-grid-tile class="md-whiteframe-10dp settings" >
+            <div layout="row" layout-align="space-between center" class="tile-content od-border-bottom">
+                <div>
+                    <h1><i class="fa fa-undo fa-lg od-padding-right" aria-hidden="true"></i>Reboot</h1>
+                </div>
+                <div class="empty-divs">
+                </div>
+            </div>
+        </md-grid-tile>
+        <md-grid-tile class="md-whiteframe-10dp settings">
+            <div layout="row" layout-align="space-between center" class="tile-content od-border-bottom">
+                <div>
+                    <h1><i class="fa fa-power-off fa-lg od-padding-right" aria-hidden="true"></i>Shutdown</h1>
+                </div>
+                <div class="empty-divs"></div>
+            </div>
+        </md-grid-tile>
+        <md-grid-tile class="md-whiteframe-10dp settings" ng-click="showApps() od-border-bottom">
+            <div layout="row" layout-align="space-between center" class="tile-content od-border-bottom">
+                <div>
+                    <h1><i class="material-icons settings-icon od-material-padding-right">update</i>Update</h1>
+                </div>
+                <div class="empty-divs"></div>
+            </div>
+        </md-grid-tile>
+    </md-grid-list>
+</div>
