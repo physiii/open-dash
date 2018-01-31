@@ -17,6 +17,7 @@ var vnc_client;
 vnc_started = false;
 my_ip = ip.address();
 var lastDeviceIP = null;
+var lastDeviceAlive = true;
 var autoConnectEnabled = false;
 var connecting = false;
 
@@ -209,26 +210,28 @@ function runScan(){
 };
 
 function connectIfNotConnected(deviceIP, port) {
-  if(connecting) return;
-  connecting = true;
+  if(connecting || !lastDeviceAlive) return;
   getMDD().then(function (mdd) {
-    connecting = false;
     if (!mdd) {
       connect(deviceIP, port);
     }
   }).catch(function (err) {
     console.log(err);
-    connecting = false;
     connect(deviceIP, port);
   });
 }
 
 function connect(deviceIP, port) {
+  connecting = true;
 
   console.log("Connect called for " + deviceIP);
   //have only one vnc client running at a time
   if (vnc_started) {
     close_vnc();
+  }
+  if(lastDeviceIP && !lastDeviceAlive) {
+    connecting = false;
+    return;
   }
   lastDeviceIP = deviceIP;
   if (port) deviceIP += ":" + port;
@@ -242,7 +245,10 @@ function connect(deviceIP, port) {
     var mddtmp = path.join(dir, "mddtmp.remmina");
     console.log("sed s/server=.*/server=" + deviceIP + "/ " + mdd + " > " + mddtmp + " && remmina -c " + mddtmp);
     exec("sed s/server=.*/server=" + deviceIP + "/ " + mdd + " > " + mddtmp, function (error, stdout, stderr) {
-      if (error) return reject(error);
+      if (error) {
+        connecting=false;
+        return reject(error);
+      }
       vnc_client = spawn("remmina", ['-c', mddtmp]);
       vnc_client.stdout.on('data', function (data) {
         console.log('stdout: ' + data);
@@ -263,6 +269,7 @@ function connect(deviceIP, port) {
       vnc_client.on('close', function (code) {
         console.log('child process exited with code ' + code);
       });
+      connecting=false;
       resolve(true);
     });
   });
@@ -289,10 +296,12 @@ function check_mdd_conn() {
     if(lastDeviceIP) {
       ping.sys.probe(lastDeviceIP, function(isAlive){
         var msg = isAlive ? 'host ' + lastDeviceIP + ' is alive' : 'host ' + lastDeviceIP + ' is dead';
+        console.log("ISALIVE ="+isAlive);
         if (!isAlive) {
 	  close_vnc();
           killRemmina();
         }
+        lastDeviceAlive = isAlive;
       });
     }
 }
