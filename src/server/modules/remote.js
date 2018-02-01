@@ -52,6 +52,20 @@ function getMDD() {
     });
   });
 }
+function getMDDUsingXwininfo() {
+  return new Promise(function (resolve, reject) {
+    exec("xwininfo -tree -root | grep -i remmina", function(err, stdout, stderr) {
+      console.log(err);
+      if(err) return resolve(false);
+      if(stdout && (stdout.includes("MDD") || stdout.toString().includes("MDD"))) {
+        console.log(stdout);
+        resolve(true);
+      } else {
+        resolve(false);
+      }
+    });
+  });
+}
 
 function mdd_WindowSet(result) {
   var firstWindow=result && result.split("\n")[0];
@@ -210,14 +224,15 @@ function runScan(){
 };
 
 function connectIfNotConnected(deviceIP, port) {
+  console.log("Connecting is "+connecting+", and lastDeviceAlive is "+lastDeviceAlive);
   if(connecting || !lastDeviceAlive) return;
-  getMDD().then(function (mdd) {
-    if (!mdd) {
+  getMDDUsingXwininfo().then(function (mddPresent) {
+    if (!mddPresent) {
+      console.log("No MDD window");
       connect(deviceIP, port);
     }
   }).catch(function (err) {
     console.log(err);
-    connect(deviceIP, port);
   });
 }
 
