@@ -12,12 +12,14 @@ var request = require('request');
 var fs = require('fs');
 var update = require('./system/update.js');
 var socket = require('socket.io');
+var system = require('./system/system.js');
 
 //var main_app_socket = require('socket.io-clientnpm install -g nodemon')("http://127.0.0.1:1234");
 //var webserv_socket = require('socket.io-client')("http://127.0.0.1:8080");
 const server = http.createServer().listen("1235");
 var process_io = socket(server);
 //var webserver = spawn('node',['./server/webserver.js']);
+
 
 module.exports = {
   find_index: find_index,
@@ -37,7 +39,7 @@ function restart_app() {
 }
 
 process_io.on('connection', function (socket) {
-  //console.info(socket.id + " | client connected" );
+  console.info(socket.id + " | client connected" );
 
 
   socket.on('get token', function (data) {
@@ -77,6 +79,42 @@ process_io.on('connection', function (socket) {
   socket.on('restart', function (data) {
     console.log("restart socket running =", data);
     restart_app();
+
+  });
+  socket.on('quit', function (data) {
+    console.log("Quit App");
+    setTimeout(function(){
+      // not used, since nw.gui.App.quit() is called from front-end
+      // App.quit();
+    }, 1000);
+
+  });
+  socket.on('reboot', function (data) {
+    console.log("Reboot System");
+    setTimeout(function(){
+      system.reboot_sys();
+    }, 100);
+
+  });
+  socket.on('cancel-reboot', function (data) {
+    console.log("Cancel Reboot");
+    setTimeout(function(){
+      system.canc_reboot();
+    }, 100);
+
+  });
+  socket.on('shutdown', function (data) {
+    console.log("Shutdown System");
+    setTimeout(function(){
+      system.shutdown();
+    }, 100);
+
+  });
+  socket.on('cancel-shutdown', function (data) {
+    console.log("Cancel Shutdown");
+    setTimeout(function(){
+      system.cancelShutdown();
+    }, 100);
 
   });
 

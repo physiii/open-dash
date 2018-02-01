@@ -3,17 +3,20 @@
 // ---------------------------------- system.js ------------------------------------ //
 
 
-//const exec = require('child_process').exec;
+const exec = require('child_process').exec;
 
 var console = require('console');
-var module = require('module');
 
 module.exports = {
   reboot_sys: reboot_sys,
   canc_reboot: canc_reboot,
+  shutdown: shutdown,
+  cancelShutdown: cancelShutdown,
   test: test,
 };
 
+var cancVar = null;
+var shutdownTimer = null;
 
 function reboot_sys() {
   console.log("Rebooting system in 5 seconds.");
@@ -22,9 +25,20 @@ function reboot_sys() {
 
 function canc_reboot() {
   console.log("Cancelling System reboot");
-  clearTimeout(cancVar);
+  if(cancVar) clearTimeout(cancVar);
+  cancVar = null;
 }
 
+function shutdown() {
+  console.log("Shutting down system in 5 seconds.");
+  shutDownTimer = setTimeout(function() {exec('shutdown now');}, 5000);
+};
+
+function cancelShutdown() {
+  console.log("Cancelling System Shutdown");
+  if(shutDownTimer) clearTimeout(shutDownTimer);
+  shutDownTimer = null;
+}
 
 function test() {
   console.log("Testing System Module");

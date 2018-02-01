@@ -1,36 +1,44 @@
-
 <div layout="row" layout-align="center center">
     <h1>System Settings</h1>
 </div>
 <div>
     <md-grid-list md-cols="1"  md-row-height="4em" md-gutter="1.5em">
-        <md-grid-tile class="md-whiteframe-10dp settings">
+        <md-grid-tile class="md-whiteframe-10dp settings" ng-click="restartApp()">
             <div layout="row" layout-align="space-between center" class="tile-content od-border-bottom">
                 <div>
-                    <h1><i class="fa fa-sign-out fa-lg od-padding-right" aria-hidden="true"></i>Exit</h1>
+                    <h1><i class="fa fa-undo fa-lg od-padding-right" aria-hidden="true"></i>Restart App</h1>
                 </div>
                 <div class="empty-divs">
                 </div>
             </div>
         </md-grid-tile>
-        <md-grid-tile class="md-whiteframe-10dp settings" >
+        <md-grid-tile class="md-whiteframe-10dp settings" ng-click="quitApp()">
             <div layout="row" layout-align="space-between center" class="tile-content od-border-bottom">
                 <div>
-                    <h1><i class="fa fa-undo fa-lg od-padding-right" aria-hidden="true"></i>Reboot</h1>
+                    <h1><i class="fa fa-sign-out fa-lg od-padding-right" aria-hidden="true"></i>Quit App</h1>
                 </div>
                 <div class="empty-divs">
                 </div>
             </div>
         </md-grid-tile>
-        <md-grid-tile class="md-whiteframe-10dp settings">
+        <md-grid-tile class="md-whiteframe-10dp settings"  ng-click="reboot()">
             <div layout="row" layout-align="space-between center" class="tile-content od-border-bottom">
                 <div>
-                    <h1><i class="fa fa-power-off fa-lg od-padding-right" aria-hidden="true"></i>Shutdown</h1>
+                    <h1><i class="fa fa-undo fa-lg od-padding-right" aria-hidden="true"></i>{{rebootStatus}}</h1>
+                </div>
+                <div class="empty-divs">
+                </div>
+            </div>
+        </md-grid-tile>
+        <md-grid-tile class="md-whiteframe-10dp settings" ng-click="shutdown()">
+            <div layout="row" layout-align="space-between center" class="tile-content od-border-bottom">
+                <div>
+                    <h1><i class="fa fa-power-off fa-lg od-padding-right" aria-hidden="true"></i>{{shutdownStatus}}</h1>
                 </div>
                 <div class="empty-divs"></div>
             </div>
         </md-grid-tile>
-        <md-grid-tile class="md-whiteframe-10dp settings" ng-click="showApps() od-border-bottom">
+        <md-grid-tile class="md-whiteframe-10dp settings" ng-click="update()">
             <div layout="row" layout-align="space-between center" class="tile-content od-border-bottom">
                 <div>
                     <h1><i class="material-icons settings-icon od-material-padding-right">update</i>Update</h1>
