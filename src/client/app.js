@@ -93,7 +93,7 @@ app.config(function ($routeProvider) {
                     }
                 });
                 $rootScope.$apply();
-            },2000);
+            },20000);
             $rootScope.$on('$routeChangeSuccess',function () {
                 if($location.path() == '/'){
                     $rootScope.mainPage = true;
