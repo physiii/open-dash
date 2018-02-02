@@ -135,8 +135,8 @@ function setAutoConnect(flag) {
 function runScan(){
   return new Promise(function(resolve,reject){
     var lastIndex = my_ip.lastIndexOf(".");
-    console.log('sudo nmap -sn '+my_ip.substring(0,lastIndex)+'.1/24');
-    exec('sudo nmap -sn '+my_ip.substring(0,lastIndex)+'.1/24',function(err,stdout,stderr){
+    console.log('sudo nmap -sn -T insane '+my_ip.substring(0,lastIndex)+'.1/24');
+    exec('sudo nmap -sn -T insane '+my_ip.substring(0,lastIndex)+'.1/24',function(err,stdout,stderr){
       if (err){
         console.error('exec error: ' + err);
         reject(true)
