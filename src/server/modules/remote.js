@@ -229,6 +229,7 @@ function connectIfNotConnected(deviceIP, port) {
   getMDDUsingXwininfo().then(function (mddPresent) {
     if (!mddPresent) {
       console.log("No MDD window");
+      console.log("Trying to connect to "+deviceIP);
       connect(deviceIP, port);
     }
   }).catch(function (err) {
@@ -242,6 +243,7 @@ function connect(deviceIP, port) {
   console.log("Connect called for " + deviceIP);
   //have only one vnc client running at a time
   if (vnc_started) {
+    console.log("Killing previous connection for "+lastDeviceIP+", only one client can be active at a time");
     close_vnc();
   }
   if(lastDeviceIP && !lastDeviceAlive) {
@@ -261,25 +263,24 @@ function connect(deviceIP, port) {
     console.log("sed s/server=.*/server=" + deviceIP + "/ " + mdd + " > " + mddtmp + " && remmina -c " + mddtmp);
     exec("sed s/server=.*/server=" + deviceIP + "/ " + mdd + " > " + mddtmp, function (error, stdout, stderr) {
       if (error) {
-        connecting=false;
+        connecting = false;
+        console.log(error);
         return reject(error);
       }
+      console.log("Start remmina client to " + deviceIP);
       vnc_client = spawn("remmina", ['-c', mddtmp]);
       vnc_client.stdout.on('data', function (data) {
         console.log('stdout: ' + data);
       });
       console.log("PROCESS PID = "+vnc_client.pid);
-      vnc_client.on("close", function(closeData) {
-         console.log(closeData);
-      });
       vnc_client.on("exit", function(exitData) {
          console.log(exitData);
          vnc_started = false;
       });
 
-  vnc_client.stderr.on('data', function (data) {
-    console.log('stderr: ' + data);
-  });
+      vnc_client.stderr.on('data', function (data) {
+        console.log('stderr: ' + data);
+      });
 
       vnc_client.on('close', function (code) {
         console.log('child process exited with code ' + code);
@@ -293,6 +294,7 @@ function connect(deviceIP, port) {
 
 function close_vnc() {
   if (!vnc_started) return;
+  console.log("close_vnc: killing vnc client");
   vnc_client.kill();
   vnc_started = false;
 }
@@ -308,12 +310,14 @@ function timeout() {
 }
 
 function check_mdd_conn() {
-    if(lastDeviceIP) {
+  if (lastDeviceIP) {
+    console.log("checking mdd connection to "+lastDeviceIP);
       ping.sys.probe(lastDeviceIP, function(isAlive){
         var msg = isAlive ? 'host ' + lastDeviceIP + ' is alive' : 'host ' + lastDeviceIP + ' is dead';
         console.log("ISALIVE ="+isAlive);
         if (!isAlive) {
-	  close_vnc();
+          console.log("Killing remmina since host " + lastDeviceIP + " is dead");
+          close_vnc();
           killRemmina();
         }
         lastDeviceAlive = isAlive;
@@ -322,6 +326,7 @@ function check_mdd_conn() {
 }
 
 function killRemmina() {
+  console.log("killRemmina: call pkill remmina");
     exec("pkill remmina", function (err, stdout, stderr) {
       if (err) console.log(err);
       console.log(stdout);
