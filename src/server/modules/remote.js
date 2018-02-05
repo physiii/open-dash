@@ -56,7 +56,7 @@ function getMDDUsingXwininfo() {
   return new Promise(function (resolve, reject) {
     exec("xwininfo -tree -root | grep -i remmina", function(err, stdout, stderr) {
       console.log(err);
-      if(err) return resolve(false);
+      if(err) return resolve("error");
       if(stdout && (stdout.includes("MDD") || stdout.toString().includes("MDD"))) {
         console.log(stdout);
         resolve(true);
@@ -227,7 +227,7 @@ function connectIfNotConnected(deviceIP, port) {
   console.log("Connecting is "+connecting+", and lastDeviceAlive is "+lastDeviceAlive);
   if(connecting || !lastDeviceAlive) return;
   getMDDUsingXwininfo().then(function (mddPresent) {
-    if (!mddPresent) {
+    if (mddPresent === false) {
       console.log("No MDD window");
       console.log("Trying to connect to "+deviceIP);
       connect(deviceIP, port);
