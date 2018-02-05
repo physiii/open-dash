@@ -56,7 +56,10 @@ function getMDDUsingXwininfo() {
   return new Promise(function (resolve, reject) {
     exec("xwininfo -tree -root | grep -i remmina", function(err, stdout, stderr) {
       console.log(err);
-      if(err) return resolve("error");
+      if (err) {
+        console.log("xwininfo error code = " + err.code);
+      }
+      if(err && err.code > 1) return resolve("error");
       if(stdout && (stdout.includes("MDD") || stdout.toString().includes("MDD"))) {
         console.log(stdout);
         resolve(true);
