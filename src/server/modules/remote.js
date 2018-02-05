@@ -56,7 +56,10 @@ function getMDDUsingXwininfo() {
   return new Promise(function (resolve, reject) {
     exec("xwininfo -tree -root | grep -i remmina", function(err, stdout, stderr) {
       console.log(err);
-      if(err) return resolve("error");
+      if (err) {
+        console.log("xwininfo error code = " + err.code);
+      }
+      if(err && err.code > 1) return resolve("error");
       if(stdout && (stdout.includes("MDD") || stdout.toString().includes("MDD"))) {
         console.log(stdout);
         resolve(true);
@@ -135,8 +138,8 @@ function setAutoConnect(flag) {
 function runScan(){
   return new Promise(function(resolve,reject){
     var lastIndex = my_ip.lastIndexOf(".");
-    console.log('sudo nmap -sn -T5 '+my_ip.substring(0,lastIndex)+'.1/24');
-    exec('sudo nmap -sn -T5 '+my_ip.substring(0,lastIndex)+'.1/24',function(err,stdout,stderr){
+    console.log('sudo nmap -sn -T5 --min-parallelism 100 '+my_ip.substring(0,lastIndex)+'.1/24');
+    exec('sudo nmap -sn -T5 --min-parallelism 100 '+my_ip.substring(0,lastIndex)+'.1/24',function(err,stdout,stderr){
       if (err){
         console.error('exec error: ' + err);
         reject(true)
@@ -310,6 +313,10 @@ function timeout() {
 }
 
 function check_mdd_conn() {
+  var cfg = {
+    timeout: 30
+  };
+
   if (lastDeviceIP) {
     console.log("checking mdd connection to "+lastDeviceIP);
       ping.sys.probe(lastDeviceIP, function(isAlive){
@@ -321,7 +328,7 @@ function check_mdd_conn() {
           killRemmina();
         }
         lastDeviceAlive = isAlive;
-      });
+      }, cfg);
     }
 }
 
