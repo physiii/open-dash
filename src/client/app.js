@@ -95,6 +95,29 @@ app.config(function ($routeProvider) {
                 $rootScope.$apply();
             },20000);
             $rootScope.$on('$routeChangeSuccess',function () {
+                $rootScope.dashBoardHeader = false;
+                if($location.path() == '/remote'){
+                    $rootScope.headerName ='Remote Connections';
+                }else if($location.path() == '/navigation'){
+                    $rootScope.headerName ='Navigation';
+                }else if($location.path() == '/media'){
+                    $rootScope.headerName = 'Media';
+                }else if($location.path() == '/settings'){
+                    $rootScope.headerName ='Settings';
+                }else if($location.path() == '/radio'){
+                    $rootScope.headerName ='Radio';
+                }else if($location.path() == '/settings/bluetooth'){
+                    $rootScope.headerName ='Bluetooth Connections';
+                }else if($location.path() == '/settings/wifi'){
+                    $rootScope.headerName ='Wifi Connections';
+                }else if($location.path() == '/settings/system'){
+                    $rootScope.headerName ='System Settings';
+                }else if($location.path() == '/settings/update'){
+                    $rootScope.headerName ='Software Upgrades';
+                }else{
+                    $rootScope.dashBoardHeader = true;
+                    $rootScope.headerName ='';
+                }
                 if($location.path() == '/'){
                     $rootScope.mainPage = true;
                 }else{

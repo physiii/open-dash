@@ -1,9 +1,13 @@
 
-<div class="header"  ng-controller="HeaderController" ng-click="showDashboard()">
-
-    <img src="images/open-dash-logo.png"/>
-        <md-button class="back-menu" ng-hide="mainPage" aria-label="FAB" ng-click="back()">
-            <i class="fa fa-angle-double-left fa-5x white" aria-hidden="true"></i>
+<div class="header header-class icon-color"  ng-controller="HeaderController">
+    <img ng-if="dashBoardHeader" src="images/open-dash-logo.png"/>
+    <div class="icon-color" ng-if="!dashBoardHeader"><h1>{{headerName}}</h1></div>
+    <md-button class="back-menu" ng-hide="mainPage" aria-label="FAB" ng-click="back()">
+        <i class="fa fa-angle-double-left fa-5x white" aria-hidden="true"></i>
+    </md-button>
+    <div class="settings-icon">
+        <md-button class="pull-right back-menu" ng-hide="mainPage">
+            <h1><i class="material-icons settings-icon od-material-padding-right" ng-click="showDashboard()">home</i></h1>
         </md-button>
-
+    </div>
 </div>

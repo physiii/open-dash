@@ -13,6 +13,11 @@ body {
 h1{
   color:white;
 }
+.header-class{
+    text-align: center;
+    border-bottom:1px solid;
+    box-shadow: 0px 0px 15px 5px ;
+}
 .header{
     position: absolute;
     left: 0;
@@ -106,7 +111,7 @@ h1{
 
 .back-menu{
     bottom: 6em;
-    margin-left: 3em;
+    float: left;
 }
 .links-padding{
     padding-right:0.2em;
@@ -129,7 +134,7 @@ h1{
     padding-right: 0.6em;
 }
 .od-material-padding-right{
-    padding-right:0.6em;
+    padding-right:0.8em;
 }
 .bluetooth-icon{
     padding:0 0.8em 0 0.2em;
@@ -145,6 +150,7 @@ h1{
 }
 .media-icons{
     font-size: 3em !important;
+    padding:0 0.5em;
 }
 .remote-controls{
     padding: 0 3em;
@@ -169,7 +175,7 @@ h1{
 }
 .local-content{
     position: absolute;
-    height: calc(100% - 10em);
+    height: calc(100% - 5em);
     overflow-y: auto;
     width:100%;
 }
