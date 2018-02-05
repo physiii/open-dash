@@ -313,6 +313,10 @@ function timeout() {
 }
 
 function check_mdd_conn() {
+  var cfg = {
+    timeout: 30
+  };
+
   if (lastDeviceIP) {
     console.log("checking mdd connection to "+lastDeviceIP);
       ping.sys.probe(lastDeviceIP, function(isAlive){
@@ -324,7 +328,7 @@ function check_mdd_conn() {
           killRemmina();
         }
         lastDeviceAlive = isAlive;
-      });
+      }, cfg);
     }
 }
 
