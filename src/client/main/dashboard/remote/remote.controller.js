@@ -19,8 +19,9 @@ app.controller('RemoteController', function($scope,$rootScope,$location,$timeout
     };
     $scope.manualRun = function(){
         remote.runScan().then(function (list) {
-            $rootScope.remoteAddressInfo = list;
-            $rootScope.$apply();
+            $timeout(function() {
+              $rootScope.remoteAddressInfo = list;
+            }, 500);
         });
     }
 });

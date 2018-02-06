@@ -92,7 +92,6 @@ app.config(function ($routeProvider) {
                         $location.path('/');
                     }
                 });
-                $rootScope.$apply();
             },20000);
             $rootScope.$on('$routeChangeSuccess',function () {
                 $rootScope.dashBoardHeader = false;
