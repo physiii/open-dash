@@ -304,12 +304,11 @@ function close_vnc() {
 
 timeout();
 function timeout() {
-  console.log("timeout function called");
   setTimeout(function () {
     console.log("checking mdd connection...")
     check_mdd_conn();
     timeout();
-  }, 1*1000);
+  }, 1*3000);
 }
 
 function check_mdd_conn() {
