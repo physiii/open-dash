@@ -10,6 +10,9 @@ var database = require('../database.js');
 var ip = require("ip");
 var path = require('path');
 var ping = require('ping');
+var io = require('socket.io-client');
+var socketProcessIO = io("http://localhost:1235");
+
 const AUTOCONNECT_INTERVAL = 5000;
 
 var result;
@@ -38,6 +41,8 @@ var device_list;
 runScan().then(function(list){
   device_list = list;
   console.log(device_list);
+  console.log("EMIT DEVICES from remote.js");
+  socketProcessIO.emit("device-list", device_list);
 });
 
 

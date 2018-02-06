@@ -72,6 +72,11 @@ app.config(function ($routeProvider) {
 })
     .run([ '$rootScope', '$location', '$interval', '$timeout',
         function ($rootScope, $location, $interval, $timeout) {
+            socketProcessIO.on("device-list", function(list) {
+               $timeout(function() {
+                  $rootScope.remoteAddressInfo = list;
+               }, 100);
+            });
             $interval(function () {
                 $rootScope.autoconnect_enabled = true;
                 remote.runScan().then(function (list) {
