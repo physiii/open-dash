@@ -92,7 +92,7 @@ app.config(function ($routeProvider) {
                         $location.path('/');
                     }
                 });
-            },20000);
+            },2000);
             $rootScope.$on('$routeChangeSuccess',function () {
                 $rootScope.dashBoardHeader = false;
                 if($location.path() == '/remote'){

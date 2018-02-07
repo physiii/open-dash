@@ -1,7 +1,7 @@
 
-<div class="header header-class icon-color"  ng-controller="HeaderController">
+<div class="header icon-color"  ng-controller="HeaderController">
     <img ng-if="dashBoardHeader" src="images/open-dash-logo.png"/>
-    <div class="icon-color" ng-if="!dashBoardHeader"><h1>{{headerName}}</h1></div>
+    <div class="icon-color header-class" ng-if="!dashBoardHeader"><h1>{{headerName}}</h1></div>
     <md-button class="back-menu" ng-hide="mainPage" aria-label="FAB" ng-click="back()">
         <i class="fa fa-angle-double-left fa-5x white" aria-hidden="true"></i>
     </md-button>
