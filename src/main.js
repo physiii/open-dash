@@ -123,6 +123,11 @@ process_io.on('connection', function (socket) {
     remote.start_vnc();
 
   });
+  socket.on('device-list', function (data) {
+    console.log("Got device list")
+    socket.broadcast.emit('device-list', data);
+
+  });
 
 });
 
