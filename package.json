@@ -91,6 +91,7 @@
     "socket.io-client": "^2.0.2",
     "tracer": "^0.8.3",
     "underscore": "^1.8.3",
+    "wmctrl": "0.0.3",
     "ws": "^3.3.3"
   },
   "devDependencies": {
