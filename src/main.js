@@ -18,6 +18,7 @@ var system = require('./system/system.js');
 //var webserv_socket = require('socket.io-client')("http://127.0.0.1:8080");
 const server = http.createServer().listen("1235");
 var process_io = socket(server);
+var remoteIO = socket(1234);
 //var webserver = spawn('node',['./server/webserver.js']);
 
 
@@ -132,7 +133,14 @@ process_io.on('connection', function (socket) {
 });
 
 
+remoteIO.on('connection', function (socket) {
+  console.info(socket.id + " | remote client connected");
 
+
+  socket.on('screenshot', function (data) {
+    console.log("Got screenshot");
+  });
+});
 
 
 //----------------------------------------------------------------------------//
