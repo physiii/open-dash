@@ -23,6 +23,8 @@ app.controller('HeaderController', function($scope,$location){
             $location.path('/settings');
         }else if($location.path() == '/settings/update'){
             $location.path('/settings');
+        }else if($location.path() == '/remote/remote_child'){
+            $location.path('/remote');
         }else{
             $location.path('/');
         }

@@ -17,6 +17,9 @@ app.controller('RemoteController', function($scope,$rootScope,$location,$timeout
     $scope.autoConnectLocalIp = function(value){
         remote.setAutoConnect(value);
     };
+    $scope.remoteChild = function () {
+        $location.path('/remote/remote_child');
+    }
     $scope.manualRun = function(){
         remote.runScan().then(function (list) {
             $timeout(function() {

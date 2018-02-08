@@ -42,6 +42,10 @@ app.config(function ($routeProvider) {
         templateUrl: 'main/dashboard/remote/remote.html',
         controller: 'RemoteController'
     }).
+    when('/remote/remote_child', {
+        templateUrl: 'main/dashboard/remote/remote_child/remote_child.html',
+        controller: 'RemoteChildController'
+    }).
     when('/media', {
         templateUrl: 'main/dashboard/media/media.html',
         controller: 'MediaController'
@@ -72,11 +76,6 @@ app.config(function ($routeProvider) {
 })
     .run([ '$rootScope', '$location', '$interval', '$timeout',
         function ($rootScope, $location, $interval, $timeout) {
-            socketProcessIO.on("device-list", function(list) {
-               $timeout(function() {
-                  $rootScope.remoteAddressInfo = list;
-               }, 100);
-            });
             $interval(function () {
                 $rootScope.autoconnect_enabled = true;
                 remote.runScan().then(function (list) {
@@ -118,6 +117,8 @@ app.config(function ($routeProvider) {
                     $rootScope.headerName ='System Settings';
                 }else if($location.path() == '/settings/update'){
                     $rootScope.headerName ='Software Upgrades';
+                }else if($location.path() == '/remote/remote_child'){
+                    $rootScope.headerName ='Remote Child';
                 }else{
                     $rootScope.dashBoardHeader = true;
                     $rootScope.headerName ='';

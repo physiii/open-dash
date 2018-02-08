@@ -4,8 +4,8 @@
         <md-grid-list md-cols="1" md-row-height="3em" md-gutter="1em">
           <md-grid-tile class="md-whiteframe-10dp media-song-pointer" ng-repeat="song in playList">
               <div layout="row" layout-align="space-between center" class="tile-content">
-                  <p ng-click="playSong($index)" ng-class="$index === currentIndex && 'fa fa-check'">
-                      <i class="fa fa-music od-padding-right" aria-hidden="true"></i>{{song}}</p>
+                  <p ng-click="playSong($index)" ng-class="$index === currentIndex && 'fas fa-check'">
+                      <i class="fas fa-music od-padding-right" aria-hidden="true"></i>{{song}}</p>
               </div>
           </md-grid-tile>
         </md-grid-list>
