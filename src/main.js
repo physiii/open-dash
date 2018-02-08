@@ -118,6 +118,16 @@ process_io.on('connection', function (socket) {
     }, 100);
 
   });
+  socket.on('update', function (data) {
+    console.log("Update App");
+    update.pull().then(function (pulled) {
+      if (pulled === true) socket.emit("updated", true);
+      else socket.emit("updated", pulled);
+    }).catch(function (err) {
+      socket.emit("update-failure", err);
+    });
+
+  });
 
   socket.on('start_vnc', function (data) {
     console.log("launching vnc")
