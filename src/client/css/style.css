@@ -78,7 +78,7 @@ h1{
     margin: 0 20px;
 }
 .menu_icon{
-    padding-top: 1em;
+    padding-top: 0.3em;
     text-align: center;
     border: 1px solid;
     height: 5em;
@@ -86,8 +86,8 @@ h1{
     background: black;
 }
 .menu_material_icon{
-    font-size: 3em !important;
-    padding-top: 0.1em;
+    font-size: 5em !important;
+    padding-bottom: 0.5em;
 }
 .icon-color {
   color: rgb(102, 204, 255);
@@ -196,5 +196,8 @@ h1{
     height:50%;
 }
 
+.remote_icon{
+    padding: 0.1em;
+}
 
 

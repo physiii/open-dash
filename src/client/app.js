@@ -100,7 +100,7 @@ app.config(function ($routeProvider) {
             $rootScope.$on('$routeChangeSuccess',function () {
                 $rootScope.dashBoardHeader = false;
                 if($location.path() == '/remote'){
-                    $rootScope.headerName ='Remote Connections';
+                    $rootScope.headerName ='Remote';
                 }else if($location.path() == '/navigation'){
                     $rootScope.headerName ='Navigation';
                 }else if($location.path() == '/media'){
