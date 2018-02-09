@@ -36,6 +36,10 @@ function pull() {
         return reject(err);
       }
       console.log(stdout);
+      if (stdout.search("Aborting") != -1) {
+        console.log("Local uncommitted changes present, aborting.");
+        return resolve("Local uncommitted changes present, aborting.");
+      }
       if (stdout.search("pulled") == -1) {
         console.log("system is up-to-date");
         return resolve("system is up-to-date");
@@ -46,6 +50,7 @@ function pull() {
         return resolve(true);
 
       };
+      resolve(false);
     })
   });
 };
