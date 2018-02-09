@@ -29,4 +29,7 @@ app.controller('DashboardController', function($scope,$location){
     $scope.goToBluetooth = function(){
         $location.path('settings/bluetooth');
     }
+    $scope.goToCan = function(){
+        $location.path('can');
+    }
 });

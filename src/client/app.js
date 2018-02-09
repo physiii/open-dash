@@ -70,6 +70,10 @@ app.config(function ($routeProvider) {
         templateUrl: 'main/dashboard/navigation/navigation.html',
         controller: 'NavigationController'
     }).
+    when('/can',{
+        templateUrl: 'main/dashboard/can/can.html',
+        controller: 'CanController'
+    }).
     otherwise({
         redirectTo: '/'
     });
@@ -115,8 +119,8 @@ app.config(function ($routeProvider) {
                     $rootScope.headerName ='Wifi Connections';
                 }else if($location.path() == '/settings/system'){
                     $rootScope.headerName ='System Settings';
-                }else if($location.path() == '/settings/update'){
-                    $rootScope.headerName ='Software Upgrades';
+                }else if($location.path() == '/can'){
+                        $rootScope.headerName ='Can';
                 }else if($location.path() == '/remote/remote_child'){
                     $rootScope.headerName ='Remote Child';
                 }else{

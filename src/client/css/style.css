@@ -17,17 +17,13 @@ h1{
     text-align: center;
     border-bottom:1px solid;
 }
-.img{
-    width:100%;
-}
 .header{
-    width:100%;
     position: absolute;
     left: 0;
     right: 0;
     top: 0;
     height:10%;
-
+    width:100%;
 }
 .header-icon{
   height: 15%;
@@ -35,7 +31,7 @@ h1{
 }
 .main-content{
     position: absolute;
-    top: 15%;
+    top: 10%;
     bottom: 6em;
     right: 0;
     left: 0;
@@ -43,17 +39,12 @@ h1{
 }
 
 .footer {
-    width: 100%;
     position: absolute;
     left: 0;
     right: 0;
     bottom: 0;
+    width:100%;
 }
-
-.menu{
-    width: 100%;
-}
-
 .dash_btn_img {
   width:50%;
   height:80%;
@@ -87,16 +78,16 @@ h1{
     margin: 0 20px;
 }
 .menu_icon{
-    padding-top: 0.3em;
+    padding-top: 1em;
     text-align: center;
     border: 1px solid;
     height: 5em;
-    width: 100%;
+    width: 9.3em;
     background: black;
 }
 .menu_material_icon{
-    font-size: 5em !important;
-    padding-bottom: 0.5em;
+    font-size: 3em !important;
+    padding-top: 0.1em;
 }
 .icon-color {
   color: rgb(102, 204, 255);
@@ -193,6 +184,14 @@ h1{
     overflow-y: auto;
     width:100%;
 }
+.dashboard-content{
+    position: absolute;
+    height: calc(100% - 3em);
+    overflow-y: auto;
+    width:100%;
+    padding-top:1em;
+    margin-bottom: 1em;
+}
 .empty-divs{
     padding: 0 2em;
 }
@@ -201,12 +200,8 @@ h1{
 }
 .remote-child{
     border:1px solid white;
-    border-radius: 25px;
-    height:50%;
+    border-radius:25px ;
 }
 
-.remote_icon{
-    padding: 0.1em;
-}
 
 
