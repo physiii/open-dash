@@ -51,7 +51,7 @@ var autoConnectTimer = null;
 function getMDD() {
   return new Promise(function (resolve, reject) {
     result = exec('xdotool search --name "MDD"', function (err, stdout, stderr) {
-      if (err) return reject(err);
+      if (err) return console.log("No MDD found");
       console.log(stdout);
       return resolve(stdout);
     });
@@ -87,8 +87,13 @@ function mdd_WindowSet(result) {
         if (err) return reject(err);
         console.log("Moving Window")
         exec('xdotool windowactivate '+firstWindow.trim(), function(err,stdout,stderr){
-          console.log("Making window the active window")
-          return resolve(firstWindow);
+          if (err) return reject(err);
+          console.log("Making window the active window");
+          exec('wmctrl -r :ACTIVE: -b add,above', function(err,stdout,stderr){
+            if (err) return reject(err);
+            console.log("Making window stay on top");
+            return resolve(firstWindow);
+          });
         });
       });
     });
@@ -276,7 +281,7 @@ function connect(deviceIP, port) {
         return reject(error);
       }
       console.log("Start remmina client to " + deviceIP);
-      vnc_client = spawn("remmina", ['-c', mddtmp]);
+      vnc_client = spawn("remmina", ['-c', mddtmp]);      
       vnc_client.stdout.on('data', function (data) {
         console.log('stdout: ' + data);
       });
@@ -307,7 +312,7 @@ function close_vnc() {
   vnc_started = false;
 }
 
-timeout();
+//timeout();
 function timeout() {
   setTimeout(function () {
     console.log("checking mdd connection...")
