@@ -9,8 +9,8 @@ BASE=$(git merge-base @ "$UPSTREAM")
 if [ $LOCAL = $REMOTE ]; then
     echo "up-to-date"
 elif [ $LOCAL = $BASE ]; then
-    git pull
-    echo "pulled"    
+    PULLMSG=$(git pull 2>&1)
+    echo "$PULLMSG"
 elif [ $REMOTE = $BASE ]; then
     echo "need to push"
 else

@@ -4,22 +4,38 @@ app.controller('SystemController', function ($scope, $location, $timeout) {
   $scope.rebooting = false;
   $scope.shuttingDown = false;
   $scope.updating = false;
+  $scope.version = "";
 
   $scope.rebootStatus = "Reboot";
   $scope.shutdownStatus = "Shutdown";
+  $scope.updateStatus = "";
   socketProcessIO.on("updated", function (data) {
     if (data === true) {
       console.log("Updated the app, restarting");
       $scope.restartApp();
     } else {
+       $timeout(function() {
+         $scope.updateStatus=data;
+       }, 10);
       console.log(data);
     }
   });
   socketProcessIO.on("update-failure", function (err) {
 
-    console.log(err);
+     $timeout(function() {
+       $scope.updateStatus=err;
+     }, 10);
+     console.log(err);
 
   });
+  socketProcessIO.on("version", function (version) {
+
+   $timeout(function() {
+     $scope.version=version;
+   }, 10);
+
+  });
+  socketProcessIO.emit("get-version");
   $scope.back = function () {
     $location.path('settings');
   }
