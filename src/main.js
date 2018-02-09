@@ -118,6 +118,14 @@ process_io.on('connection', function (socket) {
     }, 100);
 
   });
+  socket.on('get-version', function (data) {
+    console.log("Get App Version");
+    update.getVersion().then(function (version) {
+      socket.emit("version", version);
+    }).catch(function (err) {
+      socket.emit("get-version-failure", err);
+    });
+  });
   socket.on('update', function (data) {
     console.log("Update App");
     update.pull().then(function (pulled) {

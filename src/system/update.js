@@ -9,10 +9,23 @@ var fs = require('fs');
 
 module.exports = {
   pull: pull,
+  getVersion: getVersion,
   //test: test,
 };
 
+function getVersion() {
+  return new Promise(function (resolve, reject) {
+    exec("git rev-parse @", function (err, stdout, stderr) {
 
+      if (err) {
+        console.log(err);
+        return reject(err);
+      }
+      console.log(stdout);
+      return resolve(stdout || stdout.toString());
+    });
+  });
+}
 function pull() {
   console.log("checking for updates in", __dirname);
   return new Promise(function (resolve, reject) {
