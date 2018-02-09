@@ -17,13 +17,17 @@ h1{
     text-align: center;
     border-bottom:1px solid;
 }
+.img{
+    width:100%;
+}
 .header{
+    width:100%;
     position: absolute;
     left: 0;
     right: 0;
     top: 0;
     height:10%;
-    width:100%;
+
 }
 .header-icon{
   height: 15%;
@@ -31,7 +35,7 @@ h1{
 }
 .main-content{
     position: absolute;
-    top: 10%;
+    top: 15%;
     bottom: 6em;
     right: 0;
     left: 0;
@@ -39,12 +43,17 @@ h1{
 }
 
 .footer {
+    width: 100%;
     position: absolute;
     left: 0;
     right: 0;
     bottom: 0;
-    width:100%;
 }
+
+.menu{
+    width: 100%;
+}
+
 .dash_btn_img {
   width:50%;
   height:80%;
@@ -82,7 +91,7 @@ h1{
     text-align: center;
     border: 1px solid;
     height: 5em;
-    width: 9.3em;
+    width: 100%;
     background: black;
 }
 .menu_material_icon{
