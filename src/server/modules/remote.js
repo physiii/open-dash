@@ -79,13 +79,13 @@ function mdd_WindowSet(result) {
   var firstWindow=result && result.split("\n")[0];
   return new Promise(function (resolve,reject) {
     //Window resizing
-    exec('xdotool windowsize '+firstWindow.trim()+' 642 800', function(err,stdout,stderr){
-      if (err) return reject(err);
-      console.log("Resizing Window")
+    //exec('xdotool windowsize '+firstWindow.trim()+' 642 800', function(err,stdout,stderr){
+      //if (err) return reject(err);
+      //console.log("Resizing Window")
       //Moving window to new position X Y
-      exec('xdotool windowmove '+firstWindow.trim()+' 0 0', function(err,stdout,stderr){
-        if (err) return reject(err);
-        console.log("Moving Window")
+      //exec('xdotool windowmove '+firstWindow.trim()+' 0 0', function(err,stdout,stderr){
+        //if (err) return reject(err);
+        //console.log("Moving Window")
         exec('xdotool windowactivate '+firstWindow.trim(), function(err,stdout,stderr){
           if (err) return reject(err);
           console.log("Making window the active window");
@@ -95,8 +95,8 @@ function mdd_WindowSet(result) {
             return resolve(firstWindow);
           });
         });
-      });
-    });
+      //});
+    //});
   });
 };
 
