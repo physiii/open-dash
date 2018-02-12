@@ -24,7 +24,7 @@
     "angular": "^1.6.9",
     "angular-animate": "^1.6.9",
     "angular-aria": "^1.6.9",
-    "angular-material": "^1.1.6",
+    "angular-material": "^1.1.7",
     "angular-messages": "^1.6.9",
     "angular-route": "^1.6.9",
     "aplay": "^1.2.0",
@@ -47,7 +47,7 @@
     "getmac": "^1.4.0",
     "greenlock": "^2.1.12",
     "greenlock-express": "^2.0.9",
-    "grunt": "^1.0.1",
+    "grunt": "^1.0.2",
     "grunt-browser-sync": "^2.2.0",
     "grunt-contrib-sass": "^1.0.0",
     "grunt-contrib-watch": "^1.0.0",
@@ -97,6 +97,6 @@
   "devDependencies": {
     "grunt-node-webkit-builder": "^1.0.2",
     "grunt-nw-builder": "^3.1.0",
-    "jasmine": "^2.9.0"
+    "jasmine": "^2.99.0"
   }
 }

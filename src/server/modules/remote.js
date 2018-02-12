@@ -89,7 +89,7 @@ function mdd_WindowSet(result) {
         exec('xdotool windowactivate '+firstWindow.trim(), function(err,stdout,stderr){
           if (err) return reject(err);
           console.log("Making window the active window");
-          exec('wmctrl -r :ACTIVE: -b add,above', function(err,stdout,stderr){
+          exec('wmctrl -r "MDD" -b add,above', function(err,stdout,stderr){
             if (err) return reject(err);
             console.log("Making window stay on top");
             return resolve(firstWindow);
@@ -281,7 +281,7 @@ function connect(deviceIP, port) {
         return reject(error);
       }
       console.log("Start remmina client to " + deviceIP);
-      vnc_client = spawn("remmina", ['-c', mddtmp]);      
+      vnc_client = spawn("remmina", ['-c', mddtmp]);
       vnc_client.stdout.on('data', function (data) {
         console.log('stdout: ' + data);
       });
