@@ -95,7 +95,7 @@ app.config(function ($routeProvider) {
                 });
                 remote.getMDD().then(function (response) {
                     if(response){
-
+                       remote.mdd_WindowSet(response);
                     }else {
                         $location.path('/');
                     }
