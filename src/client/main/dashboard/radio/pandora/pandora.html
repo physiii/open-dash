@@ -1,3 +1,23 @@
-<div layout="row" layout-align="center">
-    <h1>Welcome to Pandora</h1>
-</div>
+<md-grid-list  layout="row" layout-align="space-around" layout-padding="layout-padding" class="login-form">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2><span>Login Form</span></h2>
+            </div>
+        </md-toolbar>
+        <md--content>
+            <form name="Form">
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Login</label>
+                        <input ng-model="userName">
+                    </md-input-container>
+
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Password</label>
+                        <input ng-model="password">
+                    </md-input-container>
+                </div>
+                <md-button ng-click="vm.submit()" class="md-raised md-primary white">Login</md-button>
+            </form>
+        </md--content>
+</md-grid-list>
