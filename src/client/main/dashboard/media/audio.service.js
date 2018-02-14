@@ -38,9 +38,10 @@ app.service('AudioService', function () {
 
   this.playPauseAudio = function () {
     var self = this;
-    if (!this.audio) {
-      if (!audio.src) {
-        audio.src = this.audioFiles[0];
+    if (!this.audio || !this.audio.src) {
+      if (!this.audio) this.audio = document.getElementById("audioTrack");
+      if (!this.audio.src) {
+        this.audio.src = this.audioFiles[0];
         this.currentIndex = 0;
       }
       this.audio.load();
@@ -76,6 +77,7 @@ app.service('AudioService', function () {
           self.audio.play();
 
       }
+      return resolve(true);
     });
   };
 
@@ -95,6 +97,7 @@ app.service('AudioService', function () {
           self.audio.play();
 
       }
+      return resolve(true);
     });
   };
 

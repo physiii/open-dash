@@ -31,13 +31,6 @@ module.exports = {
   //test: test,
 };
 
-function restart_app() {
-  main_app.kill();
-  setTimeout(function() {main_app = spawn('nw',['.']);
-                         webserver = spawn('node',['src/server/webserver.js']);
-                        },50);
-
-}
 
 process_io.on('connection', function (socket) {
   console.info(socket.id + " | client connected" );
@@ -78,17 +71,13 @@ process_io.on('connection', function (socket) {
 
 
   socket.on('restart', function (data) {
-    console.log("restart socket running =", data);
-    restart_app();
-
+    console.log("Received Restart App Message");
+    system.restartApp();
   });
-  socket.on('quit', function (data) {
-    console.log("Quit App");
-    setTimeout(function(){
-      // not used, since nw.gui.App.quit() is called from front-end
-      // App.quit();
-    }, 1000);
 
+  socket.on('quit', function (data) {
+    console.log("Received Quit App Message");
+    system.quitApp();
   });
   socket.on('reboot', function (data) {
     console.log("Reboot System");

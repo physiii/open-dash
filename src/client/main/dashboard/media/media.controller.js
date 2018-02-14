@@ -9,27 +9,19 @@ app.controller('MediaController', function ($scope, $rootScope, $location, $time
     $location.path('dashboard');
   };
 
-  $scope.getAudioState = function (initial,index) {
+  $scope.getAudioState = function () {
     AudioService.getAudioState().then(function () {
       $timeout(function () {
         $scope.duration = AudioService.duration;
         $scope.playList = AudioService.playList;
-        $scope.songs=[];
-        for(var i=0;i<$scope.playList.length;i++){
-          $scope.songs.push({song: $scope.playList[i],selected:false});
-        }
+        $scope.currentIndex = AudioService.currentIndex;
+        $scope.songs = $scope.playList.map(function (song, idx) {
+          return { song: song, selected: idx === $scope.currentIndex };
+        });
+
         $scope.audioDir = AudioService.audioDir;
         $scope.playing = AudioService.playing;
-        if(!initial)
-          $scope.currentIndex = AudioService.currentIndex;
-        for(var i=0;i<$scope.songs.length;i++){
-            if(index === i){
-                $scope.songs[i].selected=true;
-            }else{
-                $scope.songs[i].selected= false;
-            }
-        }
-        if ($scope.playing) {
+      if ($scope.playing) {
           $scope.playIcon = "pause";
       }else{
           $scope.playIcon = "play_arrow";
@@ -62,11 +54,11 @@ app.controller('MediaController', function ($scope, $rootScope, $location, $time
 
   $scope.playSong = function (idx) {
     AudioService.playSong(idx).then(function () {
-      $scope.getAudioState(false,idx);
+      $scope.getAudioState();
     });
   };
 
   $scope.onload = function () {
-    $scope.getAudioState(true);
+    $scope.getAudioState();
   };
 });

@@ -12,6 +12,8 @@ module.exports = {
   canc_reboot: canc_reboot,
   shutdown: shutdown,
   cancelShutdown: cancelShutdown,
+  quitApp: quitApp,
+  restartApp: restartApp,
   test: test,
 };
 
@@ -38,6 +40,16 @@ function cancelShutdown() {
   console.log("Cancelling System Shutdown");
   if(shutDownTimer) clearTimeout(shutDownTimer);
   shutDownTimer = null;
+}
+
+function quitApp() {
+  console.log("Quitting App");
+  setTimeout(function() {exec('pm2 stop open-dash');}, 100);
+}
+
+function restartApp() {
+  console.log("Restarting App");
+  setTimeout(function() {exec('pm2 restart open-dash');}, 100);
 }
 
 function test() {
