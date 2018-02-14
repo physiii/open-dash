@@ -35,3 +35,4 @@ cd ~
 git clone https://github.com/physiii/open-dash
 cd open-dash
 npm install
+pm2 --name open-dash start nw -- ~/code/open-dash
