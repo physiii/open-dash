@@ -40,12 +40,12 @@ app.controller('SystemController', function ($scope, $location, $timeout) {
     $location.path('settings');
   }
   $scope.restartApp = function () {
-    //socketProcessIO.emit("restart","");
-    chrome.runtime.reload();
+    socketProcessIO.emit("restart","");
+    //chrome.runtime.reload();
   }
   $scope.quitApp = function () {
-    // socketProcessIO.emit("quit", "");
-    gui.App.quit();
+    socketProcessIO.emit("quit", "");
+    //gui.App.quit();
   }
   $scope.reboot = function () {
     $timeout(function () {

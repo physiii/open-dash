@@ -9,9 +9,44 @@ app.service('AudioService', function () {
   this.currentIndex = 0;
   this.currentTime = 0;
   this.duration = -1;
+  this.timeCallback = null;
 
   this.audio = document.getElementById("audioTrack");
 
+  this.setTimeCallback = function (cb) {
+    this.timeCallback = cb;
+  }
+  this.metadataListener = function () {
+    this.duration = this.audio.duration;
+  }
+  this.metadataListener = this.metadataListener.bind(this);
+
+  this.durationChangeListener = function () {
+    this.duration = this.audio.duration;
+  }
+  this.durationChangeListener = this.durationChangeListener.bind(this);
+
+  this.timeUpdateListener = function () {
+    this.currentTime = this.audio.currentTime;
+    if (this.timeCallback) this.timeCallback(this.currentTime);
+  }
+  this.timeUpdateListener = this.timeUpdateListener.bind(this);
+
+  this.addListeners = function() {
+    this.audio.removeEventListener("loadedmetadata", this.metadataListener);
+    this.audio.removeEventListener("durationchange", this.durationChangeListener);
+    this.audio.removeEventListener("timeupdate", this.timeUpdateListener);
+    this.audio.addEventListener("loadedmetadata", this.metadataListener);
+    this.audio.addEventListener("durationchange", this.durationChangeListener);
+    this.audio.addEventListener("timeupdate", this.timeUpdateListener);
+  };
+
+  this.seekToPos = function (t) {
+    if (this.audio && this.audio.src && t >= 0 && t <= this.duration) {
+      this.audio.currentTime = t;
+      this.currentTime = t;
+    }
+  }
   this.playMedia = function () {
     var self = this;
     return new Promise(function (resolve, reject) {
@@ -38,18 +73,14 @@ app.service('AudioService', function () {
 
   this.playPauseAudio = function () {
     var self = this;
-    if (!this.audio) {
-      if (!audio.src) {
-        audio.src = this.audioFiles[0];
+    if (!this.audio || !this.audio.src) {
+      if (!this.audio) this.audio = document.getElementById("audioTrack");
+      if (!this.audio.src) {
+        this.audio.src = this.audioFiles[0];
         this.currentIndex = 0;
       }
       this.audio.load();
-      this.audio.addEventListener("loadedmetadata", function (metadata) {
-        self.duration = audio.duration;
-      });
-      this.audio.addEventListener("timeupdate", function (metadata) {
-        self.currentTime = audio.currentTime;
-      });
+      this.addListeners();
     }
     if (this.audio.paused) {
       this.audio.play();
@@ -71,11 +102,13 @@ app.service('AudioService', function () {
         self.currentIndex -= 1;
         self.audio.src = self.audioFiles[self.currentIndex];
         self.audio.load();
+        self.addListeners();
 
         if (!audioPaused)
           self.audio.play();
 
       }
+      return resolve(true);
     });
   };
 
@@ -90,11 +123,13 @@ app.service('AudioService', function () {
         self.currentIndex += 1;
         self.audio.src = self.audioFiles[self.currentIndex];
         self.audio.load();
+        self.addListeners();
 
         if (!audioPaused)
           self.audio.play();
 
       }
+      return resolve(true);
     });
   };
 
@@ -108,6 +143,8 @@ app.service('AudioService', function () {
         self.audio.src = self.audioFiles[idx];
         self.audio.load();
         self.currentIndex = idx;
+        self.addListeners();
+
         if (!audioPaused) {
           self.audio.play();
           self.playing = true;
@@ -137,6 +174,12 @@ app.service('AudioService', function () {
             return path.join(dir, file);
           });
           self.audioFiles = audioFiles;
+          if (audioFiles && audioFiles.length) {
+            self.audio.src = self.audioFiles[0];
+            self.audio.load();
+            self.currentIndex = 0;
+            self.addListeners();
+          }
           resolve(true);
         }).catch(function (err) {
           console.log(err);
