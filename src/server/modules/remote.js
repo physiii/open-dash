@@ -38,6 +38,7 @@ module.exports = {
 }
 
 var device_list;
+
 runScan().then(function(list){
   device_list = list;
   console.log(device_list);
