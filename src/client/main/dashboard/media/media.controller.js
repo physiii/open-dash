@@ -21,7 +21,7 @@ app.controller('MediaController', function ($scope, $rootScope, $location, $time
   };
   AudioService.setTimeCallback($scope.currentTimeCallback);
   $scope.formatTime = function (t) {
-    if (t <= 0) return "";
+    if (t <= 0) return "00:00";
     var hours = Math.floor(t / 3600);
     var min = Math.floor((t - hours * 3600) / 60);
     var sec = Math.floor(t - hours * 3600 - min * 60);

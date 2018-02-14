@@ -16,6 +16,31 @@ app.service('AudioService', function () {
   this.setTimeCallback = function (cb) {
     this.timeCallback = cb;
   }
+  this.metadataListener = function () {
+    this.duration = this.audio.duration;
+  }
+  this.metadataListener = this.metadataListener.bind(this);
+
+  this.durationChangeListener = function () {
+    this.duration = this.audio.duration;
+  }
+  this.durationChangeListener = this.durationChangeListener.bind(this);
+
+  this.timeUpdateListener = function () {
+    this.currentTime = this.audio.currentTime;
+    if (this.timeCallback) this.timeCallback(this.currentTime);
+  }
+  this.timeUpdateListener = this.timeUpdateListener.bind(this);
+
+  this.addListeners = function() {
+    this.audio.removeEventListener("loadedmetadata", this.metadataListener);
+    this.audio.removeEventListener("durationchange", this.durationChangeListener);
+    this.audio.removeEventListener("timeupdate", this.timeUpdateListener);
+    this.audio.addEventListener("loadedmetadata", this.metadataListener);
+    this.audio.addEventListener("durationchange", this.durationChangeListener);
+    this.audio.addEventListener("timeupdate", this.timeUpdateListener);
+  };
+
   this.seekToPos = function (t) {
     if (this.audio && this.audio.src && t >= 0 && t <= this.duration) {
       this.audio.currentTime = t;
@@ -55,13 +80,7 @@ app.service('AudioService', function () {
         this.currentIndex = 0;
       }
       this.audio.load();
-      this.audio.addEventListener("loadedmetadata", function (metadata) {
-        self.duration = self.audio.duration;
-      });
-      this.audio.addEventListener("timeupdate", function (metadata) {
-        self.currentTime = self.audio.currentTime;
-        if (self.timeCallback) self.timeCallback(self.currentTime);
-      });
+      this.addListeners();
     }
     if (this.audio.paused) {
       this.audio.play();
@@ -83,6 +102,7 @@ app.service('AudioService', function () {
         self.currentIndex -= 1;
         self.audio.src = self.audioFiles[self.currentIndex];
         self.audio.load();
+        self.addListeners();
 
         if (!audioPaused)
           self.audio.play();
@@ -103,6 +123,7 @@ app.service('AudioService', function () {
         self.currentIndex += 1;
         self.audio.src = self.audioFiles[self.currentIndex];
         self.audio.load();
+        self.addListeners();
 
         if (!audioPaused)
           self.audio.play();
@@ -122,6 +143,8 @@ app.service('AudioService', function () {
         self.audio.src = self.audioFiles[idx];
         self.audio.load();
         self.currentIndex = idx;
+        self.addListeners();
+
         if (!audioPaused) {
           self.audio.play();
           self.playing = true;
@@ -151,6 +174,12 @@ app.service('AudioService', function () {
             return path.join(dir, file);
           });
           self.audioFiles = audioFiles;
+          if (audioFiles && audioFiles.length) {
+            self.audio.src = self.audioFiles[0];
+            self.audio.load();
+            self.currentIndex = 0;
+            self.addListeners();
+          }
           resolve(true);
         }).catch(function (err) {
           console.log(err);
