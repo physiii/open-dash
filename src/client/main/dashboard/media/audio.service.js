@@ -9,9 +9,19 @@ app.service('AudioService', function () {
   this.currentIndex = 0;
   this.currentTime = 0;
   this.duration = -1;
+  this.timeCallback = null;
 
   this.audio = document.getElementById("audioTrack");
 
+  this.setTimeCallback = function (cb) {
+    this.timeCallback = cb;
+  }
+  this.seekToPos = function (t) {
+    if (this.audio && this.audio.src && t >= 0 && t <= this.duration) {
+      this.audio.currentTime = t;
+      this.currentTime = t;
+    }
+  }
   this.playMedia = function () {
     var self = this;
     return new Promise(function (resolve, reject) {
@@ -46,10 +56,11 @@ app.service('AudioService', function () {
       }
       this.audio.load();
       this.audio.addEventListener("loadedmetadata", function (metadata) {
-        self.duration = audio.duration;
+        self.duration = self.audio.duration;
       });
       this.audio.addEventListener("timeupdate", function (metadata) {
-        self.currentTime = audio.currentTime;
+        self.currentTime = self.audio.currentTime;
+        if (self.timeCallback) self.timeCallback(self.currentTime);
       });
     }
     if (this.audio.paused) {
