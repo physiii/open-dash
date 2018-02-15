@@ -29,12 +29,12 @@ function getAudioFiles(dir) {
   console.log(__dirname);
   console.log(dir);
   return new Promise(function (resolve, reject) {
-    resolve(getFiles(path.join(__dirname, dir), null, "", [".mp3", ".wav", "ogg"]));
+    resolve(getFiles(path.join(__dirname, dir), null, "", [".mp3", ".wav", ".ogg"]));
   });
 }
 function getVideoFiles(dir) {
   return new Promise(function (resolve, reject) {
-    resolve(getFiles(path.join(__dirname, dir), null, "", [".mpg", ".mov", "wmv"]));
+    resolve(getFiles(path.join(__dirname, dir), null, "", [".webm", ".mpg", ".mov", ".wmv", ".avi", ".mp4"]));
   });
 }
 
@@ -48,7 +48,7 @@ function getFiles(dir, files_, subfolder, types) {
       // don't look in subfolders
       // getFiles(name, files_, relativeName, types);
     } else {
-      if (types && types.indexOf(path.extname(name)) != -1) files_.push(relativeName);
+      if (types && types.indexOf(path.extname(name).toLowerCase()) != -1) files_.push(relativeName);
       else if (!types) files_.push(relativeName);
     }
   }

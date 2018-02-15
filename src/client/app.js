@@ -18,6 +18,14 @@ app.config(function ($routeProvider) {
         templateUrl: 'main/dashboard/media/media.html',
         controller: 'MediaController'
     }).
+    when('/media/audio', {
+        templateUrl: 'main/dashboard/media/audio.html',
+        controller: 'AudioController'
+    }).
+    when('/media/video', {
+        templateUrl: 'main/dashboard/media/video.html',
+        controller: 'VideoController'
+    }).
     when('/settings', {
         templateUrl: 'main/dashboard/settings/settings.html',
         controller: 'SettingsController'
