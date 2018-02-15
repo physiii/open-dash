@@ -88,7 +88,7 @@ app.config(function ($routeProvider) {
                         if ( list[i].device === "Hand Held Products") {
                             if (!$rootScope.autoconnect_enabled)
                                 return console.log("autoconnect is disabled");
-                            remote.connectIfNotConnected(device_list[i].local_ip, null);
+                            remote.connectIfNotConnected(list[i].local_ip, null);
                             $location.path("remote");
                         }
                     }
