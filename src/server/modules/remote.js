@@ -233,7 +233,14 @@ function runScan(){
       };
       resolve(device_list);
     });
-  });
+  });res[i] = res[i].toString();
+        res[i] = res[i].replace("Nmap scan report for", "Hostname:");
+
+        if (res[i].includes("Hostname")) {
+          res[i] = res[i].replace("192","(192").replace("((","(")
+                         .replace("(", ",IP Address:").replace(")","");
+          continue;
+        };
 
 };
 
@@ -348,6 +355,48 @@ function killRemmina() {
       if (err) console.log(err);
       console.log(stdout);
     });
+}
+
+function findIP(){
+  //new Promise(function (resolve, reject) {
+    exec("ifconfig", function (err,stdout,stderr){
+      if (err) console.log(err);
+      var res = stdout.split("\n");
+      for (i = res.length - 1; i >= 0; --i){
+        res[i] = res[i].toString();
+
+        if (res[i].includes("inet6")) {
+          res.splice(i,1)
+          continue;
+        };
+        if (res[i].includes("inet")) {
+          res[i]=res[i].trim();
+          continue;
+        };
+        res.splice(i,1);
+      }
+
+      res = res.join().split(",");
+
+      for (var i = 0; i < res.length; i++) {
+        if(!res[i]) continue;
+        res[i]=res[i].trim().replace(" n",",").replace(" b",",")
+        continue;
+      }
+
+      res = res.join().trim().split(",");
+
+      for (i = res.length - 1; i >= 0; --i){
+        if (res[i].includes("inet")) {
+          res[i]=res[i].replace("inet","").trim();
+          continue;
+        };
+
+        res.splice(i,1);
+      }
+      console.log(res);
+    })
+  //}
 }
 
 function remoteTest(){
