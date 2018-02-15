@@ -239,7 +239,7 @@ function runScan(){
         if (res[i].includes("Hostname")) {
           res[i] = res[i].replace("192","(192").replace("((","(")
                          .replace("(", ",IP Address:").replace(")","");
-          continue;
+          
         };
 
 };
