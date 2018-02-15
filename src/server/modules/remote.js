@@ -313,7 +313,7 @@ function close_vnc() {
   vnc_started = false;
 }
 
-//timeout();
+timeout();
 function timeout() {
   setTimeout(function () {
     console.log("checking mdd connection...")
