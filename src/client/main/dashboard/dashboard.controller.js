@@ -32,4 +32,7 @@ app.controller('DashboardController', function($scope,$location){
     $scope.goToCan = function(){
         $location.path('can');
     }
+    $scope.goToCamera = function(){
+        $location.path('camera');
+    }
 });

@@ -1,6 +1,6 @@
 var app = angular.module('app');
 
-app.controller('PandoraController', function($scope,$location){
+app.controller('PandoraController', function($scope,$location,$mdDialog){
     $scope.back=function(){
         $location.path('radio');
     }
@@ -11,4 +11,15 @@ app.controller('PandoraController', function($scope,$location){
             password: 'foobar'
         }
     };
+    $scope.cancel = function() {
+        $mdDialog.cancel();
+    };
+
+    $scope.answer = function() {
+        $mdDialog.hide();
+    };
+
+
+
+
 });

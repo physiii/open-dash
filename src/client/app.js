@@ -74,6 +74,10 @@ app.config(function ($routeProvider) {
         templateUrl: 'main/dashboard/can/can.html',
         controller: 'CanController'
     }).
+    when('/camera',{
+        templateUrl: 'main/dashboard/camera/camera.html',
+        controller: 'CameraController'
+    }).
     otherwise({
         redirectTo: '/'
     });
@@ -121,6 +125,8 @@ app.config(function ($routeProvider) {
                     $rootScope.headerName ='System Settings';
                 }else if($location.path() == '/can'){
                         $rootScope.headerName ='Can';
+                }else if($location.path() == '/camera'){
+                    $rootScope.headerName ='Camera';
                 }else if($location.path() == '/remote/remote_child'){
                     $rootScope.headerName ='Remote Child';
                 }else{

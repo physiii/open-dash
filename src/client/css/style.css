@@ -201,6 +201,9 @@ h1{
     padding-top:1em;
     margin-bottom: 1em;
 }
+.login-modal{
+    width:100%;
+}
 
 .scroll-bar::-webkit-scrollbar-track
 {

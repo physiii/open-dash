@@ -26,3 +26,43 @@
         </md-grid-tile>
     </md-grid-list>
 </div>
+<script type="text/ng-template" id="login.tmpl.html">
+    <md-dialog aria-label="Login" class="login-modal">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Login</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <form name="Form">
+                    <div>
+                        <md-input-container class="md-block" flex-gt-lg>
+                            <label>Login</label>
+                            <input  ng-model="userName">
+                        </md-input-container>
+
+                        <md-input-container class="md-block" flex-gt-lg>
+                            <label>Password</label>
+                            <input ng-model="password">
+                        </md-input-container>
+                        <md-button class="md-raised md-primary">Login</md-button>
+                    </div>
+                </form>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            <md-button ng-click="close()">
+                Close
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
+</script>
