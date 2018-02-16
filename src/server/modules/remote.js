@@ -233,15 +233,7 @@ function runScan(){
       };
       resolve(device_list);
     });
-  });res[i] = res[i].toString();
-        res[i] = res[i].replace("Nmap scan report for", "Hostname:");
-
-        if (res[i].includes("Hostname")) {
-          res[i] = res[i].replace("192","(192").replace("((","(")
-                         .replace("(", ",IP Address:").replace(")","");
-          
-        };
-
+  });
 };
 
 function connectIfNotConnected(deviceIP, port) {
@@ -357,46 +349,77 @@ function killRemmina() {
     });
 }
 
+
 function findIP(){
-  //new Promise(function (resolve, reject) {
-    exec("ifconfig", function (err,stdout,stderr){
-      if (err) console.log(err);
-      var res = stdout.split("\n");
-      for (i = res.length - 1; i >= 0; --i){
-        res[i] = res[i].toString();
+  return new Promise(function(resolve,reject){
+      exec("ifconfig", function (err,stdout,stderr){
+        if (err) console.log(err);
+        var res = stdout.split("\n");
 
-        if (res[i].includes("inet6")) {
-          res.splice(i,1)
+        // Splice out unneeded lines of output
+        for (i = res.length - 1; i >= 0; --i){
+          res[i] = res[i].toString();
+
+          if (res[i].includes("inet6")) {
+            res.splice(i,1)
+            continue;
+          };
+          if (res[i].includes("inet")) {
+            res[i]=res[i].trim();
+            continue;
+          };
+          res.splice(i,1);
+        }
+
+        res = res.join().split(",");
+
+        // Narrow Array to IP addresses alone
+        for (var i = 0; i < res.length; i++) {
+          if(!res[i]) continue;
+          res[i]=res[i].trim().replace(" n",",").replace(" b",",")
           continue;
-        };
-        if (res[i].includes("inet")) {
-          res[i]=res[i].trim();
-          continue;
-        };
-        res.splice(i,1);
-      }
+        }
 
-      res = res.join().split(",");
+        res = res.join().trim().split(",");
 
-      for (var i = 0; i < res.length; i++) {
-        if(!res[i]) continue;
-        res[i]=res[i].trim().replace(" n",",").replace(" b",",")
-        continue;
-      }
+        var address = []
 
-      res = res.join().trim().split(",");
+        for (i = res.length - 1; i >= 0; --i){
+          if (res[i].includes("inet")) {
+            res[i]=res[i].replace("inet","").trim();
+            address.push(res[i]);
+            continue;
+          };
 
-      for (i = res.length - 1; i >= 0; --i){
-        if (res[i].includes("inet")) {
-          res[i]=res[i].replace("inet","").trim();
-          continue;
-        };
+          res.splice(i,1);
+        }
 
-        res.splice(i,1);
-      }
-      console.log(res);
-    })
-  //}
+        // Split Array of IP address into single IP's in secondary array
+        var chunksize = 1;
+        var addr = [];
+
+        res.forEach((item)=>{
+          if(!addr.length || addr[addr.length-1].length == chunksize)
+          addr.push([]);
+
+          addr[addr.length-1].push(item);
+        });
+
+        //Split IP's into octets after splitting into multiple arrays
+        for (i = 0; i < addr.length; i++){
+          addr[i] = addr[i].toString().split(".")
+        } //Example Output:  [ [ '192', '168', '1', '93' ], [ '127', '0', '0', '1' ] ]
+
+        //Compare IP addresses
+        var ip_res;
+        addr.sort(); //Sort Lowest to highest
+        addr.reverse(); //Make sorting largest to smallest
+        ip_res = addr[0]; //Assign to largest IP address
+        ip_res = ip_res.join("."); //Join array with period to rebuild Ip address
+
+        resolve(ip_res)
+      });
+  });
 }
 
 function remoteTest(){
