@@ -34,7 +34,8 @@ module.exports = {
   setAutoConnect: setAutoConnect,
   getMDD: getMDD,
   mdd_WindowSet: mdd_WindowSet,
-  mdd_win_set: mdd_win_set
+  mdd_win_set: mdd_win_set,
+  findIP: findIP
 }
 
 var device_list;
@@ -45,7 +46,6 @@ runScan().then(function(list){
   console.log("EMIT DEVICES from remote.js");
   socketProcessIO.emit("device-list", device_list);
 });
-
 
 var autoConnectTimer = null;
 
@@ -58,6 +58,7 @@ function getMDD() {
     });
   });
 }
+
 function getMDDUsingXwininfo() {
   return new Promise(function (resolve, reject) {
     exec("xwininfo -tree -root | grep -i remmina", function(err, stdout, stderr) {
@@ -112,7 +113,6 @@ function mdd_win_set(){
       console.log("Completed windowmove");
   });
 }
-
 
 function reconnect() {
   if(!lastDeviceIP && device_list.length > 0) {
@@ -348,7 +348,6 @@ function killRemmina() {
       console.log(stdout);
     });
 }
-
 
 function findIP(){
   return new Promise(function(resolve,reject){
