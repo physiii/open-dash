@@ -12,11 +12,15 @@ app.service('VideoService', function () {
   this.timeCallback = null;
 
   this.video = document.getElementById("videoTrack");
+  this.audio = document.getElementById("audioTrack");
   this.videoCanvas = document.getElementById("videoCanvas");
   this.videoContext = this.videoCanvas.getContext('2d');
 
   this.setTimeCallback = function (cb) {
     this.timeCallback = cb;
+    this.videoCanvas = document.getElementById("videoCanvas");
+    this.videoContext = this.videoCanvas.getContext('2d');
+
   }
   this.metadataListener = function () {
     this.duration = this.video.duration;
@@ -39,6 +43,8 @@ app.service('VideoService', function () {
   this.playListener = this.playListener.bind(this);
   this.timerCallback = function () {
     if (this.video.paused || this.video.ended) {
+      this.playing = false;
+
       return;
     }
     this.videoContext.drawImage(this.video, 0, 0, this.width, this.height);
@@ -53,6 +59,7 @@ app.service('VideoService', function () {
     this.video.removeEventListener("loadedmetadata", this.metadataListener);
     this.video.removeEventListener("durationchange", this.durationChangeListener);
     this.video.removeEventListener("timeupdate", this.timeUpdateListener);
+    this.video.removeEventListener("play", this.playListener);
     this.video.addEventListener("loadedmetadata", this.metadataListener);
     this.video.addEventListener("durationchange", this.durationChangeListener);
     this.video.addEventListener("timeupdate", this.timeUpdateListener);
@@ -69,7 +76,7 @@ app.service('VideoService', function () {
     var self = this;
     return new Promise(function (resolve, reject) {
       if (!self.videoFiles) {
-self.changeVideoDir().then(function (files) {
+        self.changeVideoDir().then(function (files) {
           self.playPauseVideo();
           resolve(true);
         }).catch(function(err) {
@@ -94,6 +101,7 @@ self.changeVideoDir().then(function (files) {
       this.addListeners();
     }
     if (this.video.paused) {
+      if (this.audio && this.audio.src && !this.audio.paused) this.audio.pause();
       this.video.play();
       this.playing = true;
     } else {
@@ -209,6 +217,7 @@ self.changeVideoDir().then(function (files) {
         return resolve(self.changeVideoDir());
       }
       else {
+        self.playing = !self.video.paused;
         resolve(true);
       }
     });

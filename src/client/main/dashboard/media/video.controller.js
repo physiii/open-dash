@@ -13,7 +13,12 @@ app.controller('VideoController', function ($scope, $rootScope, $location, $time
     $timeout(function () {
       $scope.currentTime = VideoService.currentTime;
       $scope.currentTimeFormatted = $scope.formatTime($scope.currentTime);
-
+      $scope.playing = VideoService.playing;
+      if ($scope.playing) {
+        $scope.playIcon = "pause";
+      } else {
+        $scope.playIcon = "play_arrow";
+      }
     }, 0);
   };
   $scope.seekToPos = function () {
