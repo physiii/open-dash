@@ -7,7 +7,6 @@ var child_process = require('child_process');
 var exec = child_process.exec;
 var spawn = child_process.spawn;
 var database = require('../database.js');
-var ip = require("ip");
 var path = require('path');
 var ping = require('ping');
 var io = require('socket.io-client');
@@ -18,7 +17,6 @@ const AUTOCONNECT_INTERVAL = 5000;
 var result;
 var vnc_client;
 vnc_started = false;
-my_ip = ip.address();
 var lastDeviceIP = null;
 var lastDeviceAlive = true;
 var autoConnectEnabled = false;
@@ -40,7 +38,10 @@ module.exports = {
 
 var device_list;
 
-runScan().then(function(list){
+findIP().then(function(ip){
+  console.log("Largest IP in Network is: ", ip)
+  return runScan(ip)
+}).then(function(list){
   device_list = list;
   console.log(device_list);
   console.log("EMIT DEVICES from remote.js");
@@ -146,11 +147,11 @@ function setAutoConnect(flag) {
   }
 }
 
-function runScan(){
+function runScan(ip){
   return new Promise(function(resolve,reject){
-    var lastIndex = my_ip.lastIndexOf(".");
-    console.log('sudo nmap -sn -T5 --min-parallelism 100 '+my_ip.substring(0,lastIndex)+'.1/24');
-    exec('sudo nmap -sn -T5 --min-parallelism 100 '+my_ip.substring(0,lastIndex)+'.1/24',function(err,stdout,stderr){
+    var lastIndex = ip.lastIndexOf(".");
+    console.log('sudo nmap -sn -T5 --min-parallelism 100 '+ip.substring(0,lastIndex)+'.1/24');
+    exec('sudo nmap -sn -T5 --min-parallelism 100 '+ip.substring(0,lastIndex)+'.1/24',function(err,stdout,stderr){
       if (err){
         console.error('exec error: ' + err);
         reject(true)
@@ -414,7 +415,7 @@ function findIP(){
         addr.sort(); //Sort Lowest to highest
         addr.reverse(); //Make sorting largest to smallest
         ip_res = addr[0]; //Assign to largest IP address
-        ip_res = ip_res.join("."); //Join array with period to rebuild Ip address
+        ip_res = ip_res.join(".").toString(); //Join array with period to rebuild Ip address
 
         resolve(ip_res)
       });
