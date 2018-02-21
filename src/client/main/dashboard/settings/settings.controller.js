@@ -1,5 +1,6 @@
 var app = angular.module('app');
-
+var gui = require('nw.gui');
+var win = gui.Window.get();
 app.controller('SettingsController', function($scope,$location){
     $scope.back=function(){
         $location.path('/');
@@ -15,5 +16,8 @@ app.controller('SettingsController', function($scope,$location){
     }
     $scope.goToWifi = function(){
         $location.path('settings/wifi');
+    }
+    $scope.minimize = function(){
+        win.minimize();
     }
 });
