@@ -7,7 +7,6 @@ var child_process = require('child_process');
 var exec = child_process.exec;
 var spawn = child_process.spawn;
 var database = require('../database.js');
-var ip = require("ip");
 var path = require('path');
 var ping = require('ping');
 var io = require('socket.io-client');
@@ -18,7 +17,6 @@ const AUTOCONNECT_INTERVAL = 5000;
 var result;
 var vnc_client;
 vnc_started = false;
-my_ip = ip.address();
 var lastDeviceIP = null;
 var lastDeviceAlive = true;
 var autoConnectEnabled = false;
@@ -34,18 +32,21 @@ module.exports = {
   setAutoConnect: setAutoConnect,
   getMDD: getMDD,
   mdd_WindowSet: mdd_WindowSet,
-  mdd_win_set: mdd_win_set
+  mdd_win_set: mdd_win_set,
+  findIP: findIP
 }
 
 var device_list;
 
-runScan().then(function(list){
+findIP().then(function(ip){
+  console.log("Largest IP in Network is: ", ip)
+  return runScan(ip)
+}).then(function(list){
   device_list = list;
   console.log(device_list);
   console.log("EMIT DEVICES from remote.js");
   socketProcessIO.emit("device-list", device_list);
 });
-
 
 var autoConnectTimer = null;
 
@@ -58,6 +59,7 @@ function getMDD() {
     });
   });
 }
+
 function getMDDUsingXwininfo() {
   return new Promise(function (resolve, reject) {
     exec("xwininfo -tree -root | grep -i remmina", function(err, stdout, stderr) {
@@ -113,7 +115,6 @@ function mdd_win_set(){
   });
 }
 
-
 function reconnect() {
   if(!lastDeviceIP && device_list.length > 0) {
      device_list.forEach(function(d) {
@@ -146,11 +147,11 @@ function setAutoConnect(flag) {
   }
 }
 
-function runScan(){
+function runScan(ip){
   return new Promise(function(resolve,reject){
-    var lastIndex = my_ip.lastIndexOf(".");
-    console.log('sudo nmap -sn -T5 --min-parallelism 100 '+my_ip.substring(0,lastIndex)+'.1/24');
-    exec('sudo nmap -sn -T5 --min-parallelism 100 '+my_ip.substring(0,lastIndex)+'.1/24',function(err,stdout,stderr){
+    var lastIndex = ip.lastIndexOf(".");
+    console.log('sudo nmap -sn -T5 --min-parallelism 100 '+ip.substring(0,lastIndex)+'.1/24');
+    exec('sudo nmap -sn -T5 --min-parallelism 100 '+ip.substring(0,lastIndex)+'.1/24',function(err,stdout,stderr){
       if (err){
         console.error('exec error: ' + err);
         reject(true)
@@ -234,7 +235,6 @@ function runScan(){
       resolve(device_list);
     });
   });
-
 };
 
 function connectIfNotConnected(deviceIP, port) {
@@ -313,7 +313,7 @@ function close_vnc() {
   vnc_started = false;
 }
 
-//timeout();
+timeout();
 function timeout() {
   setTimeout(function () {
     console.log("checking mdd connection...")
@@ -348,6 +348,78 @@ function killRemmina() {
       if (err) console.log(err);
       console.log(stdout);
     });
+}
+
+function findIP(){
+  return new Promise(function(resolve,reject){
+      exec("ifconfig", function (err,stdout,stderr){
+        if (err) console.log(err);
+        var res = stdout.split("\n");
+
+        // Splice out unneeded lines of output
+        for (i = res.length - 1; i >= 0; --i){
+          res[i] = res[i].toString();
+
+          if (res[i].includes("inet6")) {
+            res.splice(i,1)
+            continue;
+          };
+          if (res[i].includes("inet")) {
+            res[i]=res[i].trim();
+            continue;
+          };
+          res.splice(i,1);
+        }
+
+        res = res.join().split(",");
+
+        // Narrow Array to IP addresses alone
+        for (var i = 0; i < res.length; i++) {
+          if(!res[i]) continue;
+          res[i]=res[i].trim().replace(" n",",").replace(" b",",")
+          continue;
+        }
+
+        res = res.join().trim().split(",");
+
+        var address = []
+
+        for (i = res.length - 1; i >= 0; --i){
+          if (res[i].includes("inet")) {
+            res[i]=res[i].replace("inet","").trim();
+            address.push(res[i]);
+            continue;
+          };
+
+          res.splice(i,1);
+        }
+
+        // Split Array of IP address into single IP's in secondary array
+        var chunksize = 1;
+        var addr = [];
+
+        res.forEach((item)=>{
+          if(!addr.length || addr[addr.length-1].length == chunksize)
+          addr.push([]);
+
+          addr[addr.length-1].push(item);
+        });
+
+        //Split IP's into octets after splitting into multiple arrays
+        for (i = 0; i < addr.length; i++){
+          addr[i] = addr[i].toString().split(".")
+        } //Example Output:  [ [ '192', '168', '1', '93' ], [ '127', '0', '0', '1' ] ]
+
+        //Compare IP addresses
+        var ip_res;
+        addr.sort(); //Sort Lowest to highest
+        addr.reverse(); //Make sorting largest to smallest
+        ip_res = addr[0]; //Assign to largest IP address
+        ip_res = ip_res.join(".").toString(); //Join array with period to rebuild Ip address
+
+        resolve(ip_res)
+      });
+  });
 }
 
 function remoteTest(){

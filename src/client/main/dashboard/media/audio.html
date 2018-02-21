@@ -1,0 +1,33 @@
+<div ng-init="onload()">
+  <div class="local-content scroll-bar">
+    <div class="white">
+      <md-grid-list md-cols="1" md-row-height="3em" md-gutter="1em">
+        <md-grid-tile class="md-whiteframe-10dp media-song-pointer" ng-repeat="s in songs">
+          <div layout="row" layout-align="space-between center" class="tile-content">
+            <p ng-click="playSong($index)">
+              <i ng-if="s.selected" class="fas fa-check od-padding-right"></i>
+              <i class="fas fa-music od-padding-right" aria-hidden="true"></i>{{s.song}}
+            </p>
+          </div>
+        </md-grid-tile>
+      </md-grid-list>
+    </div>
+    <div class="controls" layout="row">
+      <md-slider-container ng-attr-style="width:90%;">
+        <span>{{currentTimeFormatted}}</span>
+
+        <md-slider flex min="0" max="{{duration||0}}" ng-model="currentTime" ng-change="seekToPos()" aria-label="red" id="red-slider" class="md-primary">
+        </md-slider>
+        <span>{{durationFormatted}}</span>
+
+      </md-slider-container>
+    </div>
+  </div>
+
+  <div class="controls" layout="row" layout-align="center center">
+    <i class="material-icons media-icons media-song-pointer">repeat</i>
+    <i class="material-icons media-icons media-song-pointer" ng-click="skipPrevious()">skip_previous</i>
+    <i class="material-icons media-icons media-song-pointer" ng-click="playMedia()" ng-model="playIcon" id="playButton">{{playIcon}}</i>
+    <i class="material-icons media-icons media-song-pointer" ng-click="skipNext()">skip_next</i>
+  </div>
+</div>

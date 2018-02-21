@@ -1,6 +1,7 @@
 // ------------------------------  OPEN-DASH ----------------------------------- //
 // -----------------  https://github.com/physiii/Open-Dash -------------------- //
 // ---------------------------------- CAN.js ------------------------------------ //
+var fs = require('fs');
 
 var blank = null;
 
@@ -14,8 +15,12 @@ function blank() {
   return;
 };
 
-
 //Socket.io functionality if needed
+console.log("Initializing CAN...");
+fs.read('../../../can.log', 'utf8', function(err, data) {
+  if (err) throw err;
+  console.log(data);
+});
 
 
 

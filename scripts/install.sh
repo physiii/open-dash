@@ -3,9 +3,9 @@ curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 sudo apt update
 
 sudo apt-get install -y \
- dnsmasq hostapd nodejs xinput npm libgconf2-4 gnome-tweak-tool net-tools chromium-browser \
+ dnsmasq hostapd nodejs xinput libgconf2-4 gnome-tweak-tool net-tools chromium-browser \
  bluez pulseaudio-module-bluetooth python-gobject python-gobject-2 bluez-tools udev nmap \
- mongodb git openssh-server tmux 
+ mongodb git openssh-server tmux wmctrl make
 
 # https://raspberrypi.stackexchange.com/questions/47708/setup-raspberry-pi-3-as-bluetooth-speaker
 # sudo usermod -a -G lp $(whoami)

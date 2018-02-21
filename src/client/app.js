@@ -18,6 +18,14 @@ app.config(function ($routeProvider) {
         templateUrl: 'main/dashboard/media/media.html',
         controller: 'MediaController'
     }).
+    when('/media/audio', {
+        templateUrl: 'main/dashboard/media/audio.html',
+        controller: 'AudioController'
+    }).
+    when('/media/video', {
+        templateUrl: 'main/dashboard/media/video.html',
+        controller: 'VideoController'
+    }).
     when('/settings', {
         templateUrl: 'main/dashboard/settings/settings.html',
         controller: 'SettingsController'
@@ -86,7 +94,7 @@ app.config(function ($routeProvider) {
         function ($rootScope, $location, $interval, $timeout) {
             $interval(function () {
                 $rootScope.autoconnect_enabled = true;
-                remote.runScan().then(function (list) {
+                remote.findIP().then(function(ip){return remote.runScan(ip)}).then(function (list) {
                     $rootScope.remoteAddressInfo = list;
                     for (var i = 0; i < list.length; i++) {
                         if ( list[i].device === "Hand Held Products") {

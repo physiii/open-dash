@@ -12,6 +12,7 @@ app.service('AudioService', function () {
   this.timeCallback = null;
 
   this.audio = document.getElementById("audioTrack");
+  this.video = document.getElementById("videoTrack");
 
   this.setTimeCallback = function (cb) {
     this.timeCallback = cb;
@@ -28,6 +29,9 @@ app.service('AudioService', function () {
 
   this.timeUpdateListener = function () {
     this.currentTime = this.audio.currentTime;
+    if (this.audio.paused || this.audio.ended) {
+      this.playing = false;
+    }
     if (this.timeCallback) this.timeCallback(this.currentTime);
   }
   this.timeUpdateListener = this.timeUpdateListener.bind(this);
@@ -51,14 +55,7 @@ app.service('AudioService', function () {
     var self = this;
     return new Promise(function (resolve, reject) {
       if (!self.audioFiles) {
-        var dir = "../../../media/music";
-        media.getAudioFiles(dir).then(function (files) {
-          self.playList = files;
-          self.audioDir = dir;
-          var audioFiles = files.map(function (file) {
-            return path.join(dir, file);
-          });
-          self.audioFiles = audioFiles;
+        self.changeAudioDir().then(function () {
           self.playPauseAudio();
           resolve(true);
         }).catch(function(err) {
@@ -83,6 +80,8 @@ app.service('AudioService', function () {
       this.addListeners();
     }
     if (this.audio.paused) {
+      if (this.video && this.video.src && !this.video.paused) this.video.pause();
+
       this.audio.play();
       this.playing = true;
     } else {
@@ -198,6 +197,7 @@ app.service('AudioService', function () {
         return resolve(self.changeAudioDir());
       }
       else {
+        self.playing = !self.audio.paused;
         resolve(true);
       }
     });
