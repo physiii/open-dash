@@ -1,12 +1,1 @@
-
-<!-- 
-test stream with:
-ffmpeg -s 1280x720 -f v4l2 -i /dev/video0 -f mpegts -codec:v mpeg1video -b:v 600k -r 2 -strict -1 http://127.0.0.1:8081/passwd 
--->
 <canvas id="video-canvas"></canvas>
-<script type="text/javascript" src="jsmpeg.min.js"></script>
-<script type="text/javascript">
-	var canvas = document.getElementById('video-canvas');
-	var url = 'ws://127.0.0.1:8082/';
-	var player = new JSMpeg.Player(url, {canvas: canvas});
-</script>
