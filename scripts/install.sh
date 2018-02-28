@@ -22,13 +22,13 @@ sudo apt-get install -y \
 
 git clone https://github.com/oblique/create_ap
 cd create_ap
-make install
+sudo make install
 
 sudo npm install -g pm2 nw --unsafe-perm=true --allow-root
 # sudo python -m pip install pymongo numpy opencv-python
 
 sudo create_ap wlp4s0 enp2s0 dash qweasdzxc
-systemctl enable create_ap
+sudo systemctl enable create_ap
 
 ## install open-dash
 cd ~
