@@ -27,8 +27,8 @@ sudo make install
 sudo npm install -g pm2 nw --unsafe-perm=true --allow-root
 # sudo python -m pip install pymongo numpy opencv-python
 
-sudo create_ap wlp4s0 enp2s0 dash qweasdzxc
-sudo systemctl enable create_ap
+# sudo create_ap wlp4s0 enp2s0 dash qweasdzxc
+# sudo systemctl enable create_ap
 
 ## install open-dash
 cd ~
