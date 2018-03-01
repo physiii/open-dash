@@ -1,17 +1,20 @@
 var express = require("express");
-var app = express();
 var multiparty = require("multiparty");
 var fs = require("fs");
-var msgid = 0;
-var currentScreenshot;
-var mouseEvents = [];
 
+var state = {
+    mouseEvents: [],
+    msgid: 0
+};
+
+var app = express();
 app.get(
     "/mdd/screen.jpg",
     function(req, res){
-	if(!currentScreenshot) return res.send("oops, not yet"); //TODO: error
+	if(!("currentScreenshot" in state))
+	    return res.send("oops, not yet"); //TODO: error
 	res.setHeader("Content-Type", "image/jpeg");
-	res.end(currentScreenshot);
+	res.end(state.currentScreenshot);
     }
 );
 app.post(
@@ -23,7 +26,7 @@ app.post(
 	    "end",
 	    function(){
 		var form = JSON.parse(body.join(""));
-		mouseEvents.push(form);
+		state.mouseEvents.push(form);
 		res.send("got it");
 	    }
 	);
@@ -60,19 +63,20 @@ app.post(
 				    path,
 				    function(err, data){
 					// TODO: check for err
-					currentScreenshot = data;
+					state.currentScreenshot = data;
 					fs.unlink(
 					    path,
 					    console.trace.bind(console)
 					);
 				    }
 				);
+				state.lastTime = {};
 			    }
 			);
 		    if(err) console.trace(err);
 		    var body = "";
 		    var maxEvents = 25;
-		    var myEvents = mouseEvents.slice(0, maxEvents);
+		    var myEvents = state.mouseEvents.slice(0, maxEvents);
 		    body += myEvents.map(
 			function(evt){
 			    var x = evt.x;
@@ -81,14 +85,14 @@ app.post(
 			    if(evt.event == "up") l = "u";
 			    if(evt.event == "down") l = "d";
 			    var result = [];
-			    result.push(++msgid + " x=" + (x^0));
-			    result.push(msgid + " y=" + (y^0));
+			    result.push(++state.msgid + " x=" + (x^0));
+			    result.push(state.msgid + " y=" + (y^0));
 			    if(l)
-				result.push(++msgid + " l=" + l);
+				result.push(++state.msgid + " l=" + l);
 			    return result.join("\n");
 			}
 		    ).join("\n");
-		    mouseEvents = mouseEvents.slice(maxEvents);
+		    state.mouseEvents = state.mouseEvents.slice(maxEvents);
 		    res.send(body);
 		}
 	    )
@@ -112,4 +116,6 @@ app.get(
 	);
     }
 );
-app.listen(8086, () => console.log("started"));
+
+exports.app = app;
+exports.state = state;
