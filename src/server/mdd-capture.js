@@ -14,7 +14,7 @@ app.get(
 	function clientLives(){
 	    if(!("lastTime" in state)) return false;
 	    var now = new Date();
-	    return now - state.lastTime < 1000 * 2.5;
+	    return now - state.lastTime < 1000 * 5;
 	}
 	res.send(clientLives());
     }

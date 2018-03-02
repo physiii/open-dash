@@ -8,9 +8,25 @@ $(
 		var img = document.getElementById("screenshot");
 		if(img)
 		    img.src = src;
-		//console.log(src);
 	    },
 	    16
+	);
+	setInterval(
+	    function(){
+		$.get(
+		    mddApiEndpoint + "/clientLives/",
+		    function(body){
+			var live = JSON.parse(body);
+			$(
+			    "#" + (live ? "apology" : "screenshot")
+			).addClass("hideme");
+			$(
+			    "#" + (!live ? "apology" : "screenshot")
+			).removeClass("hideme");
+		    }
+		);
+	    },
+	    500
 	);
 	function sendMouseEvent(target, name, evt){
 	    evt.preventDefault();

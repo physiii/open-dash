@@ -136,6 +136,7 @@ app.config(function ($routeProvider) {
                 handHeldProductsListPromise.then(autoconnect);
                 mddPromise.then(showMddOrHome);
             }
+	    var prevState = false;
 	    function findMdd(){
 		http.get(
 		    "http://127.0.0.1:8086/mdd/clientLives/",
@@ -146,6 +147,8 @@ app.config(function ($routeProvider) {
 			    "end",
 			    function(){
 				var live = JSON.parse(chunks.join(""));
+				if(live == prevState) return;
+				prevState = live;
 				if(live)
 				    $location.path("/remote");
 				else
