@@ -2,6 +2,7 @@
 var media = require('./server/modules/media.js');
 var remote = require('./server/modules/remote.js');
 var path = require('path');
+var http = require("http");
 
 var app = angular.module('app', ['ngRoute','ngMaterial','ngMessages']);
 app.config(function ($routeProvider) {
@@ -92,7 +93,7 @@ app.config(function ($routeProvider) {
 })
     .run([ '$rootScope', '$location', '$interval', '$timeout',
         function ($rootScope, $location, $interval, $timeout) {
-            function findMdd(){
+            function findMdd_old(){
                 function storeRemoteAddressInformation(
                     remoteAddressInformation
                 ){
@@ -132,10 +133,30 @@ app.config(function ($routeProvider) {
                     }
                 );
                 deviceListPromise.then(storeRemoteAddressInformation);
-                handHeldProductListPromise.then(autoconnect);
+                handHeldProductsListPromise.then(autoconnect);
                 mddPromise.then(showMddOrHome);
             }
-            $interval(findMdd(), 2000);
+	    function findMdd(){
+		http.get(
+		    "http://127.0.0.1:8086/mdd/clientLives/",
+		    function(res){
+			var chunks = [];
+			res.on("data", chunks.push.bind(chunks));
+			res.on(
+			    "end",
+			    function(){
+				var live = JSON.parse(chunks.join(""));
+				if(live)
+				    $location.path("/remote");
+				else
+				    if("/remote" == $location.path())
+					$location.path("/");
+			    }
+			);
+		    }
+		);
+	    }
+            $interval(findMdd, 500);
             $rootScope.$on('$routeChangeSuccess',function () {
                 $rootScope.dashBoardHeader = false;
                 var headerNames = {

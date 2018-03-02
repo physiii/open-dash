@@ -5,7 +5,9 @@ $(
 	    function(){
 		var src = mddApiEndpoint + "/screen.jpg" +
 		    "?" + new Date().getTime();
-		document.getElementById("screenshot").src = src;
+		var img = document.getElementById("screenshot");
+		if(img)
+		    img.src = src;
 		//console.log(src);
 	    },
 	    16

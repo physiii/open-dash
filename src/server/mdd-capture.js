@@ -9,6 +9,17 @@ var state = {
 
 var app = express();
 app.get(
+    "/mdd/clientLives/",
+    function(req, res){
+	function clientLives(){
+	    if(!("lastTime" in state)) return false;
+	    var now = new Date();
+	    return now - state.lastTime < 1000 * 2.5;
+	}
+	res.send(clientLives());
+    }
+);
+app.get(
     "/mdd/screen.jpg",
     function(req, res){
 	if(!("currentScreenshot" in state))
@@ -70,7 +81,7 @@ app.post(
 					);
 				    }
 				);
-				state.lastTime = {};
+				state.lastTime = new Date();
 			    }
 			);
 		    if(err) console.trace(err);
