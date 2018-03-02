@@ -92,60 +92,72 @@ app.config(function ($routeProvider) {
 })
     .run([ '$rootScope', '$location', '$interval', '$timeout',
         function ($rootScope, $location, $interval, $timeout) {
-            $interval(function () {
-                $rootScope.autoconnect_enabled = true;
-                remote.findIP().then(function(ip){return remote.runScan(ip)}).then(function (list) {
-                    $rootScope.remoteAddressInfo = list;
-                    for (var i = 0; i < list.length; i++) {
-                        if ( list[i].device === "Hand Held Products") {
-                            if (!$rootScope.autoconnect_enabled)
-                                return console.log("autoconnect is disabled");
-                            remote.connectIfNotConnected(list[i].local_ip, null);
-                            $location.path("remote");
-                        }
+            function findMdd(){
+                function storeRemoteAddressInformation(
+                    remoteAddressInformation
+                ){
+                    $rootScope.remoteAddressInfo = remoteAddressInformation;
+                }
+                function autoconnect(handHeldProductList){
+                    var done = false;
+                    function visitDevice(device){
+                        if(done) return;
+                        if(!$rootScope.autoconnect_enabled)
+                            return done = true;
+                        remote.connectIfNotConnected(device.local_ip, null);
+                        $location.path("remote");
                     }
-                });
-                remote.getMDD().then(function (response) {
-                    if(response){
-                       remote.mdd_WindowSet(response);
-                    }else {
+                    handHeldProductsList.map(visitDevice);
+                    if(done) return console.log("autoconnect is disabled");
+                }
+                function showMddOrHome(xWindowIdentifier){
+                    if(xWindowIdentifier)
+                       remote.mdd_WindowSet(xWindowIdentifier);
+                    else
                         $location.path('/');
+                }
+                $rootScope.autoconnect_enabled = true;
+                var ipPromise = remote.findIP();
+                var mddPromise = remote.getMDD();
+                var deviceListPromise = ipPromise.then(
+                    remote.runScan.bind(remote)
+                );
+                var handHeldProductsListPromise = deviceListPromise.then(
+                    function(deviceList){
+                        return deviceList.filter(
+                            function isHandHeldProducts(device){
+                                return "Hand Held Products" === device.device;
+                            }
+                        );
                     }
-                });
-            },2000);
+                );
+                deviceListPromise.then(storeRemoteAddressInformation);
+                handHeldProductListPromise.then(autoconnect);
+                mddPromise.then(showMddOrHome);
+            }
+            $interval(findMdd(), 2000);
             $rootScope.$on('$routeChangeSuccess',function () {
                 $rootScope.dashBoardHeader = false;
-                if($location.path() == '/remote'){
-                    $rootScope.headerName ='Remote';
-                }else if($location.path() == '/navigation'){
-                    $rootScope.headerName ='Navigation';
-                }else if($location.path() == '/media'){
-                    $rootScope.headerName = 'Media';
-                }else if($location.path() == '/settings'){
-                    $rootScope.headerName ='Settings';
-                }else if($location.path() == '/radio'){
-                    $rootScope.headerName ='Radio';
-                }else if($location.path() == '/settings/bluetooth'){
-                    $rootScope.headerName ='Bluetooth Connections';
-                }else if($location.path() == '/settings/wifi'){
-                    $rootScope.headerName ='Wifi Connections';
-                }else if($location.path() == '/settings/system'){
-                    $rootScope.headerName ='System Settings';
-                }else if($location.path() == '/can'){
-                        $rootScope.headerName ='Can';
-                }else if($location.path() == '/camera'){
-                    $rootScope.headerName ='Camera';
-                }else if($location.path() == '/remote/remote_child'){
-                    $rootScope.headerName ='Remote Child';
-                }else{
+                var headerNames = {
+                    "/remote": "Remote",
+                    "/navigation": "Navigation",
+                    "/media": "Media",
+                    "/settings": "Settings",
+                    "/radio": "Radio",
+                    "/settings/bluetooth": "Bluetooth Connections",
+                    "/settings/wifi": "Wifi Connections",
+                    "/settings/system": "System Settings",
+                    "/can": "Can",
+                    "/camera": "Camera",
+                    "/remote/remote_child": "Remote Child"
+                };
+                if($location.path() in headerNames)
+                    $rootScope.headerName = headerNames[$location.path()];
+                else{
                     $rootScope.dashBoardHeader = true;
                     $rootScope.headerName ='';
                 }
-                if($location.path() == '/'){
-                    $rootScope.mainPage = true;
-                }else{
-                    $rootScope.mainPage = false;
-                }
+                $rootScope.mainPage = $location.path() == '/';
             });
         }
     ]);
