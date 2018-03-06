@@ -35,7 +35,4 @@ app.controller('DashboardController', function($scope,$location){
     $scope.goToCamera = function(){
         $location.path('camera');
     }
-    $scope.goToContacts = function(){
-        $location.path('contacts');
-    }
 });

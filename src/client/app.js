@@ -134,8 +134,6 @@ app.config(function ($routeProvider) {
                 }else if($location.path() == '/can'){
                         $rootScope.headerName ='Can';
                 }else if($location.path() == '/camera'){
-                    $rootScope.headerName ='Contacts';
-                }else if($location.path() == '/contacts'){
                     $rootScope.headerName ='Camera';
                 }else if($location.path() == '/remote/remote_child'){
                     $rootScope.headerName ='Remote Child';
