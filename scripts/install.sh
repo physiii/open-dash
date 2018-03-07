@@ -1,4 +1,4 @@
-sudo echo 'open	ALL=(ALL:ALL) NOPASSWD:ALL' >> /etc/sudoers
+sudo bash -c "echo 'open	ALL=(ALL:ALL) NOPASSWD:ALL' >> /etc/sudoers"
 sudo apt-get install -y curl
 curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 sudo apt update
