@@ -35,4 +35,6 @@ cd ~
 git clone https://github.com/physiii/open-dash
 cd open-dash
 npm install
-pm2 --name open-dash start nw -- ~/code/open-dash
+sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u open --hp /home/open
+pm2 --name open-dash start ~/open-dash/scripts/dash-show.sh
+sudo echo 'open	ALL=(ALL:ALL) NOPASSWD:ALL' >> /etc/sudoers
