@@ -1,3 +1,4 @@
+sudo bash -c "echo 'open	ALL=(ALL:ALL) NOPASSWD:ALL' >> /etc/sudoers"
 sudo apt-get install -y curl
 curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 sudo apt update
@@ -35,4 +36,6 @@ cd ~
 git clone https://github.com/physiii/open-dash
 cd open-dash
 npm install
-pm2 --name open-dash start nw -- ~/code/open-dash
+
+pm2 --name open-dash start ~/open-dash/scripts/dash-show.sh
+sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u open --hp /home/open

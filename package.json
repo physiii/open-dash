@@ -10,8 +10,8 @@
     "toolbar": false,
     "frame": false,
     "position": "center",
-    "width": 600,
-    "height": 1024,
+    "width": 719,
+    "height": 976,
     "min_width": 220,
     "min_height": 220
   },
@@ -69,6 +69,7 @@
     "loudness": "^0.2.2",
     "material-design-icons": "^3.0.1",
     "mongodb": "^2.2.1",
+    "multiparty": "^4.1.3",
     "nmap": "^1.1.0",
     "node-hue-api": "^2.2.0",
     "node-php": "0.0.1",
