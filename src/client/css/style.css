@@ -4,15 +4,17 @@ html {
 
 
 body {
-    background: url('../images/OpenDash_background.png');
-    height: 100%;
     width: 100%;
-    overflow: hidden;
+    height : 100%;
+    background: url('../images/USPSlogov2.png') no-repeat center;
+    background-size: 80% 40%;
+    background-color: rgba(0, 0, 0,0.8);
     color:white;
 }
 h1{
   color:white;
 }
+
 .header-class{
     text-align: center;
     border-bottom:1px solid;
@@ -99,14 +101,14 @@ h1{
     padding-top: 0.1em;
 }
 .icon-color {
-  color: rgb(102, 204, 255);
+  color: rgb(255, 255, 255);
 }
 
 .icon-text{
   font-size:1.8em;
   padding-top: 0.5em;
 }
-.white{
+.black{
   color: #f6f5f8;
 }
 .remote-data{
