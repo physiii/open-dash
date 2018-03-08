@@ -1,68 +1,65 @@
 <div class="white">
-    <md-grid-list md-cols="1"  md-row-height="4em" md-gutter="1em">
-        <md-grid-tile class="md-whiteframe-10dp">
-            <div class="radioicons">
-                <i class="material-icons radioicons">radio</i>
-            </div>
-            <div ng-click="goToRadio()">
-                <h1>AM/FM Radio</h1>
-            </div>
-        </md-grid-tile>
-        <md-grid-tile class="md-whiteframe-10dp" >
-            <div class="radioicons">
-                <i class="fab fa-spotify fa-2x" aria-hidden="true"></i>
-            </div>
-            <div ng-click="goToSpotify()">
-                <h1>Spotify</h1>
-            </div>
-        </md-grid-tile>
-        <md-grid-tile layout="row" layout-align="space-between center" class="md-whiteframe-10dp" ng-click="goToPandora()">
-            <div>
-                <img src="images/pandora.png/" class="pandora radioicons">
-            </div>
-            <div>
-                <h1>Pandora</h1>
-            </div>
-        </md-grid-tile>
-    </md-grid-list>
+  <md-grid-list md-cols="1" md-row-height="4em" md-gutter="1em">
+    <md-grid-tile class="md-whiteframe-10dp">
+      <div class="radioicons">
+        <i class="material-icons radioicons">radio</i>
+      </div>
+      <div ng-click="goToRadio()">
+        <h1>AM/FM Radio</h1>
+      </div>
+    </md-grid-tile>
+    <md-grid-tile class="md-whiteframe-10dp">
+      <div class="radioicons">
+        <i class="fab fa-spotify fa-2x" aria-hidden="true"></i>
+      </div>
+      <div ng-click="goToSpotify()">
+        <h1>Spotify</h1>
+      </div>
+    </md-grid-tile>
+    <md-grid-tile layout="row" layout-align="space-between center" class="md-whiteframe-10dp" ng-click="goToPandora()">
+      <div>
+        <img src="images/pandora.png" class="pandora radioicons">
+      </div>
+      <div>
+        <h1>Pandora</h1>
+      </div>
+    </md-grid-tile>
+  </md-grid-list>
 </div>
 <script type="text/ng-template" id="login.tmpl.html">
-    <md-dialog aria-label="Login" class="login-modal">
+  <md-dialog aria-label="Login" class="login-modal">
     <form ng-cloak>
-        <md-toolbar>
-            <div class="md-toolbar-tools">
-                <h2>Login</h2>
-                <span flex></span>
-                <md-button class="md-icon-button" ng-click="cancel()">
-                    <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
-                </md-button>
-            </div>
-        </md-toolbar>
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+          <h2>Login</h2>
+          <span flex></span>
+          <md-button class="md-icon-button" ng-click="cancel()" aria-label="Close dialog">
+            <i class="material-icons">clear</i>
+          </md-button>
+        </div>
+      </md-toolbar>
+      <md-dialog-content>
+        <div class="md-dialog-content">
+          <div>
+            <md-error ng-if="errMsg">{{errMsg}}</md-error>
+            <md-input-container class="md-block" flex-gt-lg>
+              <label>Login</label>
+              <input ng-model="userName">
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-lg>
+              <label>Password</label>
+              <input ng-model="password">
+            </md-input-container>
+            <md-button class="md-raised md-primary" ng-click="login()">Login</md-button>
+          </div>
 
-        <md-dialog-content>
-            <div class="md-dialog-content">
-                <form name="Form">
-                    <div>
-                        <md-input-container class="md-block" flex-gt-lg>
-                            <label>Login</label>
-                            <input  ng-model="userName">
-                        </md-input-container>
-
-                        <md-input-container class="md-block" flex-gt-lg>
-                            <label>Password</label>
-                            <input ng-model="password">
-                        </md-input-container>
-                        <md-button class="md-raised md-primary">Login</md-button>
-                    </div>
-                </form>
-            </div>
-        </md-dialog-content>
-
-        <md-dialog-actions layout="row">
-            <md-button ng-click="close()">
-                Close
-            </md-button>
-        </md-dialog-actions>
+        </div>
+      </md-dialog-content>
+      <md-dialog-actions layout="row">
+        <md-button ng-click="close()">
+          Close
+        </md-button>
+      </md-dialog-actions>
     </form>
-</md-dialog>
+  </md-dialog>
 </script>

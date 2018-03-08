@@ -1,36 +1,35 @@
-<md-dialog aria-label="Login>
-    <form ng-cloak>
-        <md-toolbar>
-            <div class="md-toolbar-tools">
-                <h2>Login</h2>
-                <span flex></span>
-                <md-button class="md-icon-button" ng-click="cancel()">
-                    <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
-                </md-button>
-            </div>
-        </md-toolbar>
-        <md-dialog-content>
-            <div class="md-dialog-content">
-                <form name="Form">
-                    <div>
-                        <md-input-container class="md-block" flex-gt-sm>
-                            <label>Login</label>
-                            <input ng-model="userName">
-                        </md-input-container>
+<div class="dashboard-content scroll-bar">
+  <md-error>{{errMsg}}</md-error>
+  <div class="">
+    <md-grid-list class="grid-tile" md-cols="3" md-row-height="20%">
+      <md-grid-tile  ng-repeat="s in stations">
+        <div ng-click="showSongs(s)" class="">
+          <md-button>
+            <i class="material-icons">radio</i>
+            <div class="white">{{s.stationName}}</div>
+          </md-button>
+        </div>
+      </md-grid-tile>
 
-                        <md-input-container class="md-block" flex-gt-sm>
-                            <label>Password</label>
-                            <input ng-model="password">
-                        </md-input-container>
-                        <md-button class="md-raised md-primary">Login</md-button>
-                    </div>
-                </form>
-            </div>
-        </md-dialog-content>
-        <md-dialog-actions layout="row">
-            <md-button ng-click="close()">
-                close
-            </md-button>
-        </md-dialog-actions>
-    </form>
-</md-dialog>
+    </md-grid-list>
+  </div>
+  <div class="white">
+    <md-grid-list md-cols="1" md-row-height="3em" md-gutter="1em">
+      <md-grid-tile class="md-whiteframe-10dp media-song-pointer" ng-repeat="s in songs">
+        <div layout="row" layout-align="space-between center" class="tile-content">
+          <p ng-click="playSong($index)">
+            <i ng-if="s.selected" class="fas fa-check od-padding-right"></i>
+            <i class="fas fa-music od-padding-right" aria-hidden="true"></i>{{s.songName}}
+          </p>
+        </div>
+      </md-grid-tile>
+    </md-grid-list>
+  </div>
+  <div class="controls" layout="row" layout-align="center center">
+    <i class="material-icons media-icons media-song-pointer">repeat</i>
+    <i class="material-icons media-icons media-song-pointer" ng-click="skipPrevious()">skip_previous</i>
+    <i class="material-icons media-icons media-song-pointer" ng-click="playMedia()" ng-model="playIcon" id="playButton">{{playIcon}}</i>
+    <i class="material-icons media-icons media-song-pointer" ng-click="skipNext()">skip_next</i>
+  </div>
+</div>
+

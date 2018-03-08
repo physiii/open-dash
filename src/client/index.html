@@ -1,12 +1,10 @@
 
 <html ng-app="app">
 <head>
-    <title>open-dash</title>
-
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <link rel="stylesheet" type="text/css" href="css/angular-material.min.css" />
-    <link rel="stylesheet" type="text/css" href="../../node_modules/material-design-icons/iconfont/material-icons.css"/>
-
+  <title>open-dash</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <link rel="stylesheet" type="text/css" href="css/angular-material.min.css" />
+  <link rel="stylesheet" type="text/css" href="../../node_modules/material-design-icons/iconfont/material-icons.css" />
 </head>
 <body>
   <div ng-include="'main/header/header.html'"></div>
@@ -48,6 +46,8 @@
   <script type="text/javascript" src="main/dashboard/settings/bluetooth/bluetooth.controller.js"></script>
   <script type="text/javascript" src="main/dashboard/settings/wifi/wifi.controller.js"></script>
   <script type="text/javascript" src="main/dashboard/radio/radio.controller.js"></script>
+  <script type="text/javascript" src="main/dashboard/radio/pandora/pandora.controller.js"></script>
+  <script type="text/javascript" src="main/dashboard/radio/pandora/pandora.service.js"></script>
   <script type="text/javascript" src="main/dashboard/can/can.controller.js"></script>
   <script type="text/javascript" src="main/dashboard/camera/camera.controller.js"></script>
   <script src="http://localhost:1235/socket.io/socket.io.js"></script>

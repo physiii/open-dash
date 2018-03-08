@@ -21,6 +21,7 @@
     "karma": "karma start karma.conf.js --log-level debug --single-run"
   },
   "dependencies": {
+    "anesidora": "^1.2.1",
     "angular": "^1.6.9",
     "angular-animate": "^1.6.9",
     "angular-aria": "^1.6.9",
