@@ -28,6 +28,7 @@
   <script type="text/javascript" src="scripts/angular-messages.min.js"></script>
   <script type="text/javascript" src="scripts/angular-material.min.js"></script>
   <script type="text/javascript" src="app.js"></script>
+  <script type="text/javascript" src="scripts/dragscroll.js"></script>
   <script type="text/javascript" src="main/header/header.controller.js"></script>
   <script type="text/javascript" src="main/footer/footer.controller.js"></script>
   <script type="text/javascript" src="main/dashboard/dashboard.controller.js"></script>
@@ -52,6 +53,7 @@
   <script src="http://localhost:1235/socket.io/socket.io.js"></script>
   <script>
   var socketProcessIO = io("http://localhost:1235");
+  setInterval(function(){dragscroll.reset();}, 1500);
   </script>
 </body>
 </html>
