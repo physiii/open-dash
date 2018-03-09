@@ -1,4 +1,3 @@
-var express = require("express");
 var multiparty = require("multiparty");
 var fs = require("fs");
 
@@ -7,23 +6,51 @@ var state = {
     msgid: 0
 };
 
-var app = express();
-app.get(
-    "/mdd/clientLives/",
-    function(req, res){
-	function clientLives(){
-	    if(!("lastTime" in state)) return false;
-	    var now = new Date();
-	    return now - state.lastTime < 1000 * 5;
+function respondNotFound(response){
+	response.writeHead(404, "Not Found");
+	response.end("Not Found");
+}
+
+var app = {
+	listen: function(port){
+		require("http").createServer(
+			this.respond.bind(this)
+		).listen(port);
+	},
+	respond: function(req, res){
+		var path = req.url.split("?")[0];
+		if(!(path in this.resources)) return respondNotFound(res);
+		var resource = this.resources[path];
+		if(!(req.method.toUpperCase() in resource)){
+			res.writeHead(405, "Bad Method");
+			return res.end("This resource does not support this method.");
+		}
+		return resource[req.method.toUpperCase()](req, res);
+	},
+	resources: {
+		"/mdd/clientLives/": {
+			GET: function(req, res){
+				if(!("lastTime" in state)) return res.end("false");
+				var now = new Date();
+				if(now - state.lastTime < 1000 * 5) return res.end("true");
+				return res.end("false");
+			}
+		}
+	},
+	get: function(path, handler){
+		if(!(path in this.resources)) this.resources[path] = {};
+		this.resources[path].GET = handler;
+	},
+	post: function(path, handler){
+		if(!(path in this.resources)) this.resources[path] = {};
+		this.resources[path].POST = handler;
 	}
-	res.send(clientLives());
-    }
-);
+}
+
 app.get(
     "/mdd/screen.jpg",
     function(req, res){
-	if(!("currentScreenshot" in state))
-	    return res.send("oops, not yet"); //TODO: error
+	if(!("currentScreenshot" in state)) return respondNotFound(res);
 	res.setHeader("Content-Type", "image/jpeg");
 	res.end(state.currentScreenshot);
     }
@@ -38,7 +65,7 @@ app.post(
 	    function(){
 		var form = JSON.parse(body.join(""));
 		state.mouseEvents.push(form);
-		res.send("got it");
+		res.end("got it");
 	    }
 	);
     }
@@ -46,21 +73,6 @@ app.post(
 app.post(
     "/mdd/",
     function(req, res){
-	if(!true){
-	    console.log("request:");
-	    console.log(req.headers);
-	    /*
-	    req.on(
-		"data",
-		function(chunk){
-		    console.log("\tchunk", chunk);
-		}
-	    );
-	    */
-	    req.on("end", res.send.bind(res, "got it, thanks"));
-	    return;
-	}
-	else
 	    (
 		new multiparty.Form()
 	    ).parse(
@@ -73,7 +85,6 @@ app.post(
 				fs.readFile(
 				    path,
 				    function(err, data){
-					// TODO: check for err
 					state.currentScreenshot = data;
 					fs.unlink(
 					    path,
@@ -104,7 +115,7 @@ app.post(
 			}
 		    ).join("\n");
 		    state.mouseEvents = state.mouseEvents.slice(maxEvents);
-		    res.send(body);
+		    res.end(body);
 		}
 	    )
     }
@@ -112,7 +123,7 @@ app.post(
 app.get(
     "/mdd/",
     function(req, res){
-	res.send(
+	res.end(
 	    [
 		"<html>",
 		" <body>",
