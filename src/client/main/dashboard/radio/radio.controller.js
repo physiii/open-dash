@@ -1,7 +1,7 @@
 var app = angular.module('app');
 var Anesidora = require("anesidora");
 
-app.controller('RadioController', function ($scope, $rootScope, $timeout, $location, $mdDialog) {
+app.controller('RadioController', function ($scope, $rootScope, $timeout, $location, $mdDialog, PandoraService) {
   $scope.customFullscreen = false;
   $scope.back = function () {
     $location.path('/');
@@ -13,7 +13,7 @@ app.controller('RadioController', function ($scope, $rootScope, $timeout, $locat
     $location.path('radio/spotify');
   }
   $scope.goToPandora = function (ev) {
-    if ($rootScope.pandora) {
+    if (PandoraService.isLoggedIn()) {
       $location.path('radio/pandora');
     } else {
       $mdDialog.show({
@@ -39,22 +39,15 @@ app.controller('RadioController', function ($scope, $rootScope, $timeout, $locat
 
     $scope.login = function () {
       console.log("login to Pandora as "+$scope.userName);
-      var pandora = new Anesidora($scope.userName, $scope.password);
-      pandora.login(function (err) {
-        if (err) {
-          console.log(err);
-          
-        }
+      PandoraService.login($scope.userName, $scope.password).then(() => {
         $timeout(function () {
-          $scope.errMsg = err || "";
-          if (!err) {
-            $rootScope.pandora = pandora;
-            $location.path('radio/pandora');
-          } else {
-            $rootScope.pandora = null;
-          }
+          $scope.errMsg = "";
+          $location.path('radio/pandora');
         }, 10);
+      }).catch((err) => {
+        $scope.errMsg = err || "";
       });
+      
     }
   }
 

@@ -1,7 +1,7 @@
 var app = angular.module('app');
 
 app.service('PandoraService', function () {
-  this.audioFiles = null;
+
   this.playing = false;
   this.playList = null;
   this.currentIndex = 0;
@@ -9,16 +9,83 @@ app.service('PandoraService', function () {
   this.duration = -1;
   this.timeCallback = null;
   this.pandora = null;
-  this.station = null;
+  this.stations = null;
+  this.currentStation = null;
+
 
   this.audio = document.getElementById("audioTrack");
   this.video = document.getElementById("videoTrack");
 
-  this.setPandora = function (pandora) {
-    this.pandora = pandora;
+  this.isLoggedIn = function () {
+    return this.pandora != null;
   }
+  this.login = function (username, password) {
+    var self = this;
+    return new Promise((resolve, reject) => {
+      var pandora = new Anesidora(username, password);
+      self.pandora = pandora;
+      pandora.login( (err) => {
+        if (err) {
+          console.log(err);
+          return reject(err);
+        }
+        resolve(true);
+      });
+    })
+  }
+  this.getStations = function () {
+    var self=this;
+    return new Promise((resolve, reject) => {
+      if (!self.pandora) {
+        return reject("User is not logged in, or Pandora could not be initialized");
+      }
+      self.pandora.request("user.getStationList", function (err, stationList) {
+        if (err) {
+          console.log(err);
+          return reject(err);
+        }
+        
+        self.stations = stationList.stations;
+        if (self.stations && self.stations.length) {
+          self.currentStation = self.stations[0];
+        } else {
+          self.currentStation = null;
+        }
+        resolve(self.stations);
+      });
+    });
+    
+  }
+  
   this.setStation = function (station) {
-    this.station = station;
+    this.currentStation = station;
+  }
+  this.getSongs = function (station) {
+    var self = this;
+    if (station) { this.currentStation = station; }
+    else {
+      station = this.currentStation;
+    }
+    return new Promise((resolve, reject) => {
+      if (!station) {
+        return reject("No stations available");
+      }
+      self.pandora.request("station.getPlaylist", {
+        "stationToken": station.stationToken,
+        "additionalAudioUrl": "HTTP_128_MP3"
+      }, function (err, playlist) {
+        if (err) {
+          self.playList = [];
+          console.log(err);
+          return reject(err);
+        }
+        
+        self.playList = playlist.items;
+        resolve(self.playList);
+      });
+    });
+    
+   
   }
   this.setTimeCallback = function (cb) {
     this.timeCallback = cb;
@@ -60,8 +127,8 @@ app.service('PandoraService', function () {
   this.playMedia = function () {
     var self = this;
     return new Promise(function (resolve, reject) {
-      if (!self.audioFiles) {
-        self.changeAudioDir().then(function () {
+      if (!self.playList || !self.playList.length) {
+        self.getSongs().then(function () {
           self.playPauseAudio();
           resolve(true);
         }).catch(function(err) {
@@ -79,7 +146,7 @@ app.service('PandoraService', function () {
     if (!this.audio || !this.audio.src) {
       if (!this.audio) this.audio = document.getElementById("audioTrack");
       if (!this.audio.src) {
-        this.audio.src = this.audioFiles[0];
+        this.audio.src = this.playList[0].additionalAudioUrl;
         this.currentIndex = 0;
       }
       this.audio.load();
@@ -99,13 +166,13 @@ app.service('PandoraService', function () {
   this.skipPrevious = function () {
     var self = this;
     return new Promise(function (resolve, reject) {
-      if (!self.audioFiles)
+      if (!self.playList)
         return resolve(false);
 
       if (self.currentIndex > 0) {
         var audioPaused = self.audio.paused;
         self.currentIndex -= 1;
-        self.audio.src = self.audioFiles[self.currentIndex];
+        self.audio.src = self.playList[self.currentIndex].additionalAudioUrl;
         self.audio.load();
         self.addListeners();
 
@@ -120,13 +187,13 @@ app.service('PandoraService', function () {
   this.skipNext = function () {
     var self = this;
     return new Promise(function (resolve, reject) {
-      if (!self.audioFiles)
+      if (!self.playList)
         return resolve(false);
 
-      if (self.currentIndex < self.audioFiles.length - 1) {
+      if (self.currentIndex < self.playList.length - 1) {
         var audioPaused = self.audio.paused;
         self.currentIndex += 1;
-        self.audio.src = self.audioFiles[self.currentIndex];
+        self.audio.src = self.playList[self.currentIndex].additionalAudioUrl;
         self.audio.load();
         self.addListeners();
 
@@ -141,11 +208,11 @@ app.service('PandoraService', function () {
   this.playSong = function (idx) {
     var self = this;
     return new Promise(function (resolve, reject) {
-      if (!self.audioFiles)
+      if (!self.playList || !self.playList.length)
         return resolve(false);
-      if (idx >= 0 && idx < self.audioFiles.length) {
+      if (idx >= 0 && idx < self.playList.length) {
         var audioPaused = self.audio.paused;
-        self.audio.src = self.audioFiles[idx];
+        self.audio.src = self.playList[idx].additionalAudioUrl;
         self.audio.load();
         self.currentIndex = idx;
         self.addListeners();
@@ -162,45 +229,12 @@ app.service('PandoraService', function () {
     });
   };
 
-  this.changeAudioDir = function (dir) {
-    var self = this;
-    return new Promise(function (resolve, reject) {
-      if (dir) {
-        dir = path.join("../../..", dir);
-      } else {
-        dir = "../../../media/music";
-      }
-      var dirChanged = self.audioDir != dir;
-      if (dirChanged || !self.audioFiles || !self.audioFiles.length) {
-        media.getAudioFiles(dir).then(function (files) {
-          self.playList = files;
-          self.audioDir = dir;
-          var audioFiles = files.map(function (file) {
-            return path.join(dir, file);
-          });
-          self.audioFiles = audioFiles;
-          if (audioFiles && audioFiles.length) {
-            self.audio.src = self.audioFiles[0];
-            self.audio.load();
-            self.currentIndex = 0;
-            self.addListeners();
-          }
-          resolve(true);
-        }).catch(function (err) {
-          console.log(err);
-          reject(err);
-        });
-      } else {
-        self.playList = files;
-        resolve(true);
-      }
-    });
-  };
+
   this.getAudioState = function () {
     var self = this;
     return new Promise(function (resolve, reject) {
-      if (!self.audioFiles) {
-        return resolve(self.changeAudioDir());
+      if (!self.playList) {
+        return resolve(self.getSongs());
       }
       else {
         self.playing = !self.audio.paused;
