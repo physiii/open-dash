@@ -118,7 +118,7 @@ console.log("JPEG POST");
 					    path,
 					    function(err){
 						if(err) console.trace(err);
-						respondMouse(res);
+						setTimeout(function(){respondMouse(res);}, 10);
 						state.lastTime = new Date();
 					    }
 					);

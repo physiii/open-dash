@@ -9,7 +9,7 @@ $(
 		if(img)
 		    img.src = src;
 	    },
-	    16
+	    50
 	);
 	setInterval(
 	    function(){
