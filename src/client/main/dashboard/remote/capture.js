@@ -11,7 +11,11 @@ $(
 	    },
 	    50
 	);
-	setInterval(
+	function runEveryFrame(f){
+		requestAnimationFrame(function(){runEveryFrame(f);});
+		f();
+	}
+	runEveryFrame(
 	    function(){
 		$.get(
 		    mddApiEndpoint + "/clientLives/",
@@ -25,8 +29,7 @@ $(
 			).removeClass("hideme");
 		    }
 		);
-	    },
-	    500
+	    }
 	);
 	function sendMouseEvent(target, name, evt){
 	    evt.preventDefault();
