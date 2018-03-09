@@ -70,32 +70,8 @@ app.post(
 	);
     }
 );
-app.post(
-    "/mdd/",
-    function(req, res){
-	    (
-		new multiparty.Form()
-	    ).parse(
-		req,
-		function(err, fields, files){
-		    if(files)
-			files.file.map(
-			    function(file){
-				var path = file.path;
-				fs.readFile(
-				    path,
-				    function(err, data){
-					state.currentScreenshot = data;
-					fs.unlink(
-					    path,
-					    console.trace.bind(console)
-					);
-				    }
-				);
-				state.lastTime = new Date();
-			    }
-			);
-		    if(err) console.trace(err);
+function respondMouse(res){
+console.log("MOUSE");
 		    var body = "";
 		    var maxEvents = 25;
 		    var myEvents = state.mouseEvents.slice(0, maxEvents);
@@ -116,6 +92,42 @@ app.post(
 		    ).join("\n");
 		    state.mouseEvents = state.mouseEvents.slice(maxEvents);
 		    res.end(body);
+}
+app.post(
+    "/mdd/",
+    function(req, res){
+	(
+		new multiparty.Form()
+	).parse(
+		req,
+		function(err, fields, files){
+console.log("JPEG POST");
+		    if(err) console.trace(err);
+		    if(files){
+			var file = null;
+			if("file" in files)
+				if(files.file.length)
+					file = files.file[0];
+			if(null != file){
+				var path = file.path;
+				fs.readFile(
+				    path,
+				    function(err, data){
+					state.currentScreenshot = data;
+					fs.unlink(
+					    path,
+					    function(err){
+						if(err) console.trace(err);
+						respondMouse(res);
+						state.lastTime = new Date();
+					    }
+					);
+				    }
+				);
+			}
+			else respondMouse(res);
+		    }
+		    else respondMouse(res);
 		}
 	    )
     }
