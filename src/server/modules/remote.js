@@ -27,7 +27,7 @@ module.exports = {
   connectIfNotConnected: connectIfNotConnected,
   close_vnc: close_vnc,
   device_list: device_list,
-  runScan: runScan,
+  //runScan: runScan,
   autoConnectEnabled: autoConnectEnabled,
   setAutoConnect: setAutoConnect,
   getMDD: getMDD,
@@ -36,8 +36,9 @@ module.exports = {
   findIP: findIP
 }
 
-var device_list;
+var device_list = [];
 
+/*
 findIP().then(function(ip){
   console.log("Largest IP in Network is: ", ip)
   return runScan(ip)
@@ -47,6 +48,8 @@ findIP().then(function(ip){
   console.log("EMIT DEVICES from remote.js");
   socketProcessIO.emit("device-list", device_list);
 });
+*/
+  socketProcessIO.emit("device-list", device_list);
 
 var autoConnectTimer = null;
 
@@ -149,6 +152,7 @@ function setAutoConnect(flag) {
 
 function runScan(ip){
   return new Promise(function(resolve,reject){
+return reject("DEPRECATED runScan");
     var lastIndex = ip.lastIndexOf(".");
     console.log('sudo nmap -sn -T5 --min-parallelism 100 '+ip.substring(0,lastIndex)+'.1/24');
     exec('sudo nmap -sn -T5 --min-parallelism 100 '+ip.substring(0,lastIndex)+'.1/24',function(err,stdout,stderr){
@@ -423,6 +427,7 @@ function findIP(){
 }
 
 function remoteTest(){
+return console.log("not testin' nothin'");
   console.log('Running host discovery scan. Please wait. . .');
   runScan();
   console.log(device_list);

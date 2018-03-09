@@ -7,7 +7,7 @@ app.controller('RemoteController', function($scope,$rootScope,$location,$timeout
 
     $scope.toggleIp = remote.autoConnectEnabled;
     $rootScope.autoconnect_enabled =  true;
- 
+
     $scope.connectRemote = function(ip){
         remote.connect(ip,null);
     }
@@ -21,6 +21,8 @@ app.controller('RemoteController', function($scope,$rootScope,$location,$timeout
         $location.path('/remote/remote_child');
     }
     $scope.manualRun = function(){
+console.log("DEPRECATION WARNING");
+return; // DEPRECATE THIS
         remote.runScan().then(function (list) {
             $timeout(function() {
               $rootScope.remoteAddressInfo = list;

@@ -93,49 +93,6 @@ app.config(function ($routeProvider) {
 })
     .run([ '$rootScope', '$location', '$interval', '$timeout',
         function ($rootScope, $location, $interval, $timeout) {
-            function findMdd_old(){
-                function storeRemoteAddressInformation(
-                    remoteAddressInformation
-                ){
-                    $rootScope.remoteAddressInfo = remoteAddressInformation;
-                }
-                function autoconnect(handHeldProductList){
-                    var done = false;
-                    function visitDevice(device){
-                        if(done) return;
-                        if(!$rootScope.autoconnect_enabled)
-                            return done = true;
-                        remote.connectIfNotConnected(device.local_ip, null);
-                        $location.path("remote");
-                    }
-                    handHeldProductsList.map(visitDevice);
-                    if(done) return console.log("autoconnect is disabled");
-                }
-                function showMddOrHome(xWindowIdentifier){
-                    if(xWindowIdentifier)
-                       remote.mdd_WindowSet(xWindowIdentifier);
-                    else
-                        $location.path('/');
-                }
-                $rootScope.autoconnect_enabled = true;
-                var ipPromise = remote.findIP();
-                var mddPromise = remote.getMDD();
-                var deviceListPromise = ipPromise.then(
-                    remote.runScan.bind(remote)
-                );
-                var handHeldProductsListPromise = deviceListPromise.then(
-                    function(deviceList){
-                        return deviceList.filter(
-                            function isHandHeldProducts(device){
-                                return "Hand Held Products" === device.device;
-                            }
-                        );
-                    }
-                );
-                deviceListPromise.then(storeRemoteAddressInformation);
-                handHeldProductsListPromise.then(autoconnect);
-                mddPromise.then(showMddOrHome);
-            }
 	    var prevState = false;
 	    function findMdd(){
 		http.get(
