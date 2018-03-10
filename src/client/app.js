@@ -71,6 +71,11 @@ app.config(function ($routeProvider) {
         templateUrl: 'main/dashboard/radio/pandora/pandora.html',
         controller: 'PandoraController'
     }).
+    when('/radio/pandora/playlist',{
+        templateUrl: 'main/dashboard/radio/pandora/playlist.html',
+        controller: 'PlaylistController'
+    }).
+
     when('/radio/spotify',{
         templateUrl: 'main/dashboard/radio/spotify/spotify.html',
         controller: 'SpotifyController'
@@ -87,6 +92,7 @@ app.config(function ($routeProvider) {
         templateUrl: 'main/dashboard/camera/camera.html',
         controller: 'CameraController'
     }).
+
     otherwise({
         redirectTo: '/'
     });
@@ -125,6 +131,8 @@ app.config(function ($routeProvider) {
                     "/media": "Media",
                     "/settings": "Settings",
                     "/radio": "Radio",
+                    "/radio/Pandora": "Pandora",
+                    "/radio/Pandora/playlist": "Pandora",
                     "/settings/bluetooth": "Bluetooth Connections",
                     "/settings/wifi": "Wifi Connections",
                     "/settings/system": "System Settings",

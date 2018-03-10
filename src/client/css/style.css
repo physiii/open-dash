@@ -14,7 +14,9 @@ body {
 h1{
   color:white;
 }
-
+.homebutton{
+    font-size: 10em;
+}
 .header-class{
     text-align: center;
     border-bottom:1px solid;
