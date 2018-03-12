@@ -1,17 +1,6 @@
 $(
     function(){
 	var mddApiEndpoint = "http://127.0.0.1:8086/mdd";
-	setInterval(
-	    function(){
-		return;
-		var src = mddApiEndpoint + "/screen.jpg" +
-		    "?" + new Date().getTime();
-		var img = document.getElementById("screenshot");
-		if(img)
-		    img.src = src;
-	    },
-	    50
-	);
 	function runEveryFrame(f){
 		requestAnimationFrame(function(){runEveryFrame(f);});
 		f();

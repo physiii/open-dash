@@ -39,3 +39,4 @@ npm install
 
 pm2 --name open-dash start ~/open-dash/scripts/dash-show.sh
 sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u open --hp /home/open
+pm2 --name noblank start ~/open-dash/scripts/fight-screensaver.sh

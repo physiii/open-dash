@@ -13,7 +13,6 @@ app.controller(
       $rootScope.jpgHole(
 	  function(jpgBuf){
 	      that.jpgsrc = "data:image/jpeg;base64," + jpgBuf.toString("base64");
-	      //console.log(that.jpgsrc);
 	  }
       );
     $scope.toggleIp = remote.autoConnectEnabled;

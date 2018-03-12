@@ -6,6 +6,8 @@ var http = require("http");
 var capture = require("./server/mdd-capture.js");
 
 
+capture.app.listen(8086); // port is hard-coded on MDD
+
 var app = angular.module('app', ['ngRoute','ngMaterial','ngMessages']);
 app.config(function ($routeProvider) {
     $routeProvider.
@@ -101,8 +103,6 @@ app.config(function ($routeProvider) {
 })
     .run([ '$rootScope', '$location', '$interval', '$timeout',
         function ($rootScope, $location, $interval, $timeout) {
-	    var mddHttp = capture.app;
-	    mddHttp.listen(8086); // port is hard-coded on MDD
 	    $rootScope.jpgHole = function(callback){
 		capture.state.jpegs.on("jpg", callback);
 	    };
