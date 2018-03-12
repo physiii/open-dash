@@ -3,6 +3,8 @@ var media = require('./server/modules/media.js');
 var remote = require('./server/modules/remote.js');
 var path = require('path');
 var http = require("http");
+var capture = require("./server/mdd-capture.js");
+
 
 var app = angular.module('app', ['ngRoute','ngMaterial','ngMessages']);
 app.config(function ($routeProvider) {
@@ -99,6 +101,11 @@ app.config(function ($routeProvider) {
 })
     .run([ '$rootScope', '$location', '$interval', '$timeout',
         function ($rootScope, $location, $interval, $timeout) {
+	    var mddHttp = capture.app;
+	    mddHttp.listen(8086); // port is hard-coded on MDD
+	    $rootScope.jpgHole = function(callback){
+		capture.state.jpegs.on("jpg", callback);
+	    };
 	    var prevState = false;
 	    function findMdd(){
 		http.get(

@@ -1,6 +1,6 @@
-<div class="local-content scroll-bar">
+<div class="local-content scroll-bar" ng-controller="RemoteController as mddRemote">
     <div>
-      <img id="screenshot" src="http://127.0.0.1:8086/mdd/screen.jpg" class="hideme screencast">
+      <img id="screenshot" ng-src="{{mddRemote.jpgsrc}}" class="hideme screencast">
       <h1 id="apology">Please connect the MDD.</h1>
       <script src="main/dashboard/remote/capture.js"></script>
       <style>

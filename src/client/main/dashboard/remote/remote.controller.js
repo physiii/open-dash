@@ -1,10 +1,21 @@
 var app = angular.module('app');
 var remote = require('./server/modules/remote.js');
-app.controller('RemoteController', function($scope,$rootScope,$location,$timeout){
+
+app.controller(
+  'RemoteController',
+  function($scope,$rootScope,$location,$timeout){
     $scope.back=function(){
         $location.path('/');
     }
 
+      var that = this;
+      that.jpgsrc = "http://127.0.0.1:8086/mdd/screen.jpg";
+      $rootScope.jpgHole(
+	  function(jpgBuf){
+	      that.jpgsrc = "data:image/jpeg;base64," + jpgBuf.toString("base64");
+	      //console.log(that.jpgsrc);
+	  }
+      );
     $scope.toggleIp = remote.autoConnectEnabled;
     $rootScope.autoconnect_enabled =  true;
 
@@ -29,4 +40,5 @@ return; // DEPRECATE THIS
             }, 500);
         });
     }
-});
+  }
+);

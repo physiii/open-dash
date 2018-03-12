@@ -14,8 +14,6 @@ var update = require('./system/update.js');
 var socket = require('socket.io');
 var system = require('./system/system.js');
 var relay = require('./server/websocket-relay.js');
-var capture = require("./server/mdd-capture.js");
-capture.app.listen(8086);
 
 //var main_app_socket = require('socket.io-clientnpm install -g nodemon')("http://127.0.0.1:1234");
 //var webserv_socket = require('socket.io-client')("http://127.0.0.1:8080");

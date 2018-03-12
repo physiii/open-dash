@@ -1,5 +1,6 @@
 var multiparty = require("multiparty");
 var fs = require("fs");
+const EventEmitter = require("events");
 
 var state = {
     mouseEvents: [],
@@ -46,6 +47,9 @@ var app = {
 		this.resources[path].POST = handler;
 	}
 }
+
+var jpegs = new EventEmitter();
+state.jpegs = jpegs;
 
 app.get(
     "/mdd/screen.jpg",
@@ -114,11 +118,17 @@ console.log("JPEG POST");
 				    path,
 				    function(err, data){
 					state.currentScreenshot = data;
+					jpegs.emit("jpg", data);
 					fs.unlink(
 					    path,
 					    function(err){
 						if(err) console.trace(err);
-						setTimeout(function(){respondMouse(res);}, 10);
+						setTimeout(
+						    function(){
+							respondMouse(res);
+						    },
+						    10
+						);
 						state.lastTime = new Date();
 					    }
 					);
