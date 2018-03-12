@@ -242,4 +242,54 @@ app.service('PandoraService', function () {
       }
     });
   };
+  this.makePandoraRequest = function (request, data) {
+    var self = this;
+    return new Promise(function (resolve, reject) {
+      self.pandora.request(request,
+      data, function (err, response) {
+        if (err) {
+          console.log(err);
+          return reject(err);
+        }
+        console.log(response);
+        if (request == "music.search") {
+          var songs = [];
+          var artists = [];
+          var genreStations = [];
+          if (response.artists && response.artists.length) {
+            artists = response.artists.map((station) => {
+              var value = "";
+
+              station.value = station.pandoraId;
+              station.display = "Artist: " + station.artistName;
+              return station;
+            });
+          }
+          if (response.genreStations && response.genreStations.length) {
+            genreStations = response.genreStations.map((station) => {
+              var value = "";
+
+              station.value = station.pandoraId;
+              station.display = "Genre: " + station.stationName;
+              return station;
+            });
+          }
+          if (response.songs && response.songs.length) {
+            songs = response.songs.map((station) => {
+              var value = "";
+
+              station.value = station.pandoraId;
+              station.display = "Song: " + station.songName;
+              return station;
+
+            });
+          }
+          resolve(genreStations.concat(artists, songs));
+        } else {
+          resolve(response);
+        }
+      });
+    });
+  }
+
 });
