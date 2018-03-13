@@ -27,7 +27,7 @@
             <span md-highlight-text="searchText" md-highlight-flags="^i">{{item.display}}</span>
           </md-item-template>
           <md-not-found>
-            No stations matching "{{searchText}}" were found.
+            <div ng-if="searchText">No stations matching {{searchText}}" were found.</div>
           </md-not-found>
         </md-autocomplete>
       </form>

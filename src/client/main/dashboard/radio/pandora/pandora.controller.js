@@ -27,6 +27,7 @@ app.controller('PandoraController', function ($scope, $rootScope, $location, $ti
         templateUrl: 'main/dashboard/radio/pandora/station.dialog.html',
         parent: document.getElementsByClassName('main-content'),
         targetEvent: ev,
+        scope: $scope,
         clickOutsideToClose: true,
         fullscreen: $scope.customFullscreen
       });
@@ -50,6 +51,7 @@ app.controller('PandoraController', function ($scope, $rootScope, $location, $ti
   }
   function DialogController($scope, $timeout, $mdDialog) {
     var self = this;
+    $scope.dialogErrMsg = "";
     $scope.selectedItem = "";
 
     $scope.cancel = function () {
@@ -64,18 +66,17 @@ app.controller('PandoraController', function ($scope, $rootScope, $location, $ti
       console.log($scope.selectedItem);
       if ($scope.selectedItem) {
         $scope.createStation($scope.selectedItem).then(() => {
-          $mdDialog.hide();
 
           //refresh the station list
           PandoraService.getStations().then((stations) => {
             $timeout(function () {
               $scope.errMsg = "";
               $scope.stations = stations;
-
+              $mdDialog.hide();
             }, 10);
           }).catch((err) => {
             $timeout(function () {
-              $scope.errMsg = err;
+              $scope.dialogErrMsg = err;
 
             }, 10);
           });
@@ -87,7 +88,7 @@ app.controller('PandoraController', function ($scope, $rootScope, $location, $ti
       }
     };
     // list of stations
-    $scope.stations = [];
+    $scope.stationsFromSearch = [];
     $scope.querySearch = querySearch;
 
     
@@ -95,7 +96,7 @@ app.controller('PandoraController', function ($scope, $rootScope, $location, $ti
      * Search for stations.
      */
     function querySearch(query) {
-      return query ? $scope.searchPandora(query) : $scope.stations;
+      return query ? $scope.searchPandora(query) : $scope.stationsFromSearch;
     }
 
     $scope.createStation = function (station) {
@@ -111,12 +112,12 @@ app.controller('PandoraController', function ($scope, $rootScope, $location, $ti
         PandoraService.makePandoraRequest("station.createStation",
               data).then(() => {
                 $timeout(function () {
-                  $scope.errMsg = "";
+                  $scope.dialogErrMsg = "";
                 }, 10);
                 resolve(true);
               }).catch((err) => {
                 $timeout(function () {
-                  $scope.errMsg = err || "";
+                  $scope.dialogErrMsg = err || "";
                   reject(errMsg);
                 }, 10);
               });
@@ -131,7 +132,7 @@ app.controller('PandoraController', function ($scope, $rootScope, $location, $ti
           { "searchText": query }).then((stations) => {
             $timeout(function () {
               $scope.errMsg = "";
-              $scope.stations = stations;
+              $scope.stationsFromSearch = stations;
             }, 10);
             resolve(stations);
           }).catch((err) => {

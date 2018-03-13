@@ -242,6 +242,11 @@ app.service('PandoraService', function () {
       }
     });
   };
+  this.compareFunction = function (a, b) {
+    if (a.score < b.score) return -1;
+    else if(a.score > b.score) return 1;
+    else return 0;
+  }
   this.makePandoraRequest = function (request, data) {
     var self = this;
     return new Promise(function (resolve, reject) {
@@ -284,7 +289,7 @@ app.service('PandoraService', function () {
 
             });
           }
-          resolve(genreStations.concat(artists, songs));
+          resolve(genreStations.concat(artists, songs).sort(self.compareFunction));
         } else {
           resolve(response);
         }
