@@ -15,6 +15,10 @@ app.controller('HeaderController', function($scope,$location){
             $location.path('/');
         }else if($location.path() == '/radio'){
             $location.path('/');
+        }else if($location.path() == '/radio/pandora'){
+            $location.path('/radio');
+        }else if($location.path() == '/radio/pandora/playlist'){
+            $location.path('/radio/pandora');
         }else if($location.path() == '/settings/bluetooth'){
             $location.path('/');
         }else if($location.path() == '/settings/wifi'){
