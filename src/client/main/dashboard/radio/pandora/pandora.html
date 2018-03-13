@@ -1,5 +1,15 @@
-<div class="dashboard-content scroll-bar">
+<div class="dashboard-content scroll-bar dragscroll">
   <md-error>{{errMsg}}</md-error>
+  <div class="white">
+    <div layout="row" layout-align="space-between right" class="tile-content">
+      <div ng-click="showStationDialog($event)">
+        <md-button>
+          <i class="material-icons">add</i>Add Station
+        </md-button>
+      </div>
+    </div>
+  </div>
+
   <div class="white">
     <md-grid-list md-cols="1" md-row-height="3em" md-gutter="1em">
       <md-grid-tile class="md-whiteframe-10dp media-song-pointer" ng-repeat="s in stations">

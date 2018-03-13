@@ -60,7 +60,7 @@ app.service('PandoraService', function () {
   this.setStation = function (station) {
     this.currentStation = station;
   }
-  this.getSongs = function (station) {
+  this.getSongs = function (station, moreSongsFlag) {
     var self = this;
     if (station) { this.currentStation = station; }
     else {
@@ -80,7 +80,13 @@ app.service('PandoraService', function () {
           return reject(err);
         }
         
-        self.playList = playlist.items;
+        if (moreSongsFlag && self.playList && self.playList.length) {
+          if (playlist.items && playlist.items.length) {
+            self.playList = self.playList.concat(playlist.items.filter(s => s.additionalAudioUrl));
+          }
+        } else {
+          self.playList = playlist.items.filter(s => s.additionalAudioUrl);
+        }
         resolve(self.playList);
       });
     });
@@ -242,4 +248,60 @@ app.service('PandoraService', function () {
       }
     });
   };
+  this.compareFunction = function (a, b) {
+    if (a.score < b.score) return -1;
+    else if(a.score > b.score) return 1;
+    else return 0;
+  }
+  this.makePandoraRequest = function (request, data) {
+    var self = this;
+    return new Promise(function (resolve, reject) {
+      self.pandora.request(request,
+      data, function (err, response) {
+        if (err) {
+          console.log(err);
+          return reject(err);
+        }
+        console.log(response);
+        
+        if (request == "music.search") {
+          var songs = [];
+          var artists = [];
+          var genreStations = [];
+          if (response.artists && response.artists.length) {
+            artists = response.artists.map((station) => {
+              var value = "";
+
+              station.value = station.pandoraId;
+              station.display = "Artist: " + station.artistName;
+              return station;
+            });
+          }
+          if (response.genreStations && response.genreStations.length) {
+            genreStations = response.genreStations.map((station) => {
+              var value = "";
+
+              station.value = station.pandoraId;
+              station.display = "Genre: " + station.stationName;
+              return station;
+            });
+          }
+          if (response.songs && response.songs.length) {
+            songs = response.songs.map((station) => {
+              var value = "";
+
+              station.value = station.pandoraId;
+              station.display = "Song: " + station.songName;
+              return station;
+
+            });
+          }
+          resolve(genreStations.concat(artists, songs).sort(self.compareFunction));
+        } else {
+          resolve(response);
+        }
+      });
+    });
+  }
+
 });

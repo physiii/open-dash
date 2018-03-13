@@ -14,7 +14,7 @@ var update = require('./system/update.js');
 var socket = require('socket.io');
 var system = require('./system/system.js');
 var relay = require('./server/websocket-relay.js');
-
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 //var main_app_socket = require('socket.io-clientnpm install -g nodemon')("http://127.0.0.1:1234");
 //var webserv_socket = require('socket.io-client')("http://127.0.0.1:8080");
 const server = http.createServer().listen("1235");
