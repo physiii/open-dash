@@ -60,7 +60,7 @@ app.service('PandoraService', function () {
   this.setStation = function (station) {
     this.currentStation = station;
   }
-  this.getSongs = function (station) {
+  this.getSongs = function (station, moreSongsFlag) {
     var self = this;
     if (station) { this.currentStation = station; }
     else {
@@ -80,7 +80,13 @@ app.service('PandoraService', function () {
           return reject(err);
         }
         
-        self.playList = playlist.items;
+        if (moreSongsFlag && self.playList && self.playList.length) {
+          if (playlist.items && playlist.items.length) {
+            self.playList = self.playList.concat(playlist.items.filter(s => s.additionalAudioUrl));
+          }
+        } else {
+          self.playList = playlist.items.filter(s => s.additionalAudioUrl);
+        }
         resolve(self.playList);
       });
     });
@@ -257,6 +263,7 @@ app.service('PandoraService', function () {
           return reject(err);
         }
         console.log(response);
+        
         if (request == "music.search") {
           var songs = [];
           var artists = [];

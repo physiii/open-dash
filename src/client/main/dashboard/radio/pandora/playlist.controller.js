@@ -57,7 +57,6 @@ app.controller('PlaylistController', function ($scope, $rootScope, $location, $t
                 });
                 $scope.durationFormatted = $scope.formatTime($scope.duration);
 
-                $scope.audioDir = PandoraService.audioDir;
                 $scope.playing = PandoraService.playing;
                 if ($scope.playing) {
                     $scope.playIcon = "pause";
@@ -68,7 +67,13 @@ app.controller('PlaylistController', function ($scope, $rootScope, $location, $t
         });
     }
 
-
+    $scope.getMoreSongs = function () {
+      PandoraService.getSongs(null, true).then(function (songs) {
+        $timeout(function () {
+          $scope.getAudioState();
+        }, 10);
+      });
+    };
 
     $scope.playMedia = function () {
         PandoraService.playMedia().then(function () {
