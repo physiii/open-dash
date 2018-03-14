@@ -31,7 +31,7 @@ var app = {
 	},
 	resources: {
 		"/mdd/clientLives/": {
-			GET: function(req, res){@
+			GET: function(req, res){
 				if(!("lastTime" in state))
 					return res.end("false");
 				var now = new Date();
