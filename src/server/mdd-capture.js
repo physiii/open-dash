@@ -4,7 +4,8 @@ const EventEmitter = require("events");
 
 var state = {
     mouseEvents: [],
-    msgid: 0
+    msgid: 0,
+    jpegs: new EventEmitter()
 };
 
 function respondNotFound(response){
@@ -30,10 +31,13 @@ var app = {
 	},
 	resources: {
 		"/mdd/clientLives/": {
-			GET: function(req, res){
-				if(!("lastTime" in state)) return res.end("false");
+			GET: function(req, res){@
+				if(!("lastTime" in state))
+					return res.end("false");
 				var now = new Date();
-				if(now - state.lastTime < 1000 * 5) return res.end("true");
+				var threshold = 8;
+				if(now - state.lastTime < 1000 * threshold)
+					return res.end("true");
 				return res.end("false");
 			}
 		}
@@ -47,9 +51,6 @@ var app = {
 		this.resources[path].POST = handler;
 	}
 }
-
-var jpegs = new EventEmitter();
-state.jpegs = jpegs;
 
 app.get(
     "/mdd/screen.jpg",
@@ -74,7 +75,16 @@ app.post(
 	);
     }
 );
-function respondMouse(res){
+app.post(
+    "/mdd/",
+    function(req, res){
+	function firstPath(files){
+		if(!files) return null;
+		if(!("file" in files)) return null;
+		if(!files.file.length) return null;
+		return files.file[0].path;
+	}
+	function mouseback(){
 console.log("MOUSE");
 		    var body = "";
 		    var maxEvents = 25;
@@ -96,50 +106,32 @@ console.log("MOUSE");
 		    ).join("\n");
 		    state.mouseEvents = state.mouseEvents.slice(maxEvents);
 		    res.end(body);
-}
-app.post(
-    "/mdd/",
-    function(req, res){
-	(
+	}
+	function eatFile(path, databack, callback){
+		if(null == path) return callback();
+		return fs.readFile(
+		path,
+			function(err, data){
+				databack(data);
+				fs.unlink(path, callback)
+			}
+		);
+	}
+	function jpgback(jpg){
+		state.currentScreenshot = jpg;
+		state.jpegs.emit("jpg", jpg);
+		state.lastTime = new Date();
+	}
+	return (
 		new multiparty.Form()
 	).parse(
 		req,
 		function(err, fields, files){
-console.log("JPEG POST");
-		    if(err) console.trace(err);
-		    if(files){
-			var file = null;
-			if("file" in files)
-				if(files.file.length)
-					file = files.file[0];
-			if(null != file){
-				var path = file.path;
-				fs.readFile(
-				    path,
-				    function(err, data){
-					state.currentScreenshot = data;
-					jpegs.emit("jpg", data);
-					fs.unlink(
-					    path,
-					    function(err){
-						if(err) console.trace(err);
-						setTimeout(
-						    function(){
-							respondMouse(res);
-						    },
-						    10
-						);
-						state.lastTime = new Date();
-					    }
-					);
-				    }
-				);
-			}
-			else respondMouse(res);
-		    }
-		    else respondMouse(res);
+			console.log("JPEG POST");
+			if(err) console.trace(err);
+			return eatFile(firstPath(files), jpgback, mouseback);
 		}
-	    )
+	);
     }
 );
 app.get(

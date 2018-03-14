@@ -3,5 +3,5 @@
 while :
 do
     ~/open-dash/scripts/disable-screensaver.sh
-    sleep 300
+    sleep 150
 done
