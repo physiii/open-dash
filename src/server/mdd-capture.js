@@ -30,6 +30,7 @@ var app = {
 		return resource[req.method.toUpperCase()](req, res);
 	},
 	resources: {
+	    /*
 		"/mdd/clientLives/": {
 			GET: function(req, res){
 				if(!("lastTime" in state))
@@ -41,32 +42,26 @@ var app = {
 				return res.end("false");
 			}
 		},
-	    /*
-		"/mdd/screen.jpg": {
-			GET: function(req, res){
-				if(!("currentScreenshot" in state))
-					return respondNotFound(res);
-				res.setHeader("Content-Type", "image/jpeg");
-				res.end(state.currentScreenshot);
-			}
-		},
 	    */
 		"/mdd/": {
-		}
-	},
-	get: function(path, handler){
-		if(!(path in this.resources)) this.resources[path] = {};
-		this.resources[path].GET = handler;
-	},
-	post: function(path, handler){
-		if(!(path in this.resources)) this.resources[path] = {};
-		this.resources[path].POST = handler;
-	}
-}
-
-app.post(
-    "/mdd/mouse",
-    function(req, res){
+			GET: function(req, res){
+	res.end(
+	    [
+		"<html>",
+		" <body>",
+		"  <form method=\"POST\" enctype=\"multipart/form-data\">",
+		"   <input type=\"file\" name=\"file\" />",
+		"   <input type=\"submit\" />",
+		"  </form>",
+		" </body>",
+		"</html>",
+		""
+	    ].join("\r\n")
+	);
+			}
+		},
+		"/mdd/mouse/": {
+			POST: function(req, res){
 	var body = [];
 	req.on("data", body.push.bind(body));
 	req.on(
@@ -77,8 +72,15 @@ app.post(
 		res.end("got it");
 	    }
 	);
-    }
-);
+			}
+		}
+	},
+	post: function(path, handler){
+		if(!(path in this.resources)) this.resources[path] = {};
+		this.resources[path].POST = handler;
+	}
+}
+
 app.post(
     "/mdd/",
     function(req, res){
@@ -134,24 +136,6 @@ app.post(
 			if(err) console.trace(err);
 			return eatFile(firstPath(files), jpgback, mouseback);
 		}
-	);
-    }
-);
-app.get(
-    "/mdd/",
-    function(req, res){
-	res.end(
-	    [
-		"<html>",
-		" <body>",
-		"  <form method=\"POST\" enctype=\"multipart/form-data\">",
-		"   <input type=\"file\" name=\"file\" />",
-		"   <input type=\"submit\" />",
-		"  </form>",
-		" </body>",
-		"</html>",
-		""
-	    ].join("\r\n")
 	);
     }
 );
