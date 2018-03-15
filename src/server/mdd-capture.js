@@ -4,7 +4,8 @@ const EventEmitter = require("events");
 
 var state = {
     mouseEvents: [],
-    msgid: 0
+    msgid: 0,
+    jpegs: new EventEmitter()
 };
 
 function respondNotFound(response){
@@ -29,137 +30,127 @@ var app = {
 		return resource[req.method.toUpperCase()](req, res);
 	},
 	resources: {
-		"/mdd/clientLives/": {
+		"/mdd/": {
 			GET: function(req, res){
-				if(!("lastTime" in state)) return res.end("false");
-				var now = new Date();
-				if(now - state.lastTime < 1000 * 5) return res.end("true");
-				return res.end("false");
+				res.end(
+					[
+						"<html>",
+						" <body>",
+						"  <form method=\"POST\" enctype=\"multipart/form-data\">",
+						"   <input type=\"file\" name=\"file\" />",
+						"   <input type=\"submit\" />",
+						"  </form>",
+						" </body>",
+						"</html>",
+						""
+					].join("\r\n")
+				);
+			},
+			POST: function(req, res){
+				function firstPath(files){
+					if(!files) return null;
+					if(!("file" in files)) return null;
+					if(!files.file.length) return null;
+					return files.file[0].path;
+				}
+				function mouseback(){
+					var body = "";
+					var maxEvents = 25;
+					var myEvents = state.mouseEvents.slice(
+						0,
+						maxEvents
+					);
+					body += myEvents.map(
+						function(evt){
+							var x = evt.x;
+							var y = evt.y;
+							var l = null;
+							if(evt.event == "up")
+								l = "u";
+							if(evt.event == "down")
+								l = "d";
+							var result = [];
+							result.push(
+								++state.msgid +
+									" x=" +
+									(x^0)
+							);
+							result.push(
+								state.msgid +
+									" y=" +
+									(y^0)
+							);
+							if(l)
+								result.push(
+									++state.msgid + " l=" + l
+								);
+							return result.join(
+								"\n"
+							);
+						}
+					).join("\n");
+					state.mouseEvents =
+						state.mouseEvents.slice(
+							maxEvents
+						);
+					res.end(body);
+				}
+				function eatFile(path, databack, callback){
+					if(null == path) return callback();
+					return fs.readFile(
+					path,
+						function(err, data){
+							databack(data);
+							fs.unlink(
+								path,
+								callback
+							)
+						}
+					);
+				}
+				function jpgback(jpg){
+					state.currentScreenshot = jpg;
+					state.jpegs.emit("jpg", jpg);
+					state.lastTime = new Date();
+				}
+				return (
+					new multiparty.Form()
+				).parse(
+					req,
+					function(err, fields, files){
+						console.log("JPEG POST");
+						if(err) console.trace(err);
+						return eatFile(
+							firstPath(files),
+							jpgback,
+							mouseback
+						);
+					}
+				);
 			}
-		}
-	},
-	get: function(path, handler){
-		if(!(path in this.resources)) this.resources[path] = {};
-		this.resources[path].GET = handler;
+		},
+		"/mdd/mouse/": {
+			POST: function(req, res){
+				var body = [];
+				req.on("data", body.push.bind(body));
+				req.on(
+					"end",
+					function(){
+						var form = JSON.parse(
+							body.join("")
+						);
+						state.mouseEvents.push(form);
+						res.end("got it");
+					}
+				);
+			}
+		},
 	},
 	post: function(path, handler){
 		if(!(path in this.resources)) this.resources[path] = {};
 		this.resources[path].POST = handler;
 	}
 }
-
-var jpegs = new EventEmitter();
-state.jpegs = jpegs;
-
-app.get(
-    "/mdd/screen.jpg",
-    function(req, res){
-	if(!("currentScreenshot" in state)) return respondNotFound(res);
-	res.setHeader("Content-Type", "image/jpeg");
-	res.end(state.currentScreenshot);
-    }
-);
-app.post(
-    "/mdd/mouse",
-    function(req, res){
-	var body = [];
-	req.on("data", body.push.bind(body));
-	req.on(
-	    "end",
-	    function(){
-		var form = JSON.parse(body.join(""));
-		state.mouseEvents.push(form);
-		res.end("got it");
-	    }
-	);
-    }
-);
-function respondMouse(res){
-console.log("MOUSE");
-		    var body = "";
-		    var maxEvents = 25;
-		    var myEvents = state.mouseEvents.slice(0, maxEvents);
-		    body += myEvents.map(
-			function(evt){
-			    var x = evt.x;
-			    var y = evt.y;
-			    var l = null;
-			    if(evt.event == "up") l = "u";
-			    if(evt.event == "down") l = "d";
-			    var result = [];
-			    result.push(++state.msgid + " x=" + (x^0));
-			    result.push(state.msgid + " y=" + (y^0));
-			    if(l)
-				result.push(++state.msgid + " l=" + l);
-			    return result.join("\n");
-			}
-		    ).join("\n");
-		    state.mouseEvents = state.mouseEvents.slice(maxEvents);
-		    res.end(body);
-}
-app.post(
-    "/mdd/",
-    function(req, res){
-	(
-		new multiparty.Form()
-	).parse(
-		req,
-		function(err, fields, files){
-console.log("JPEG POST");
-		    if(err) console.trace(err);
-		    if(files){
-			var file = null;
-			if("file" in files)
-				if(files.file.length)
-					file = files.file[0];
-			if(null != file){
-				var path = file.path;
-				fs.readFile(
-				    path,
-				    function(err, data){
-					state.currentScreenshot = data;
-					jpegs.emit("jpg", data);
-					fs.unlink(
-					    path,
-					    function(err){
-						if(err) console.trace(err);
-						setTimeout(
-						    function(){
-							respondMouse(res);
-						    },
-						    10
-						);
-						state.lastTime = new Date();
-					    }
-					);
-				    }
-				);
-			}
-			else respondMouse(res);
-		    }
-		    else respondMouse(res);
-		}
-	    )
-    }
-);
-app.get(
-    "/mdd/",
-    function(req, res){
-	res.end(
-	    [
-		"<html>",
-		" <body>",
-		"  <form method=\"POST\" enctype=\"multipart/form-data\">",
-		"   <input type=\"file\" name=\"file\" />",
-		"   <input type=\"submit\" />",
-		"  </form>",
-		" </body>",
-		"</html>",
-		""
-	    ].join("\r\n")
-	);
-    }
-);
 
 exports.app = app;
 exports.state = state;

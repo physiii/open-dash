@@ -9,10 +9,38 @@ app.controller(
     }
 
       var that = this;
-      that.jpgsrc = "http://127.0.0.1:8086/mdd/screen.jpg";
-      $rootScope.jpgHole(
+      that.jpgsrc = [
+	  "data:image/gif;base64,",
+	  "R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o",
+	  "/XBs/fNwfjZ0frl3/zy7////w",
+	  "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+	  "CH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8h",
+	  "BADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2h",
+	  "B0SlBCBMQiB0UjIQA7"
+      ].join("");
+      function updateShowings(live){
+	  that.showJpg = live ? "" : "hideme";
+	  that.showApology = live ? "hideme" : "";
+      }
+      updateShowings(false);
+      var jpg = $rootScope.screenSharingContext;
+      jpg.changes.on(
+	  "on",
+	  function(){
+	      updateShowings(true);
+	  }
+      );
+      jpg.changes.on(
+	  "off",
+	  function(){
+	      updateShowings(false);
+	  }
+      );
+      jpg.jpgHole(
 	  function(jpgBuf){
-	      that.jpgsrc = "data:image/jpeg;base64," + jpgBuf.toString("base64");
+	      that.jpgsrc = "data:image/jpeg;base64," +
+		  jpgBuf.toString("base64");
+	      updateShowings(true);
 	  }
       );
     $scope.toggleIp = remote.autoConnectEnabled;
