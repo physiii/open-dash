@@ -30,60 +30,23 @@ var app = {
 		return resource[req.method.toUpperCase()](req, res);
 	},
 	resources: {
-	    /*
-		"/mdd/clientLives/": {
-			GET: function(req, res){
-				if(!("lastTime" in state))
-					return res.end("false");
-				var now = new Date();
-				var threshold = 8;
-				if(now - state.lastTime < 1000 * threshold)
-					return res.end("true");
-				return res.end("false");
-			}
-		},
-	    */
 		"/mdd/": {
 			GET: function(req, res){
-	res.end(
-	    [
-		"<html>",
-		" <body>",
-		"  <form method=\"POST\" enctype=\"multipart/form-data\">",
-		"   <input type=\"file\" name=\"file\" />",
-		"   <input type=\"submit\" />",
-		"  </form>",
-		" </body>",
-		"</html>",
-		""
-	    ].join("\r\n")
-	);
-			}
-		},
-		"/mdd/mouse/": {
+				res.end(
+					[
+						"<html>",
+						" <body>",
+						"  <form method=\"POST\" enctype=\"multipart/form-data\">",
+						"   <input type=\"file\" name=\"file\" />",
+						"   <input type=\"submit\" />",
+						"  </form>",
+						" </body>",
+						"</html>",
+						""
+					].join("\r\n")
+				);
+			},
 			POST: function(req, res){
-	var body = [];
-	req.on("data", body.push.bind(body));
-	req.on(
-	    "end",
-	    function(){
-		var form = JSON.parse(body.join(""));
-		state.mouseEvents.push(form);
-		res.end("got it");
-	    }
-	);
-			}
-		}
-	},
-	post: function(path, handler){
-		if(!(path in this.resources)) this.resources[path] = {};
-		this.resources[path].POST = handler;
-	}
-}
-
-app.post(
-    "/mdd/",
-    function(req, res){
 	function firstPath(files){
 		if(!files) return null;
 		if(!("file" in files)) return null;
@@ -137,8 +100,30 @@ app.post(
 			return eatFile(firstPath(files), jpgback, mouseback);
 		}
 	);
-    }
-);
+			}
+		},
+		"/mdd/mouse/": {
+			POST: function(req, res){
+				var body = [];
+				req.on("data", body.push.bind(body));
+				req.on(
+					"end",
+					function(){
+						var form = JSON.parse(
+							body.join("")
+						);
+						state.mouseEvents.push(form);
+						res.end("got it");
+					}
+				);
+			}
+		},
+	},
+	post: function(path, handler){
+		if(!(path in this.resources)) this.resources[path] = {};
+		this.resources[path].POST = handler;
+	}
+}
 
 exports.app = app;
 exports.state = state;
