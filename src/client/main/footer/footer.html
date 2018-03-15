@@ -7,17 +7,19 @@
         </div>
         <div flex="25">
             <div class="menu_icon" ng-click="mute()">
-                <i class="material-icons menu_material_icon white">volume_off</i>
+                <i class="material-icons menu_material_icon white">{{volumeStatus}}</i>
             </div>
         </div>
         <div flex="25">
             <div class="menu_icon" ng-click="lowerVolume()">
                 <i class="material-icons menu_material_icon white">volume_down</i>
+                <i class="menu-font-icon fas fa-minus fa-2x"></i>
             </div>
         </div>
         <div flex="25">
             <div class="menu_icon" ng-click="raiseVolume()" >
                 <i class="material-icons menu_material_icon white">volume_up</i>
+                <i class="menu-font-icon fas fa-plus fa-2x"></i>
             </div>
         </div>
     </div>
