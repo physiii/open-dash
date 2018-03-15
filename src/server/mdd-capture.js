@@ -31,7 +31,7 @@ var app = {
 	},
 	resources: {
 		"/mdd/clientLives/": {
-			GET: function(req, res){@
+			GET: function(req, res){
 				if(!("lastTime" in state))
 					return res.end("false");
 				var now = new Date();
@@ -40,6 +40,18 @@ var app = {
 					return res.end("true");
 				return res.end("false");
 			}
+		},
+	    /*
+		"/mdd/screen.jpg": {
+			GET: function(req, res){
+				if(!("currentScreenshot" in state))
+					return respondNotFound(res);
+				res.setHeader("Content-Type", "image/jpeg");
+				res.end(state.currentScreenshot);
+			}
+		},
+	    */
+		"/mdd/": {
 		}
 	},
 	get: function(path, handler){
@@ -52,14 +64,6 @@ var app = {
 	}
 }
 
-app.get(
-    "/mdd/screen.jpg",
-    function(req, res){
-	if(!("currentScreenshot" in state)) return respondNotFound(res);
-	res.setHeader("Content-Type", "image/jpeg");
-	res.end(state.currentScreenshot);
-    }
-);
 app.post(
     "/mdd/mouse",
     function(req, res){
@@ -85,7 +89,6 @@ app.post(
 		return files.file[0].path;
 	}
 	function mouseback(){
-console.log("MOUSE");
 		    var body = "";
 		    var maxEvents = 25;
 		    var myEvents = state.mouseEvents.slice(0, maxEvents);

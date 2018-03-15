@@ -1,26 +1,6 @@
 $(
     function(){
 	var mddApiEndpoint = "http://127.0.0.1:8086/mdd";
-	function runEveryFrame(f){
-		requestAnimationFrame(function(){runEveryFrame(f);});
-		f();
-	}
-	runEveryFrame(
-	    function(){
-		$.get(
-		    mddApiEndpoint + "/clientLives/",
-		    function(body){
-			var live = JSON.parse(body);
-			$(
-			    "#" + (live ? "apology" : "screenshot")
-			).addClass("hideme");
-			$(
-			    "#" + (!live ? "apology" : "screenshot")
-			).removeClass("hideme");
-		    }
-		);
-	    }
-	);
 	function sendMouseEvent(target, name, evt){
 	    evt.preventDefault();
 	    var x = evt.offsetX / target.width * 480;

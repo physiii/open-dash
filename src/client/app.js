@@ -4,7 +4,7 @@ var remote = require('./server/modules/remote.js');
 var path = require('path');
 var http = require("http");
 var capture = require("./server/mdd-capture.js");
-
+const EventEmitter = require("events");
 
 capture.app.listen(8086); // port is hard-coded on MDD
 
@@ -103,33 +103,61 @@ app.config(function ($routeProvider) {
 })
     .run([ '$rootScope', '$location', '$interval', '$timeout',
         function ($rootScope, $location, $interval, $timeout) {
-	    $rootScope.jpgHole = function(callback){
-		capture.state.jpegs.on("jpg", callback);
+	    var jpg = {
+		jpgLastUpdate: null,
+		prevState: false,
+		jpgTimeout: 1000 * 8,
+		jpgHole: function(callback){
+			capture.state.jpegs.on("jpg", callback);
+		},
+		navigate: null,
+		changes: new EventEmitter()
 	    };
-	    var prevState = false;
-	    function findMdd(){
-		http.get(
-		    "http://127.0.0.1:8086/mdd/clientLives/",
-		    function(res){
-			var chunks = [];
-			res.on("data", chunks.push.bind(chunks));
-			res.on(
-			    "end",
-			    function(){
-				var live = JSON.parse(chunks.join(""));
-				if(live == prevState) return;
-				prevState = live;
-				if(live)
-				    $location.path("/remote");
-				else
-				    if("/remote" == $location.path())
-					$location.path("/");
-			    }
-			);
-		    }
-		);
-	    }
-            $interval(findMdd, 500);
+	    jpg.changes.on(
+		"on",
+		function(){
+		    console.log("screens are arriving");
+		    jpg.navigate = "/remote";
+		}
+	    );
+	    jpg.changes.on(
+		"off",
+		function(){
+		    console.log("screens are not arriving");
+		    jpg.navigate = "/";
+		}
+	    );
+	    $rootScope.screenSharingContext = jpg;
+	    capture.state.jpegs.on(
+		"jpg",
+		function(){
+			    jpg.jpgLastUpdate = new Date();
+			    setTimeout(
+				function(){
+				    var delta = new Date() - jpg.jpgLastUpdate;
+				    if(delta < jpg.jpgTimeout) return;
+				    jpg.prevState = false;
+				    jpg.changes.emit("off");
+				},
+				jpg.jpgTimeout
+			    );
+			    if(jpg.prevState) return;
+			    jpg.prevState = true;
+			    jpg.changes.emit("on");
+		}
+	    );
+	    $interval(
+		function(){
+		    if(!jpg.navigate) return;
+		    var path = jpg.navigate;
+		    jpg.navigate = null;
+		    if("/" != path)
+			return $location.path(path);
+		    if("/remote" == $location.path())
+			return $location.path(path);
+		},
+		100
+	    );
             $rootScope.$on('$routeChangeSuccess',function () {
                 $rootScope.dashBoardHeader = false;
                 var headerNames = {
