@@ -15,6 +15,7 @@ module.exports = {
   lowerVolume: lowerVolume,
   getMuted: getMuted,
   setMuted: setMuted,
+  muteXdoTool: muteXdoTool,
   mute: mute,
   play: play,
   next: next,
@@ -82,6 +83,13 @@ function setMuted(mute) {
     });
   });
 }
+
+function muteXdoTool() {
+  return new Promise(function (resolve, reject) {
+    spawn('xdotool', ['key', 'XF86AudioMute']);
+    resolve(true);
+  });
+};
 
 //mute if not-muted, unmute if muted
 function mute() {
