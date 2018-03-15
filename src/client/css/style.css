@@ -97,8 +97,12 @@ h1{
     width: 100%;
     background: black;
 }
+.menu-font-icon{
+    vertical-align: top;
+    padding-top:0.7em;
+}
 .menu_material_icon{
-    font-size: 3em !important;
+    font-size: 3.8em !important;
     padding-top: 0.1em;
 }
 .icon-color {
