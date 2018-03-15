@@ -129,7 +129,7 @@ var app = {
 				);
 			}
 		},
-		"/mdd/mouse/": {
+		"/mdd/mouse": {
 			POST: function(req, res){
 				var body = [];
 				req.on("data", body.push.bind(body));
