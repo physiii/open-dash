@@ -35,6 +35,7 @@ sudo npm install -g pm2 nw --unsafe-perm=true --allow-root
 cd ~
 git clone https://github.com/physiii/open-dash
 cd open-dash
+git checkout dev
 npm install
 
 pm2 --name open-dash start ~/open-dash/scripts/dash-show.sh
