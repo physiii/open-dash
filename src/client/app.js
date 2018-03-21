@@ -106,7 +106,7 @@ app.config(function ($routeProvider) {
 	    var jpg = {
 		jpgLastUpdate: null,
 		prevState: false,
-		jpgTimeout: 1000 * 8,
+		jpgTimeout: 1000 * 15,
 		jpgHole: function(callback){
 			capture.state.jpegs.on("jpg", callback);
 		},
