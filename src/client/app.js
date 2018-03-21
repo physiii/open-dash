@@ -131,19 +131,17 @@ app.config(function ($routeProvider) {
 	    capture.state.jpegs.on(
 		"jpg",
 		function(){
-			    jpg.jpgLastUpdate = new Date();
-			    setTimeout(
-				function(){
-				    var delta = new Date() - jpg.jpgLastUpdate;
-				    if(delta < jpg.jpgTimeout) return;
-				    jpg.prevState = false;
-				    jpg.changes.emit("off");
-				},
-				jpg.jpgTimeout
-			    );
-			    if(jpg.prevState) return;
-			    jpg.prevState = true;
-			    jpg.changes.emit("on");
+			function checkState(){
+				var delta = new Date() - jpg.jpgLastUpdate;
+				var on = delta < jpg.jpgTimeout;
+				if(on == jpg.prevState) return;
+				jpg.changes.emit("o" + (on ? "n" : "ff"));
+				jpg.prevState = on;
+			}
+			jpg.jpgLastUpdate = new Date();
+			setTimeout(checkState, jpg.jpgTimeout - 1);
+			setTimeout(checkState, jpg.jpgTimeout + 1);
+			checkState();
 		}
 	    );
 	    $interval(

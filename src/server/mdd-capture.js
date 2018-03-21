@@ -145,10 +145,6 @@ var app = {
 				);
 			}
 		},
-	},
-	post: function(path, handler){
-		if(!(path in this.resources)) this.resources[path] = {};
-		this.resources[path].POST = handler;
 	}
 }
 
