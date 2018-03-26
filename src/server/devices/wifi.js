@@ -8,12 +8,14 @@ var ap_wireless = config.wireless_adapter || " ";
 var ap_ethernet = config.ethernet_adapter || " ";
 var ap_ssid = config.broadcast_ssid || " ";
 var ap_password = config.password || " ";
+const EventEmitter = require("events");
 
+var events = new EventEmitter();
 
 module.exports = {
 	ap_connect: ap_connect,
+  events: events
 };
-
 
 function ap_connect() {
   if (ap_password === " ") {
@@ -32,6 +34,7 @@ function ap_connect() {
       if (data.includes("AP-STA-CONNECTED")){
         data = data.replace('ap0: AP-STA-CONNECTED', ':');
         console.log('*** Wifi connection established ***');
+        events.emit('connected');
       };
 
       if (data.includes(": deauthenticated")){
@@ -41,6 +44,7 @@ function ap_connect() {
       if (data.includes("AP-STA-DISCONNECTED")){
         data = data.replace('ap0: AP-STA-DISCONNECTED', ':');
         console.log('*** Wifi has been disconnected ***');
+        events.emit('disconnected');
       };
       ap_process.on('close', (code) => {
           console.log('Child process exited with code: ', code.toString());
