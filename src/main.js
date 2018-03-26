@@ -37,7 +37,12 @@ module.exports = {
 
 
 //sudo create_ap spawn child codes
+<<<<<<< HEAD
 wifi.ap_connect();
+=======
+//var wifi = require('./server/devices/wifi.js');
+//wifi.ap_connect();
+>>>>>>> 3a136e9ea0d2273d92b388ec9677e70c363d84f4
 
 
 process_io.on('connection', function (socket) {
