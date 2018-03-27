@@ -1,18 +1,10 @@
-<div class="local-content scroll-bar" ng-controller="RemoteController as mddRemote">
-    <div>
-      <img id="screenshot" ng-src="{{mddRemote.jpgsrc}}" class="{{mddRemote.showJpg}} screencast">
-      <md-progress-circular md-mode="indeterminate" class="{{mddRemote.showLoading}}"></md-progress-circular>
-      <script src="main/dashboard/remote/capture.js"></script>
-      <style>
-	.hideme {
-	  display: none;
-	}
-	.screencast {
-	  width:100%;
-	  height:100%;
-	}
-      </style>
+<div layout="row" layout-align="center center" class="local-content scroll-bar" ng-controller="RemoteController as mddRemote">
+    <img id="screenshot" ng-src="{{mddRemote.jpgsrc}}" ng-show="!mddRemote.isLoading" style="width: 100%; height: 100%;">
+    <div layout="column" layout-align="center center" ng-show="mddRemote.isLoading">
+      <md-progress-circular class="md-accent" md-mode="indeterminate"></md-progress-circular>
+      <h1>Connecting to MDD</h1>
     </div>
+    <script src="main/dashboard/remote/capture.js"></script>
     <div layout="row"  class="remote-data white md-whiteframe-30dp" ng-click="connectRemote(info.local_ip)" ng-repeat="info in remoteAddressInfo" style="display:none">
         <div flex="60" class="links-padding" layout="column" layout-align="space-between none">
             <div>{{info.hostname}}</div>

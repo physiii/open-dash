@@ -3,48 +3,34 @@ var remote = require('./server/modules/remote.js');
 
 app.controller(
   'RemoteController',
-  function($scope,$rootScope,$location,$timeout){
-    $scope.back=function(){
-        $location.path('/');
+  function ($scope,$rootScope,$location,$timeout) {
+    $scope.back = function () {
+      $location.path('/');
     }
 
-      var that = this;
-      that.jpgsrc = [
-	  "data:image/gif;base64,",
-	  "R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o",
-	  "/XBs/fNwfjZ0frl3/zy7////w",
-	  "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-	  "CH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8h",
-	  "BADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2h",
-	  "B0SlBCBMQiB0UjIQA7"
-      ].join("");
-      function updateShowings(live){
-	  that.showJpg = live ? "" : "hideme";
-	  that.showLoading = live ? "hideme" : "";
-      }
-      updateShowings(false);
-      var jpg = $rootScope.screenSharingContext;
-      jpg.changes.on(
-	  "on",
-	  function(){
-	      updateShowings(true);
-	  }
-      );
-      jpg.changes.on(
-	  "off",
-	  function(){
-	      updateShowings(false);
-	  }
-      );
-      jpg.jpgHole(
-	  function(jpgBuf){
-	      that.jpgsrc = "data:image/jpeg;base64," +
-		  jpgBuf.toString("base64");
-	      updateShowings(true);
-	  }
-      );
+    var that = this;
+    that.jpgsrc = [
+      "data:image/gif;base64,",
+      "R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o",
+      "/XBs/fNwfjZ0frl3/zy7////w",
+      "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "CH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8h",
+      "BADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2h",
+      "B0SlBCBMQiB0UjIQA7"
+    ].join("");
+
+    that.isLoading = true;
+    var jpg = $rootScope.screenSharingContext;
+
+    jpg.changes.on("on", () => (that.isLoading = false));
+    jpg.changes.on("off", () => (that.isLoading = true));
+    jpg.jpgHole((jpgBuf) => {
+      that.jpgsrc = "data:image/jpeg;base64," + jpgBuf.toString("base64");
+      that.isLoading = false;
+    });
+
     $scope.toggleIp = remote.autoConnectEnabled;
-    $rootScope.autoconnect_enabled =  true;
+    $rootScope.autoconnect_enabled = true;
 
     $scope.connectRemote = function(ip){
         remote.connect(ip,null);
