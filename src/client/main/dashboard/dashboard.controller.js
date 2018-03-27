@@ -1,7 +1,7 @@
 
 var app = angular.module('app');
 
-app.controller('DashboardController', function($scope,$location){
+app.controller('DashboardController', function($scope,$rootScope,$location){
     $scope.showNavigation = function() {
       console.log(os.platform());
     };
@@ -12,13 +12,15 @@ app.controller('DashboardController', function($scope,$location){
      $location.path("settings");
     }
     $scope.showApps = function(){
-     $location.path("apps")
+     $location.path("apps");
     }
     $scope.showRemote = function(){
-        $location.path("remote")
+        if ($rootScope.remoteDeviceConnected) {
+            $location.path("remote");
+        }
     }
     $scope.showMedia = function(){
-        $location.path("media")
+        $location.path("media");
     }
     $scope.showNavigation = function(){
         $location.path('navigation');

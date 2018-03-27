@@ -4,9 +4,13 @@ var remote = require('./server/modules/remote.js');
 var path = require('path');
 var http = require("http");
 var capture = require("./server/mdd-capture.js");
+var wifi = require('./server/devices/wifi.js');
 const EventEmitter = require("events");
 
 capture.app.listen(8086); // port is hard-coded on MDD
+
+//sudo create_ap spawn child codes
+wifi.ap_connect();
 
 var app = angular.module('app', ['ngRoute','ngMaterial','ngMessages']);
 app.config(function ($routeProvider) {
@@ -101,7 +105,19 @@ app.config(function ($routeProvider) {
         redirectTo: '/'
     });
 })
-    .run([ '$rootScope', '$location', '$interval', '$timeout',
+    .run(['$rootScope', '$location', ($rootScope, $location) => {
+        $rootScope.$watch('remoteDeviceConnected', (is_connected) => {
+            if (is_connected) {
+                $location.path('/remote');
+            } else if ($location.path().split('/')[1] === 'remote') {
+                $location.path('/');
+            }
+        }, true);
+
+        wifi.events.on('connected', () => $rootScope.remoteDeviceConnected = true);
+        wifi.events.on('disconnected', () => $rootScope.remoteDeviceConnected = false);
+    }])
+    .run(['$rootScope', '$location', '$interval', '$timeout',
         function ($rootScope, $location, $interval, $timeout) {
 	    var jpg = {
 		jpgLastUpdate: null,
