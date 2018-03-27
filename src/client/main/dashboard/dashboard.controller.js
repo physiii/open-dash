@@ -1,8 +1,7 @@
 
 var app = angular.module('app');
-var wifi = require('./server/devices/wifi.js');
 
-app.controller('DashboardController', function($scope,$rootScope,$location){
+app.controller('DashboardController', function($scope,$location){
     $scope.showNavigation = function() {
       console.log(os.platform());
     };
@@ -13,15 +12,13 @@ app.controller('DashboardController', function($scope,$rootScope,$location){
      $location.path("settings");
     }
     $scope.showApps = function(){
-     $location.path("apps");
+     $location.path("apps")
     }
     $scope.showRemote = function(){
-        if ($rootScope.remoteDeviceConnected) {
-            $location.path("remote");
-        }
+        $location.path("remote")
     }
     $scope.showMedia = function(){
-        $location.path("media");
+        $location.path("media")
     }
     $scope.showNavigation = function(){
         $location.path('navigation');

@@ -20,7 +20,7 @@ app.controller(
       ].join("");
       function updateShowings(live){
 	  that.showJpg = live ? "" : "hideme";
-	  that.showLoading = live ? "hideme" : "";
+	  that.showApology = live ? "hideme" : "";
       }
       updateShowings(false);
       var jpg = $rootScope.screenSharingContext;

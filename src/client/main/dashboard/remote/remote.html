@@ -1,7 +1,7 @@
 <div class="local-content scroll-bar" ng-controller="RemoteController as mddRemote">
     <div>
       <img id="screenshot" ng-src="{{mddRemote.jpgsrc}}" class="{{mddRemote.showJpg}} screencast">
-      <md-progress-circular md-mode="indeterminate" class="{{mddRemote.showLoading}}"></md-progress-circular>
+      <h1 id="apology" class="{{mddRemote.showApology}}">Please connect the MDD.</h1>
       <script src="main/dashboard/remote/capture.js"></script>
       <style>
 	.hideme {
