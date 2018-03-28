@@ -2,7 +2,6 @@
 var app = angular.module('app');
 
 app.controller('DashboardController', function($scope,$rootScope,$location){
-    // $scope.remoteDeviceConnected = $root
 
     $scope.showNavigation = function() {
       console.log(os.platform());
@@ -17,7 +16,7 @@ app.controller('DashboardController', function($scope,$rootScope,$location){
      $location.path("apps");
     }
     $scope.showRemote = function(){
-        if ($rootScope.remoteDeviceConnected) {
+        if ($scope.remoteDeviceConnected) {
             $location.path("remote");
         }
     }

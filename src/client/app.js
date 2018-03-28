@@ -1,13 +1,10 @@
 'use strict';
 var media = require('./server/modules/media.js');
 var remote = require('./server/modules/remote.js');
+var wifi = require('./server/devices/wifi.js');
 var path = require('path');
 var http = require("http");
-var capture = require("./server/mdd-capture.js");
-var wifi = require('./server/devices/wifi.js');
 const EventEmitter = require("events");
-
-capture.app.listen(8086); // port is hard-coded on MDD
 
 var app = angular.module('app', ['ngRoute','ngMaterial','ngMessages']);
 app.config(function ($routeProvider, $mdThemingProvider) {
@@ -126,57 +123,23 @@ app.config(function ($routeProvider, $mdThemingProvider) {
     .run(['$rootScope', '$location', ($rootScope, $location) => {
         wifi.ap_connect();
 
-        $rootScope.$watch('remoteDeviceConnected', (is_connected) => {
-            if (is_connected) {
+        $rootScope.$watch('remoteDeviceConnected', (isConected) => {
+            if (isConected) {
                 $location.path('/remote');
             } else if ($location.path().split('/')[1] === 'remote') {
                 $location.path('/');
             }
         }, true);
 
-        wifi.events.on('connected', () => $rootScope.remoteDeviceConnected = true);
-        wifi.events.on('disconnected', () => $rootScope.remoteDeviceConnected = false);
+        wifi.events.on('connected', () => {
+            $rootScope.$apply(() => $rootScope.remoteDeviceConnected = true);
+        });
+        wifi.events.on('disconnected', () => {
+            $rootScope.$apply(() => $rootScope.remoteDeviceConnected = false);
+        });
     }])
-    .run(['$rootScope', '$location', '$interval', '$timeout',
-        function ($rootScope, $location, $interval, $timeout) {
-            var jpg = {
-                jpgLastUpdate: null,
-                prevState: false,
-                jpgTimeout: 1000 * 15,
-                jpgHole: function (callback) {
-                    capture.state.jpegs.on("jpg", callback);
-                },
-                changes: new EventEmitter()
-            };
-
-            jpg.changes.on("on", function(){
-                console.log("screens are arriving");
-                jpg.navigate = "/remote";
-            });
-            jpg.changes.on("off", function(){
-                console.log("screens are not arriving");
-                jpg.navigate = "/";
-            });
-
-            $rootScope.screenSharingContext = jpg;
-
-            capture.state.jpegs.on("jpg", function () {
-                function checkState(){
-                    var delta = new Date() - jpg.jpgLastUpdate;
-                    var on = delta < jpg.jpgTimeout;
-                    if(on == jpg.prevState) return;
-                    jpg.changes.emit("o" + (on ? "n" : "ff"));
-                    jpg.prevState = on;
-                }
-                jpg.jpgLastUpdate = new Date();
-                setTimeout(checkState, jpg.jpgTimeout - 1);
-                setTimeout(checkState, jpg.jpgTimeout + 1);
-                checkState();
-            });
-
-            $interval(function () {
-            }, 100);
-
+    .run(['$rootScope', '$location',
+        function ($rootScope, $location) {
             $rootScope.$on('$routeChangeSuccess', function () {
                 $rootScope.dashBoardHeader = false;
                 var headerNames = {
