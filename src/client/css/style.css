@@ -242,4 +242,16 @@ h1{
 }
 
 
+/* Animations */
 
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.15;
+    }
+}
+.animate-pulse {
+    animation: pulse 1350ms ease-in-out infinite alternate;
+}

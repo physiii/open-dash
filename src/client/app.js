@@ -1,15 +1,14 @@
 'use strict';
 var media = require('./server/modules/media.js');
 var remote = require('./server/modules/remote.js');
+var wifi = require('./server/devices/wifi.js');
+var mddCapture = require("./server/mdd-capture.js");
 var path = require('path');
 var http = require("http");
-var capture = require("./server/mdd-capture.js");
 const EventEmitter = require("events");
 
-capture.app.listen(8086); // port is hard-coded on MDD
-
 var app = angular.module('app', ['ngRoute','ngMaterial','ngMessages']);
-app.config(function ($routeProvider) {
+app.config(function ($routeProvider, $mdThemingProvider) {
     $routeProvider.
     when('/', {
         templateUrl: 'main/dashboard/dashboard.html',
@@ -96,67 +95,57 @@ app.config(function ($routeProvider) {
         templateUrl: 'main/dashboard/camera/camera.html',
         controller: 'CameraController'
     }).
-
     otherwise({
         redirectTo: '/'
     });
+
+    // AngularJS Material Config
+    var dashBlue = $mdThemingProvider.extendPalette('blue', {
+        '500': '#005f9e',
+        'contrastDefaultColor': 'dark'
+    });
+
+    var dashCyan = $mdThemingProvider.extendPalette('cyan', {
+        'A200': '#63feff',
+        'contrastDefaultColor': 'dark'
+    });
+
+    $mdThemingProvider.definePalette('dashBlue', dashBlue);
+    $mdThemingProvider.definePalette('dashCyan', dashCyan);
+
+    $mdThemingProvider.theme('default')
+        .primaryPalette('dashBlue', {
+            'default': '500'
+        })
+        .accentPalette('dashCyan', {
+            'default': 'A200'
+        });
 })
-    .run([ '$rootScope', '$location', '$interval', '$timeout',
-        function ($rootScope, $location, $interval, $timeout) {
-	    var jpg = {
-		jpgLastUpdate: null,
-		prevState: false,
-		jpgTimeout: 1000 * 15,
-		jpgHole: function(callback){
-			capture.state.jpegs.on("jpg", callback);
-		},
-		navigate: null,
-		changes: new EventEmitter()
-	    };
-	    jpg.changes.on(
-		"on",
-		function(){
-		    console.log("screens are arriving");
-		    jpg.navigate = "/remote";
-		}
-	    );
-	    jpg.changes.on(
-		"off",
-		function(){
-		    console.log("screens are not arriving");
-		    jpg.navigate = "/";
-		}
-	    );
-	    $rootScope.screenSharingContext = jpg;
-	    capture.state.jpegs.on(
-		"jpg",
-		function(){
-			function checkState(){
-				var delta = new Date() - jpg.jpgLastUpdate;
-				var on = delta < jpg.jpgTimeout;
-				if(on == jpg.prevState) return;
-				jpg.changes.emit("o" + (on ? "n" : "ff"));
-				jpg.prevState = on;
-			}
-			jpg.jpgLastUpdate = new Date();
-			setTimeout(checkState, jpg.jpgTimeout - 1);
-			setTimeout(checkState, jpg.jpgTimeout + 1);
-			checkState();
-		}
-	    );
-	    $interval(
-		function(){
-		    if(!jpg.navigate) return;
-		    var path = jpg.navigate;
-		    jpg.navigate = null;
-		    if("/" != path)
-			return $location.path(path);
-		    if("/remote" == $location.path())
-			return $location.path(path);
-		},
-		100
-	    );
-            $rootScope.$on('$routeChangeSuccess',function () {
+    .run(['$rootScope', '$location', ($rootScope, $location) => {
+        // Launch wireless access point for MDD.
+        wifi.ap_connect();
+
+        // Listen for screenshots from MDD.
+        mddCapture.app.listen(8086); // port is hard-coded on MDD
+
+        $rootScope.$watch('remoteDeviceConnected', (isConected) => {
+            if (isConected) {
+                $location.path('/remote');
+            } else if ($location.path().split('/')[1] === 'remote') {
+                $location.path('/');
+            }
+        }, true);
+
+        wifi.events.on('connected', () => {
+            $rootScope.$apply(() => $rootScope.remoteDeviceConnected = true);
+        });
+        wifi.events.on('disconnected', () => {
+            $rootScope.$apply(() => $rootScope.remoteDeviceConnected = false);
+        });
+    }])
+    .run(['$rootScope', '$location',
+        function ($rootScope, $location) {
+            $rootScope.$on('$routeChangeSuccess', function () {
                 $rootScope.dashBoardHeader = false;
                 var headerNames = {
                     "/remote": "Remote",
@@ -173,9 +162,10 @@ app.config(function ($routeProvider) {
                     "/camera": "Camera",
                     "/remote/remote_child": "Remote Child"
                 };
-                if($location.path() in headerNames)
+
+                if ($location.path() in headerNames) {
                     $rootScope.headerName = headerNames[$location.path()];
-                else{
+                } else {
                     $rootScope.dashBoardHeader = true;
                     $rootScope.headerName ='';
                 }

@@ -11,7 +11,7 @@
             </md-grid-tile>
             <md-grid-tile ng-click="showRemote()">
                 <div class="icon icon-color">
-                    <md-button>
+                    <md-button ng-disabled="!remoteDeviceConnected">
                     <i class="fas fa-mobile-alt fa-5x white" aria-hidden="true"></i>
                     <div class="icon-text white">Remote</div>
                     </md-button>
