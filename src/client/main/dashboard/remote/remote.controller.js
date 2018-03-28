@@ -1,6 +1,6 @@
 var app = angular.module('app');
 var remote = require('./server/modules/remote.js');
-var capture = require("./server/mdd-capture.js");
+var mddCapture = require("./server/mdd-capture.js");
 
 app.controller(
   'RemoteController',
@@ -17,8 +17,7 @@ app.controller(
     $scope.screenshotSrc = null;
     $scope.isLoading = true;
 
-    capture.app.listen(8086); // port is hard-coded on MDD
-    capture.state.jpegs.on("jpg", function (image) {
+    mddCapture.state.jpegs.on("jpg", function (image) {
       function checkState () {
         var delta = new Date() - lastScreenshotTime;
         var isOn = delta < screenshotTimeout;

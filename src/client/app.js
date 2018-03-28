@@ -2,6 +2,7 @@
 var media = require('./server/modules/media.js');
 var remote = require('./server/modules/remote.js');
 var wifi = require('./server/devices/wifi.js');
+var mddCapture = require("./server/mdd-capture.js");
 var path = require('path');
 var http = require("http");
 const EventEmitter = require("events");
@@ -121,7 +122,11 @@ app.config(function ($routeProvider, $mdThemingProvider) {
         });
 })
     .run(['$rootScope', '$location', ($rootScope, $location) => {
+        // Launch wireless access point for MDD.
         wifi.ap_connect();
+
+        // Listen for screenshots from MDD.
+        mddCapture.app.listen(8086); // port is hard-coded on MDD
 
         $rootScope.$watch('remoteDeviceConnected', (isConected) => {
             if (isConected) {
