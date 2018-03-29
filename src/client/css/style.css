@@ -241,6 +241,21 @@ h1{
     border-radius:25px ;
 }
 
+.md-button.big-button {
+    margin-right: 8px;
+    padding: 20px 40px;
+    font-size: 24px;
+}
+
+.radio-frequency {
+    margin: 0 40px;
+    font-size: 80px;
+    text-align: center;
+}
+.radio-frequency-band {
+    font-size: 0.4em;
+}
+
 
 /* Animations */
 

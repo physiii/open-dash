@@ -1,3 +1,22 @@
 <div layout="row" layout-align="center center">
-    <h1>Welcome to AM/FM Radio</h1>
+	<md-button ng-click="setBand('am')">AM</md-button>
+	<md-button ng-click="setBand('fm')">FM</md-button>
+</div>
+<div layout="row" layout-align="center center">
+    <md-button class="big-button" ng-click="seekDown()">
+    	<i class="fas fa-caret-left"></i>
+    	Seek
+    </md-button>
+    <h2 flex class="radio-frequency">
+    	{{currentFrequency}}
+    	<span class="radio-frequency-band">{{currentBand.label}}</span>
+    </h2>
+    <md-button class="big-button" ng-click="seekUp()">
+    	Seek
+    	<i class="fas fa-caret-right"></i>
+    </md-button>
+</div>
+<h2>Presets</h2>
+<div layout="row" layout-align="center center">
+	<md-button flex class="big-button" ng-click="presetClick($index)" ng-mousedown="presetMouseDown($index)" ng-mouseup="presetMouseUp($index)" ng-repeat="preset in currentBand.presets track by $index">{{preset || $index + 1}}</md-button>
 </div>
