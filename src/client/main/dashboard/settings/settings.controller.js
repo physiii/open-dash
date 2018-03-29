@@ -5,6 +5,9 @@ app.controller('SettingsController', function($scope,$location){
     $scope.back=function(){
         $location.path('/');
     }
+    $scope.goToApps = function () {
+        $location.path("apps");
+    }
     $scope.goToSystemSettings = function(){
         $location.path('settings/system');
     }

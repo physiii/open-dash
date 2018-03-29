@@ -1,5 +1,6 @@
 html {
     height: 100%;
+    background-color: rgba(0, 0, 0,0.8);
 }
 
 
@@ -8,7 +9,6 @@ body {
     height : 100%;
     background: url('../images/USPSlogov2.png') no-repeat center;
     background-size: 80% 40%;
-    background-color: rgba(0, 0, 0,0.8);
     color:white;
 }
 h1{
@@ -39,11 +39,10 @@ h1{
 }
 .main-content{
     position: absolute;
-    top: 10%;
-    bottom: 6em;
+    top: 107px;
+    bottom: 98px;
     right: 0;
     left: 0;
-    margin-top: 2em;
 }
 
 .footer {
@@ -69,32 +68,37 @@ h1{
   padding:0 5em;
 }
 .icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 5% 0%;
     text-align: center;
     color: #003399;
-    border: 1px solid;
-    margin-top: 1em;
+    border: 1px solid rgba(255, 255, 255, 0.65);
     height: 100%;
-    width: 90%;
+    width: 100%;
+    box-sizing: border-box;
     border-radius: 0.4em;
-    box-shadow: 0px 8px 6px 0;
-    -webkit-box-shadow: 0px 0px 15px 5px ;
-    -moz-box-shadow: 0px 0px 15px 5px ;
-    box-shadow: 0px 0px 15px 5px ;
-    background-color: rgba(0, 0, 0, 0.25);
+    box-shadow: rgba(255, 255, 255, 0.5) 0px 0px 15px 5px;
+    background: linear-gradient(rgba(33, 33, 33, 0.75), rgba(16, 16, 16, 0.75));
+}
+.icon.disabled {
+    border-color: rgba(23, 23, 23, 0.8);
+    box-shadow: rgba(0, 0, 0, 0.27) 0px 0px 15px 0px;
 }
 .pull-right{
     float: right;
 }
 .grid-tile{
-    margin: 0 20px;
+    width: 60%;
+    min-height: 90%;
+    margin: 0 auto;
 }
 .menu_icon{
     padding-top: 1em;
     text-align: center;
     border: 1px solid;
     height: 5em;
-    width: 100%;
     background: black;
 }
 .menu-font-icon{
@@ -110,6 +114,7 @@ h1{
 }
 
 .icon-text{
+  display: block;
   font-size:1.8em;
   padding-top: 0.5em;
 }
@@ -164,6 +169,7 @@ h1{
     padding-right: 0.5em;
 }
 .controls{
+    box-sizing: border-box;
     position: absolute;
     bottom:0;
     padding: 0.5em;
@@ -196,17 +202,20 @@ h1{
 }
 .local-content{
     position: absolute;
-    height: calc(100% - 5em);
+    height: 100%;
     overflow-y: auto;
     width:100%;
 }
 .dashboard-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: absolute;
-    height: calc(100% - 3em);
+    box-sizing: border-box;
+    height: 100%;
     overflow-y: auto;
-    width:100%;
-    padding-top:1em;
-    margin-bottom: 1em;
+    width: 100%;
+    padding: 20px 0;
 }
 .login-modal{
     width:100%;
@@ -239,6 +248,27 @@ h1{
 .remote-child{
     border:1px solid white;
     border-radius:25px ;
+}
+
+md-dialog {
+    color: #ffffff;
+    font-size: 1.8em;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    box-sizing: border-box;
+    border-radius: 0.4em;
+    background: linear-gradient(rgba(33, 33, 33, 0.85), rgba(16, 16, 16, 0.85));
+}
+.alert-content {
+    text-align: center;
+    padding: 0 60px;
+}
+.dialog-actions {
+    padding-right: 8px;
+}
+.md-button.big-button {
+    margin-right: 8px;
+    padding: 20px 40px;
+    font-size: 24px;
 }
 
 

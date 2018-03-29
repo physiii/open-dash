@@ -119,7 +119,8 @@ app.config(function ($routeProvider, $mdThemingProvider) {
         })
         .accentPalette('dashCyan', {
             'default': 'A200'
-        });
+        })
+        .dark();
 })
     .run(['$rootScope', '$location', ($rootScope, $location) => {
         // Launch wireless access point for MDD.
@@ -128,8 +129,8 @@ app.config(function ($routeProvider, $mdThemingProvider) {
         // Listen for screenshots from MDD.
         mddCapture.app.listen(8086); // port is hard-coded on MDD
 
-        $rootScope.$watch('remoteDeviceConnected', (isConected) => {
-            if (isConected) {
+        $rootScope.$watch('remoteDeviceConnected', (isConnected) => {
+            if (isConnected) {
                 $location.path('/remote');
             } else if ($location.path().split('/')[1] === 'remote') {
                 $location.path('/');
