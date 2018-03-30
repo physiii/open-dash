@@ -7,7 +7,7 @@ var path = require('path');
 var http = require("http");
 const EventEmitter = require("events");
 
-var app = angular.module('app', ['ngRoute','ngMaterial','ngMessages']);
+var app = angular.module('app', ['ngRoute','ngMaterial','ngMessages', 'ngDrag']);
 app.config(function ($routeProvider, $mdThemingProvider) {
     $routeProvider.
     when('/', {

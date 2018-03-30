@@ -256,6 +256,61 @@ h1{
     font-size: 0.4em;
 }
 
+.radioDial {
+    position: relative;
+    background: #ffffff;
+}
+.radioDial::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(50% - 2px);
+    width: 4px;
+    background-color: rgba(255, 0, 0, 0.5);
+}
+.radioDial--select {
+    position: absolute;
+    visibility: hidden;
+    pointer-events: none;
+}
+.radioDial--listWrapper {
+    padding: 20px 0 10px 0;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    user-select: none;
+}
+.radioDial--list {
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin: 0;
+    padding: 0 calc(50% - 5px); /* Minus half the width of each frequency */
+    list-style: none;
+    color: gray; /* TODO */
+}
+.radioDial--frequency {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 10px;
+    height: 60px;
+}
+.radioDial--frequency::after {
+    content: "";
+    width: 1px;
+    height: 10px;
+    background-color: currentColor;
+    position: absolute;
+    left: calc(50% - 1px);
+    top: 30px;
+}
+.radioDial--frequency.is-groupStart::after {
+    height: 20px;
+}
+
 
 /* Animations */
 

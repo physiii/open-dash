@@ -16,7 +16,19 @@
     	<i class="fas fa-caret-right"></i>
     </md-button>
 </div>
-<h2>Presets</h2>
+<div class="radioDial">
+	<select class="radioDial--select" ng-options="frequency for frequency in currentBand.frequencies" ng-model="currentFrequency" ng-change="setFrequency(currentFrequency)"></select>
+	<div id="radio-dial" class="radioDial--listWrapper" ng-dragstart="dialDragStart($event)" ng-drag="dialDrag($event)" ng-dragend="dialDrag($event)" draggable="true">
+		<ol class="radioDial--list">
+			<li class="radioDial--frequency {{step.label ? 'is-groupStart' : ''}}" ng-repeat="step in currentBand.dialSteps" style="width: {{dialStepWidth}}px;">
+				<span class="radioDial--frequencyLabel" ng-if="step.label">{{step.label}}</span>
+			</li>
+		</ol>
+	</div>
+</div>
 <div layout="row" layout-align="center center">
-	<md-button flex class="big-button" ng-click="presetClick($index)" ng-mousedown="presetMouseDown($index)" ng-mouseup="presetMouseUp($index)" ng-repeat="preset in currentBand.presets track by $index">{{preset || $index + 1}}</md-button>
+	<md-button flex class="big-button" ng-click="presetClick($index)" ng-mousedown="presetMouseDown($index)" ng-mouseup="presetMouseUp($index)" ng-repeat="preset in currentBand.presets track by $index">
+		<span ng-if="preset">{{preset}}</span>
+		<span ng-if="!preset" style="white-space: normal;">Empty</span>
+	</md-button>
 </div>
