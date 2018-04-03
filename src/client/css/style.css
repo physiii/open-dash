@@ -244,21 +244,75 @@ h1{
 .md-button.big-button {
     margin-right: 8px;
     padding: 20px 40px;
+    flex-shrink: 0;
     font-size: 24px;
 }
+.multiLineButton {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.multiLineButton--line {
+    line-height: 1.3em;
+}
+.multiLineButton--secondaryLine {
+    font-size: 0.7em;
+    line-height: 1.3em;
+    opacity: 0.75;
+}
 
-.radio-frequency {
+.layout-radio {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    max-width: 100%;
+    height: 100%;
+}
+.layout-radio--heading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1 0 auto;
+}
+.layout-radio--frequencyControls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.layout-radio--controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.layout-radio--presets {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex: 0 0 auto;
+    margin-top: 12%;
+}
+
+.radioFrequencyHeading {
     margin: 0 40px;
-    font-size: 80px;
+    font-size: 110px;
+    font-weight: bold;
     text-align: center;
 }
-.radio-frequency-band {
+.radioFrequencyHeading--band {
     font-size: 0.4em;
 }
 
 .radioDial {
     position: relative;
-    background: #ffffff;
+    min-width: 100px; /* Helps keep the dial from growing uncontrollably in a flexbox layout. */
+    flex-shrink: 1;
+    background: linear-gradient(rgba(72, 147, 222, 0.5), rgb(12, 35, 60));
+    border-radius: 0.4em;
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    box-shadow: 0 0 40px 5px rgb(82, 141, 199), inset 0 4px 10px rgba(0, 0, 0, 0.40);
 }
 .radioDial::after {
     content: "";
@@ -287,7 +341,6 @@ h1{
     margin: 0;
     padding: 0 calc(50% - 5px); /* Minus half the width of each frequency */
     list-style: none;
-    color: gray; /* TODO */
 }
 .radioDial--frequency {
     position: relative;
@@ -297,15 +350,17 @@ h1{
     flex-shrink: 0;
     width: 10px;
     height: 60px;
+    font-weight: bold;
 }
 .radioDial--frequency::after {
     content: "";
-    width: 1px;
+    width: 2px;
     height: 10px;
     background-color: currentColor;
     position: absolute;
     left: calc(50% - 1px);
     top: 30px;
+    border-radius: 1px;
 }
 .radioDial--frequency.is-groupStart::after {
     height: 20px;

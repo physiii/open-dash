@@ -153,7 +153,7 @@ app.config(function ($routeProvider, $mdThemingProvider) {
                     "/media": "Media",
                     "/settings": "Settings",
                     "/radio": "Radio",
-                    "/radio/amfm": "AM/FM Radio",
+                    "/radio/amfm": "FM Radio",
                     "/radio/Pandora": "Pandora",
                     "/radio/Pandora/playlist": "Pandora",
                     "/settings/bluetooth": "Bluetooth Connections",
