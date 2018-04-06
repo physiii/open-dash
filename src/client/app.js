@@ -7,7 +7,7 @@ var path = require('path');
 var http = require("http");
 const EventEmitter = require("events");
 
-var app = angular.module('app', ['ngRoute','ngMaterial','ngMessages']);
+var app = angular.module('app', ['ngRoute','ngMaterial','ngMessages', 'ngDrag']);
 app.config(function ($routeProvider, $mdThemingProvider) {
     $routeProvider.
     when('/', {
@@ -154,6 +154,7 @@ app.config(function ($routeProvider, $mdThemingProvider) {
                     "/media": "Media",
                     "/settings": "Settings",
                     "/radio": "Radio",
+                    "/radio/amfm": "FM Radio",
                     "/radio/Pandora": "Pandora",
                     "/radio/Pandora/playlist": "Pandora",
                     "/settings/bluetooth": "Bluetooth Connections",

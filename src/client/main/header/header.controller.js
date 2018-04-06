@@ -15,6 +15,8 @@ app.controller('HeaderController', function($scope,$location){
             $location.path('/');
         }else if($location.path() == '/radio'){
             $location.path('/');
+        }else if($location.path() == '/radio/amfm'){
+            $location.path('/radio');
         }else if($location.path() == '/radio/pandora'){
             $location.path('/radio');
         }else if($location.path() == '/radio/pandora/playlist'){

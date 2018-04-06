@@ -1,6 +1,16 @@
 # Project-specific ignores
 
-.DS_Store
 node_modules/
 .idea/
 config.json
+
+# Logs
+*.log
+logs
+
+# OS generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
