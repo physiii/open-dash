@@ -21,6 +21,7 @@ process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 const server = http.createServer().listen("1235");
 var process_io = socket(server);
 var remoteIO = socket(1234);
+var remote_command = require('./command_socket.js');
 //var webserver = spawn('node',['./server/webserver.js']);
 
 
