@@ -14,6 +14,7 @@ relay.on('command result', function(data){
 
 
 function get_token(){
+  relay.emit('get token')
   continue;
 };
 
