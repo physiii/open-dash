@@ -22,7 +22,19 @@ var shutdownTimer = null;
 
 function reboot_sys() {
   console.log("Rebooting system in 5 seconds.");
-  cancVar = setTimeout(function() {exec('reboot');}, 5000);
+	cancVar = setTimeout(
+		function() {
+			exec(
+				'sudo reboot',
+				function(error, stdout, stderr){
+				    console.log(error);
+				    console.log(stdout);
+				    console.log(stderr);
+				}
+			);
+		},
+		5000
+	);
 };
 
 function canc_reboot() {
@@ -33,7 +45,7 @@ function canc_reboot() {
 
 function shutdown() {
   console.log("Shutting down system in 5 seconds.");
-  shutDownTimer = setTimeout(function() {exec('shutdown now');}, 5000);
+  shutDownTimer = setTimeout(function() {exec('sudo shutdown now');}, 5000);
 };
 
 function cancelShutdown() {
