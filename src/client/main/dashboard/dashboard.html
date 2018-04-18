@@ -1,5 +1,5 @@
 <div class="dashboard-content scroll-bar dragscroll">
-    <md-grid-list class="grid-tile" md-cols="1" md-row-height="fit" md-gutter="50px">
+    <md-grid-list class="grid-tile" md-cols="{{columns}}" md-row-height="fit" md-gutter="50px">
         <md-grid-tile ng-repeat="button in buttons | filter:{hidden:false}">
             <div ng-click="button.onClick($event)" class="icon icon-color {{button.isDisabled() ? 'disabled' : ''}}">
                 <md-button ng-disabled="button.isDisabled()">

@@ -77,4 +77,6 @@ app.controller('DashboardController', function ($scope, $rootScope, $location, $
             onClick: () => $location.path('camera')
         }
     ];
+
+    $scope.columns = $scope.buttons.filter(function (button) { return !button.hidden; }).length > 3 ? 2 : 1;
 });
