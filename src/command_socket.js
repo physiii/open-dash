@@ -43,5 +43,9 @@ relay.on('token', function(data){
   token = data.token
 })
 
+relay.on('add device', function(data){
+  console.log(TAG, "Result: "+data.result);
+})
+
 
 //-------------End of Socket Calls. Start Functions. ----------------------//

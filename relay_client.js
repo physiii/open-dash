@@ -28,6 +28,10 @@ relay.on('token', function(data){
   token = data.token
 })
 
+relay.on('add device', function(data){
+  console.log(TAG, "Result: "+data.result);
+})
+
 //-------------End Socket Calls. Start command Functions----------------------//
 function add_device(device){
   console.log(TAG,"Linking device to user")
