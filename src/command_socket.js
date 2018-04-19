@@ -18,8 +18,6 @@ function get_token () {
   require('getmac').getMac(function(err,macAddress){
     if (err)  throw err
     mac = macAddress.replace(/:/g,'').replace(/-/g,'').toLowerCase();
-    var data = {}
-    data.mac = mac
     module.exports.mac = mac;
     console.log(TAG,"Device ID: " + mac);
     relay.emit('get token', {mac:mac});
@@ -35,9 +33,9 @@ relay.on('command', function (data) {
       data.error = err;
       return;
     }
-   relay.emit('command result', command);
+   relay.emit('command result', {mac:mac, result:stdout});
   });
-  console.log("Command recieved and issued successfully "+ command);
+  console.log(TAG, "Command recieved and issued successfully returning information");
 });
 
 relay.on('token', function(data){
