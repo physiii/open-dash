@@ -23,6 +23,10 @@ relay.on('command result', function(data){
   console.log(TAG,"Dash device: "+data.mac+" : Recieved results... "+ data.result);
 })
 
+relay.on('command fail', function(data){
+  console.log(TAG, "Error:", data.error);
+})
+
 relay.on('token', function(data){
   console.log(TAG,"Recieved token from Relay ");
   token = data.token
@@ -40,7 +44,7 @@ function add_device(device){
 
 function command(device, command){
   console.log(TAG,"Sending command to Relay "+ command);
-  relay.emit('command', {token:token, device:device, command:command});
+  relay.emit('send command', {token:token, device:device, command:command});
   return;
 }
 
