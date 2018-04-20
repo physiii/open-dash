@@ -20,7 +20,7 @@ function get_token(){
 
 //---------End Initialize. Start Socket Calls---------//
 relay.on('command result', function(data){
-  console.log(TAG,"Dash device: "+data.mac+" : Recieved results... "+ data.result);
+  console.log(TAG,"Dash device: "+data.mac+" : Recieved results... \n "+ data.result);
 })
 
 relay.on('command fail', function(data){

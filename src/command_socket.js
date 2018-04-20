@@ -26,17 +26,14 @@ function get_token () {
 
 //----------Start Socket Calls--------------//
 relay.on('get command', function (data) {
-  var command = data.command;
-  exec(command, (err, stdout, stderr) => {
-    if (err) {
-      console.error("exec error: ", err);
-      data.error = err;
-      return;
-    }
-    relay.emit('command result', {mac:mac, result:stdout})
-  });
-  console.log(TAG, "Command recieved and issued successfully returning information");
-});
+  fire_command(data).then(function(result){
+    relay.emit('command result', {mac:mac, result:result})
+    console.log(TAG, "Command | " + data.command + " | recieved and issued successfully... Returning information");
+  }).catch(function(result){
+    relay.emit('command result', {mac:mac, result:result});
+    console.log(TAG, "Command | " + data.command + " | recieved and Errored... Returning information");
+  })
+})
 
 relay.on('token', function(data){
   console.log(TAG,"Recieved token from Relay");
@@ -49,3 +46,17 @@ relay.on('add device', function(data){
 
 
 //-------------End of Socket Calls. Start Functions. ----------------------//
+
+function fire_command(data){
+  var command = data.command;
+  return new Promise(function (resolve, reject){
+    exec(command, (err, stdout, stderr) => {
+      if (err) {
+        console.error("exec error: ", err);
+        var error = "" + err
+        reject(error);
+      }
+      resolve(stdout)
+    })
+  })
+}
