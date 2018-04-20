@@ -8,14 +8,14 @@ module.exports ={
   command: command,
   get_token: get_token,
   add_device: add_device,
-  list: list,
+  connected_devices: connected_devices,
 }
 
 //-----Initialize User/Token for Relay_Client--------//
 get_token()
 function get_token(){
   console.log(TAG,"Sending user token creation request to relay");
-  relay.emit('get token', {mac:"Relay Client"});
+  relay.emit('get token', {mac:"Relay Client2"});
 };
 
 //---------End Initialize. Start Socket Calls---------//
@@ -36,7 +36,21 @@ relay.on('add device', function(data){
   console.log(TAG, "Result: "+data.result);
 })
 
-//-------------End Socket Calls. Start command Functions----------------------//
+relay.on('connected devices', function(data){
+  console.log(TAG,"Devices linked to " + data.mac + ":");
+  list_devices(data);
+})
+
+
+//-------------Functions used in Sockets--------------------------------//
+function list_devices(data){
+  var devices = data.devices  ;
+  for (i = 0; i < devices.length; i++){
+    console.log(devices[i]);
+  }
+}
+
+//-------------Other Functions--------------------------------//
 function add_device(device){
   console.log(TAG,"Linking device to user")
   relay.emit('add device', {token:token, device:device})
@@ -48,7 +62,7 @@ function command(device, command){
   return;
 }
 
-function list(){
+function connected_devices(){
   console.log(TAG,"Grabbing list of connected devices")
-  relay.emit('list devices', {token:token, mac:"Relay_Client"});
+  relay.emit('connected devices', {token:token});
 }

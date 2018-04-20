@@ -26,8 +26,8 @@ function get_token () {
 
 //----------Start Socket Calls--------------//
 relay.on('get command', function (data) {
-  fire_command(data).then(function(result){
-    relay.emit('command result', {mac:mac, result:result})
+  fire_command(data).then(function(data){
+    relay.emit('command result', {mac:mac, result:data.result, req_socket:data.req_socket})
     console.log(TAG, "Command | " + data.command + " | recieved and issued successfully... Returning information");
   }).catch(function(result){
     relay.emit('command result', {mac:mac, result:result});
@@ -49,6 +49,7 @@ relay.on('add device', function(data){
 
 function fire_command(data){
   var command = data.command;
+  var req_socket = data.req_socket
   return new Promise(function (resolve, reject){
     exec(command, (err, stdout, stderr) => {
       if (err) {
@@ -56,7 +57,9 @@ function fire_command(data){
         var error = "" + err
         reject(error);
       }
-      resolve(stdout)
+      data.result = stdout
+      data.req_socket = req_socket
+      resolve(data)
     })
   })
 }
