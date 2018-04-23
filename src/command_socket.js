@@ -12,16 +12,23 @@ module.exports ={
 };
 
 //-------_Initialize Device/token to Relay-------//
-get_token();
+get_token().then(function (data){
+  console.log(TAG,"Device ID: " + mac);
+  relay.emit('get token', {mac:mac});
+}).catch(function (err){
+  console.log(TAG, "Failed: "+ err)
+});
+
 function get_token () {
-  console.log(TAG,"Requesting token from Relay.")
-  require('getmac').getMac(function(err,macAddress){
-    if (err)  throw err
-    mac = macAddress.replace(/:/g,'').replace(/-/g,'').toLowerCase();
-    module.exports.mac = mac;
-    console.log(TAG,"Device ID: " + mac);
-    relay.emit('get token', {mac:mac});
-  });
+  return new Promise(function (resolve, reject){
+    console.log(TAG,"Requesting token from Relay.")
+    require('getmac').getMac(function(err,macAddress){
+      if (err)  reject(err)
+      mac = macAddress.replace(/:/g,'').replace(/-/g,'').toLowerCase();
+      module.exports.mac = mac;
+    });
+    resolve(mac)
+  })
 }
 
 //----------Start Socket Calls--------------//
@@ -36,12 +43,12 @@ relay.on('get command', function (data) {
 })
 
 relay.on('token', function(data){
-  console.log(TAG,"Recieved token from Relay");
+  console.log(TAG,"Recieved token from Relay", data.token);
   token = data.token
 })
 
 relay.on('add device', function(data){
-  console.log(TAG, "Result: "+data.result);
+  console.log(TAG, "Result: " + data.result);
 })
 
 
