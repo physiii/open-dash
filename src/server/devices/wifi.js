@@ -31,20 +31,31 @@ module.exports = {
   events: wifi_events
 };
 
+function ProcessCreateAccessPoint(wifiIface, etherIface, ssid, password){
+    var processArgs = [
+	'create_ap',
+	wifiIface,
+	etherIface,
+	ssid
+    ];
+    if('string' === typeof password)
+	if(!(/^\s*$/).test(password)){
+	    console.log('WIFI PASSWORD', password);
+	    processArgs.push(password);
+	}
+    this.process = spawn('sudo', processArgs);
+    this.ap_config = processArgs;
+}
+
 function ap_connect() {
-  var ap_config = [
-    'create_ap',
-    config.wireless_adapter,
-    config.ethernet_adapter,
-    config.broadcast_ssid
-  ];
-
-  if (typeof config.password === 'string' && !(/^\s*$/).test(config.password)) {
-    console.log('WIFI PASSWORD', config.password);
-    ap_config.push(config.password);
-  }
-
-  const ap_process = spawn('sudo', ap_config);
+    var kid = new ProcessCreateAccessPoint(
+	    config.wireless_adapter,
+	    config.ethernet_adapter,
+	    config.broadcast_ssid,
+	    config.password
+    );
+    var ap_process = kid.process;
+    var ap_config = kid.ap_config;
   var ap_stream = byline(ap_process.stdout);
 
   ap_stream.on('data', (data) => {
