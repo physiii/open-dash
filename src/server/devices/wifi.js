@@ -32,6 +32,8 @@ module.exports = {
 };
 
 function ap_connect() {
+	return Promise.resolve(config).then(
+		function(config){
   var ap_config = [
     'create_ap',
     config.wireless_adapter,
@@ -77,6 +79,8 @@ function ap_connect() {
           console.log('Child process exited with code: ', code.toString());
       });
   });
+		}
+	);
 };
 
 
