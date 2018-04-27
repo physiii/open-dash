@@ -45,17 +45,10 @@ function ProcessCreateAccessPoint(wifiIface, etherIface, ssid, password){
 	}
     this.process = spawn('sudo', processArgs);
     this.ap_config = processArgs;
+    this.handleStandardOutputLines();
 }
-
-function ap_connect() {
-    var kid = new ProcessCreateAccessPoint(
-	    config.wireless_adapter,
-	    config.ethernet_adapter,
-	    config.broadcast_ssid,
-	    config.password
-    );
-    var ap_process = kid.process;
-    var ap_config = kid.ap_config;
+ProcessCreateAccessPoint.prototype.handleStandardOutputLines = function(){
+    var ap_process = this.process;
   var ap_stream = byline(ap_process.stdout);
 
   ap_stream.on('data', (data) => {
@@ -88,6 +81,17 @@ function ap_connect() {
           console.log('Child process exited with code: ', code.toString());
       });
   });
+};
+
+function ap_connect() {
+    var kid = new ProcessCreateAccessPoint(
+	    config.wireless_adapter,
+	    config.ethernet_adapter,
+	    config.broadcast_ssid,
+	    config.password
+    );
+    var ap_process = kid.process;
+    var ap_config = kid.ap_config;
 };
 
 
