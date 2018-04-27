@@ -41,10 +41,9 @@ function ProcessCreateAccessPoint(wifiIface, etherIface, ssid, password, configu
     this.handleStandardOutputLines(configuration);
 }
 ProcessCreateAccessPoint.prototype.handleStandardOutputLines = function(config){
-    var ap_process = this.process;
-  var ap_stream = byline(ap_process.stdout);
-
-  ap_stream.on('data', (data) => {
+	byline(this.process.stdout).on(
+		"data",
+		function(data){
       data = data.toString();
 
       if (data.includes("Creating a virtual")){
@@ -70,10 +69,14 @@ ProcessCreateAccessPoint.prototype.handleStandardOutputLines = function(config){
         console.log('*** Wifi has been disconnected ***');
         wifi_events.emit('disconnected');
       };
-  });
-      ap_process.on('close', (code) => {
+		}
+	);
+	this.process.on(
+		"close",
+		function(code){
           console.log('Child process exited with code: ', code.toString());
-      });
+		}
+	);
 };
 
 function ap_connect() {
@@ -99,7 +102,6 @@ function ap_connect() {
 				config.password,
 				config
     );
-    var ap_process = kid.process;
     var ap_config = kid.ap_config;
 		}
 	);
