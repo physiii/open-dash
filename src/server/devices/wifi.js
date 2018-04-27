@@ -77,10 +77,10 @@ ProcessCreateAccessPoint.prototype.handleStandardOutputLines = function(){
         console.log('*** Wifi has been disconnected ***');
         wifi_events.emit('disconnected');
       };
+  });
       ap_process.on('close', (code) => {
           console.log('Child process exited with code: ', code.toString());
       });
-  });
 };
 
 function ap_connect() {
