@@ -9,21 +9,14 @@ const EventEmitter = require("events");
 var wifi_events = new EventEmitter();
 
 var fs = require('fs');
-config = {
+
+const configuration = require("../configuration.js");
+
+var config = {
   "wireless_adapter": "wlp3s0",
   "ethernet_adapter": "enp2s0",
   "broadcast_ssid": "dash",
   "password": ""
-}
-
-try {
-  config = require('../../../config.json');
-} catch (e) {
-  var config_str = JSON.stringify(config).replace(/,/g, "\,\n  ").replace(/{/g, "{\n  ").replace(/}/g, "\n}");
-  fs.writeFile("./config.json", config_str, (err) => {
-    if (err) throw err;
-    console.log("created config.json");
-  });
 }
 
 module.exports = {
@@ -84,7 +77,20 @@ ProcessCreateAccessPoint.prototype.handleStandardOutputLines = function(config){
 };
 
 function ap_connect() {
-	return Promise.resolve(config).then(
+	return new Promise(
+		function(resolve, reject){
+		    return configuration.readConfig(
+			function(error, value){
+			    if(error) return reject(error);
+			    else return resolve(value);
+			},
+			config,
+			function(path, contents){
+			    console.log("created config.json");
+			}
+		    );
+		}
+	).then(
 		function(config){
     var kid = new ProcessCreateAccessPoint(
 	    config.wireless_adapter,
