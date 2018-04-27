@@ -81,10 +81,10 @@ function ap_connect() {
         console.log('*** Wifi has been disconnected ***');
         wifi_events.emit('disconnected');
       };
+  });
       ap_process.on('close', (code) => {
           console.log('Child process exited with code: ', code.toString());
       });
-  });
 		}
 	);
 };
