@@ -48,6 +48,8 @@ function ProcessCreateAccessPoint(wifiIface, etherIface, ssid, password){
 }
 
 function ap_connect() {
+	return Promise.resolve(config).then(
+		function(config){
     var kid = new ProcessCreateAccessPoint(
 	    config.wireless_adapter,
 	    config.ethernet_adapter,
@@ -88,6 +90,8 @@ function ap_connect() {
           console.log('Child process exited with code: ', code.toString());
       });
   });
+		}
+	);
 };
 
 
