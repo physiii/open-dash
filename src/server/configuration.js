@@ -1,11 +1,13 @@
 const fs = require("fs");
 const path = require("path");
 
+
 function K(x){
 	return function constant(){
 		return x;
 	};
 }
+
 function callbackToPromise(continuation){
 	return new Promise(
 		function(resolve, reject){
@@ -69,6 +71,7 @@ function promiseRealpath(path, options){
 		)
 	);
 }
+
 function getConfigPathAsync(){
 	return promiseRealpath(module.filename).then(
 		path.dirname.bind(path)
@@ -89,8 +92,13 @@ function readConfig(callback, defaults, onCreate){
 			JSON.stringify(defaults, null, 2)
 		).then(
 			function(value){
-				if(onCreate) onCreate(configPath, value);
-				return value;
+				return Promise.resolve(
+					onCreate ?
+						onCreate(configPath, value) :
+						value
+				).then(
+					K(value)
+				);
 			}
 		);
 	}
