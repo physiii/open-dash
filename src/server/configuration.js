@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 
 function K(x){
-	return function(){
+	return function constant(){
 		return x;
 	};
 }
@@ -12,7 +12,7 @@ function callbackToPromise(continuation){
 			return continuation(
 				function(error, value){
 					if(error) return reject(error);
-					else return resolve(path);
+					else return resolve(value);
 				}
 			);
 		}
@@ -28,11 +28,11 @@ function promiseReadFile(path, options){
 		)
 	);
 }
-function promiseWriteFile(path, data, options){
+function promiseWriteFile(file, data, options){
 	return callbackToPromise(
 		fs.writeFile.bind(
 			fs,
-			path,
+			file,
 			data,
 			options
 		)
@@ -59,6 +59,7 @@ function patchOnto(base, patch){
 	);
 	return result;
 }
+
 function promiseRealpath(path, options){
 	return callbackToPromise(
 		fs.realpath.bind(
@@ -112,13 +113,13 @@ function readConfig(callback, defaults, onCreate){
 	}
 	return promiseToCallback(
 		promiseConfigPath.then(
-		configPathBack
-	).then(
-		JSON.parse.bind(JSON)
-	).then(
-		patchOnto.bind(null, defaults)
-	),
-	    callback
+			configPathBack
+		).then(
+			JSON.parse.bind(JSON)
+		).then(
+			patchOnto.bind(null, defaults)
+		),
+		callback
 	);
 }
 
