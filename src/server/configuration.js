@@ -113,13 +113,13 @@ function readConfig(callback, defaults, onCreate){
 	}
 	return promiseToCallback(
 		promiseConfigPath.then(
-		configPathBack
-	).then(
-		JSON.parse.bind(JSON)
-	).then(
-		patchOnto.bind(null, defaults)
-	),
-	    callback
+			configPathBack
+		).then(
+			JSON.parse.bind(JSON)
+		).then(
+			patchOnto.bind(null, defaults)
+		),
+		callback
 	);
 }
 
