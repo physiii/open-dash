@@ -1,39 +1,57 @@
 const fs = require("fs");
 const path = require("path");
 
+function K(x){
+	return function(){
+		return x;
+	};
+}
 function callbackToPromise(continuation){
 	return new Promise(
-		function(res, rej){
+		function(resolve, reject){
 			return continuation(
 				function(error, value){
-					if(error) return rej(error);
-					else return res(path);
+					if(error) return reject(error);
+					else return resolve(path);
 				}
 			);
 		}
 	);
 }
 
-function promiseReadFile(path){
+function promiseReadFile(path, options){
 	return callbackToPromise(
-		function(callback){
-			return fs.readFile(path, callback);
-		}
+		fs.readFile.bind(
+			fs,
+			path,
+			options
+		)
 	);
 }
-function promiseWriteFile(path, data){
+function promiseWriteFile(path, data, options){
 	return callbackToPromise(
-		function(callback){
-			return fs.writeFile(path, data, callback);
-		}
+		fs.writeFile.bind(
+			fs,
+			path,
+			data,
+			options
+		)
 	).then(
-		function(){
-			return data;
+		K(data)
+	);
+}
+function promiseToCallback(promise, callback){
+	return Promise.resolve(promise).then(
+		function(value){
+			return callback(null, value);
+		},
+		function(error){
+			return callback(error);
 		}
 	);
 }
-function patchOnto(defaults, patch){
-	var result = Object.create(defaults);
+function patchOnto(base, patch){
+	var result = Object.create(base);
 	Object.keys(patch).forEach(
 		function(k){
 			result[k] = patch[k];
@@ -41,11 +59,13 @@ function patchOnto(defaults, patch){
 	);
 	return result;
 }
-function promiseRealpath(path){
+function promiseRealpath(path, options){
 	return callbackToPromise(
-		function(callback){
-			return fs.realpath(path, callback);
-		}
+		fs.realpath.bind(
+			fs,
+			path,
+			options
+		)
 	);
 }
 function getConfigPathAsync(){
@@ -90,15 +110,15 @@ function readConfig(callback, defaults, onCreate){
 			)
 		);
 	}
-	return promiseConfigPath.then(
+	return promiseToCallback(
+		promiseConfigPath.then(
 		configPathBack
 	).then(
 		JSON.parse.bind(JSON)
 	).then(
 		patchOnto.bind(null, defaults)
-	).then(
-		callback.bind(null, null),
-		callback
+	),
+	    callback
 	);
 }
 
