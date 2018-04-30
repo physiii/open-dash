@@ -1,16 +1,50 @@
 const fs = require("fs");
 const path = require("path");
 
-function promiseRealpath(path){
+function callbackToPromise(continuation){
 	return new Promise(
 		function(res, rej){
-			return fs.realpath(
-				path,
-				function(error, path){
+			return continuation(
+				function(error, value){
 					if(error) return rej(error);
 					else return res(path);
 				}
 			);
+		}
+	);
+}
+
+function promiseReadFile(path){
+	return callbackToPromise(
+		function(callback){
+			return fs.readFile(path, callback);
+		}
+	);
+}
+function promiseWriteFile(path, data){
+	return callbackToPromise(
+		function(callback){
+			return fs.writeFile(path, data, callback);
+		}
+	).then(
+		function(){
+			return data;
+		}
+	);
+}
+function patchOnto(defaults, patch){
+	var result = Object.create(defaults);
+	Object.keys(patch).forEach(
+		function(k){
+			result[k] = patch[k];
+		}
+	);
+	return result;
+}
+function promiseRealpath(path){
+	return callbackToPromise(
+		function(callback){
+			return fs.realpath(path, callback);
 		}
 	);
 }
@@ -26,44 +60,6 @@ function getConfigPathAsync(){
 		}
 	).then(promiseRealpath);
 }
-function promiseReadFile(path){
-	return new Promise(
-		function(res, rej){
-			return fs.readFile(
-				path,
-				function(error, data){
-					if(error) return rej(error);
-					else return res(data);
-				}
-			);
-		}
-	);
-}
-function promiseWriteFile(path, data){
-	return new Promise(
-		function(res, rej){
-			return fs.writeFile(
-				path,
-				data,
-				function(error){
-					if(error) return rej(error);
-					else return res(data);
-				}
-			);
-		}
-	);
-}
-
-function patchOnto(defaults, patch){
-	var result = Object.create(defaults);
-	Object.keys(patch).forEach(
-		function(k){
-			result[k] = patch[k];
-		}
-	);
-	return result;
-}
-
 function readConfig(callback, defaults, onCreate){
 	var promiseConfigPath = getConfigPathAsync();
 	function writeDefaultConfigFile(configPath){
@@ -107,5 +103,8 @@ function readConfig(callback, defaults, onCreate){
 }
 
 module.exports = {
-    readConfig: readConfig
+	readConfig: readConfig,
+	_util: {
+		callbackToPromise: callbackToPromise
+	}
 };
