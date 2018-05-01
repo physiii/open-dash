@@ -2,13 +2,14 @@
 // -----------------  https://github.com/physiii/Open-Dash -------------------- //
 // ---------------------------------- wifi.js ------------------------------------ //
 
+
 var byline = require('byline');
 const spawn = require('child_process').spawn;
 const EventEmitter = require("events");
+const fs = require('fs');
 
 var wifi_events = new EventEmitter();
 
-var fs = require('fs');
 config = {
   "wireless_adapter": "wlp3s0",
   "ethernet_adapter": "enp2s0",
@@ -38,11 +39,13 @@ function ProcessCreateAccessPoint(wifiIface, etherIface, ssid, password, configu
 	etherIface,
 	ssid
     ];
+
     if('string' === typeof password)
 	if(!(/^\s*$/).test(password)){
 	    console.log('WIFI PASSWORD', password);
 	    processArgs.push(password);
 	}
+
     this.process = spawn('sudo', processArgs);
     this.ap_config = processArgs;
     this.handleStandardOutputLines(configuration);
@@ -86,8 +89,9 @@ ProcessCreateAccessPoint.prototype.handleStandardOutputLines = function(config){
 	);
 };
 
+var configPromise = Promise.resolve(config);
 function ap_connect() {
-	return Promise.resolve(config).then(
+	return configPromise.then(
 		function(config){
     var kid = new ProcessCreateAccessPoint(
 	    config.wireless_adapter,
@@ -100,7 +104,6 @@ function ap_connect() {
 		}
 	);
 };
-
 
 //Socket.io functionality if needed
 
