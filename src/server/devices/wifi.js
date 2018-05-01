@@ -41,6 +41,12 @@ function ProcessCreateAccessPoint(wifiIface, etherIface, ssid, password, configu
     this.handleStandardOutputLines(configuration);
 }
 ProcessCreateAccessPoint.prototype.handleStandardOutputLines = function(config){
+	this.process.on(
+		"close",
+		function(code){
+			console.log('Child process exited with code: ', code.toString());
+		}
+	);
 	byline(this.process.stdout).on(
 		"data",
 		function(data){
@@ -69,12 +75,6 @@ ProcessCreateAccessPoint.prototype.handleStandardOutputLines = function(config){
         console.log('*** Wifi has been disconnected ***');
         wifi_events.emit('disconnected');
       };
-		}
-	);
-	this.process.on(
-		"close",
-		function(code){
-          console.log('Child process exited with code: ', code.toString());
 		}
 	);
 };
