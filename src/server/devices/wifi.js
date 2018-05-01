@@ -2,13 +2,13 @@
 // -----------------  https://github.com/physiii/Open-Dash -------------------- //
 // ---------------------------------- wifi.js ------------------------------------ //
 
+
 var byline = require('byline');
 const spawn = require('child_process').spawn;
 const EventEmitter = require("events");
+const fs = require('fs');
 
 var wifi_events = new EventEmitter();
-
-var fs = require('fs');
 
 const configuration = require("../configuration.js");
 
@@ -24,8 +24,7 @@ module.exports = {
   events: wifi_events
 };
 
-function ap_connect() {
-	return new Promise(
+var configPromise = new Promise(
 		function(resolve, reject){
 		    return configuration.readConfig(
 			function(error, value){
@@ -38,7 +37,9 @@ function ap_connect() {
 			}
 		    );
 		}
-	).then(
+);
+function ap_connect() {
+	return configPromise.then(
 		function(config){
   var ap_config = [
     'create_ap',
