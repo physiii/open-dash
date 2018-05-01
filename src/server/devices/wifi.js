@@ -32,8 +32,9 @@ module.exports = {
   events: wifi_events
 };
 
+var configPromise = Promise.resolve(config);
 function ap_connect() {
-	return Promise.resolve(config).then(
+	return configPromise.then(
 		function(config){
   var ap_config = [
     'create_ap',
