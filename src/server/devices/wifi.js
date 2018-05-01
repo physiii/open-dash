@@ -7,10 +7,9 @@ var byline = require('byline');
 const spawn = require('child_process').spawn;
 const EventEmitter = require("events");
 const fs = require('fs');
+const configuration = require("../configuration.js");
 
 var wifi_events = new EventEmitter();
-
-const configuration = require("../configuration.js");
 
 var config = {
   "wireless_adapter": "wlp3s0",
