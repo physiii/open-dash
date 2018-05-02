@@ -32,6 +32,8 @@ module.exports = {
   events: wifi_events
 };
 
+var configPromise = Promise.resolve(config);
+
 function ProcessCreateAccessPoint(wifiIface, etherIface, ssid, password, configuration){
     var processArgs = [
 	'create_ap',
@@ -89,7 +91,6 @@ ProcessCreateAccessPoint.prototype.handleStandardOutputLines = function(config){
 	);
 };
 
-var configPromise = Promise.resolve(config);
 function ap_connect() {
 	return configPromise.then(
 		function(config){
