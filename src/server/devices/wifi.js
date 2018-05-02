@@ -23,6 +23,21 @@ module.exports = {
   events: wifi_events
 };
 
+var configPromise = new Promise(
+		function(resolve, reject){
+		    return configuration.readConfig(
+			function(error, value){
+			    if(error) return reject(error);
+			    else return resolve(value);
+			},
+			config,
+			function(path, contents){
+			    console.log("created config.json");
+			}
+		    );
+		}
+);
+
 function ProcessCreateAccessPoint(wifiIface, etherIface, ssid, password, configuration){
     var processArgs = [
 	'create_ap',
@@ -30,11 +45,13 @@ function ProcessCreateAccessPoint(wifiIface, etherIface, ssid, password, configu
 	etherIface,
 	ssid
     ];
+
     if('string' === typeof password)
 	if(!(/^\s*$/).test(password)){
 	    console.log('WIFI PASSWORD', password);
 	    processArgs.push(password);
 	}
+
     this.process = spawn('sudo', processArgs);
     this.ap_config = processArgs;
     this.handleStandardOutputLines(configuration);
@@ -78,20 +95,6 @@ ProcessCreateAccessPoint.prototype.handleStandardOutputLines = function(config){
 	);
 };
 
-var configPromise = new Promise(
-		function(resolve, reject){
-		    return configuration.readConfig(
-			function(error, value){
-			    if(error) return reject(error);
-			    else return resolve(value);
-			},
-			config,
-			function(path, contents){
-			    console.log("created config.json");
-			}
-		    );
-		}
-);
 function ap_connect() {
 	return configPromise.then(
 		function(config){
@@ -106,7 +109,6 @@ function ap_connect() {
 		}
 	);
 };
-
 
 //Socket.io functionality if needed
 
