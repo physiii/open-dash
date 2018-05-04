@@ -2,13 +2,14 @@
 // -----------------  https://github.com/physiii/Open-Dash -------------------- //
 // ---------------------------------- wifi.js ------------------------------------ //
 
+
 var byline = require('byline');
 const spawn = require('child_process').spawn;
 const EventEmitter = require("events");
+const fs = require('fs');
 
 var wifi_events = new EventEmitter();
 
-var fs = require('fs');
 config = {
   "wireless_adapter": "wlp3s0",
   "ethernet_adapter": "enp2s0",
