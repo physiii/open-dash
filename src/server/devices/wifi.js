@@ -38,15 +38,20 @@ function ProcessCreateAccessPoint(wifiIface, etherIface, ssid, password){
 	etherIface,
 	ssid
     ];
-    if('string' === typeof password)
-	if(!(/^\s*$/).test(password)){
-	    console.log('WIFI PASSWORD', password);
-	    processArgs.push(password);
-	}
+	password = this.constructor.guardPassword(password);
+	if(password != null)
+		processArgs.push(password);
     this.process = spawn('sudo', processArgs);
     this.ap_config = processArgs;
     this.handleStandardOutputLines();
 }
+ProcessCreateAccessPoint.prototype.constructor = ProcessCreateAccessPoint;
+ProcessCreateAccessPoint.guardPassword = function(password){
+	if('string' !== typeof password) return null;
+	if((/^\s*$/).test(password)) return null;
+	console.log('WIFI PASSWORD', password);
+	return password;
+};
 ProcessCreateAccessPoint.prototype.handleStandardOutputLines = function(){
 	this.process.on(
 		"close",
