@@ -11,31 +11,29 @@ const configuration = require("../configuration.js");
 
 var wifi_events = new EventEmitter();
 
-var config = {
-  "wireless_adapter": "wlp3s0",
-  "ethernet_adapter": "enp2s0",
-  "broadcast_ssid": "dash",
-  "password": ""
-}
-
 module.exports = {
 	ap_connect: ap_connect,
   events: wifi_events
 };
 
 var configPromise = new Promise(
-		function(resolve, reject){
+	function(resolve, reject){
 		    return configuration.readConfig(
 			function(error, value){
 			    if(error) return reject(error);
 			    else return resolve(value);
 			},
-			config,
+			{
+				"wireless_adapter": "wlp3s0",
+				"ethernet_adapter": "enp2s0",
+				"broadcast_ssid": "dash",
+				"password": ""
+			},
 			function(path, contents){
 			    console.log("created config.json");
 			}
 		    );
-		}
+	}
 );
 
 function ProcessCreateAccessPoint(wifiIface, etherIface, ssid, password, configuration){
