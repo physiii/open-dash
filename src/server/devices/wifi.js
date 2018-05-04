@@ -58,9 +58,7 @@ ProcessCreateAccessPoint.guardPassword = function(password){
 ProcessCreateAccessPoint.prototype.handleStandardOutputLines = function(config){
 	this.process.on(
 		"close",
-		function(code){
-			console.log('Child process exited with code: ', code.toString());
-		}
+		this.exit.bind(this)
 	);
 	byline(this.process.stdout).on(
 		"data",
@@ -92,6 +90,10 @@ ProcessCreateAccessPoint.prototype.handleStandardOutputLines = function(config){
       };
 		}
 	);
+};
+ProcessCreateAccessPoint.prototype.exit = function(status){
+	var code = status;
+			console.log('Child process exited with code: ', code.toString());
 };
 
 function ap_connect() {
