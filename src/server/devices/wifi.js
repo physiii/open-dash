@@ -77,7 +77,10 @@ ProcessCreateAccessPoint.prototype.handleStandardOutputLines = function(config){
 	);
 	byline(this.process.stdout).on(
 		"data",
-		function(data){
+		this.handleLine.bind(this)
+	);
+};
+ProcessCreateAccessPoint.prototype.handleLine = function(data){
       data = data.toString();
 
       if (data.includes("Creating a virtual")){
@@ -103,8 +106,6 @@ ProcessCreateAccessPoint.prototype.handleStandardOutputLines = function(config){
         console.log('*** Wifi has been disconnected ***');
         wifi_events.emit('disconnected');
       };
-		}
-	);
 };
 ProcessCreateAccessPoint.prototype.exit = function(status){
 	var code = status;
