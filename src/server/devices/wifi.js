@@ -81,9 +81,13 @@ ProcessCreateAccessPoint.prototype.handleStandardOutputLines = function(config){
 ProcessCreateAccessPoint.prototype.handleLine = function(data){
       data = data.toString();
 
+	configPromise.then(
+		function(config){
       if (data.includes("Creating a virtual")){
         console.log("*** Creating a virtual Wifi Interface ***", config);
       };
+		}
+	);
 
       if (data.includes(": authenticated")){
         console.log('*** Wifi connection authenticated ***');
