@@ -33,11 +33,12 @@ module.exports = {
 };
 
 function ProcessCreateAccessPoint(wifiIface, etherIface, ssid, password){
+    password = this.constructor.guardPassword(password);
     this.process = this.constructor.createChildProcess(
 	wifiIface,
 	etherIface,
 	ssid,
-	this.constructor.guardPassword(password);
+	password
     );
     this.ap_config = [
 	'create_ap',
@@ -45,6 +46,7 @@ function ProcessCreateAccessPoint(wifiIface, etherIface, ssid, password){
 	etherIface,
 	ssid
     ];
+    if(null != password) this.ap_config.push(password);
     this.handleStandardOutputLines();
 }
 ProcessCreateAccessPoint.prototype.constructor = ProcessCreateAccessPoint;
