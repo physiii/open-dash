@@ -35,17 +35,20 @@ module.exports = {
 var configPromise = Promise.resolve(config);
 
 function ProcessCreateAccessPoint(wifiIface, etherIface, ssid, password, configuration){
-    var processArgs = [
+	password = this.constructor.guardPassword(password);
+    this.process = this.constructor.createChildProcess(
+	wifiIface,
+	etherIface,
+	ssid,
+	password
+    );
+    this.ap_config = [
 	'create_ap',
 	wifiIface,
 	etherIface,
 	ssid
     ];
-	password = this.constructor.guardPassword(password);
-	if(password != null)
-		processArgs.push(password);
-    this.process = spawn('sudo', processArgs);
-    this.ap_config = processArgs;
+    if(null != password) this.ap_config.push(password);
     this.handleStandardOutputLines(configuration);
 }
 ProcessCreateAccessPoint.prototype.constructor = ProcessCreateAccessPoint;
@@ -54,6 +57,16 @@ ProcessCreateAccessPoint.guardPassword = function(password){
 	if((/^\s*$/).test(password)) return null;
 	console.log('WIFI PASSWORD', password);
 	return password;
+};
+ProcessCreateAccessPoint.createChildProcess = function(wifiIface, etherIface, ssid, password){
+	var processArgs = [
+	    'create_ap',
+	    wifiIface,
+	    etherface,
+	    ssid
+	];
+	if(password != null) processArgs.push(password);
+	return spawn('sudo', processArgs);
 };
 ProcessCreateAccessPoint.prototype.handleStandardOutputLines = function(config){
 	this.process.on(
