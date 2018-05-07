@@ -119,7 +119,6 @@ function ap_connect() {
 				config.password,
 				config
     );
-    var ap_config = kid.ap_config;
 		}
 	);
 };
