@@ -114,7 +114,6 @@ function ap_connect() {
 	    config.broadcast_ssid,
 	    config.password
     );
-    var ap_config = kid.ap_config;
 };
 
 
