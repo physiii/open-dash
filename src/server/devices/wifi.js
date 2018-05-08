@@ -48,6 +48,7 @@ function ProcessCreateAccessPoint(wifiIface, etherIface, ssid, password){
     ];
     if(null != password) this.ap_config.push(password);
     this.handleStandardOutputLines();
+	this.process.on("close", this.exit.bind(this));
 }
 ProcessCreateAccessPoint.prototype.constructor = ProcessCreateAccessPoint;
 ProcessCreateAccessPoint.guardPassword = function(password){
@@ -75,10 +76,6 @@ ProcessCreateAccessPoint.createChildProcess = function(wifiIface, etherIface, ss
 	return spawn('sudo', processArgs);
 };
 ProcessCreateAccessPoint.prototype.handleStandardOutputLines = function(){
-	this.process.on(
-		"close",
-		this.exit.bind(this)
-	);
 	byline(this.process.stdout).on(
 		"data",
 		this.handleLine.bind(this)
