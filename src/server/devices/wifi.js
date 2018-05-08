@@ -58,6 +58,15 @@ ProcessCreateAccessPoint.guardPassword = function(password){
 	console.log('WIFI PASSWORD', password);
 	return password;
 };
+ProcessCreateAccessPoint.fromConfig = function(configuration){
+    return new ProcessCreateAccessPoint(
+	configuration.wireless_adapter,
+	configuration.ethernet_adapter,
+	configuration.broadcast_ssid,
+	configuration.password,
+	configuration
+    );
+}
 ProcessCreateAccessPoint.createChildProcess = function(wifiIface, etherIface, ssid, password){
 	var processArgs = [
 	    'create_ap',
@@ -117,13 +126,8 @@ ProcessCreateAccessPoint.prototype.exit = function(status){
 function ap_connect() {
 	return configPromise.then(
 		function(config){
-    var kid = new ProcessCreateAccessPoint(
-	    config.wireless_adapter,
-	    config.ethernet_adapter,
-	    config.broadcast_ssid,
-				config.password,
-				config
-    );
+	var kid = ProcessCreateAccessPoint.fromConfig(config);
+	return kid;
 		}
 	);
 };
