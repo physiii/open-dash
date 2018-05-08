@@ -62,7 +62,7 @@ ProcessCreateAccessPoint.guardPassword = function(password){
 	return password;
 };
 ProcessCreateAccessPoint.fromConfig = function(configuration){
-    return new ProcessCreateAccessPoint(
+    return new this(
 	configuration.wireless_adapter,
 	configuration.ethernet_adapter,
 	configuration.broadcast_ssid,
