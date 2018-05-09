@@ -51,7 +51,7 @@ function ap_connect() {
       data = data.toString();
 
       if (data.includes("Creating a virtual")){
-        console.log("*** Creating a virtual Wifi Interface ***");
+        console.log("*** Creating a virtual Wifi Interface ***", config);
       };
 
       if (data.includes(": authenticated")){

@@ -1,71 +1,12 @@
-<div class="dashboard-content scroll-bar dragscroll" >
-    <div class="gridListdemoBasicUsage">
-        <md-grid-list class="grid-tile" md-cols="2"  md-row-height="20%" md-gutter="10%">
-            <md-grid-tile ng-click="showNavigation()">
-                <div class="icon icon-color button">
-                    <md-button>
-                    <i class="fas fa-globe fa-5x white" aria-hidden="true"></i>
-                    <div class="icon-text white">Navigation</div>
-                    </md-button>
-                </div>
-            </md-grid-tile>
-            <md-grid-tile ng-click="showRemote()">
-                <div class="icon icon-color">
-                    <md-button ng-disabled="!remoteDeviceConnected">
-                    <i class="fas fa-mobile-alt fa-5x white" aria-hidden="true"></i>
-                    <div class="icon-text white">Remote</div>
-                    </md-button>
-                </div>
-            </md-grid-tile>
-            <md-grid-tile ng-click="showMedia()">
-                <div class="icon icon-color">
-                    <md-button>
-                        <i class="fas fa-headphones fa-5x white" aria-hidden="true"></i>
-                        <div class="icon-text white">Media</div>
-                    </md-button>
-                </div>
-            </md-grid-tile>
-            <md-grid-tile>
-                <div class="icon icon-color" ng-click="goToBluetooth()">
-                    <md-button>
-                        <i class="fab fa-bluetooth-b fa-5x white" aria-hidden="true"></i>
-                        <div class="icon-text white">Bluetooth</div>
-                    </md-button>
-                </div>
-            </md-grid-tile>
-            <md-grid-tile>
-                <div class="icon icon-color" ng-click="showRadio()">
-                    <md-button>
-                        <i class="fas fa-music fa-5x white" aria-hidden="true"></i>
-                        <div class="icon-text white">Radio</div>
-                    </md-button>
-                </div>
-            </md-grid-tile>
-            <md-grid-tile ng-click="showSettings()">
-                <div class="icon icon-color">
-                    <md-button>
-                        <i class="fas fa-cogs fa-5x white" aria-hidden="true"></i>
-                        <div class="icon-text white">Settings</div>
-                    </md-button>
-                </div>
-            </md-grid-tile>
-            <md-grid-tile ng-click="goToCan()">
-                <div class="icon icon-color">
-                    <md-button>
-                        <i class="fas fa-car fa-5x white" aria-hidden="true"></i>
-                        <div class="icon-text white">Can</div>
-                    </md-button>
-                </div>
-            </md-grid-tile>
-            <md-grid-tile ng-click="goToCamera()">
-                <div class="icon icon-color">
-                    <md-button>
-                        <i class="fas fa-camera-retro fa-5x white" aria-hidden="true"></i>
-                        <div class="icon-text white">Camera</div>
-                    </md-button>
-                </div>
-            </md-grid-tile>
-        </md-grid-list>
-    </div>
+<div class="dashboard-content scroll-bar dragscroll">
+    <md-grid-list class="grid-tile" md-cols="{{columns}}" md-row-height="fit" md-gutter="50px">
+        <md-grid-tile ng-repeat="button in buttons | filter:{hidden:false}">
+            <div ng-click="button.onClick($event)" class="icon icon-color {{button.isDisabled() ? 'disabled' : ''}}">
+                <md-button ng-disabled="button.isDisabled()">
+                    <i class="{{button.iconStyle || 'fas'}} {{'fa-' + button.icon}} fa-5x white" aria-hidden="true"></i>
+                    <label class="icon-text white">{{button.label}}</label>
+                </md-button>
+            </div>
+        </md-grid-tile>
+    </md-grid-list>
 </div>
-

@@ -31,7 +31,7 @@
     <form ng-cloak>
       <md-toolbar>
         <div class="md-toolbar-tools">
-          <h2>Login</h2>
+          <h2>Login to Pandora</h2>
           <span flex></span>
           <md-button class="md-icon-button" ng-click="cancel()" aria-label="Close dialog">
             <i class="material-icons">clear</i>
@@ -50,15 +50,13 @@
               <label>Password</label>
               <input ng-model="password">
             </md-input-container>
-            <md-button class="md-raised md-primary" ng-click="login()">Login</md-button>
           </div>
 
         </div>
       </md-dialog-content>
       <md-dialog-actions layout="row">
-        <md-button ng-click="close()">
-          Close
-        </md-button>
+        <md-button ng-click="close()">Cancel</md-button>
+        <md-button class="md-raised md-primary" ng-click="login()">Login</md-button>
       </md-dialog-actions>
     </form>
   </md-dialog>
