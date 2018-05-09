@@ -45,7 +45,6 @@
     "express": "^4.15.3",
     "file-browser": "0.0.5",
     "find-remove": "^1.0.1",
-    "font-awesome": "^4.7.0",
     "getmac": "^1.4.0",
     "greenlock": "^2.1.12",
     "greenlock-express": "^2.0.9",

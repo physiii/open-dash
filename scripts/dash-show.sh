@@ -15,7 +15,7 @@ bluetoothctl <<-EOF
 	quit
 EOF
 
-sudo create_ap --daemon wlp3s0 enp2s0 dash1 
+sudo create_ap --daemon wlp3s0 enp2s0 dash
 
 cd ~open/open-dash/
 nw .
