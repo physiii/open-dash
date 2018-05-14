@@ -32,8 +32,10 @@ module.exports = {
   events: wifi_events
 };
 
+var configPromise = Promise.resolve(config);
+
 function ProcessCreateAccessPoint(wifiIface, etherIface, ssid, password){
-    password = this.constructor.guardPassword(password);
+	password = this.constructor.guardPassword(password);
     this.process = this.constructor.createChildProcess(
 	wifiIface,
 	etherIface,
@@ -62,7 +64,8 @@ ProcessCreateAccessPoint.fromConfig = function(configuration){
 	configuration.wireless_adapter,
 	configuration.ethernet_adapter,
 	configuration.broadcast_ssid,
-	configuration.password
+	configuration.password,
+	configuration
     );
 }
 ProcessCreateAccessPoint.createChildProcess = function(wifiIface, etherIface, ssid, password){
@@ -84,9 +87,13 @@ ProcessCreateAccessPoint.prototype.handleStandardOutputLines = function(){
 ProcessCreateAccessPoint.prototype.handleLine = function(data){
       data = data.toString();
 
+	configPromise.then(
+		function(config){
       if (data.includes("Creating a virtual")){
         console.log("*** Creating a virtual Wifi Interface ***", config);
       };
+		}
+	);
 
       if (data.includes(": authenticated")){
         console.log('*** Wifi connection authenticated ***');
@@ -113,7 +120,6 @@ ProcessCreateAccessPoint.prototype.exit = function(status){
 			console.log('Child process exited with code: ', code.toString());
 };
 
-var configPromise = Promise.resolve(config);
 function ap_connect() {
 	return configPromise.then(
 		function(config){
@@ -122,7 +128,6 @@ function ap_connect() {
 		}
 	);
 };
-
 
 //Socket.io functionality if needed
 
