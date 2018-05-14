@@ -113,9 +113,14 @@ ProcessCreateAccessPoint.prototype.exit = function(status){
 			console.log('Child process exited with code: ', code.toString());
 };
 
+var configPromise = Promise.resolve(config);
 function ap_connect() {
+	return configPromise.then(
+		function(config){
 	var kid = ProcessCreateAccessPoint.fromConfig(config);
 	return kid;
+		}
+	);
 };
 
 
