@@ -2,13 +2,14 @@
 // -----------------  https://github.com/physiii/Open-Dash -------------------- //
 // ---------------------------------- wifi.js ------------------------------------ //
 
+
 var byline = require('byline');
 const spawn = require('child_process').spawn;
 const EventEmitter = require("events");
+const fs = require('fs');
 
 var wifi_events = new EventEmitter();
 
-var fs = require('fs');
 config = {
   "wireless_adapter": "wlp3s0",
   "ethernet_adapter": "enp2s0",
@@ -31,7 +32,10 @@ module.exports = {
   events: wifi_events
 };
 
+var configPromise = Promise.resolve(config);
 function ap_connect() {
+	return configPromise.then(
+		function(config){
   var ap_config = [
     'create_ap',
     config.wireless_adapter,
@@ -73,10 +77,12 @@ function ap_connect() {
         console.log('*** Wifi has been disconnected ***');
         wifi_events.emit('disconnected');
       };
+  });
       ap_process.on('close', (code) => {
           console.log('Child process exited with code: ', code.toString());
       });
-  });
+		}
+	);
 };
 
 
