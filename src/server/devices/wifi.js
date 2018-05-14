@@ -36,7 +36,7 @@ var configPromise = new Promise(
 	}
 );
 
-function ProcessCreateAccessPoint(wifiIface, etherIface, ssid, password, configuration){
+function ProcessCreateAccessPoint(wifiIface, etherIface, ssid, password){
 	password = this.constructor.guardPassword(password);
     this.process = this.constructor.createChildProcess(
 	wifiIface,
