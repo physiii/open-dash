@@ -74,7 +74,7 @@ ProcessCreateAccessPoint.createChildProcess = function(wifiIface, etherIface, ss
 	var processArgs = [
 	    'create_ap',
 	    wifiIface,
-	    etherface,
+	    etherIface,
 	    ssid
 	];
 	if(password != null) processArgs.push(password);
