@@ -7,32 +7,34 @@ var byline = require('byline');
 const spawn = require('child_process').spawn;
 const EventEmitter = require("events");
 const fs = require('fs');
+const configuration = require("../configuration.js");
 
 var wifi_events = new EventEmitter();
-
-config = {
-  "wireless_adapter": "wlp3s0",
-  "ethernet_adapter": "enp2s0",
-  "broadcast_ssid": "dash",
-  "password": ""
-}
-
-try {
-  config = require('../../../config.json');
-} catch (e) {
-  var config_str = JSON.stringify(config).replace(/,/g, "\,\n  ").replace(/{/g, "{\n  ").replace(/}/g, "\n}");
-  fs.writeFile("./config.json", config_str, (err) => {
-    if (err) throw err;
-    console.log("created config.json");
-  });
-}
 
 module.exports = {
 	ap_connect: ap_connect,
   events: wifi_events
 };
 
-var configPromise = Promise.resolve(config);
+var configPromise = new Promise(
+	function(resolve, reject){
+		    return configuration.readConfig(
+			function(error, value){
+			    if(error) return reject(error);
+			    else return resolve(value);
+			},
+			{
+				"wireless_adapter": "wlp3s0",
+				"ethernet_adapter": "enp2s0",
+				"broadcast_ssid": "dash",
+				"password": ""
+			},
+			function(path, contents){
+			    console.log("created config.json");
+			}
+		    );
+	}
+);
 
 function ProcessCreateAccessPoint(wifiIface, etherIface, ssid, password){
 	password = this.constructor.guardPassword(password);
