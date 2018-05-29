@@ -14,11 +14,12 @@ class DaughterCard {
 
     this.serial_port.on(data){
       const data = JSON.parse(data);
-      this.events.emit('CAN', {type: data.type, payload:data.payload});
+      this.events.emit(data.type, data.payload);
     }
 
   }
 
   }
 }
+
 module.eports = new DaughterCard();
