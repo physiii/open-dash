@@ -27,12 +27,23 @@ module.exports = {
   get_mac: get_mac,
   get_local_ip: get_local_ip,
   get_public_ip: get_public_ip,
-  shutdown: shutdown,
-  //test: test,
+  shutdown: shutdown
 };
+
+// Initialize daughter board.
 config.readConfig(function (config){
   daughter.init(config.daughter_serial);
 }, {"daughter_serial": "/dev/tty-usbserial1"});
+
+// Respond when daughter board asks if main board is on.
+daughter.on('status', (status) => {
+  if (status.get_power_state) {
+    daughter.send({
+      type: 'status',
+      payload: {power_state: true}
+    });
+  }
+});
 
 process_io.on('connection', function (socket) {
   console.info(socket.id + " | client connected" );
