@@ -7,9 +7,9 @@ const EventEmitter = require('events'),
   TAG = '[Daughter.js]';
 
 class DaughterCard {
-  constructor (data) {
+  init (serial_port) {
 
-    this.serial_port = new SerialPort(data.SerialPort)
+    this.serial_port = new SerialPort(serial_port);
     this.events = new EventEmitter();
 
     this.serial_port.on(data){
@@ -19,8 +19,15 @@ class DaughterCard {
 
   }
 
-
+  send (data) {
+    this.serial_port.write(data);
   }
+
+  on () {
+    this.events.on.apply(this.events, arguments)
+  }
+
+
 }
 
-module.eports = new DaughterCard();
+module.exports = new DaughterCard();
