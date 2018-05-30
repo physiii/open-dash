@@ -8,15 +8,13 @@ const EventEmitter = require('events'),
 
 class DaughterCard {
   init (serial_port) {
-
     this.serial_port = new SerialPort(serial_port);
     this.events = new EventEmitter();
 
-    this.serial_port.on(data){
-      const data = JSON.parse(data);
+    this.serial_port.on('data', (data) => {
+      data = JSON.parse(data);
       this.events.emit(data.type, data.payload);
     }
-
   }
 
   send (data) {
@@ -24,10 +22,8 @@ class DaughterCard {
   }
 
   on () {
-    this.events.on.apply(this.events, arguments)
+    this.events.on.apply(this.events, arguments);
   }
-
-
 }
 
 module.exports = new DaughterCard();

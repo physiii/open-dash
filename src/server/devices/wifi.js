@@ -3,11 +3,11 @@
 // ---------------------------------- wifi.js ------------------------------------ //
 
 
-var byline = require('byline');
-const spawn = require('child_process').spawn;
-const EventEmitter = require("events");
-const fs = require('fs');
-const configuration = require("../configuration.js");
+const byline = require('byline'),
+ spawn = require('child_process').spawn,
+ EventEmitter = require("events"),
+ fs = require('fs'),
+ configuration = require("../configuration.js");
 
 var wifi_events = new EventEmitter();
 

@@ -2,27 +2,25 @@
 // --------------  https://github.com/physiii/open-dash  ----------------- //
 // ----------------------------- nwpm.js ---------------------------------- //
 
-var http = require('http');
-const crypto = require('crypto');
-const exec = require('child_process').exec;
-const spawn = require('child_process').spawn;
-//var remote = require('./server/modules/remote.js');
-var os = require('os');
-var request = require('request');
-var fs = require('fs');
-var update = require('./system/update.js');
-var socket = require('socket.io');
-var system = require('./system/system.js');
-var relay = require('./server/websocket-relay.js');
-var db = require('./server/database.js');
-process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
-//var main_app_socket = require('socket.io-clientnpm install -g nodemon')("http://127.0.0.1:1234");
-//var webserv_socket = require('socket.io-client')("http://127.0.0.1:8080");
-const server = http.createServer().listen("1235");
-var process_io = socket(server);
-var remoteIO = socket(1234);
-//var webserver = spawn('node',['./server/webserver.js']);
+const crypto = require('crypto'),
+ exec = require('child_process').exec,
+ spawn = require('child_process').spawn,
+ http = require('http'),
+ os = require('os'),
+ request = require('request'),
+ fs = require('fs'),
+ update = require('./system/update.js'),
+ socket = require('socket.io'),
+ system = require('./system/system.js'),
+ relay = require('./server/websocket-relay.js'),
+ db = require('./server/database.js'),
+ daughter = require('./server/devices/daughter.js'),
+ config = require('./server/configuration.js'),
+ server = http.createServer().listen("1235"),
+ process_io = socket(server),
+ remoteIO = socket(1234);
 
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 
 module.exports = {
   find_index: find_index,
@@ -32,7 +30,9 @@ module.exports = {
   shutdown: shutdown,
   //test: test,
 };
-
+config.readConfig(function (config){
+  daughter.init(config.daughter_serial);
+}, {"daughter_serial": "/dev/tty-usbserial1"});
 
 process_io.on('connection', function (socket) {
   console.info(socket.id + " | client connected" );
