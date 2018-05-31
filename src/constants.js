@@ -1,0 +1,4 @@
+module.exports = {
+	VIDEO_STREAM_PORT: 5054,
+	VIDEO_WEBSOCKET_PORT: 8085
+};

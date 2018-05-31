@@ -14,6 +14,7 @@
     <audio id="audioTrack" style="display:none;"></audio>
     <video id="videoTrack" style="display:none;"></video>
   </div>
+  <div ng-include="'main/backup-camera/backup-camera.html'"></div>
   <script src="main/js/titlebar.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAd1xMYT1bt99qtFWQEzXiRBvORDWHgPtk&libraries=places"></script>
   <script type="text/javascript" src="scripts/jsmpeg.min.js"></script>
@@ -30,6 +31,8 @@
   <script type="text/javascript" src="scripts/dragscroll.js"></script>
   <script type="text/javascript" src="main/header/header.controller.js"></script>
   <script type="text/javascript" src="main/footer/footer.controller.js"></script>
+  <script type="text/javascript" src="main/backup-camera/backup-camera.controller.js"></script>
+  <script type="text/javascript" src="main/directives/camera-stream.directive.js"></script>
   <script type="text/javascript" src="main/dashboard/dashboard.controller.js"></script>
   <script type="text/javascript" src="main/dashboard/apps/apps.controller.js"></script>
   <script type="text/javascript" src="main/dashboard/apps/appview/appview.controller.js"></script>
@@ -43,7 +46,6 @@
   <script type="text/javascript" src="main/dashboard/navigation/navigation.controller.js"></script>
   <script type="text/javascript" src="main/dashboard/settings/settings.controller.js"></script>
   <script type="text/javascript" src="main/dashboard/settings/system/system.controller.js"></script>
-  <script type="text/javascript" src="main/dashboard/settings/update/update.controller.js"></script>
   <script type="text/javascript" src="main/dashboard/settings/bluetooth/bluetooth.controller.js"></script>
   <script type="text/javascript" src="main/dashboard/settings/wifi/wifi.controller.js"></script>
   <script type="text/javascript" src="main/dashboard/radio/radio.controller.js"></script>
