@@ -3,22 +3,24 @@
 // ----------------------------- nwpm.js ---------------------------------- //
 
 const crypto = require('crypto'),
- exec = require('child_process').exec,
- spawn = require('child_process').spawn,
- http = require('http'),
- os = require('os'),
- request = require('request'),
- fs = require('fs'),
- update = require('./system/update.js'),
- socket = require('socket.io'),
- system = require('./system/system.js'),
- relay = require('./server/websocket-relay.js'),
- db = require('./server/database.js'),
- daughter = require('./server/devices/daughter.js'),
- config = require('./server/configuration.js'),
- server = http.createServer().listen("1235"),
- process_io = socket(server),
- remoteIO = socket(1234);
+  exec = require('child_process').exec,
+  spawn = require('child_process').spawn,
+  http = require('http'),
+  os = require('os'),
+  request = require('request'),
+  fs = require('fs'),
+  update = require('./system/update.js'),
+  socket = require('socket.io'),
+  system = require('./system/system.js'),
+  db = require('./server/database.js'),
+  daughter = require('./server/devices/daughter.js'),
+  configuration = require('./server/configuration.js'),
+  server = http.createServer().listen("1235"),
+  process_io = socket(server),
+  remoteIO = socket(1234);
+
+// Start streaming server.
+require('./server/stream.js');
 
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 
@@ -30,20 +32,23 @@ module.exports = {
   shutdown: shutdown
 };
 
-// Initialize daughter board.
-config.readConfig(function (config){
-  daughter.init(config.daughter_serial);
-}, {"daughter_serial": "/dev/tty-usbserial1"});
-
-// Respond when daughter board asks if main board is on.
-daughter.on('status', (status) => {
-  if (status.get_power_state) {
-    daughter.send({
-      type: 'status',
-      payload: {power_state: true}
-    });
-  }
-});
+// Initialize config.
+configuration.readConfig(
+  (error, config) => {
+    // Initialize daughter board.
+    daughter.init(config.daughter_serial);
+  },
+  // Config defaults
+  {
+    "wireless_adapter": "wlp3s0",
+    "ethernet_adapter": "enp2s0",
+    "broadcast_ssid": "dash",
+    "password": "",
+    "daughter_serial": "/dev/tty-usbserial1",
+    "rear_camera": "/dev/video0"
+  },
+  () => console.log('Created config.json')
+);
 
 process_io.on('connection', function (socket) {
   console.info(socket.id + " | client connected" );
@@ -178,13 +183,6 @@ remoteIO.on('connection', function (socket) {
   });
 });
 
-
-//----------------------------------------------------------------------------//
-
-
-//update_app();
-
-
 // ---------------------- device info  ------------------- //
 var local_ip = "init";
 var ifaces = os.networkInterfaces();
@@ -195,7 +193,6 @@ get_public_ip();
 get_local_ip();
 get_mac();
 main_loop();
-
 
 function get_local_ip() {
   Object.keys(ifaces).forEach(function (ifname) {
