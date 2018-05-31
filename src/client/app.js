@@ -8,7 +8,7 @@
         wifi = require('./server/devices/wifi.js'),
         camera = require('./server/devices/camera.js'),
         mddCapture = require("./server/mdd-capture.js"),
-        can = require('./server/devices/can.js'),
+        can = require('./server/devices/can-mock.js'),
         path = require('path'),
         http = require("http"),
         EventEmitter = require("events");

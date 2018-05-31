@@ -11,8 +11,8 @@ module.exports = {
 function startStream (camera) {
 	const ffmpeg_process = spawn('ffmpeg', [
 		'-loglevel', 'panic',
-		'-f', 'v4l2',
-		'-i', camera,
+		'-f', 'avfoundation',
+		'-i', '0',
 		'-f', 'mpegts',
 		'-codec:v', 'mpeg1video',
 		'-b:v', '800k',

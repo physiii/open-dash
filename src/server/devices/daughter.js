@@ -3,7 +3,7 @@
 // -------------------------------- daughter.js -------------------------------- //
 
 const EventEmitter = require('events'),
-  SerialPort = require('serialport'),
+  // SerialPort = require('serialport'),
   TAG = '[daughter.js]';
 
 class DaughterCard {
@@ -12,12 +12,12 @@ class DaughterCard {
   }
 
   init (device) {
-    this.serial_port = new SerialPort(device, (error) => {
-      console.error(TAG, error);
-    });
+    // this.serial_port = new SerialPort(device, (error) => {
+    //   console.error(TAG, error);
+    // });
 
     // Start listening for messages from daughter board.
-    this._listen();
+    // this._listen();
 
     // Respond when daughter board asks if main board is on.
     this.on('status', (status) => {
