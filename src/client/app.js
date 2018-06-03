@@ -6,8 +6,19 @@ var mddCapture = require("./server/mdd-capture.js");
 var path = require('path');
 var http = require("http");
 const EventEmitter = require("events");
+const remote_command = require("./command_socket.js");
 
-var app = angular.module('app', ['ngRoute','ngMaterial','ngMessages', 'ngDrag']);
+remote_command.init(wifi.promiseMacAsToken);
+
+var app = angular.module(
+	'app',
+	[
+		'ngRoute'
+		, 'ngMaterial'
+		, 'ngMessages'
+		, 'ngDrag'
+	]
+);
 app.config(function ($routeProvider, $mdThemingProvider) {
     $routeProvider.
     when('/', {
@@ -38,6 +49,13 @@ app.config(function ($routeProvider, $mdThemingProvider) {
         templateUrl: 'main/dashboard/settings/system/system.html',
         controller: 'SystemController'
     }).
+	when(
+	    "/settings/system/device-info/",
+	    {
+		templateUrl: "main/dashboard/settings/system/device-info.html",
+		controller: "DeviceInfoController"
+	    }
+	).
     when('/settings/update', {
         templateUrl: 'main/dashboard/settings/update/update.html',
         controller: 'UpdateController'
@@ -124,7 +142,7 @@ app.config(function ($routeProvider, $mdThemingProvider) {
 })
     .run(['$rootScope', '$location', ($rootScope, $location) => {
         // Launch wireless access point for MDD.
-        wifi.ap_connect();
+	wifi.begin_connecting();
 
         // Listen for screenshots from MDD.
         mddCapture.app.listen(8086); // port is hard-coded on MDD
@@ -137,10 +155,11 @@ app.config(function ($routeProvider, $mdThemingProvider) {
             }
         }, true);
 
-        wifi.events.on('connected', () => {
+        wifi.listen('connected', () => {
+	    console.log("!! remote device connected !!");
             $rootScope.$apply(() => $rootScope.remoteDeviceConnected = true);
         });
-        wifi.events.on('disconnected', () => {
+        wifi.listen('disconnected', () => {
             $rootScope.$apply(() => $rootScope.remoteDeviceConnected = false);
         });
     }])
@@ -160,7 +179,8 @@ app.config(function ($routeProvider, $mdThemingProvider) {
                     "/settings/bluetooth": "Bluetooth Connections",
                     "/settings/wifi": "Wifi Connections",
                     "/settings/system": "System Settings",
-                    "/can": "Can",
+                    "/settings/system/device-info/": "Device Info",
+                    "/can": "CAN",
                     "/camera": "Camera",
                     "/remote/remote_child": "Remote Child"
                 };
