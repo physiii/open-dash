@@ -5,9 +5,10 @@
 
 
 //module for system (master) volume controls
-var loudness = require('./loudness');
+const loudness = require('./loudness'),
+  spawn = require('child_process').spawn,
+  can_event = require('./can.js');
 
-var spawn = require('child_process').spawn;
 module.exports = {
   getVolume: getVolume,
   setVolume: setVolume,
@@ -21,6 +22,14 @@ module.exports = {
   next: next,
   speaker_test: speaker_test,
 }
+
+can_event.on('volume-up', () => {
+  raiseVolume();
+});
+
+can_event.on('volume-down', () => {
+  lowerVolume();
+});
 
 function getVolume() {
   return promise=new Promise( function(resolve, reject) {
@@ -41,8 +50,6 @@ function setVolume(vol) {
     });
   });
 }
-
-
 
 //raise volume by 5 units
 function raiseVolume() {
@@ -75,6 +82,7 @@ function getMuted() {
     });
   });
 }
+
 function setMuted(mute) {
   return promise=new Promise( function(resolve, reject) {
     loudness.setMuted(mute, function(err) {
@@ -118,22 +126,6 @@ function next() {
     resolve(true);
   });
 };
-
-//Test Functions
-
-function speaker_test() {
-  console.log("Testing speaker Module");
-  lowerVolume().then(function(){
-    return raiseVolume();
-  }).then(function() {
-    return lowerVolume();
-  }).then(function() {
-    return mute();
-  }).then(function() {
-    console.log("Finished running test.")
-  })
-};
-
 
 
 /*
