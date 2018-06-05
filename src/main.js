@@ -35,8 +35,8 @@ module.exports = {
 // Initialize config.
 configuration.readConfig(
   (error, config) => {
-    // Initialize daughter board.
-    daughter.init(config.daughter_serial);
+    // Open serial port to daughter board.
+    daughter.openSerialPort(config.daughter_serial);
   },
   // Config defaults
   {
@@ -44,7 +44,7 @@ configuration.readConfig(
     "ethernet_adapter": "enp2s0",
     "broadcast_ssid": "dash",
     "password": "",
-    "daughter_serial": "/dev/tty-usbserial1",
+    "daughter_serial": "/dev/ttyUSB0",
     "rear_camera": "/dev/video0"
   },
   () => console.log('Created config.json')
