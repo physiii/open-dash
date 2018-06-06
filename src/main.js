@@ -15,7 +15,8 @@ const crypto = require('crypto'),
   db = require('./server/database.js'),
   daughter = require('./server/devices/daughter.js'),
   configuration = require('./server/configuration.js'),
-  server = http.createServer().listen("1235"),
+  constant = require('../../constants.js'),
+  server = http.createServer().listen(constant.SOCKET_PORT),
   process_io = socket(server),
   remoteIO = socket(1234);
 

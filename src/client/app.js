@@ -146,7 +146,7 @@
 					wifi.ap_connect();
 
 					// Listen for screenshots from MDD.
-					mddCapture.app.listen(8086); // port is hard-coded on MDD
+					mddCapture.app.listen(constant.MDD_CAPTURE_PORT); // port is hard-coded on MDD
 
 					$rootScope.$watch('remoteDeviceConnected', (isConnected) => {
 						if (isConnected) {
