@@ -71,15 +71,14 @@ function readConfig (callback, defaults, onCreate) {
 			);
 		});
 	}
-
-	function getErrorHandlerToWriteDefaultConfigurationFile (configurationPath) {
-		return function errorHandlerToWriteDefaultConfigurationFile (error) {
+	function makeErrorHandler (configurationPath) {
+		return function (error) {
 			return writeDefaultConfigFile(configurationPath);
 		}
 	}
 
 	function configPathBack (configPath) {
-		return promiseReadFile(configPath).catch(getErrorHandlerToWriteDefaultConfigurationFile(configPath));
+		return promiseReadFile(configPath).catch(makeErrorHandler(configPath));
 	}
 
 	return promiseToCallback(

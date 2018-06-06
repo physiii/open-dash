@@ -39,7 +39,16 @@
             <div layout="row" layout-align="space-between center" class="tile-content od-border-bottom">
                 <div>
                     <h1><i class="material-icons settings-icon od-material-padding-right">update</i>Update</h1>
-					<div ng-if="updateStatus"><span>{{updateStatus}}</span><br/></div><span>Version: {{version}}</span>
+					<div ng-if="updateStatus"><span>{{updateStatus}}</span><br/></div>
+					<span>Version: {{version}}</span>
+                </div>
+                <div class="empty-divs"></div>
+            </div>
+        </md-grid-tile>
+        <md-grid-tile class="md-whiteframe-10dp settings" ng-click="goToDeviceInfo()">
+            <div layout="row" layout-align="space-between center" class="tile-content od-border-bottom">
+                <div>
+                    <h1><i class="fas fa-microchip fa-lg od-padding-right" aria-hidden="true"></i>Device Info</h1>
                 </div>
                 <div class="empty-divs"></div>
             </div>

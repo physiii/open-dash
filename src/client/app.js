@@ -8,6 +8,7 @@
 		wifi = require('./server/devices/wifi.js'),
 		camera = require('./server/devices/camera.js'),
 		mddCapture = require('./server/mdd-capture.js'),
+		remote_command = require('./command_socket.js'),
 		can = require('./server/devices/can.js'),
 		path = require('path'),
 		http = require('http'),
@@ -17,6 +18,8 @@
 		$.getScript('http://localhost:' + constant.SOCKET_PORT + '/socket.io/socket.io.js', () => {
 			const socketProcessIO = io('http://localhost:' + constant.SOCKET_PORT),
 				app = angular.module('app', ['ngRoute', 'ngMaterial', 'ngMessages', 'ngDrag']);
+
+			remote_command.init(wifi.promiseMacAsToken);
 
 			// Register constants with app DI.
 			Object.keys(constant).forEach((key) => {
@@ -52,6 +55,10 @@
 					when('/settings/system', {
 						templateUrl: 'main/dashboard/settings/system/system.html',
 						controller: 'SystemController'
+					}).
+					when('/settings/system/device-info/', {
+						templateUrl: 'main/dashboard/settings/system/device-info.html',
+						controller: 'DeviceInfoController'
 					}).
 					when('/settings/update', {
 						templateUrl: 'main/dashboard/settings/update/update.html',
@@ -143,7 +150,7 @@
 				.value('camera', camera)
 				.run(['$rootScope', '$location', ($rootScope, $location) => {
 					// Launch wireless access point for MDD.
-					wifi.ap_connect();
+					wifi.begin_connecting();
 
 					// Listen for screenshots from MDD.
 					mddCapture.app.listen(constant.MDD_CAPTURE_PORT); // port is hard-coded on MDD
@@ -156,10 +163,10 @@
 						}
 					}, true);
 
-					wifi.events.on('connected', () => {
+					wifi.listen('connected', () => {
 						$rootScope.$apply(() => $rootScope.remoteDeviceConnected = true);
 					});
-					wifi.events.on('disconnected', () => {
+					wifi.listen('disconnected', () => {
 						$rootScope.$apply(() => $rootScope.remoteDeviceConnected = false);
 					});
 				}])
@@ -178,7 +185,8 @@
 							'/settings/bluetooth': 'Bluetooth Connections',
 							'/settings/wifi': 'Wifi Connections',
 							'/settings/system': 'System Settings',
-							'/can': 'Can',
+							'/settings/system/device-info/': 'Device Info',
+							'/can': 'CAN',
 							'/camera': 'Camera',
 							'/remote/remote_child': 'Remote Child'
 						};
