@@ -19,8 +19,7 @@ module.exports = {
   muteXdoTool: muteXdoTool,
   mute: mute,
   play: play,
-  next: next,
-  speaker_test: speaker_test,
+  next: next
 }
 
 can_event.on('volume-up', () => {
