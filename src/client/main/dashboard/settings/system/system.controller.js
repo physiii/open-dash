@@ -1,6 +1,6 @@
 var app = angular.module('app');
 var gui = require('nw.gui');
-app.controller('SystemController', function ($scope, $location, $timeout) {
+app.controller('SystemController', function ($scope, $location, $timeout, socketProcessIO) {
   $scope.rebooting = false;
   $scope.shuttingDown = false;
   $scope.updating = false;

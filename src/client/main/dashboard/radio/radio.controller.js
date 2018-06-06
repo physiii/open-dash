@@ -1,7 +1,7 @@
 var app = angular.module('app');
 var Anesidora = require("anesidora");
 
-app.controller('RadioController', function ($scope, $rootScope, $timeout, $location, $mdDialog, PandoraService) {
+app.controller('RadioController', function ($scope, $rootScope, $timeout, $location, $mdDialog, PandoraService, socketProcessIO) {
   $scope.customFullscreen = false;
   $scope.back = function () {
     $location.path('/');
@@ -24,7 +24,7 @@ app.controller('RadioController', function ($scope, $rootScope, $timeout, $locat
       socketProcessIO.on("get-pandora-account", function (data) {
         if (data && data.username) {
           console.log("Use existing Pandora account info for "+data.username);
-        
+
           $timeout(function () {
             $scope.userName = data.username;
             $scope.password = data.password;
