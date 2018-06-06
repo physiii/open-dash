@@ -390,6 +390,40 @@ md-dialog {
     height: 20px;
 }
 
+.BlackoutOverlay {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 9999;
+
+    background-color: #000000;
+}
+
+.CameraStream {
+    position: relative; /* Provide positioning context for the box-shadow pseudo-element. */
+}
+/* Using a pseudo-element that's wider than the viewport so the box shadow doesn't taper at the sides. */
+.CameraStream::before {
+    content: "";
+    display: block;
+    width: 200%;
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -50%;
+
+    box-shadow: 0 0 5px 3px #63feff, 0 0 60px rgba(43, 159, 236, 0.8), 0 0 200px 80px rgba(43, 159, 236, 0.25);
+}
+.CameraStream--canvas {
+    max-width: 100%;
+}
 
 /* Animations */
 
