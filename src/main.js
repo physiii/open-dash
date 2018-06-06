@@ -6,7 +6,7 @@ var http = require('http');
 const crypto = require('crypto');
 const exec = require('child_process').exec;
 const spawn = require('child_process').spawn;
-//var remote = require('./server/modules/remote.js');
+
 var os = require('os');
 var request = require('request');
 var fs = require('fs');
@@ -16,12 +16,9 @@ var system = require('./system/system.js');
 var relay = require('./server/websocket-relay.js');
 var db = require('./server/database.js');
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
-//var main_app_socket = require('socket.io-clientnpm install -g nodemon')("http://127.0.0.1:1234");
-//var webserv_socket = require('socket.io-client')("http://127.0.0.1:8080");
 const server = http.createServer().listen("1235");
 var process_io = socket(server);
 var remoteIO = socket(1234);
-//var webserver = spawn('node',['./server/webserver.js']);
 
 
 module.exports = {

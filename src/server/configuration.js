@@ -89,34 +89,35 @@ function readConfig(callback, defaults, onCreate){
 	function writeDefaultConfigFile(configPath){
 		return promiseWriteFile(
 			configPath,
-			JSON.stringify(defaults, null, 2)
+			JSON.stringify(
+				defaults,
+				null,
+				2
+			)
 		).then(
 			function(value){
 				return Promise.resolve(
 					onCreate ?
-						onCreate(configPath, value) :
-						value
+						onCreate(
+							configPath,
+							value
+						) :
+						null
 				).then(
 					K(value)
 				);
 			}
 		);
 	}
-	function getErrorHandlerToWriteDefaultConfigurationFile(
-		configurationPath
-	){
-		return function errorHandlerToWriteDefaultConfigurationFile(
-			error
-		){
+	function makeErrorHandler(configurationPath){
+		return function(error){
 			return writeDefaultConfigFile(configurationPath);
 		}
 	}
 	function configPathBack(configPath){
-		var promiseConfigSource = promiseReadFile(configPath);
-		return promiseConfigSource.catch(
-			getErrorHandlerToWriteDefaultConfigurationFile(
-				configPath
-			)
+		var configPromise = promiseReadFile(configPath);
+		return configPromise.catch(
+			makeErrorHandler(configPath)
 		);
 	}
 	return promiseToCallback(
