@@ -14,12 +14,12 @@
 		http = require('http'),
 		EventEmitter = require('events');
 
+	remote_command.init(wifi.promiseMacAsToken);
+
 	configuration.readConfig((error, config) => {
 		$.getScript('http://localhost:' + constant.SOCKET_PORT + '/socket.io/socket.io.js', () => {
 			const socketProcessIO = io('http://localhost:' + constant.SOCKET_PORT),
 				app = angular.module('app', ['ngRoute', 'ngMaterial', 'ngMessages', 'ngDrag']);
-
-			remote_command.init(wifi.promiseMacAsToken);
 
 			// Register constants with app DI.
 			Object.keys(constant).forEach((key) => {

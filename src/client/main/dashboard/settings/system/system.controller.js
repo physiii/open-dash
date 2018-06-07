@@ -1,3 +1,5 @@
+const wifi = require('./server/devices/wifi.js');
+
 var app = angular.module('app');
 var gui = require('nw.gui');
 
