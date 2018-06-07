@@ -19,21 +19,21 @@ const EventEmitter = require('events'),
 	canDefinitions = [
 		{
 			name: 'shift/unknown',
-			canId: '6314018',
+			canId: '0x06314018',
 			canMessageIndex: 0,
 			canMessageValue: 'C0',
 			shouldValueMatch: true
 		},
 		{
 			name: 'shift/reverse',
-			canId: '6314018',
+			canId: '0x06314018',
 			canMessageIndex: 0,
 			canMessageValue: 'C0',
 			shouldValueMatch: false
 		},
 		{
 			name: 'steering-wheel/controls/volume-up',
-			canId: '6284000',
+			canId: '0x06284000',
 			canMessageIndex: 0,
 			canMessageValue: '80',
 			shouldValueMatch: true,
@@ -43,7 +43,7 @@ const EventEmitter = require('events'),
 		},
 		{
 			name: 'steering-wheel/controls/volume-down',
-			canId: '6284000',
+			canId: '0x06284000',
 			canMessageIndex: 0,
 			canMessageValue: '40',
 			shouldValueMatch: true,
@@ -55,7 +55,7 @@ const EventEmitter = require('events'),
 	canCache = {},
 	inProgressList = {};
 
-// TODO: Populate cache at initialization.
+// TODO: Populate cache at initialization?
 
 class Can {
 	constructor () {
@@ -79,7 +79,7 @@ class Can {
 	_getEventsForMessage (canMessage) {
 		return canDefinitions.map((canDefinition) => {
 			const canEvent = canEvents[canDefinition.name],
-				messageId = canMessage.id.toLowerCase(),
+				messageId = canMessage.message_id.toLowerCase(),
 				definitionId = canDefinition.canId.toLowerCase(),
 				cacheKey = canEvent.event;
 
@@ -136,7 +136,7 @@ class Can {
 	}
 
 	_doesMessageMatchDefinition (canMessage, canDefinition) {
-		const messageValue = canMessage.message.substr(canDefinition.canMessageIndex, canDefinition.canMessageValue.length).toLowerCase(),
+		const messageValue = canMessage.message.replace('0x', '').substr(canDefinition.canMessageIndex, canDefinition.canMessageValue.length).toLowerCase(),
 			definitionValue = canDefinition.canMessageValue.toLowerCase();
 
 		return (canDefinition.shouldValueMatch && messageValue === definitionValue) || (!canDefinition.shouldValueMatch && messageValue !== definitionValue);
@@ -147,7 +147,7 @@ class Can {
 			return false;
 		}
 
-		const messageValue = canMessage.message.substr(
+		const messageValue = canMessage.message.replace('0x', '').substr(
 				canDefinition.end.canMessageIndex || canDefinition.canMessageIndex, // If it's provided, use a different index for the end value.
 				canDefinition.canMessageValue.length
 			).toLowerCase(),

@@ -14,7 +14,7 @@ class DaughterCard {
     this._handleSerialPortData = this._handleSerialPortData.bind(this);
 
     // Respond when daughter board asks if main board is on.
-    this.on('status', (error, status) => {
+    this.on('status', (status) => {
       if (status && status.get_power_state) {
         this.send('status', {power_state: true});
       }
@@ -72,7 +72,7 @@ class DaughterCard {
     } catch (error) {}
 
     if (message && message.type && message.payload) {
-      this._events.emit(message.type, null, message.payload);
+      this._events.emit(message.type, message.payload);
     }
   }
 

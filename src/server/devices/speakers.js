@@ -2,12 +2,10 @@
 // -----------------  https://github.com/physiii/open-dash/devices  -------------------- //
 // ---------------------------------- speakers.js --------------------------------------- //
 
-
-
 //module for system (master) volume controls
 const loudness = require('./loudness'),
   spawn = require('child_process').spawn,
-  can_event = require('./can.js');
+  can = require('./can.js');
 
 module.exports = {
   getVolume: getVolume,
@@ -22,11 +20,11 @@ module.exports = {
   next: next
 }
 
-can_event.on('volume-up', () => {
+can.on('volume-up', () => {
   raiseVolume();
 });
 
-can_event.on('volume-down', () => {
+can.on('volume-down', () => {
   lowerVolume();
 });
 
