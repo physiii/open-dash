@@ -136,7 +136,7 @@ class Can {
 	}
 
 	_doesMessageMatchDefinition (canMessage, canDefinition) {
-		const messageValue = canMessage.message.replace('0x', '').substr(canDefinition.canMessageIndex, canDefinition.canMessageValue.length).toLowerCase(),
+		const messageValue = this._getConcatenatedMessage(canMessage).substr(canDefinition.canMessageIndex, canDefinition.canMessageValue.length).toLowerCase(),
 			definitionValue = canDefinition.canMessageValue.toLowerCase();
 
 		return (canDefinition.shouldValueMatch && messageValue === definitionValue) || (!canDefinition.shouldValueMatch && messageValue !== definitionValue);
@@ -147,7 +147,7 @@ class Can {
 			return false;
 		}
 
-		const messageValue = canMessage.message.replace('0x', '').substr(
+		const messageValue = this._getConcatenatedMessage(canMessage).substr(
 				canDefinition.end.canMessageIndex || canDefinition.canMessageIndex, // If it's provided, use a different index for the end value.
 				canDefinition.canMessageValue.length
 			).toLowerCase(),
@@ -155,6 +155,10 @@ class Can {
 			shouldValueMatch = canDefinition.end.shouldValueMatch || canDefinition.shouldValueMatch; // If it's provided, use different matching logic for the end value.
 
 		return (shouldValueMatch && messageValue === definitionValue) || (!shouldValueMatch && messageValue !== definitionValue);
+	}
+
+	_getConcatenatedMessage (canMessage) {
+		return canMessage.message.l32.replace('0x', '') + canMessage.message.h32.replace('0x', '');
 	}
 }
 
