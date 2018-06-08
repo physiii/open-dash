@@ -158,7 +158,7 @@ class Can {
 	}
 
 	_getConcatenatedMessage (canMessage) {
-		return canMessage.message.l32.replace('0x', '') + canMessage.message.h32.replace('0x', '');
+		return canMessage.message.h32.replace('0x', '') + canMessage.message.l32.replace('0x', '');
 	}
 }
 
