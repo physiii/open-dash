@@ -84,6 +84,7 @@ class Can {
 	_listenForCanMessages () {
 		daughter.on('CAN', (canMessage) => {
 			this._getEventsForMessage(canMessage).forEach((canEvent) => {
+				console.log('CAN EVENT ' + canEvent.event + ' - message_id: ' + canMessage.message_id + ', message: ' + this._getConcatenatedMessage(canMessage));
 				this._events.emit(canEvent.event, canEvent);
 			});
 		});
