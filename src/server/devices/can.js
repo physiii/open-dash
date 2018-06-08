@@ -13,6 +13,9 @@ const EventEmitter = require('events'),
 		},
 		'steering-wheel/controls/volume-down': {
 			event: 'volume-down'
+		},
+		'steering-wheel/controls/volume-mute': {
+			event: 'volume-mute'
 		}
 	},
 	// TODO: These definitions are vehicle-specific. Move this into database?
@@ -46,6 +49,16 @@ const EventEmitter = require('events'),
 			canId: '0x06284000',
 			canMessageIndex: 0,
 			canMessageValue: '40',
+			shouldValueMatch: true,
+			end: {
+				canMessageValue: '00'
+			}
+		},
+		{
+			name: 'steering-wheel/controls/volume-mute',
+			canId: '0x06284000',
+			canMessageIndex: 0,
+			canMessageValue: '20',
 			shouldValueMatch: true,
 			end: {
 				canMessageValue: '00'

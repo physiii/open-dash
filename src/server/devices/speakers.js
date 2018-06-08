@@ -28,6 +28,10 @@ can.on('volume-down', () => {
   lowerVolume();
 });
 
+can.on('volume-mute', () => {
+  mute();
+});
+
 function getVolume() {
   return promise=new Promise( function(resolve, reject) {
     loudness.getVolume(function(err, vol) {
@@ -40,7 +44,7 @@ function getVolume() {
 //volume range is 0-100
 
 function setVolume(vol) {
-  return promise=new Promise( function(resolve, reject) {
+  return new Promise( function(resolve, reject) {
     loudness.setVolume(vol, function(err) {
       if(err) reject(err);
       else resolve(vol);
@@ -50,7 +54,7 @@ function setVolume(vol) {
 
 //raise volume by 5 units
 function raiseVolume() {
-  return promise=new Promise( function(resolve, reject) {
+  return new Promise( function(resolve, reject) {
      getVolume().then(function(vol) {
       loudness.setVolume(vol+5, function(seterr) {
           if(seterr) reject(seterr);
@@ -61,7 +65,7 @@ function raiseVolume() {
 }
 //lower volume by 5 units
 function lowerVolume() {
-  return promise=new Promise( function(resolve, reject) {
+  return new Promise( function(resolve, reject) {
     getVolume().then(function(vol) {
       loudness.setVolume(vol-5, function(seterr) {
         if(seterr) reject(seterr);
@@ -72,7 +76,7 @@ function lowerVolume() {
 }
 
 function getMuted() {
-  return promise=new Promise( function(resolve, reject) {
+  return new Promise( function(resolve, reject) {
     loudness.getMuted(function(err, mute) {
       if(err) reject(err);
       else resolve(mute);
@@ -81,7 +85,7 @@ function getMuted() {
 }
 
 function setMuted(mute) {
-  return promise=new Promise( function(resolve, reject) {
+  return new Promise( function(resolve, reject) {
     loudness.setMuted(mute, function(err) {
       if(err) reject(err);
       else resolve(mute);
@@ -98,7 +102,7 @@ function muteXdoTool() {
 
 //mute if not-muted, unmute if muted
 function mute() {
-  return promise=new Promise( function(resolve, reject) {
+  return new Promise( function(resolve, reject) {
     getMuted().then(function(mute) {
       loudness.setMuted(!mute, function(seterr) {
         if(seterr) reject(seterr);
@@ -123,84 +127,3 @@ function next() {
     resolve(true);
   });
 };
-
-
-/*
-var loudness = require('loudness');
-
-function getVolume() {
-  return promise=new Promise( function(resolve, reject) {
-    loudness.getVolume(function(err, vol) {
-      if(err) reject(err);
-      else resolve(vol);
-    });
-  });
-}
-
-//volume range is 0-100
-
-function setVolume(vol) {
-  return promise=new Promise( function(resolve, reject) {
-    loudness.setVolume(vol, function(err) {
-      if(err) reject(err);
-      else resolve(vol);
-    });
-  });
-}
-
-
-
-//raise volume by 5 units
-function raiseVolume() {
-  return promise=new Promise( function(resolve, reject) {
-     getVolume().then(function(vol) {
-      loudness.setVolume(vol+5, function(seterr) {
-          if(seterr) reject(seterr);
-          else resolve(vol);
-      });
-     });
-  });
-}
-//lower volume by 5 units
-function lowerVolume() {
-  return promise=new Promise( function(resolve, reject) {
-    getVolume().then(function(vol) {
-      loudness.setVolume(vol-5, function(seterr) {
-        if(seterr) reject(seterr);
-        else resolve(vol);
-      });
-    });
-  });
-}
-
-function getMuted() {
-  return promise=new Promise( function(resolve, reject) {
-    loudness.getMuted(function(err, mute) {
-      if(err) reject(err);
-      else resolve(mute);
-    });
-  });
-}
-function setMuted(mute) {
-  return promise=new Promise( function(resolve, reject) {
-    loudness.setMuted(mute, function(err) {
-      if(err) reject(err);
-      else resolve(mute);
-    });
-  });
-}
-
-//mute if not-muted, unmute if muted
-function mute() {
-  return promise=new Promise( function(resolve, reject) {
-    getMuted().then(function(err, mute) {
-      if(err) return reject(err);
-      loudness.setMuted(!mute, function(seterr) {
-        if(seterr) reject(seterr);
-        else resolve(!mute);
-      });
-    });
-  });
-}
-
-*/
