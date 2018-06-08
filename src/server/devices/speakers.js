@@ -56,7 +56,7 @@ function setVolume(vol) {
 function raiseVolume() {
   return new Promise( function(resolve, reject) {
      getVolume().then(function(vol) {
-      loudness.setVolume(vol+5, function(seterr) {
+      loudness.setVolume(vol+10, function(seterr) {
           if(seterr) reject(seterr);
           else resolve(vol);
       });
@@ -67,7 +67,7 @@ function raiseVolume() {
 function lowerVolume() {
   return new Promise( function(resolve, reject) {
     getVolume().then(function(vol) {
-      loudness.setVolume(vol-5, function(seterr) {
+      loudness.setVolume(vol-10, function(seterr) {
         if(seterr) reject(seterr);
         else resolve(vol);
       });
