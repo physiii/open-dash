@@ -37,9 +37,9 @@ sudo chmod 777 -R /usr/local/\
 cd /usr/local/src/\
 git clone -b build https://github.com/physiii/open-dash
 cd open-dash\
-npm install
-cd node_modules/serialport
-nw-gyp build --target=0.31.1
+npm install \
+cd node_modules/serialport \
+nw-gyp build --target=0.31.1 \
 
 cd /usr/local/src/\
 git clone https://github.com/oblique/create_ap \
