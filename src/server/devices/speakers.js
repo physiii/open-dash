@@ -5,7 +5,11 @@
 //module for system (master) volume controls
 const loudness = require('./loudness'),
   spawn = require('child_process').spawn,
-  can = require('./can/can.js');
+  can = require('./can/can.js'),
+  volumeHoldDelay = 1500,
+  volumeHoldIntervalDelay = 500;
+
+let volumeHoldTimeout, volumeHoldInterval;
 
 module.exports = {
   getVolume: getVolume,
@@ -22,18 +26,37 @@ module.exports = {
 
 can.on('volume-up', () => {
   raiseVolume();
+  startVolumeHold(raiseVolume);
 });
 
 can.on('volume-down', () => {
   lowerVolume();
+  startVolumeHold(lowerVolume);
 });
+
+can.on('volume-up-end', stopVolumeHold);
+can.on('volume-down-end', stopVolumeHold);
 
 can.on('volume-mute', () => {
   mute();
 });
 
+function startVolumeHold (volumeFunction) {
+  // After a delay, start raising/lowering the volume repeatedly.
+  volumeHoldTimeout = setTimeout(() => {
+    volumeHoldInterval = setInterval(() => {
+      volumeFunction();
+    }, volumeHoldIntervalDelay);
+  }, volumeHoldDelay);
+}
+
+function stopVolumeHold () {
+  clearTimeout(volumeHoldTimeout);
+  clearInterval(volumeHoldInterval);
+}
+
 function getVolume() {
-  return promise=new Promise( function(resolve, reject) {
+  return new Promise( function(resolve, reject) {
     loudness.getVolume(function(err, vol) {
       if(err) reject(err);
       else resolve(vol);
@@ -56,7 +79,7 @@ function setVolume(vol) {
 function raiseVolume() {
   return new Promise( function(resolve, reject) {
      getVolume().then(function(vol) {
-      loudness.setVolume(vol+10, function(seterr) {
+      loudness.setVolume(vol+5, function(seterr) {
           if(seterr) reject(seterr);
           else resolve(vol);
       });
@@ -67,7 +90,7 @@ function raiseVolume() {
 function lowerVolume() {
   return new Promise( function(resolve, reject) {
     getVolume().then(function(vol) {
-      loudness.setVolume(vol-10, function(seterr) {
+      loudness.setVolume(vol-5, function(seterr) {
         if(seterr) reject(seterr);
         else resolve(vol);
       });
