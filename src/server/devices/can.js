@@ -105,6 +105,13 @@ const EventEmitter = require('events'),
 			shouldValueMatch: true
 		},
 		{
+			name: 'door/front/left/closed',
+			canId: '0x06214000',
+			canMessageIndex: 3,
+			canMessageValue: '8',
+			shouldValueMatch: true
+		},
+		{
 			name: 'door/front/right/open',
 			canId: '0x06214000',
 			canMessageIndex: 3,
@@ -123,6 +130,13 @@ const EventEmitter = require('events'),
 			canId: '0x06214000',
 			canMessageIndex: 3,
 			canMessageValue: '0',
+			shouldValueMatch: true
+		},
+		{
+			name: 'door/front/right/closed',
+			canId: '0x06214000',
+			canMessageIndex: 3,
+			canMessageValue: '4',
 			shouldValueMatch: true
 		},
 		{
