@@ -35,6 +35,69 @@ const EventEmitter = require('events'),
 			shouldValueMatch: false
 		},
 		{
+			name: 'key/off',
+			canId: '0x06214000',
+			canMessageIndex: 4,
+			canMessageValue: '1',
+			shouldValueMatch: true
+		},
+		{
+			name: 'key/on',
+			canId: '0x06214000',
+			canMessageIndex: 4,
+			canMessageValue: 'C',
+			shouldValueMatch: true
+		},
+		{
+			name: 'key/run',
+			canId: '0x06214000',
+			canMessageIndex: 4,
+			canMessageValue: '4',
+			shouldValueMatch: true
+		},
+		{
+			name: 'door/front/left/opened',
+			canId: '0x06214000',
+			canMessageIndex: 3,
+			canMessageValue: 'C',
+			shouldValueMatch: true
+		},
+		{
+			name: 'door/front/left/opened',
+			canId: '0x06214000',
+			canMessageIndex: 3,
+			canMessageValue: '4',
+			shouldValueMatch: true
+		},
+		{
+			name: 'door/front/left/closed',
+			canId: '0x06214000',
+			canMessageIndex: 3,
+			canMessageValue: '0',
+			shouldValueMatch: true
+		},
+		{
+			name: 'door/front/right/opened',
+			canId: '0x06214000',
+			canMessageIndex: 3,
+			canMessageValue: 'C',
+			shouldValueMatch: true
+		},
+		{
+			name: 'door/front/right/opened',
+			canId: '0x06214000',
+			canMessageIndex: 8,
+			canMessageValue: 'C',
+			shouldValueMatch: true
+		},
+		{
+			name: 'door/front/right/closed',
+			canId: '0x06214000',
+			canMessageIndex: 3,
+			canMessageValue: '0',
+			shouldValueMatch: true
+		},
+		{
 			name: 'steering-wheel/controls/volume-up',
 			canId: '0x06284000',
 			canMessageIndex: 0,
@@ -59,10 +122,7 @@ const EventEmitter = require('events'),
 			canId: '0x06284000',
 			canMessageIndex: 0,
 			canMessageValue: '20',
-			shouldValueMatch: true,
-			end: {
-				canMessageValue: '00'
-			}
+			shouldValueMatch: true
 		}
 	],
 	canCache = {},
