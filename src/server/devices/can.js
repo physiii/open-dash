@@ -114,8 +114,8 @@ const EventEmitter = require('events'),
 		{
 			name: 'door/front/right/open',
 			canId: '0x06214000',
-			canMessageIndex: 8,
-			canMessageValue: 'C',
+			canMessageIndex: 3,
+			canMessageValue: '8',
 			shouldValueMatch: true
 		},
 		{
