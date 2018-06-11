@@ -10,15 +10,15 @@ const EventEmitter = require('events'),
 		},
 		'key/off': {
 			event: 'key',
-			keyPosition: 'off'
+			keyPosition: 0
 		},
 		'key/on': {
 			event: 'key',
-			keyPosition: 'on'
+			keyPosition: 1
 		},
-		'key/start': {
+		'key/run': {
 			event: 'key',
-			keyPosition: 'start'
+			keyPosition: 2
 		},
 		'door/front/left/open': {
 			event: 'door/front/left',
