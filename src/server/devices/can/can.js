@@ -169,7 +169,7 @@ class Can {
 			const canEvent = canEvents[canDefinition.name],
 				messageId = canMessage.message_id.toLowerCase(),
 				definitionId = canDefinition.can_id.toLowerCase(),
-				cacheKey = canEvent.event;
+				cacheKey = canEvent.cache_key || canEvent.event;
 
 			let eventToEmit;
 

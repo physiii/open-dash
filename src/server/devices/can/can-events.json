@@ -29,6 +29,7 @@
 	},
 	"door/1/open": {
 		"event": "door",
+		"cache_key": "door/1",
 		"data": {
 			"door": 1,
 			"is_door_open": true
@@ -36,6 +37,7 @@
 	},
 	"door/1/closed": {
 		"event": "door",
+		"cache_key": "door/1",
 		"data": {
 			"door": 1,
 			"is_door_open": false
@@ -43,6 +45,7 @@
 	},
 	"door/2/open": {
 		"event": "door",
+		"cache_key": "door/2",
 		"data": {
 			"door": 2,
 			"is_door_open": true
@@ -50,6 +53,7 @@
 	},
 	"door/2/closed": {
 		"event": "door",
+		"cache_key": "door/2",
 		"data": {
 			"door": 2,
 			"is_door_open": false
@@ -57,6 +61,7 @@
 	},
 	"door/3/open": {
 		"event": "door",
+		"cache_key": "door/3",
 		"data": {
 			"door": 2,
 			"is_door_open": true
@@ -64,6 +69,7 @@
 	},
 	"door/3/closed": {
 		"event": "door",
+		"cache_key": "door/3",
 		"data": {
 			"door": 2,
 			"is_door_open": false
@@ -71,6 +77,7 @@
 	},
 	"door/4/open": {
 		"event": "door",
+		"cache_key": "door/4",
 		"data": {
 			"door": 2,
 			"is_door_open": true
@@ -78,6 +85,7 @@
 	},
 	"door/4/closed": {
 		"event": "door",
+		"cache_key": "door/4",
 		"data": {
 			"door": 2,
 			"is_door_open": false
@@ -85,6 +93,7 @@
 	},
 	"door/5/open": {
 		"event": "door",
+		"cache_key": "door/5",
 		"data": {
 			"door": 2,
 			"is_door_open": true
@@ -92,6 +101,7 @@
 	},
 	"door/5/closed": {
 		"event": "door",
+		"cache_key": "door/5",
 		"data": {
 			"door": 2,
 			"is_door_open": false
