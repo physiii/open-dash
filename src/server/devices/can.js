@@ -290,7 +290,7 @@ class Can {
 				canDefinition.end.can_message_index || canDefinition.can_message_index, // If it's provided, use a different index for the end value.
 				canDefinition.can_message_value.length
 			).toLowerCase(),
-			definitionValue = (canDefinition.end === true ? canDefinition.end.can_message_value : canDefinition.can_message_value).toLowerCase(),
+			definitionValue = (canDefinition.end === true ? canDefinition.can_message_value : canDefinition.end.can_message_value).toLowerCase(),
 			should_value_match = canDefinition.end === true ? !canDefinition.should_value_match : (canDefinition.end.should_value_match || canDefinition.should_value_match); // If it's provided, use different matching logic for the end value.
 
 		return (should_value_match && messageValue === definitionValue) || (!should_value_match && messageValue !== definitionValue);
