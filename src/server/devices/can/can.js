@@ -1,6 +1,6 @@
 const EventEmitter = require('events'),
 	daughter = require('../daughter.js'),
-	canEvents = require('./can-events.json'),
+	canEvents = require('./can-events.js'),
 	// TODO: These definitions are vehicle-specific. Move this into database?
 	canDefinitions = [
 		// Shift Position
@@ -175,7 +175,7 @@ class Can {
 	_listenForCanMessages () {
 		daughter.on('CAN', (canMessage) => {
 			this._getEventsForMessage(canMessage).forEach((canEvent) => {
-				console.log('CAN EVENT ' + canEvent.event + ' - message_id: ' + canMessage.message_id + ', message: ' + this._getConcatenatedMessage(canMessage));
+				console.log('CAN EVENT ' + canEvent.event + ' - message_id: ' + canMessage.message_id + ', message: ' + this._getConcatenatedMessage(canMessage), canEvent);
 				this._events.emit(canEvent.event, canEvent.data);
 			});
 		});

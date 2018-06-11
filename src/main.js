@@ -63,9 +63,9 @@ function checkForShutDownConditions () {
 }
 can.on('door', (data) => {
   if (data.is_door_open) {
-    number_of_doors_open -= 1;
-  } else {
     number_of_doors_open += 1;
+  } else {
+    number_of_doors_open -= 1;
   }
 
   checkForShutDownConditions();
