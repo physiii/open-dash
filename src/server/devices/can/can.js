@@ -140,19 +140,36 @@ const EventEmitter = require('events'),
 		}
 	],
 	canCache = {},
-	inProgressList = {};
-
-// TODO: Populate cache at initialization?
+	inProgressList = {},
+	TAG = '[Can]';
 
 class Can {
 	constructor () {
 		this._events = new EventEmitter();
 
+		this._initializeCache();
 		this._listenForCanMessages();
 	}
 
 	on () {
 		this._events.on.apply(this._events, arguments);
+	}
+
+	_initializeCache () {
+		canEvents.forEach((can_event) => {
+			if (!can_event.initial) {
+				return;
+			}
+
+			if (can_event.end) {
+				console.error(TAG, 'CAN event "' + can_event.event + '" is marked as initial state, but events with an end property can\'t be initial state.');
+				return;
+			}
+
+			const cache_key = can_event.cache_key || can_event.event;
+
+			canCache[cache_key] = JSON.stringify(can_event);
+		});
 	}
 
 	_listenForCanMessages () {
@@ -166,7 +183,7 @@ class Can {
 
 	_getEventsForMessage (canMessage) {
 		return canDefinitions.map((canDefinition) => {
-			const canEvent = canEvents[canDefinition.name],
+			const canEvent = canEvents.get(canDefinition.name),
 				messageId = canMessage.message_id.toLowerCase(),
 				definitionId = canDefinition.can_id.toLowerCase(),
 				cacheKey = canEvent.cache_key || canEvent.event;
