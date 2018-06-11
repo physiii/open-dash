@@ -8,6 +8,34 @@ const EventEmitter = require('events'),
 			event: 'shift',
 			shiftMode: 'reverse'
 		},
+		'key/off': {
+			event: 'key',
+			keyPosition: 'off'
+		},
+		'key/on': {
+			event: 'key',
+			keyPosition: 'on'
+		},
+		'key/start': {
+			event: 'key',
+			keyPosition: 'start'
+		},
+		'door/front/left/open': {
+			event: 'door/front/left',
+			open: true
+		},
+		'door/front/left/closed': {
+			event: 'door/front/left',
+			open: false
+		},
+		'door/front/right/open': {
+			event: 'door/front/right',
+			open: true
+		},
+		'door/front/right/closed': {
+			event: 'door/front/right',
+			open: false
+		},
 		'steering-wheel/controls/volume-up': {
 			event: 'volume-up'
 		},
@@ -56,14 +84,14 @@ const EventEmitter = require('events'),
 			shouldValueMatch: true
 		},
 		{
-			name: 'door/front/left/opened',
+			name: 'door/front/left/open',
 			canId: '0x06214000',
 			canMessageIndex: 3,
 			canMessageValue: 'C',
 			shouldValueMatch: true
 		},
 		{
-			name: 'door/front/left/opened',
+			name: 'door/front/left/open',
 			canId: '0x06214000',
 			canMessageIndex: 3,
 			canMessageValue: '4',
@@ -77,14 +105,14 @@ const EventEmitter = require('events'),
 			shouldValueMatch: true
 		},
 		{
-			name: 'door/front/right/opened',
+			name: 'door/front/right/open',
 			canId: '0x06214000',
 			canMessageIndex: 3,
 			canMessageValue: 'C',
 			shouldValueMatch: true
 		},
 		{
-			name: 'door/front/right/opened',
+			name: 'door/front/right/open',
 			canId: '0x06214000',
 			canMessageIndex: 8,
 			canMessageValue: 'C',
