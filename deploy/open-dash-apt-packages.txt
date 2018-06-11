@@ -17,7 +17,6 @@ mongodb
 net-tools
 nmap
 nodejs
-npm
 openssh-server
 pulseaudio-module-bluetooth
 python
@@ -28,5 +27,6 @@ tmux
 udev
 wget
 wmctrl
+vim
 xfce4-power-manager
 xinput
