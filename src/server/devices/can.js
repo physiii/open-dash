@@ -16,7 +16,7 @@ const EventEmitter = require('events'),
 			event: 'key',
 			keyPosition: 1
 		},
-		'key/run': {
+		'key/start': {
 			event: 'key',
 			keyPosition: 2
 		},
@@ -73,14 +73,14 @@ const EventEmitter = require('events'),
 			name: 'key/on',
 			canId: '0x06214000',
 			canMessageIndex: 4,
-			canMessageValue: 'C',
+			canMessageValue: '4',
 			shouldValueMatch: true
 		},
 		{
-			name: 'key/run',
+			name: 'key/start',
 			canId: '0x06214000',
 			canMessageIndex: 4,
-			canMessageValue: '4',
+			canMessageValue: 'C',
 			shouldValueMatch: true
 		},
 		{
