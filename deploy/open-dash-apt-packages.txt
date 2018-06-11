@@ -1,6 +1,7 @@
 bison
 bluez
 bluez-tools
+build-essential
 cmake
 dnsmasq
 ffmpeg
