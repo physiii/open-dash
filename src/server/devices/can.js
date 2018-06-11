@@ -6,35 +6,35 @@ const EventEmitter = require('events'),
 		},
 		'shift/reverse': {
 			event: 'shift',
-			shiftMode: 'reverse'
+			shift_mode: 'reverse'
 		},
 		'key/off': {
 			event: 'key',
-			keyPosition: 0
+			key_position: 0
 		},
 		'key/on': {
 			event: 'key',
-			keyPosition: 1
+			key_position: 1
 		},
 		'key/start': {
 			event: 'key',
-			keyPosition: 2
+			key_position: 2
 		},
 		'door/front/left/open': {
 			event: 'door/front/left',
-			open: true
+			is_door_open: true
 		},
 		'door/front/left/closed': {
 			event: 'door/front/left',
-			open: false
+			is_door_open: false
 		},
 		'door/front/right/open': {
 			event: 'door/front/right',
-			open: true
+			is_door_open: true
 		},
 		'door/front/right/closed': {
 			event: 'door/front/right',
-			open: false
+			is_door_open: false
 		},
 		'steering-wheel/controls/volume-up': {
 			event: 'volume-up'
@@ -48,6 +48,7 @@ const EventEmitter = require('events'),
 	},
 	// TODO: These definitions are vehicle-specific. Move this into database?
 	canDefinitions = [
+		// Shift Position
 		{
 			name: 'shift/unknown',
 			canId: '0x06314018',
@@ -62,6 +63,7 @@ const EventEmitter = require('events'),
 			canMessageValue: 'C0',
 			shouldValueMatch: false
 		},
+		// Key Position
 		{
 			name: 'key/off',
 			canId: '0x06214000',
@@ -83,6 +85,7 @@ const EventEmitter = require('events'),
 			canMessageValue: 'C',
 			shouldValueMatch: true
 		},
+		// Door Position
 		{
 			name: 'door/front/left/open',
 			canId: '0x06214000',
@@ -139,6 +142,7 @@ const EventEmitter = require('events'),
 			canMessageValue: '4',
 			shouldValueMatch: true
 		},
+		// Steering Wheel Controls
 		{
 			name: 'steering-wheel/controls/volume-up',
 			canId: '0x06284000',
@@ -164,6 +168,20 @@ const EventEmitter = require('events'),
 			canId: '0x06284000',
 			canMessageIndex: 0,
 			canMessageValue: '20',
+			shouldValueMatch: true
+		},
+		{
+			name: 'steering-wheel/controls/seek-up',
+			canId: '0x06284000',
+			canMessageIndex: 0,
+			canMessageValue: '10',
+			shouldValueMatch: true
+		},
+		{
+			name: 'steering-wheel/controls/seek-down',
+			canId: '0x06284000',
+			canMessageIndex: 0,
+			canMessageValue: '08',
 			shouldValueMatch: true
 		}
 	],
