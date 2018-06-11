@@ -57,138 +57,137 @@ const EventEmitter = require('events'),
 		// Shift Position
 		{
 			name: 'shift/unknown',
-			canId: '0x06314018',
-			canMessageIndex: 0,
-			canMessageValue: 'C0',
-			shouldValueMatch: true
+			can_id: '0x06314018',
+			can_message_index: 0,
+			can_message_value: 'C0',
+			should_value_match: true
 		},
 		{
 			name: 'shift/reverse',
-			canId: '0x06314018',
-			canMessageIndex: 0,
-			canMessageValue: 'C0',
-			shouldValueMatch: false
+			can_id: '0x06314018',
+			can_message_index: 0,
+			can_message_value: 'C0',
+			should_value_match: false
 		},
 		// Key Position
 		{
 			name: 'key/off',
-			canId: '0x06214000',
-			canMessageIndex: 4,
-			canMessageValue: '1',
-			shouldValueMatch: true
+			can_id: '0x06214000',
+			can_message_index: 4,
+			can_message_value: '1',
+			should_value_match: true
 		},
 		{
 			name: 'key/on',
-			canId: '0x06214000',
-			canMessageIndex: 4,
-			canMessageValue: '4',
-			shouldValueMatch: true
+			can_id: '0x06214000',
+			can_message_index: 4,
+			can_message_value: '4',
+			should_value_match: true
 		},
 		{
 			name: 'key/start',
-			canId: '0x06214000',
-			canMessageIndex: 4,
-			canMessageValue: 'C',
-			shouldValueMatch: true
+			can_id: '0x06214000',
+			can_message_index: 4,
+			can_message_value: 'C',
+			should_value_match: true
 		},
 		// Door Position
 		{
 			name: 'door/front/left/open',
-			canId: '0x06214000',
-			canMessageIndex: 3,
-			canMessageValue: 'C',
-			shouldValueMatch: true
+			can_id: '0x06214000',
+			can_message_index: 3,
+			can_message_value: 'C',
+			should_value_match: true
 		},
 		{
 			name: 'door/front/left/open',
-			canId: '0x06214000',
-			canMessageIndex: 3,
-			canMessageValue: '4',
-			shouldValueMatch: true
+			can_id: '0x06214000',
+			can_message_index: 3,
+			can_message_value: '4',
+			should_value_match: true
 		},
 		{
 			name: 'door/front/left/closed',
-			canId: '0x06214000',
-			canMessageIndex: 3,
-			canMessageValue: '0',
-			shouldValueMatch: true
+			can_id: '0x06214000',
+			can_message_index: 3,
+			can_message_value: '0',
+			should_value_match: true
 		},
 		{
 			name: 'door/front/left/closed',
-			canId: '0x06214000',
-			canMessageIndex: 3,
-			canMessageValue: '8',
-			shouldValueMatch: true
+			can_id: '0x06214000',
+			can_message_index: 3,
+			can_message_value: '8',
+			should_value_match: true
 		},
 		{
 			name: 'door/front/right/open',
-			canId: '0x06214000',
-			canMessageIndex: 3,
-			canMessageValue: 'C',
-			shouldValueMatch: true
+			can_id: '0x06214000',
+			can_message_index: 3,
+			can_message_value: 'C',
+			should_value_match: true
 		},
 		{
 			name: 'door/front/right/open',
-			canId: '0x06214000',
-			canMessageIndex: 3,
-			canMessageValue: '8',
-			shouldValueMatch: true
+			can_id: '0x06214000',
+			can_message_index: 3,
+			can_message_value: '8',
+			should_value_match: true
 		},
 		{
 			name: 'door/front/right/closed',
-			canId: '0x06214000',
-			canMessageIndex: 3,
-			canMessageValue: '0',
-			shouldValueMatch: true
+			can_id: '0x06214000',
+			can_message_index: 3,
+			can_message_value: '0',
+			should_value_match: true
 		},
 		{
 			name: 'door/front/right/closed',
-			canId: '0x06214000',
-			canMessageIndex: 3,
-			canMessageValue: '4',
-			shouldValueMatch: true
+			can_id: '0x06214000',
+			can_message_index: 3,
+			can_message_value: '4',
+			should_value_match: true
 		},
 		// Steering Wheel Controls
 		{
 			name: 'steering-wheel/controls/volume-up',
-			canId: '0x06284000',
-			canMessageIndex: 0,
-			canMessageValue: '80',
-			shouldValueMatch: true,
-			end: {
-				canMessageValue: '00'
-			}
+			can_id: '0x06284000',
+			can_message_index: 0,
+			can_message_value: '80',
+			should_value_match: true,
+			end: true
 		},
 		{
 			name: 'steering-wheel/controls/volume-down',
-			canId: '0x06284000',
-			canMessageIndex: 0,
-			canMessageValue: '40',
-			shouldValueMatch: true,
-			end: {
-				canMessageValue: '00'
-			}
+			can_id: '0x06284000',
+			can_message_index: 0,
+			can_message_value: '40',
+			should_value_match: true,
+			end: true
 		},
 		{
 			name: 'steering-wheel/controls/volume-mute',
-			canId: '0x06284000',
-			canMessageIndex: 0,
-			canMessageValue: '20',
-			shouldValueMatch: true
+			can_id: '0x06284000',
+			can_message_index: 0,
+			can_message_value: '20',
+			should_value_match: true,
+			end: true
 		},
 		{
 			name: 'steering-wheel/controls/seek-up',
-			canId: '0x06284000',
-			canMessageIndex: 0,
-			canMessageValue: '10',
-			shouldValueMatch: true
+			can_id: '0x06284000',
+			can_message_index: 0,
+			can_message_value: '10',
+			should_value_match: true,
+			end: true
 		},
 		{
 			name: 'steering-wheel/controls/seek-down',
-			canId: '0x06284000',
-			canMessageIndex: 0,
-			canMessageValue: '08',
-			shouldValueMatch: true
+			can_id: '0x06284000',
+			can_message_index: 0,
+			can_message_value: '08',
+			should_value_match: true,
+			end: true
 		}
 	],
 	canCache = {},
@@ -220,7 +219,7 @@ class Can {
 		return canDefinitions.map((canDefinition) => {
 			const canEvent = canEvents[canDefinition.name],
 				messageId = canMessage.message_id.toLowerCase(),
-				definitionId = canDefinition.canId.toLowerCase(),
+				definitionId = canDefinition.can_id.toLowerCase(),
 				cacheKey = canEvent.event;
 
 			let eventToEmit;
@@ -236,7 +235,7 @@ class Can {
 				eventToEmit = {
 					...canEvent,
 					event: canEvent.event + '-end',
-					eventEnd: true
+					event_end: true
 				};
 
 				// Delete this from the list of in-progress events.
@@ -253,7 +252,7 @@ class Can {
 				// event and add this to the list of in-progress events.
 				if (canDefinition.end) {
 					inProgressList[canDefinition.name] = true;
-					eventToEmit.eventStart = true;
+					eventToEmit.event_start = true;
 				}
 			}
 
@@ -276,10 +275,10 @@ class Can {
 	}
 
 	_doesMessageMatchDefinition (canMessage, canDefinition) {
-		const messageValue = this._getConcatenatedMessage(canMessage).substr(canDefinition.canMessageIndex, canDefinition.canMessageValue.length).toLowerCase(),
-			definitionValue = canDefinition.canMessageValue.toLowerCase();
+		const messageValue = this._getConcatenatedMessage(canMessage).substr(canDefinition.can_message_index, canDefinition.can_message_value.length).toLowerCase(),
+			definitionValue = canDefinition.can_message_value.toLowerCase();
 
-		return (canDefinition.shouldValueMatch && messageValue === definitionValue) || (!canDefinition.shouldValueMatch && messageValue !== definitionValue);
+		return (canDefinition.should_value_match && messageValue === definitionValue) || (!canDefinition.should_value_match && messageValue !== definitionValue);
 	}
 
 	_doesMessageMatchDefinitionEnd (canMessage, canDefinition) {
@@ -288,13 +287,13 @@ class Can {
 		}
 
 		const messageValue = this._getConcatenatedMessage(canMessage).substr(
-				canDefinition.end.canMessageIndex || canDefinition.canMessageIndex, // If it's provided, use a different index for the end value.
-				canDefinition.canMessageValue.length
+				canDefinition.end.can_message_index || canDefinition.can_message_index, // If it's provided, use a different index for the end value.
+				canDefinition.can_message_value.length
 			).toLowerCase(),
-			definitionValue = canDefinition.end.canMessageValue.toLowerCase(),
-			shouldValueMatch = canDefinition.end.shouldValueMatch || canDefinition.shouldValueMatch; // If it's provided, use different matching logic for the end value.
+			definitionValue = (canDefinition.end === true ? canDefinition.end.can_message_value : canDefinition.can_message_value).toLowerCase(),
+			should_value_match = canDefinition.end === true ? !canDefinition.should_value_match : (canDefinition.end.should_value_match || canDefinition.should_value_match); // If it's provided, use different matching logic for the end value.
 
-		return (shouldValueMatch && messageValue === definitionValue) || (!shouldValueMatch && messageValue !== definitionValue);
+		return (should_value_match && messageValue === definitionValue) || (!should_value_match && messageValue !== definitionValue);
 	}
 
 	_getConcatenatedMessage (canMessage) {
