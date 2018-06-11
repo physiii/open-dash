@@ -1,57 +1,6 @@
 const EventEmitter = require('events'),
-	daughter = require('./daughter.js'),
-	canEvents = {
-		'shift/unknown': {
-			event: 'shift'
-		},
-		'shift/reverse': {
-			event: 'shift',
-			shift_mode: 'reverse'
-		},
-		'key/off': {
-			event: 'key',
-			key_position: 0
-		},
-		'key/on': {
-			event: 'key',
-			key_position: 1
-		},
-		'key/start': {
-			event: 'key',
-			key_position: 2
-		},
-		'door/front/left/open': {
-			event: 'door/front/left',
-			is_door_open: true
-		},
-		'door/front/left/closed': {
-			event: 'door/front/left',
-			is_door_open: false
-		},
-		'door/front/right/open': {
-			event: 'door/front/right',
-			is_door_open: true
-		},
-		'door/front/right/closed': {
-			event: 'door/front/right',
-			is_door_open: false
-		},
-		'steering-wheel/controls/volume-up': {
-			event: 'volume-up'
-		},
-		'steering-wheel/controls/volume-down': {
-			event: 'volume-down'
-		},
-		'steering-wheel/controls/volume-mute': {
-			event: 'volume-mute'
-		},
-		'steering-wheel/controls/seek-up': {
-			event: 'seek-up'
-		},
-		'steering-wheel/controls/seek-down': {
-			event: 'seek-down'
-		}
-	},
+	daughter = require('../daughter.js'),
+	canEvents = require('./can-events.json'),
 	// TODO: These definitions are vehicle-specific. Move this into database?
 	canDefinitions = [
 		// Shift Position
@@ -93,56 +42,56 @@ const EventEmitter = require('events'),
 		},
 		// Door Position
 		{
-			name: 'door/front/left/open',
+			name: 'door/1/open',
 			can_id: '0x06214000',
 			can_message_index: 3,
 			can_message_value: 'C',
 			should_value_match: true
 		},
 		{
-			name: 'door/front/left/open',
+			name: 'door/1/open',
 			can_id: '0x06214000',
 			can_message_index: 3,
 			can_message_value: '4',
 			should_value_match: true
 		},
 		{
-			name: 'door/front/left/closed',
+			name: 'door/1/closed',
 			can_id: '0x06214000',
 			can_message_index: 3,
 			can_message_value: '0',
 			should_value_match: true
 		},
 		{
-			name: 'door/front/left/closed',
+			name: 'door/1/closed',
 			can_id: '0x06214000',
 			can_message_index: 3,
 			can_message_value: '8',
 			should_value_match: true
 		},
 		{
-			name: 'door/front/right/open',
+			name: 'door/2/open',
 			can_id: '0x06214000',
 			can_message_index: 3,
 			can_message_value: 'C',
 			should_value_match: true
 		},
 		{
-			name: 'door/front/right/open',
+			name: 'door/2/open',
 			can_id: '0x06214000',
 			can_message_index: 3,
 			can_message_value: '8',
 			should_value_match: true
 		},
 		{
-			name: 'door/front/right/closed',
+			name: 'door/2/closed',
 			can_id: '0x06214000',
 			can_message_index: 3,
 			can_message_value: '0',
 			should_value_match: true
 		},
 		{
-			name: 'door/front/right/closed',
+			name: 'door/2/closed',
 			can_id: '0x06214000',
 			can_message_index: 3,
 			can_message_value: '4',
@@ -210,7 +159,7 @@ class Can {
 		daughter.on('CAN', (canMessage) => {
 			this._getEventsForMessage(canMessage).forEach((canEvent) => {
 				console.log('CAN EVENT ' + canEvent.event + ' - message_id: ' + canMessage.message_id + ', message: ' + this._getConcatenatedMessage(canMessage));
-				this._events.emit(canEvent.event, canEvent);
+				this._events.emit(canEvent.event, canEvent.data);
 			});
 		});
 	}
@@ -233,9 +182,11 @@ class Can {
 			if (inProgressList[canDefinition.name] && this._doesMessageMatchDefinitionEnd(canMessage, canDefinition)) {
 				// Add this end event to the list of events to emit.
 				eventToEmit = {
-					...canEvent,
 					event: canEvent.event + '-end',
-					event_end: true
+					data: {
+						...canEvent.data,
+						event_end: true
+					}
 				};
 
 				// Delete this from the list of in-progress events.
@@ -243,7 +194,8 @@ class Can {
 			} else if (this._doesMessageMatchDefinition(canMessage, canDefinition)) { // Check to see if the message value matches this definition.
 				// Add this event to the list of events to emit.
 				eventToEmit = {
-					...canEvent
+					...canEvent,
+					data: {...canEvent.data}
 				};
 
 				// If the definition specifies that this is an event in
@@ -252,7 +204,7 @@ class Can {
 				// event and add this to the list of in-progress events.
 				if (canDefinition.end) {
 					inProgressList[canDefinition.name] = true;
-					eventToEmit.event_start = true;
+					eventToEmit.data.event_start = true;
 				}
 			}
 

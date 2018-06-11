@@ -43,9 +43,9 @@ function canc_reboot() {
   cancVar = null;
 }
 
-function shutdown() {
+function shutdown(delay=5000) {
   console.log("Shutting down system in 5 seconds.");
-  shutDownTimer = setTimeout(function() {exec('sudo shutdown now');}, 5000);
+  shutDownTimer = setTimeout(function() {exec('sudo shutdown now');}, delay);
 };
 
 function cancelShutdown() {

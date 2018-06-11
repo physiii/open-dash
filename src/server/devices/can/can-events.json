@@ -1,0 +1,120 @@
+{
+	"shift/unknown": {
+		"event": "shift",
+		"data": {}
+	},
+	"shift/reverse": {
+		"event": "shift",
+		"data": {
+			"shift_mode": "reverse"
+		}
+	},
+	"key/off": {
+		"event": "key",
+		"data": {
+			"key_position": 0
+		}
+	},
+	"key/on": {
+		"event": "key",
+		"data": {
+			"key_position": 1
+		}
+	},
+	"key/start": {
+		"event": "key",
+		"data": {
+			"key_position": 2
+		}
+	},
+	"door/1/open": {
+		"event": "door",
+		"data": {
+			"door": 1,
+			"is_door_open": true
+		}
+	},
+	"door/1/closed": {
+		"event": "door",
+		"data": {
+			"door": 1,
+			"is_door_open": false
+		}
+	},
+	"door/2/open": {
+		"event": "door",
+		"data": {
+			"door": 2,
+			"is_door_open": true
+		}
+	},
+	"door/2/closed": {
+		"event": "door",
+		"data": {
+			"door": 2,
+			"is_door_open": false
+		}
+	},
+	"door/3/open": {
+		"event": "door",
+		"data": {
+			"door": 2,
+			"is_door_open": true
+		}
+	},
+	"door/3/closed": {
+		"event": "door",
+		"data": {
+			"door": 2,
+			"is_door_open": false
+		}
+	},
+	"door/4/open": {
+		"event": "door",
+		"data": {
+			"door": 2,
+			"is_door_open": true
+		}
+	},
+	"door/4/closed": {
+		"event": "door",
+		"data": {
+			"door": 2,
+			"is_door_open": false
+		}
+	},
+	"door/5/open": {
+		"event": "door",
+		"data": {
+			"door": 2,
+			"is_door_open": true
+		}
+	},
+	"door/5/closed": {
+		"event": "door",
+		"data": {
+			"door": 2,
+			"is_door_open": false
+		}
+	},
+	"steering-wheel/controls/volume-up": {
+		"event": "volume-up",
+		"data": {}
+	},
+	"steering-wheel/controls/volume-down": {
+		"event": "volume-down",
+		"data": {}
+	},
+	"steering-wheel/controls/volume-mute": {
+		"event": "volume-mute",
+		"data": {}
+	},
+	"steering-wheel/controls/seek-up": {
+		"event": "seek-up",
+		"data": {}
+	},
+	"steering-wheel/controls/seek-down": {
+		"event": "seek-down",
+		"data": {}
+	}
+}

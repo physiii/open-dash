@@ -9,7 +9,7 @@
 		camera = require('./server/devices/camera.js'),
 		mddCapture = require('./server/mdd-capture.js'),
 		remote_command = require('./command_socket.js'),
-		can = require('./server/devices/can.js'),
+		can = require('./server/devices/can/can.js'),
 		path = require('path'),
 		http = require('http'),
 		EventEmitter = require('events');

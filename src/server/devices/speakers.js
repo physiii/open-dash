@@ -5,7 +5,7 @@
 //module for system (master) volume controls
 const loudness = require('./loudness'),
   spawn = require('child_process').spawn,
-  can = require('./can.js');
+  can = require('./can/can.js');
 
 module.exports = {
   getVolume: getVolume,
