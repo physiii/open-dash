@@ -44,6 +44,12 @@ const EventEmitter = require('events'),
 		},
 		'steering-wheel/controls/volume-mute': {
 			event: 'volume-mute'
+		},
+		'steering-wheel/controls/seek-up': {
+			event: 'seek-up'
+		},
+		'steering-wheel/controls/seek-down': {
+			event: 'seek-down'
 		}
 	},
 	// TODO: These definitions are vehicle-specific. Move this into database?
