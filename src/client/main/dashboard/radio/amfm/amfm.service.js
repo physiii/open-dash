@@ -1,4 +1,4 @@
-angular.module('app').factory('AmfmService', function () {
+angular.module('app').factory('AmfmService', function (can) {
 	var amfm = {},
 		bands = {
 			am: {
@@ -91,6 +91,9 @@ angular.module('app').factory('AmfmService', function () {
 	_generateFrequencies(bands.am);
 	_generateFrequencies(bands.fm);
 	amfm.setBand('fm'); // Set the initial band. TODO: Load last band set from db.
+
+	can.on('seek-up', amfm.seekUp);
+	can.on('seek-down', amfm.seekDown);
 
 	return amfm;
 });
