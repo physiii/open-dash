@@ -6,30 +6,34 @@
 const loudness = require('./loudness'),
   spawn = require('child_process').spawn,
   can = require('./can/can.js'),
-  volumeHoldDelay = 1500,
-  volumeHoldIntervalDelay = 500;
+  VOLUME_INCREMENT = 5, // 0-100
+  VOLUME_HOLD_DELAY = 300,
+  // The first number is the number of milliseconds it should take to go from 0 to 100.
+  VOLUME_HOLD_INTERVAL_DELAY = 1000 / (100 / VOLUME_INCREMENT);
 
-let volumeHoldTimeout, volumeHoldInterval;
+let volume_hold_timer, volume_hold_interval;
 
 module.exports = {
-  getVolume: getVolume,
-  setVolume: setVolume,
-  raiseVolume: raiseVolume,
-  lowerVolume: lowerVolume,
-  getMuted: getMuted,
-  setMuted: setMuted,
-  muteXdoTool: muteXdoTool,
-  mute: mute,
-  play: play,
-  next: next
+  getVolume,
+  setVolume,
+  raiseVolume,
+  lowerVolume,
+  getMuted,
+  setMuted,
+  muteXdoTool,
+  mute,
+  play,
+  next
 }
 
 can.on('volume-up', () => {
+  setMuted(false);
   raiseVolume();
   startVolumeHold(raiseVolume);
 });
 
 can.on('volume-down', () => {
+  setMuted(false);
   lowerVolume();
   startVolumeHold(lowerVolume);
 });
@@ -38,98 +42,123 @@ can.on('volume-up-end', stopVolumeHold);
 can.on('volume-down-end', stopVolumeHold);
 
 can.on('volume-mute', () => {
-  mute();
+  toggleMuted();
 });
 
 function startVolumeHold (volumeFunction) {
-  // After a delay, start raising/lowering the volume repeatedly.
-  volumeHoldTimeout = setTimeout(() => {
-    volumeHoldInterval = setInterval(() => {
-      volumeFunction();
-    }, volumeHoldIntervalDelay);
-  }, volumeHoldDelay);
+  // After a delay to prevent double volume changes on single button presses,
+  // start raising/lowering the volume repeatedly.
+  volume_hold_timer = setTimeout(() => {
+    volume_hold_interval = setInterval(volumeFunction, VOLUME_HOLD_INTERVAL_DELAY);
+  }, VOLUME_HOLD_DELAY);
 }
 
 function stopVolumeHold () {
-  clearTimeout(volumeHoldTimeout);
-  clearInterval(volumeHoldInterval);
+  clearTimeout(volume_hold_timer);
+  clearInterval(volume_hold_interval);
 }
 
-function getVolume() {
-  return new Promise( function(resolve, reject) {
-    loudness.getVolume(function(err, vol) {
-      if(err) reject(err);
-      else resolve(vol);
+function getVolume () {
+  return new Promise((resolve, reject) => {
+    loudness.getVolume((error, volume) => {
+      if (error) {
+        reject(error);
+        return;
+      }
+
+      resolve(volume);
     });
   });
 }
 
 //volume range is 0-100
 
-function setVolume(vol) {
-  return new Promise( function(resolve, reject) {
-    loudness.setVolume(vol, function(err) {
-      if(err) reject(err);
-      else resolve(vol);
+function setVolume (volume) {
+  return new Promise((resolve, reject) => {
+    loudness.setVolume(volume, (error) => {
+      if (error) {
+        reject(error);
+        return;
+      }
+
+      resolve(volume);
     });
   });
 }
 
-//raise volume by 5 units
-function raiseVolume() {
-  return new Promise( function(resolve, reject) {
-     getVolume().then(function(vol) {
-      loudness.setVolume(vol+5, function(seterr) {
-          if(seterr) reject(seterr);
-          else resolve(vol);
+function raiseVolume (increment=VOLUME_INCREMENT) {
+  return new Promise((resolve, reject) => {
+     getVolume().then((volume) => {
+      loudness.setVolume(volume + increment, (error) => {
+          if (error) {
+            reject(error);
+            return;
+          }
+
+          resolve(volume);
       });
      });
   });
 }
-//lower volume by 5 units
-function lowerVolume() {
-  return new Promise( function(resolve, reject) {
-    getVolume().then(function(vol) {
-      loudness.setVolume(vol-5, function(seterr) {
-        if(seterr) reject(seterr);
-        else resolve(vol);
+
+function lowerVolume (increment=VOLUME_INCREMENT) {
+  return new Promise((resolve, reject) => {
+    getVolume().then((volume) => {
+      loudness.setVolume(volume - increment, (error) => {
+        if (error) {
+          reject(error);
+          return;
+        }
+
+        resolve(volume);
       });
     });
   });
 }
 
-function getMuted() {
-  return new Promise( function(resolve, reject) {
-    loudness.getMuted(function(err, mute) {
-      if(err) reject(err);
-      else resolve(mute);
+function getMuted () {
+  return new Promise((resolve, reject) => {
+    loudness.getMuted((error, is_muted) => {
+      if (error) {
+        reject(error);
+        return;
+      }
+
+      resolve(is_muted);
     });
   });
 }
 
-function setMuted(mute) {
-  return new Promise( function(resolve, reject) {
-    loudness.setMuted(mute, function(err) {
-      if(err) reject(err);
-      else resolve(mute);
+function setMuted (should_mute) {
+  return new Promise((resolve, reject) => {
+    loudness.setMuted(should_mute, (error) => {
+      if (error) {
+        reject(error);
+        return;
+      }
+
+      resolve(should_mute);
     });
   });
 }
 
-function muteXdoTool() {
-  return new Promise(function (resolve, reject) {
+function muteXdoTool () {
+  return new Promise((resolve, reject) => {
     spawn('xdotool', ['key', 'XF86AudioMute']);
     resolve(true);
   });
 };
 
-//mute if not-muted, unmute if muted
-function mute() {
-  return new Promise( function(resolve, reject) {
-    getMuted().then(function(mute) {
-      loudness.setMuted(!mute, function(seterr) {
-        if(seterr) reject(seterr);
-        else resolve(!mute);
+function toggleMuted () {
+  return new Promise((resolve, reject) => {
+    getMuted().then((is_muted) => {
+      loudness.setMuted(!is_muted, (error) => {
+        if (error) {
+          reject(error);
+          return;
+        }
+
+        resolve(!is_muted);
       });
     });
   });
@@ -137,15 +166,15 @@ function mute() {
 
 //functions play, pause, resume, next should be in media player
 //but leaving play and next here for now
-function play() {
-  return new Promise( function(resolve, reject) {
+function play () {
+  return new Promise((resolve, reject) => {
     spawn('xdotool', ['key', 'XF86AudioPlay']);
     resolve(true);
   });
 };
 
-function next() {
-  return new Promise( function(resolve, reject) {
+function next () {
+  return new Promise((resolve, reject) => {
     spawn('xdotool', ['key', 'XF86AudioNext']);
     resolve(true);
   });
