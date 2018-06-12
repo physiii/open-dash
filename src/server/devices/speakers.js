@@ -20,8 +20,8 @@ module.exports = {
 	lowerVolume,
 	getMuted,
 	setMuted,
+	toggleMuted,
 	muteXdoTool,
-	mute,
 	play,
 	next
 }
