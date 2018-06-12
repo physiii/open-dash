@@ -67,7 +67,6 @@
     "le-sni-auto": "^2.1.1",
     "le-store-certbot": "^2.0.5",
     "letsencrypt": "^2.1.8",
-    "loudness": "^0.2.2",
     "material-design-icons": "^3.0.1",
     "mongodb": "^2.2.1",
     "multiparty": "^4.1.3",
