@@ -1,4 +1,4 @@
-angular.module('app').factory('AmfmService', function (can) {
+angular.module('app').factory('AmfmService', function ($rootScope, can) {
 	var amfm = {},
 		bands = {
 			am: {
@@ -52,8 +52,10 @@ angular.module('app').factory('AmfmService', function (can) {
 		}
 		if (frequency === amfm.band.frequency) return;
 
-		amfm.band.frequency = frequency;
-		// TODO: Store current frequency in db (independently for AM and FM).
+		$rootScope.$apply(() => {
+			amfm.band.frequency = frequency;
+			// TODO: Store current frequency in db (independently for AM and FM).
+		});
 	};
 	amfm.playPause = (shouldPlay) => {
 		if (typeof shouldPlay === 'undefined') {
