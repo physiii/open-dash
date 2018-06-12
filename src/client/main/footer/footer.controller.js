@@ -18,12 +18,12 @@ angular.module('app').controller('FooterController', function ($scope, $location
 	}
 
 	$scope.raiseVolume = () => {
-		speakers.setMuted(false);
+		speakers.setMuted(false).then(setMutedState);
 		speakers.raiseVolume();
 	};
 
 	$scope.lowerVolume = () => {
-		speakers.setMuted(false);
+		speakers.setMuted(false).then(setMutedState);
 		speakers.lowerVolume();
 	};
 });
