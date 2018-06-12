@@ -1,36 +1,20 @@
-var app = angular.module('app');
-var speakers = require('./server/devices/speakers.js');
-app.controller('FooterController', function ($scope, $location, $timeout) {
-  $scope.volumeStatus = "volume_off";
-  showMuteStatus();
+const speakers = require('./server/devices/speakers.js');
+
+angular.module('app').controller('FooterController', function ($scope, $location, $timeout) {
+  function setMutedState (is_muted) {
+    $scope.mute_icon = is_muted ? 'volume_up' : 'volume_off';
+  }
+
+  speakers.getMuted().then(setMutedState);
+
   $scope.showRemote = function () {
     $location.path('remote');
   }
-  $scope.raiseVolume = function () {
-    speakers.raiseVolume();
-  }
-  $scope.lowerVolume = function () {
-    speakers.lowerVolume();
 
+  $scope.mute = () => {
+    speakers.toggleMuted().then(setMutedState);
   }
-  function showMuteStatus() {
-    speakers.getMuted().then((status) => {
-      $timeout(function () {
-        if (status) $scope.volumeStatus = "volume_up";
-        else $scope.volumeStatus = "volume_off";
-      }, 10);
-    });
-  }
-  $scope.mute = function () {
-    if ($scope.volumeStatus == "volume_off") {
-      speakers.muteXdoTool().then(() => {
-        showMuteStatus();
-      });
-    } else {
-      speakers.setMuted(false).then(() => {
-        showMuteStatus();
-      });
-    }
 
-  }
+  $scope.raiseVolume = speakers.raiseVolume;
+  $scope.lowerVolume = speakers.lowerVolume;
 });

@@ -8,7 +8,7 @@ const driver = require('./speakers-driver-alsa.js'),
 	can = require('./can/can.js'),
 	VOLUME_INCREMENT = 5, // 0-100
 	VOLUME_HOLD_DELAY = 300,
-	// The first number is the number of milliseconds it should take to go from 0 to 100.
+	// Adjust the first number to change how fast volume changes while holding buttons.
 	VOLUME_HOLD_INTERVAL_DELAY = 1000 / (100 / VOLUME_INCREMENT);
 
 let volume_hold_timer, volume_hold_interval;
@@ -21,7 +21,6 @@ module.exports = {
 	getMuted,
 	setMuted,
 	toggleMuted,
-	muteXdoTool,
 	play,
 	next
 }
@@ -155,14 +154,8 @@ function toggleMuted () {
 	});
 }
 
-function muteXdoTool () {
-	return new Promise((resolve, reject) => {
-		spawn('xdotool', ['key', 'XF86AudioMute']);
-		resolve(true);
-	});
-};
-
-// TODO: functions play, pause, resume, next should be in media player
+// TODO: Functions play, pause, resume, next should be in media player.
+// TODO: play and next seem to be unused.
 function play () {
 	return new Promise((resolve, reject) => {
 		spawn('xdotool', ['key', 'XF86AudioPlay']);
