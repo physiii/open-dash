@@ -5,11 +5,15 @@
 const EventEmitter = require('events'),
   SerialPort = require('serialport'),
   byline = require('byline'),
-  TAG = '[daughter.js]';
+  TAG = '[daughter.js]',
+  fs = require('fs'),
+  util = require('util');
 
 class DaughterCard {
   constructor () {
     this._events = new EventEmitter();
+
+    this._log = fs.createWriteStream('daughter.js.log', {flags: 'w'});
 
     this._handleSerialPortData = this._handleSerialPortData.bind(this);
 
@@ -23,7 +27,7 @@ class DaughterCard {
 
   openSerialPort (device_path) {
     this.closeSerialPort(() => {
-      this.serial_port = new SerialPort(device_path, {baudRate: 115200}, (error) => {
+      this.serial_port = new SerialPort(device_path, {baudRate: 921600}, (error) => {
         if (error) {
           console.error(TAG, 'Error opening serial port:', error);
           return;
@@ -67,6 +71,7 @@ class DaughterCard {
   _handleSerialPortData (data) {
     let message;
 
+	  this._log.write(util.format(data.toString()) + '\n');
     try {
       message = JSON.parse(data);
     } catch (error) {}
