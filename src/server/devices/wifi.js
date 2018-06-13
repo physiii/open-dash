@@ -149,6 +149,7 @@ function getIpFromInterface(nic){
 		    return 1 != line.split("inet").length;
 		}
 	    ).join("\n");
+			if (!stdout) return;
 	    var ipv4 = stdout.split("inet ")[1].split(" ")[0];
 	    metadata.ip[nic] = ipv4;
 	    wifi_events.emit("ip", nic, ipv4);
