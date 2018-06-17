@@ -156,25 +156,33 @@ var app = {
 			}
 		},
 		"/mdd/bluetooth": {
+			// MDD POSTs own btaddr and we reply with ours
 			POST: function(req, res){
-				function respond(clientaddr){
-					res.setHeader("Content Type", "text/plain"); // response is unsanitized
-					res.end("received client BT addr '" + clientaddr + "'");
+				let script_stdout = '';
+				function respond(){
+					console.log('responding with own BTaddr' + script_stdout);
+					res.setHeader("Content-Type", "text/plain"); // response is unsanitized
+					res.end(script_stdout);
 				}
 				return soak(
 					req,
 					function(clientaddr){
-						var script = child_process.spawn(
+						console.log('received mdd BTaddr ' + clientaddr);
+						let script = child_process.spawn(
 							"bash",
 							[
-								"~/open-dash-scripts/reverse-bt-pair.sh",
+								"/home/open/open-dash/scripts/prepare_bluetooth_audio.sh",
 								clientaddr
 							],
 							{
 								shell: false
 							}
 						);
-						script.on("exit", respond.bind(this, clientaddr));
+						script.stdout.on('data', (data) => {
+							script_stdout += data;
+						});
+						// script.on("close", respond.bind(this, script_stdout));
+						script.on('close', respond);
 					}
 				);
 			}
