@@ -14,11 +14,15 @@ const crypto = require('crypto'),
   system = require('./system/system.js'),
   db = require('./server/database.js'),
   daughter = require('./server/devices/daughter.js'),
+  can = require('./server/devices/can/can.js'),
   configuration = require('./server/configuration.js'),
   constant = require('./constants.js'),
   server = http.createServer().listen(constant.SOCKET_PORT),
   process_io = socket(server),
   remoteIO = socket(1234);
+
+let number_of_doors_open = 0,
+  key_position;
 
 // Start streaming server.
 require('./server/stream.js');
@@ -50,6 +54,27 @@ configuration.readConfig(
   },
   () => console.log('Created config.json')
 );
+
+// Shut down when the key is off and a door is open.
+function checkForShutDownConditions () {
+  if (number_of_doors_open > 0 && key_position < 1) {
+    system.shutdown(0);
+  }
+}
+can.on('door', (data) => {
+  if (data.is_door_open) {
+    number_of_doors_open += 1;
+  } else {
+    number_of_doors_open -= 1;
+  }
+
+  checkForShutDownConditions();
+});
+can.on('key', (data) => {
+  key_position = data.key_position;
+
+  checkForShutDownConditions();
+});
 
 process_io.on('connection', function (socket) {
   console.info(socket.id + " | client connected" );

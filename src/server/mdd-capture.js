@@ -1,6 +1,8 @@
 var multiparty = require("multiparty");
-var fs = require("fs");
+const fs = require("fs");
 const EventEmitter = require("events");
+const child_process = require("child_process");
+const path = require("path");
 
 var state = {
     mouseEvents: [],
@@ -11,6 +13,18 @@ var state = {
 function respondNotFound(response){
 	response.writeHead(404, "Not Found");
 	response.end("Not Found");
+}
+
+function soak(stream, callback){
+	var chunks = [];
+	stream.on("data", chunks.push.bind(chunks));
+	stream.on(
+		"end",
+		function(lastChunk){
+			if(arguments.length >= 1) chunks.push(lastChunk);
+			return callback(chunks.join(""));
+		}
+	);
 }
 
 var app = {
@@ -131,16 +145,44 @@ var app = {
 		},
 		"/mdd/mouse": {
 			POST: function(req, res){
-				var body = [];
-				req.on("data", body.push.bind(body));
-				req.on(
-					"end",
-					function(){
-						var form = JSON.parse(
-							body.join("")
-						);
+				return soak(
+					req,
+					function(body){
+						var form = JSON.parse(body);
 						state.mouseEvents.push(form);
 						res.end("got it");
+					}
+				);
+			}
+		},
+		"/mdd/bluetooth": {
+			// MDD POSTs own btaddr and we reply with ours
+			POST: function(req, res){
+				let script_stdout = '';
+				function respond(){
+					console.log('responding with own BTaddr' + script_stdout);
+					res.setHeader("Content-Type", "text/plain"); // response is unsanitized
+					res.end(script_stdout);
+				}
+				return soak(
+					req,
+					function(clientaddr){
+						console.log('received mdd BTaddr ' + clientaddr);
+						let script = child_process.spawn(
+							"bash",
+							[
+								"/home/open/open-dash/scripts/prepare_bluetooth_audio.sh",
+								clientaddr
+							],
+							{
+								shell: false
+							}
+						);
+						script.stdout.on('data', (data) => {
+							script_stdout += data;
+						});
+						// script.on("close", respond.bind(this, script_stdout));
+						script.on('close', respond);
 					}
 				);
 			}

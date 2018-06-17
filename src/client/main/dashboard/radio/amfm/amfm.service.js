@@ -1,4 +1,4 @@
-angular.module('app').factory('AmfmService', function () {
+angular.module('app').factory('AmfmService', function ($timeout, can) {
 	var amfm = {},
 		bands = {
 			am: {
@@ -52,8 +52,11 @@ angular.module('app').factory('AmfmService', function () {
 		}
 		if (frequency === amfm.band.frequency) return;
 
-		amfm.band.frequency = frequency;
-		// TODO: Store current frequency in db (independently for AM and FM).
+		// Using $timeout to trigger an AngularJS digest.
+		$timeout(() => {
+			amfm.band.frequency = frequency;
+			// TODO: Store current frequency in db (independently for AM and FM).
+		}, 0);
 	};
 	amfm.playPause = (shouldPlay) => {
 		if (typeof shouldPlay === 'undefined') {
@@ -91,6 +94,9 @@ angular.module('app').factory('AmfmService', function () {
 	_generateFrequencies(bands.am);
 	_generateFrequencies(bands.fm);
 	amfm.setBand('fm'); // Set the initial band. TODO: Load last band set from db.
+
+	can.on('seek-up', amfm.seekUp);
+	can.on('seek-down', amfm.seekDown);
 
 	return amfm;
 });

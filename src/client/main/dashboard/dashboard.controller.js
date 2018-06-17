@@ -5,7 +5,7 @@ app.controller('DashboardController', function ($scope, $rootScope, $location, $
         {
             label: 'Navigation',
             icon: 'globe',
-            hidden: false,
+            hidden: true,
             onClick: () => $location.path('navigation')
         },
         {
@@ -42,14 +42,14 @@ app.controller('DashboardController', function ($scope, $rootScope, $location, $
         {
             label: 'Media',
             icon: 'headphones',
-            hidden: false,
+            hidden: true,
             onClick: () => $location.path("media")
         },
         {
             label: 'Bluetooth',
             icon: 'bluetooth-b',
             iconStyle: 'fab',
-            hidden: false,
+            hidden: true,
             onClick: () => $location.path('settings/bluetooth')
         },
         {
@@ -67,13 +67,13 @@ app.controller('DashboardController', function ($scope, $rootScope, $location, $
         {
             label: 'Can',
             icon: 'car',
-            hidden: false,
+            hidden: true,
             onClick: () => $location.path('can')
         },
         {
             label: 'Camera',
             icon: 'camera-retro',
-            hidden: false,
+            hidden: true,
             onClick: () => $location.path('camera')
         }
     ];

@@ -2,7 +2,8 @@
  package-lock.json
 node_modules/
 .idea/
-config.json
+package-lock.json
+#config.json
 
 # Logs
 *.log
