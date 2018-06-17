@@ -12,7 +12,7 @@ Remove flash drive and reboot
 sudo visudo /etc/sudoers and change to: %sudo   ALL=(ALL:ALL) NOPASSWD:ALL
 
 ### dependencies
-sudo apt install -y curl
+sudo apt install -y curl \
 curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash - \
 sudo apt install -y ffmpeg openssh-server xfce4-power-manager hostapd dnsmasq hostapd nodejs xinput libgconf2-4 gnome-tweak-tool net-tools bluez pulseaudio-module-bluetooth python-gobject python-gobject-2 bluez-tools udev nmap mongodb git openssh-server tmux wmctrl make cmake
 
