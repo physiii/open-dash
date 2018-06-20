@@ -13,6 +13,8 @@ except ImportError:
   import gobject as GObject
 import bluezutils
 
+DEFAULT_PIN = '0000'
+
 BUS_NAME = 'org.bluez'
 AGENT_INTERFACE = 'org.bluez.Agent1'
 AGENT_PATH = "/test/agent"
@@ -67,7 +69,8 @@ class Agent(dbus.service.Object):
 	def RequestPinCode(self, device):
 		print("RequestPinCode (%s)" % (device))
 		set_trusted(device)
-		return ask("Enter PIN Code: ")
+		#return ask("Enter PIN Code: ")
+		return DEFAULT_PIN
 
 	@dbus.service.method(AGENT_INTERFACE,
 					in_signature="o", out_signature="u")
