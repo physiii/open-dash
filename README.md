@@ -48,6 +48,13 @@ sudo make install
 
 sudo env PATH=$PATH:/usr/bin /usr/local/lib/node_modules/pm2/bin/pm2 startup /usr/local/src/dash-usps/scripts/dash-show.sh -u open --hp /home/open
 
+## NW SDK
+wget https://dl.nwjs.io/v0.31.2/nwjs-sdk-v0.31.2-linux-x64.tar.gz \
+tar -zxvf nwjs-sdk* \
+cd nwjs-sdk* \
+sudo mv /usr/local/bin/nw /usr/local/bin/nw-old \
+sudo ln -s nw /usr/local/bin/nw \
+
 ## touchscreen setup
 cd /usr/local/src/open-dash/build\
 tar -zxvf eGTouch_v2.5.5814.L-x.tar.gz -C ~\
