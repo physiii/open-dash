@@ -53,7 +53,9 @@ wget https://dl.nwjs.io/v0.31.2/nwjs-sdk-v0.31.2-linux-x64.tar.gz \
 tar -zxvf nwjs-sdk* \
 cd nwjs-sdk* \
 sudo mv /usr/local/bin/nw /usr/local/bin/nw-old \
+sudo mv /usr/bin/nw /usr/bin/nw-old \
 sudo ln -s nw /usr/local/bin/nw \
+sudo ln -s nw /usr/bin/nw
 
 ## touchscreen setup
 cd /usr/local/src/open-dash/build\
