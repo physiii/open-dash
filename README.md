@@ -78,4 +78,5 @@ cd esp \
 git clone --recursive https://github.com/espressif/esp-idf.git \
 wget https://dl.espressif.com/dl/xtensa-esp32-elf-linux64-1.22.0-80-g6c4433a-5.2.0.tar.gz \
 tar -zxvf xtensa-esp32* \
+cd .. \
 git clone https://github.com/physiii/open-dash-daughter
