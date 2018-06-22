@@ -67,7 +67,7 @@ echo -e '#!/bin/sh -e '"\nsudo eGTouchD" | sudo tee /etc/rc.local\
 sudo chmod u+wx /etc/rc.local
 
 ## daughter board setup
-sudo apt-get install -y gcc git wget make libncurses-dev flex bison gperf python python-serial \
+sudo apt-get install -y gcc g++ git wget make libncurses-dev flex bison gperf python python-serial \
 sudo usermod -a -G dialout $USER \
 echo 'export PATH="$PATH:/usr/local/src/esp/xtensa-esp32-elf/bin"' >> ~/.bashrc \
 echo 'export IDF_PATH="/usr/local/src/esp/esp-idf"'  >> ~/.bashrc \
