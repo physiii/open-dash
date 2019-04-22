@@ -35,7 +35,7 @@ xfce4-power-manager-settings: turn off display power management, shutdown when p
 ## open-dash install
 sudo chmod 777 -R /usr/local/\
 cd /usr/local/src/\
-git clone -b build https://github.com/physiii/open-dash \
+git clone -b dev https://github.com/physiii/open-dash \
 cd open-dash\
 npm install \
 cd node_modules/serialport \
