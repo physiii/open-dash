@@ -38,7 +38,7 @@ cd /usr/local/src/
 git clone -b dev https://github.com/physiii/open-dash  
 cd open-dash  
 npm install  
-sudo rm -rf node_modules/serialport
+sudo rm -rf node_modules/serialport  
 sudo npm install serialport --unsafe-perm --build-from-source  
 cd node_modules/serialport  
 sudo nw-gyp rebuild --target=0.37.4  
