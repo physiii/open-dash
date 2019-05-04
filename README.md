@@ -48,7 +48,7 @@ git clone https://github.com/oblique/create_ap
 cd create_ap  
 sudo make install  
 
-export PATH=$PATH:~/nwjs-sdk-v0.37.4-linux-x64  
+export IDF_PATH="/usr/local/src/nwjs-sdk-v0.37.4-linux-x64/"  
 sudo env PATH=$PATH:/usr/bin /usr/local/lib/node_modules/pm2/bin/pm2 startup /usr/local/src/dash-usps/scripts/dash-show.sh -u open --hp /home/open  
 
 ## NW SDK
