@@ -48,7 +48,6 @@ git clone https://github.com/oblique/create_ap
 cd create_ap  
 sudo make install  
 
-export IDF_PATH="/usr/local/src/nwjs-sdk-v0.37.4-linux-x64/"  
 sudo env PATH=$PATH:/usr/bin /usr/local/lib/node_modules/pm2/bin/pm2 startup /usr/local/src/dash-usps/scripts/dash-show.sh -u open --hp /home/open  
 
 ## NW SDK
@@ -60,7 +59,8 @@ sudo mv /usr/local/bin/nw /usr/local/bin/nw-old
 sudo mv /usr/bin/nw /usr/bin/nw-old  
 sudo ln -s nw /usr/local/bin/nw  
 sudo ln -s nw /usr/bin/nw  
-echo 'export IDF_PATH="/usr/local/src/nwjs-sdk-v0.37.4-linux-x64/"' >> ~/.bashrc  
+echo 'export PATH="$PATH:/usr/local/src/nwjs-sdk-v0.37.4-linux-x64/"' >> ~/.bashrc  
+echo 'export PATH="/usr/local/src/nwjs-sdk-v0.37.4-linux-x64/"' >> ~/.bashrc  
 source ~/.bashrc  
 
 ## touchscreen setup
