@@ -60,7 +60,6 @@ sudo mv /usr/bin/nw /usr/bin/nw-old
 sudo ln -s nw /usr/local/bin/nw  
 sudo ln -s nw /usr/bin/nw  
 echo 'export PATH="$PATH:/usr/local/src/nwjs-sdk-v0.37.4-linux-x64/"' >> ~/.bashrc  
-echo 'export PATH="/usr/local/src/nwjs-sdk-v0.37.4-linux-x64/"' >> ~/.bashrc  
 source ~/.bashrc  
 
 ## touchscreen setup
