@@ -41,7 +41,7 @@ npm install
 sudo rm -rf node_modules/serialport  
 sudo npm install serialport --unsafe-perm --build-from-source  
 cd node_modules/serialport  
-sudo nw-gyp rebuild --target=0.37.4  
+sudo nw-gyp rebuild --target=0.38.1  
 
 cd /usr/local/src/  
 git clone https://github.com/oblique/create_ap  
@@ -52,14 +52,14 @@ sudo env PATH=$PATH:/usr/bin /usr/local/lib/node_modules/pm2/bin/pm2 startup /us
 
 ## NW SDK
 cd /usr/local/src  
-wget https://dl.nwjs.io/v0.37.4/nwjs-sdk-v0.37.4-linux-x64.tar.gz  
+wget https://dl.nwjs.io/v0.37.4/nwjs-sdk-v0.38.1-linux-x64.tar.gz  
 tar -zxvf nwjs-sdk*  
 cd nwjs-sdk*  
 sudo mv /usr/local/bin/nw /usr/local/bin/nw-old  
 sudo mv /usr/bin/nw /usr/bin/nw-old  
 sudo ln -s nw /usr/local/bin/nw  
 sudo ln -s nw /usr/bin/nw  
-echo 'export PATH="$PATH:/usr/local/src/nwjs-sdk-v0.37.4-linux-x64/"' >> ~/.bashrc  
+echo 'export PATH="$PATH:/usr/local/src/nwjs-sdk-v0.38.1-linux-x64/"' >> ~/.bashrc  
 source ~/.bashrc  
 
 ## touchscreen setup
