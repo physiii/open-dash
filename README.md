@@ -52,7 +52,7 @@ sudo env PATH=$PATH:/usr/bin /usr/local/lib/node_modules/pm2/bin/pm2 startup /us
 
 ## NW SDK
 cd /usr/local/src  
-wget https://dl.nwjs.io/v0.37.4/nwjs-sdk-v0.38.1-linux-x64.tar.gz  
+wget https://dl.nwjs.io/v0.38.1/nwjs-sdk-v0.38.1-linux-x64.tar.gz  
 tar -zxvf nwjs-sdk*  
 cd nwjs-sdk*  
 sudo mv /usr/local/bin/nw /usr/local/bin/nw-old  
