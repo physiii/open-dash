@@ -18,6 +18,29 @@ let mainWindow;
 
 console.log(TAG, "starting open-dash");
 
+// var AutoLaunch = require('auto-launch');
+//
+// var minecraftAutoLauncher = new AutoLaunch({
+// 	name: 'open-dash',
+// 	path: '/Applications/open-dash.app',
+// });
+//
+// minecraftAutoLauncher.enable();
+//
+// //minecraftAutoLauncher.disable();
+//
+//
+// minecraftAutoLauncher.isEnabled()
+// .then(function(isEnabled){
+// 	if(isEnabled){
+// 	    return;
+// 	}
+// 	minecraftAutoLauncher.enable();
+// })
+// .catch(function(err){
+//     // handle error
+// });
+
 function isJson(str) {
     try {
         JSON.parse(str);
