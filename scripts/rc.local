@@ -1,2 +1,0 @@
-#!/bin/sh
-echo -e 'power on\ndffault-agent\ndiscoverable on\ntrust 00:17: \t \nquit' | bluetoothctl

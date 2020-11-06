@@ -1,72 +1,13 @@
-### installing OS
-download lubuntu 18.04
-Press esc to get to boot menu\
-Boot manager\
-Choose flash drive\
-Choose Install lununtu\
-Choose erase disk and install lubuntu\
-Remove flash drive and reboot
+## How to build an Electron app using create-react-app. No webpack configuration or “ejecting” necessary.
 
+Code repo for post on [freeCodeCamp](https://medium.freecodecamp.com/building-an-electron-application-with-create-react-app-97945861647c#.ze6c9qin1).
 
-### no sudo password
-sudo visudo /etc/sudoers and change to: %sudo   ALL=(ALL:ALL) NOPASSWD:ALL
+https://medium.freecodecamp.com/building-an-electron-application-with-create-react-app-97945861647c#.ze6c9qin1
 
-### dependencies
-sudo apt install -y curl \
-curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash - \
-sudo apt install -y ffmpeg openssh-server xfce4-power-manager hostapd dnsmasq hostapd nodejs xinput libgconf2-4 gnome-tweak-tool net-tools bluez pulseaudio-module-bluetooth python-gobject python-gobject-2 bluez-tools udev nmap mongodb git openssh-server tmux wmctrl make cmake
+There is another branch, [npm-start](https://github.com/csepulv/electron-with-create-react-app/tree/npm-start)
+It uses `npm-start` instead of `npm run dev`. (change submitted by [vcarl](https://github.com/vcarl)) Details are in this [pull request](https://github.com/csepulv/electron-with-create-react-app/pull/2)
 
-sudo npm install -g pm2 nw-gyp nw --nwjs_build_type=sdk --unsafe-perm=true --allow-root
+Thanks to [marbemac](https://github.com/marbemac) for submitting a pull request that captures logging output. It can be found in [logging-capture](https://github.com/csepulv/electron-with-create-react-app/tree/logging-capture)
 
-## autologin
-sudo nano /etc/lightdm/lightdm.conf.d/10-autologin.conf
+Thanks to [vicentedealencar](https://github.com/vicentedealencar) for an example of using [electron-builder](https://github.com/electron-userland/electron-builder) for packaging. Details are [here](https://github.com/vicentedealencar/electron-with-create-react-app/commit/f1729381d588e65ac140ce5a08cc6277babd9641).
 
-[Seat:*]\
-autologin-guest = false\
-autologin-user = open
-autologin-user-timeout = 0
-
-[SeatDefaults]
-allow-guest = false
-
-## power mgmt
-xfce4-power-manager-settings: turn off display power management, shutdown when power button is pressed
-
-## open-dash install
-sudo chmod 777 -R /usr/local/\
-cd /usr/local/src/\
-git clone -b build https://github.com/physiii/open-dash
-cd open-dash\
-npm install \
-cd node_modules/serialport \
-nw-gyp build --target=0.31.1
-
-cd /usr/local/src/\
-git clone https://github.com/oblique/create_ap \
-cd create_ap\
-sudo make install
-
-sudo env PATH=$PATH:/usr/bin /usr/local/lib/node_modules/pm2/bin/pm2 startup /usr/local/src/dash-usps/scripts/dash-show.sh -u open --hp /home/open
-
-## touchscreen setup
-cd /usr/local/src/open-dash/build\
-tar -zxvf eGTouch_v2.5.5814.L-x.tar.gz -C ~\
-cd ~/eGTouch_v2*\
-sudo sh setup.sh\
-sudo ~/eGTouch_v2.5.5814.L-x/eGTouch64/eGTouch64withX/eGTouchD\
-echo -e '#!/bin/sh -e '"\nsudo eGTouchD" | sudo tee /etc/rc.local\
-sudo chmod u+wx /etc/rc.local
-
-## daughter board setup
-sudo apt-get install -y gcc git wget make libncurses-dev flex bison gperf python python-serial \
-sudo usermod -a -G dialout $USER \
-echo 'export PATH="$PATH:/usr/local/src/esp/xtensa-esp32-elf/bin"' >> ~/.bashrc \
-echo 'export IDF_PATH="/usr/local/src/esp/esp-idf"'  >> ~/.bashrc \
-source ~/.bashrc \
-cd /usr/local/src \
-mkdir esp \
-cd esp \
-git clone --recursive https://github.com/espressif/esp-idf.git \
-wget https://dl.espressif.com/dl/xtensa-esp32-elf-linux64-1.22.0-80-g6c4433a-5.2.0.tar.gz \
-tar -zxvf xtensa-esp32* \
-git clone https://github.com/physiii/open-dash-daughter
