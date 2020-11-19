@@ -1,0 +1,9 @@
+initial conditions: door open, ignition off
+start monitor, silent
+insert key (nothing changed)
+turn key to first click, nothing
+turn key to next click, frames (wait 100s, still coming, next pos)
+prev key pos around 170000, car keeps beeping key inserted
+start trying to remove key around 270000
+turned back on at 333000 then off right away and key out
+messages subsided at 357770

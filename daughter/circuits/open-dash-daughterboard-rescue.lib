@@ -1,0 +1,142 @@
+EESchema-LIBRARY Version 2.4
+#encoding utf-8
+#
+# A2235-H-dk_RF-Receivers
+#
+DEF A2235-H-dk_RF-Receivers U 0 40 Y Y 1 F N
+F0 "U" -400 500 60 H V C CNN
+F1 "A2235-H-dk_RF-Receivers" -500 -1100 60 H V C CNN
+F2 "digikey-footprints:GSM_Module_17.8x16.5mm_A2235-H" 200 200 60 H I L CNN
+F3 "http://update.maestro-wireless.com/GNSS/A2235-H/Maestro_A2135_HA2235_H_v11.pdf" 200 300 60 H I L CNN
+F4 "1530-1011-1-ND" 200 400 60 H I L CNN "Digi-Key_PN"
+F5 "A2235-H" 200 500 60 H I L CNN "MPN"
+F6 "RF/IF and RFID" 200 600 60 H I L CNN "Category"
+F7 "RF Receivers" 200 700 60 H I L CNN "Family"
+F8 "http://update.maestro-wireless.com/GNSS/A2235-H/Maestro_A2135_HA2235_H_v11.pdf" 200 800 60 H I L CNN "DK_Datasheet_Link"
+F9 "/product-detail/en/maestro-wireless-solutions/A2235-H/1530-1011-1-ND/4898055" 200 900 60 H I L CNN "DK_Detail_Page"
+F10 "MODULE GPS SIRFSTARIV" 200 1000 60 H I L CNN "Description"
+F11 "Maestro Wireless Solutions" 200 1100 60 H I L CNN "Manufacturer"
+F12 "Active" 200 1200 60 H I L CNN "Status"
+DRAW
+S -400 400 600 -1000 0 1 0 f
+X nRST 1 -600 200 200 R 50 50 1 1 I
+X ANT_EXT 10 800 -600 200 L 50 50 1 1 B
+X VANT 11 800 -700 200 L 50 50 1 1 B
+X ANT_SW 12 -600 -100 200 R 50 50 1 1 I
+X GPIO2 13 800 -400 200 L 50 50 1 1 N
+X HOST_PORT 14 -600 -200 200 R 50 50 1 1 I
+X GPIO4 15 -600 -300 200 R 50 50 1 1 I
+X TM_GPIO5 16 800 0 200 L 50 50 1 1 O
+X GPIO1 17 800 -100 200 L 50 50 1 1 B
+X GPIO0 18 800 -200 200 L 50 50 1 1 B
+X ON_OFF 19 -600 -400 200 R 50 50 1 1 I
+X GPIO3 2 800 -300 200 L 50 50 1 1 N
+X EXTINT 20 -600 -500 200 R 50 50 1 1 I
+X TXO/SPI 21 -600 -600 200 R 50 50 1 1 O
+X RXO/SPI_DI 22 -600 -700 200 R 50 50 1 1 I
+X GND 23 300 -1200 200 U 50 50 1 1 W
+X VCC3V3 3 100 600 200 D 50 50 1 1 W
+X WAKEUP 4 800 100 200 L 50 50 1 1 O
+X VOUT 5 800 300 200 L 50 50 1 1 w
+X GND 6 100 -1200 200 U 50 50 1 1 W
+X GPIO6 7 -600 100 200 R 50 50 1 1 I
+X GPIO7 8 -600 0 200 R 50 50 1 1 I
+X GND 9 200 -1200 200 U 50 50 1 1 W
+ENDDRAW
+ENDDEF
+#
+# LED-open-automation
+#
+DEF LED-open-automation D 0 40 Y N 1 F N
+F0 "D" 0 100 50 H V C CNN
+F1 "LED-open-automation" 0 -100 50 H V C CNN
+F2 "" 0 0 50 H V C CNN
+F3 "" 0 0 50 H V C CNN
+$FPLIST
+ LED*
+$ENDFPLIST
+DRAW
+P 2 0 1 8 -50 -50 -50 50 N
+P 4 0 1 8 50 -50 50 50 -50 0 50 -50 F
+P 5 0 1 0 -120 -30 -180 -90 -150 -90 -180 -90 -180 -60 N
+P 5 0 1 0 -70 -30 -130 -90 -100 -90 -130 -90 -130 -60 N
+X K 1 -150 0 100 R 50 50 1 1 P
+X A 2 150 0 100 L 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+# MMBT2222ALT3G-dk_Transistors-Bipolar-BJT-Single
+#
+DEF MMBT2222ALT3G-dk_Transistors-Bipolar-BJT-Single Q 0 0 Y Y 1 F N
+F0 "Q" -200 200 60 H V C CNN
+F1 "MMBT2222ALT3G-dk_Transistors-Bipolar-BJT-Single" 700 -100 60 H V C CNN
+F2 "digikey-footprints:SOT-23-3" 200 200 60 H I L CNN
+F3 "http://www.onsemi.com/pub/Collateral/MMBT2222LT1-D.PDF" 200 300 60 H I L CNN
+F4 "MMBT2222ALT3GOSCT-ND" 200 400 60 H I L CNN "Digi-Key_PN"
+F5 "MMBT2222ALT3G" 200 500 60 H I L CNN "MPN"
+F6 "Discrete Semiconductor Products" 200 600 60 H I L CNN "Category"
+F7 "Transistors - Bipolar (BJT) - Single" 200 700 60 H I L CNN "Family"
+F8 "http://www.onsemi.com/pub/Collateral/MMBT2222LT1-D.PDF" 200 800 60 H I L CNN "DK_Datasheet_Link"
+F9 "/product-detail/en/on-semiconductor/MMBT2222ALT3G/MMBT2222ALT3GOSCT-ND/1967145" 200 900 60 H I L CNN "DK_Detail_Page"
+F10 "TRANS NPN 40V 0.6A SOT-23" 200 1000 60 H I L CNN "Description"
+F11 "ON Semiconductor" 200 1100 60 H I L CNN "Manufacturer"
+F12 "Active" 200 1200 60 H I L CNN "Status"
+DRAW
+C 0 0 141 0 1 0 f
+P 2 0 1 0 -150 0 -100 0 N
+P 2 0 1 0 -140 0 0 0 N
+P 2 0 1 0 0 -50 100 -100 N
+P 2 0 1 0 0 50 100 100 N
+P 2 0 1 0 0 100 0 -100 N
+P 4 0 1 0 60 -50 80 -90 40 -100 60 -50 F
+X E 1 100 -300 200 U 50 50 1 1 I
+X B 2 -350 0 200 R 50 50 1 1 I
+X C 3 100 300 200 D 50 50 1 1 I
+ENDDRAW
+ENDDEF
+#
+# PESD1CAN-UX-dk_TVS-Diodes
+#
+DEF PESD1CAN-UX-dk_TVS-Diodes D 0 0 Y Y 1 F N
+F0 "D" -250 250 60 H V C CNN
+F1 "PESD1CAN-UX-dk_TVS-Diodes" 50 -250 60 H V C CNN
+F2 "digikey-footprints:SOT-323" 200 200 60 H I L CNN
+F3 "https://assets.nexperia.com/documents/data-sheet/PESD1CAN-U.pdf" 200 300 60 H I L CNN
+F4 "1727-1306-1-ND" 200 400 60 H I L CNN "Digi-Key_PN"
+F5 "PESD1CAN-UX" 200 500 60 H I L CNN "MPN"
+F6 "Circuit Protection" 200 600 60 H I L CNN "Category"
+F7 "TVS - Diodes" 200 700 60 H I L CNN "Family"
+F8 "https://assets.nexperia.com/documents/data-sheet/PESD1CAN-U.pdf" 200 800 60 H I L CNN "DK_Datasheet_Link"
+F9 "/product-detail/en/nexperia-usa-inc/PESD1CAN-UX/1727-1306-1-ND/4386316" 200 900 60 H I L CNN "DK_Detail_Page"
+F10 "TVS DIODE 24VWM 50VC SC70" 200 1000 60 H I L CNN "Description"
+F11 "Nexperia USA Inc." 200 1100 60 H I L CNN "Manufacturer"
+F12 "Active" 200 1200 60 H I L CNN "Status"
+DRAW
+C 200 0 7 0 1 0 F
+S -300 200 300 -200 0 1 0 f
+P 2 0 1 0 -150 -150 -125 -150 N
+P 2 0 1 0 -150 -100 -300 -100 N
+P 2 0 1 0 -150 -50 -150 -150 N
+P 2 0 1 0 -150 50 -125 50 N
+P 2 0 1 0 -150 100 -300 100 N
+P 2 0 1 0 -150 150 -150 50 N
+P 2 0 1 0 25 -100 -75 -100 N
+P 2 0 1 0 25 100 -75 100 N
+P 2 0 1 0 25 100 25 100 N
+P 2 0 1 0 100 -50 75 -50 N
+P 2 0 1 0 100 -50 100 -150 N
+P 2 0 1 0 100 150 75 150 N
+P 2 0 1 0 100 150 100 50 N
+P 2 0 1 0 200 0 300 0 N
+P 4 0 1 0 -75 -50 -75 -150 -150 -100 -75 -50 F
+P 4 0 1 0 -75 50 -75 150 -150 100 -75 50 F
+P 4 0 1 0 25 -50 25 -150 100 -100 25 -50 F
+P 4 0 1 0 25 150 25 50 100 100 25 150 F
+P 4 0 1 0 100 100 200 100 200 -100 100 -100 N
+X C1 1 -500 100 200 R 50 50 1 1 B
+X C2 2 -500 -100 200 R 50 50 1 1 B
+X C3 3 500 0 200 L 50 50 1 1 B
+ENDDRAW
+ENDDEF
+#
+#End Library

@@ -1,0 +1,12 @@
+{
+  "relay_server":"192.168.1.5",
+  "relay_port" : 4443,
+  "use_dev" : true,
+  "use_ssl" : true,
+  "manufacturer" : "Pyfi Technologies",
+  "acceptor_dir":"/home/game/GameMachine/src/bill-acceptor/bill-acceptor.py",
+  "bill_acceptor_port" : "/dev/game_bill_acceptor",
+  "game_board_video_device": "/dev/game_video",
+  "daughter_port":"/dev/game_daughter",
+  "game_board_touchscreen_port": "/dev/game_touchscreen"
+}

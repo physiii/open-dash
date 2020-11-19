@@ -1,0 +1,24 @@
+* {
+	user-select: none;
+}
+
+body {
+	overflow: hidden;
+}
+
+.info-board:not(.table):hover {
+	opacity: 1;
+}
+
+.player-score {
+	margin-left: 10px;
+}
+
+#end-message.show {
+	transform: none;
+	transition: none;
+}
+
+#play-button {
+	outline: none;
+}

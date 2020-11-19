@@ -1,0 +1,499 @@
+EESchema Schematic File Version 4
+LIBS:open-dash-daughterboard-cache
+EELAYER 29 0
+EELAYER END
+$Descr USLedger 17000 11000
+encoding utf-8
+Sheet 1 7
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Sheet
+S 7500 7050 1550 950 
+U 5A8CA1AF
+F0 "canbus" 50
+F1 "canbus.sch" 50
+F2 "5V" I L 7500 7200 50 
+F3 "CAN_RX" I R 9050 7650 50 
+F4 "CAN_TX" I R 9050 7750 50 
+F5 "CAN-" I R 9050 7450 50 
+F6 "CAN+" I R 9050 7350 50 
+$EndSheet
+$Sheet
+S 4400 7150 1550 900 
+U 5ABD18ED
+F0 "FM Radio" 50
+F1 "FM-radio.sch" 50
+F2 "3V3" I L 4400 7250 50 
+F3 "SDA" I L 4400 7550 50 
+F4 "SCL" I L 4400 7650 50 
+$EndSheet
+Text Label 9000 5300 0    50   ~ 0
+SCL
+Text Label 9000 5400 0    50   ~ 0
+SDA
+Text Label 5900 5100 0    50   ~ 0
+MAIN_EN
+Text Label 4500 5000 2    50   ~ 0
+BATTERY
+Text Label 7350 4900 2    50   ~ 0
+3V3
+Text Label 7350 5000 2    50   ~ 0
+MAIN_EN
+Text Label 9000 5100 0    50   ~ 0
+TXD
+Text Label 9000 5200 0    50   ~ 0
+RXD
+Text Label 7350 5300 2    50   ~ 0
+AUDIO_STBY
+Text Label 7350 5200 2    50   ~ 0
+AUDIO_MUTE
+Text Label 10300 5000 2    50   ~ 0
+AUDIO_STBY
+Text Label 10300 4900 2    50   ~ 0
+AUDIO_MUTE
+Text Label 5900 5000 0    50   ~ 0
+DISPLAY_EN
+Text Label 7350 5100 2    50   ~ 0
+DISPLAY_EN
+Text Label 4500 5100 2    50   ~ 0
+5V
+$Sheet
+S 10450 6800 1650 1250
+U 5B15E02A
+F0 "USB interface" 50
+F1 "usb.sch" 50
+F2 "RXD" I L 10450 7150 50 
+F3 "TXD" I L 10450 7250 50 
+F4 "ESP_EN" I L 10450 7600 50 
+F5 "5V" I L 10450 6900 50 
+F6 "PROG" I L 10450 7500 50 
+$EndSheet
+Text Label 9000 5000 0    50   ~ 0
+CAN_RX
+Text Label 9000 4900 0    50   ~ 0
+CAN_TX
+Text Label 9100 7650 0    50   ~ 0
+CAN_RX
+Text Label 9100 7750 0    50   ~ 0
+CAN_TX
+Text Label 9100 7350 0    50   ~ 0
+CAN+
+Text Label 9100 7450 0    50   ~ 0
+CAN-
+Text Label 7450 7200 2    50   ~ 0
+5V
+Text Label 10400 6900 2    50   ~ 0
+5V
+Text Label 10400 7150 2    50   ~ 0
+RXD
+Text Label 10400 7250 2    50   ~ 0
+TXD
+Text Label 10400 7600 2    50   ~ 0
+ESP_EN
+Text Label 10400 7500 2    50   ~ 0
+PROG
+$Comp
+L open-automation:RCA-PJRAN1X1U04X J1
+U 1 1 5CC73983
+P 8900 2900
+F 0 "J1" H 8882 3133 50  0000 C CNN
+F 1 "RCA-PJRAN1X1U04X" H 8850 2450 50  0001 C CNN
+F 2 "open-automation:RCA-PJRAN1X1U04X" H 8850 2550 50  0001 C CNN
+F 3 "http://www.switchcraft.com/Drawings/pjran1x1u__x_series_cd.pdf" H 8900 2900 50  0001 C CNN
+F 4 "https://www.digikey.com/product-detail/en/switchcraft-inc/PJRAN1X1U04X/PJRAN1X1U04X-ND/969899" H 8850 2650 50  0001 C CNN "Website"
+F 5 "PJRAN1X1U04X" H 8850 2350 50  0001 C CNN "Part Number"
+	1    8900 2900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9150 3000 9100 3000
+Text Label 9150 2800 0    50   ~ 0
+CAMERA+
+Wire Wire Line
+	9150 2800 9100 2800
+Text Label 9150 3000 0    50   ~ 0
+CAMERA-
+Wire Wire Line
+	9100 2900 9150 2900
+Wire Wire Line
+	9150 2900 9150 2800
+$Comp
+L open-automation:radio-housing-mounts U?
+U 1 1 5CCA1F9C
+P 8825 1950
+AR Path="/5ABD187E/5CCA1F9C" Ref="U?"  Part="1" 
+AR Path="/5CCA1F9C" Ref="U2"  Part="1" 
+F 0 "U2" H 8950 2175 60  0000 L CNN
+F 1 "radio-housing-mounts" H 8325 1750 60  0000 L CNN
+F 2 "open-automation:radio-housing-mounts" H 8975 2250 60  0001 C CNN
+F 3 "" H 8825 2000 60  0001 C CNN
+	1    8825 1950
+	1    0    0    -1  
+$EndComp
+$Comp
+L open-automation:TE-AUTO-CONN-52 U1
+U 1 1 5CCC1469
+P 7000 2150
+F 0 "U1" H 7400 1250 50  0000 C CNN
+F 1 "TE-AUTO-CONN-52" H 6950 2400 50  0000 C CNN
+F 2 "open-automation:TE-AUTO-CONN-52" H 7850 2650 50  0001 C CNN
+F 3 "https://www.mouser.com/ProductDetail/TE-Connectivity-AMP/2098978-1?qs=sGAEpiMZZMs7eK6h2EBtKpfjTZYxfnESj8gtjNM%252Bntw%3D" H 8550 2200 50  0001 C CNN
+F 4 " 2098978-1" H 8050 1600 50  0001 C CNN "Part Number"
+	1    7000 2150
+	1    0    0    -1  
+$EndComp
+Text Label 7650 2250 0    50   ~ 0
+LF+
+Wire Wire Line
+	7650 2250 7600 2250
+Text Label 7650 2350 0    50   ~ 0
+LR+
+Text Label 7650 2050 0    50   ~ 0
+RR+
+Wire Wire Line
+	7650 2050 7600 2050
+Text Label 7650 2150 0    50   ~ 0
+RF+
+Text Label 7650 2450 0    50   ~ 0
+RR-
+Wire Wire Line
+	7650 2450 7600 2450
+Text Label 7650 2550 0    50   ~ 0
+RF-
+Text Label 7650 2650 0    50   ~ 0
+LF-
+Wire Wire Line
+	7650 2650 7600 2650
+Text Label 7650 2750 0    50   ~ 0
+LR-
+Wire Wire Line
+	7650 2150 7600 2150
+Wire Wire Line
+	7600 2350 7650 2350
+Wire Wire Line
+	7650 2550 7600 2550
+Wire Wire Line
+	7600 2750 7650 2750
+$Comp
+L open-automation:GND #PWR?
+U 1 1 5CCCF2F4
+P 6250 2800
+AR Path="/5ABD187E/5CCCF2F4" Ref="#PWR?"  Part="1" 
+AR Path="/5CCCF2F4" Ref="#PWR02"  Part="1" 
+F 0 "#PWR02" H 6250 2550 50  0001 C CNN
+F 1 "GND" H 6250 2650 50  0000 C CNN
+F 2 "" H 6250 2800 50  0000 C CNN
+F 3 "" H 6250 2800 50  0000 C CNN
+	1    6250 2800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6250 2800 6250 2750
+Wire Wire Line
+	6250 2750 6300 2750
+Text Label 6250 2650 2    50   ~ 0
+BATTERY
+Wire Wire Line
+	6250 2650 6300 2650
+Text Label 6250 2400 2    50   ~ 0
+CAN+
+Text Label 6250 2500 2    50   ~ 0
+CAN-
+Wire Wire Line
+	6250 2500 6300 2500
+Wire Wire Line
+	6300 2400 6250 2400
+Text Label 6250 2050 2    50   ~ 0
+CAMERA+
+Wire Wire Line
+	6250 2050 6300 2050
+Text Label 6250 2150 2    50   ~ 0
+CAMERA-
+Wire Wire Line
+	6250 2150 6300 2150
+$Comp
+L open-automation:GND #PWR?
+U 1 1 5CCD3124
+P 6250 2250
+AR Path="/5ABD187E/5CCD3124" Ref="#PWR?"  Part="1" 
+AR Path="/5CCD3124" Ref="#PWR01"  Part="1" 
+F 0 "#PWR01" H 6250 2000 50  0001 C CNN
+F 1 "GND" V 6200 2100 50  0000 C CNN
+F 2 "" H 6250 2250 50  0000 C CNN
+F 3 "" H 6250 2250 50  0000 C CNN
+	1    6250 2250
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	6250 2250 6300 2250
+Text Label 11950 4850 0    50   ~ 0
+LR+
+Text Label 11950 5050 0    50   ~ 0
+RR+
+Text Label 11950 4950 0    50   ~ 0
+RF+
+Text Label 11950 5500 0    50   ~ 0
+RR-
+Text Label 11950 5400 0    50   ~ 0
+RF-
+Text Label 11950 5200 0    50   ~ 0
+LF-
+Text Label 11950 5300 0    50   ~ 0
+LR-
+Text Label 10350 2300 0    50   ~ 0
+BATTERY
+Text Label 10350 2400 0    50   ~ 0
+5V
+Text Label 10350 2500 0    50   ~ 0
+3V3
+$Comp
+L open-automation:GND #PWR?
+U 1 1 5CC1E6E3
+P 10350 2650
+AR Path="/5ABD187E/5CC1E6E3" Ref="#PWR?"  Part="1" 
+AR Path="/5CC1E6E3" Ref="#PWR03"  Part="1" 
+F 0 "#PWR03" H 10350 2400 50  0001 C CNN
+F 1 "GND" H 10350 2500 50  0000 C CNN
+F 2 "" H 10350 2650 50  0000 C CNN
+F 3 "" H 10350 2650 50  0000 C CNN
+	1    10350 2650
+	1    0    0    -1  
+$EndComp
+$Comp
+L open-automation:CONN_01X04 P1
+U 1 1 5CC26FE7
+P 10100 2450
+F 0 "P1" H 10017 2075 50  0000 C CNN
+F 1 "CONN_01X04" H 10017 2166 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical" H 10000 2600 50  0001 C CNN
+F 3 "" H 10100 2450 50  0000 C CNN
+	1    10100 2450
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	10350 2650 10350 2600
+Wire Wire Line
+	10350 2600 10300 2600
+Wire Wire Line
+	10300 2500 10350 2500
+Wire Wire Line
+	10350 2400 10300 2400
+Wire Wire Line
+	10300 2300 10350 2300
+$Sheet
+S 4550 4700 1300 1050
+U 5A7BADB8
+F0 "power" 50
+F1 "power.sch" 50
+F2 "CURRENT_SENSE" I R 5850 5200 50 
+F3 "3V3" I L 4550 5200 50 
+F4 "5V" I L 4550 5100 50 
+F5 "MAIN_EN" I R 5850 5100 50 
+F6 "DISPLAY_EN" I R 5850 5000 50 
+F7 "BATTERY" I L 4550 5000 50 
+$EndSheet
+Wire Wire Line
+	4550 5000 4500 5000
+Wire Wire Line
+	4550 5100 4500 5100
+Text Label 4500 5200 2    50   ~ 0
+3V3
+Wire Wire Line
+	4550 5200 4500 5200
+Wire Wire Line
+	5850 5100 5900 5100
+Wire Wire Line
+	5850 5000 5900 5000
+Text Label 5900 5200 0    50   ~ 0
+CURRENT_SENSE
+Wire Wire Line
+	5900 5200 5850 5200
+$Sheet
+S 7400 4700 1550 950 
+U 5A7BADDB
+F0 "microcontroller" 50
+F1 "microcontroller.sch" 50
+F2 "RXD" I R 8950 5200 50 
+F3 "TXD" I R 8950 5100 50 
+F4 "DISPLAY_EN" I L 7400 5100 50 
+F5 "CAN_TX" I R 8950 4900 50 
+F6 "3V3" I L 7400 4900 50 
+F7 "CAN_RX" I R 8950 5000 50 
+F8 "SCL" I R 8950 5300 50 
+F9 "SDA" I R 8950 5400 50 
+F10 "MAIN_EN" I L 7400 5000 50 
+F11 "ESP_EN" I L 7400 5400 50 
+F12 "PROG" I L 7400 5500 50 
+F13 "BATT_IO" I R 8950 5500 50 
+F14 "AUDIO_MUTE" I L 7400 5200 50 
+F15 "AUDIO_STBY" I L 7400 5300 50 
+F16 "CURRENT_SENSE" I L 7400 5600 50 
+$EndSheet
+Wire Wire Line
+	8950 5400 9000 5400
+Wire Wire Line
+	9000 5300 8950 5300
+Wire Wire Line
+	8950 5200 9000 5200
+Wire Wire Line
+	9000 5100 8950 5100
+Wire Wire Line
+	8950 5000 9000 5000
+Wire Wire Line
+	9000 4900 8950 4900
+Wire Wire Line
+	7400 4900 7350 4900
+Wire Wire Line
+	7350 5000 7400 5000
+Wire Wire Line
+	7400 5100 7350 5100
+Wire Wire Line
+	7350 5200 7400 5200
+Wire Wire Line
+	7400 5300 7350 5300
+$Sheet
+S 10350 4650 1550 950 
+U 5ABD1806
+F0 "audio amplifier" 50
+F1 "audio-amplifier.sch" 50
+F2 "LR_AUDIO_OUT+" I R 11900 4850 50 
+F3 "RR_AUDIO_OUT+" I R 11900 5050 50 
+F4 "LF_AUDIO_OUT-" I R 11900 5200 50 
+F5 "RF_AUDIO_OUT-" I R 11900 5400 50 
+F6 "RF_AUDIO_OUT+" I R 11900 4950 50 
+F7 "RR_AUDIO_OUT-" I R 11900 5500 50 
+F8 "LF_AUDIO_OUT+" I R 11900 4750 50 
+F9 "LR_AUDIO_OUT-" I R 11900 5300 50 
+F10 "AUDIO_STBY" I L 10350 5000 50 
+F11 "AUDIO_POWER" I L 10350 4750 50 
+F12 "AUDIO_MUTE" I L 10350 4900 50 
+$EndSheet
+Text Label 11950 4750 0    50   ~ 0
+LF+
+Wire Wire Line
+	11950 5500 11900 5500
+Wire Wire Line
+	11900 5400 11950 5400
+Wire Wire Line
+	11950 5300 11900 5300
+Wire Wire Line
+	11900 5200 11950 5200
+Wire Wire Line
+	11950 5050 11900 5050
+Wire Wire Line
+	11900 4950 11950 4950
+Wire Wire Line
+	11950 4850 11900 4850
+Wire Wire Line
+	11900 4750 11950 4750
+Wire Wire Line
+	10350 4750 10300 4750
+Wire Wire Line
+	10300 4900 10350 4900
+Wire Wire Line
+	10300 5000 10350 5000
+Text Label 10300 4750 2    50   ~ 0
+BATTERY
+Text Label 4350 7550 2    50   ~ 0
+SDA
+Text Label 4350 7650 2    50   ~ 0
+SCL
+Text Label 4350 7250 2    50   ~ 0
+3V3
+Wire Wire Line
+	4400 7250 4350 7250
+Wire Wire Line
+	4350 7650 4400 7650
+Wire Wire Line
+	4400 7550 4350 7550
+Wire Wire Line
+	9100 7350 9050 7350
+Wire Wire Line
+	9050 7450 9100 7450
+Wire Wire Line
+	9100 7650 9050 7650
+Wire Wire Line
+	9050 7750 9100 7750
+Wire Wire Line
+	7450 7200 7500 7200
+Wire Wire Line
+	10400 6900 10450 6900
+Wire Wire Line
+	10400 7150 10450 7150
+Wire Wire Line
+	10400 7250 10450 7250
+Wire Wire Line
+	10400 7600 10450 7600
+Wire Wire Line
+	10400 7500 10450 7500
+Text Label 7350 5400 2    50   ~ 0
+ESP_EN
+Wire Wire Line
+	7400 5400 7350 5400
+Text Label 7350 5500 2    50   ~ 0
+PROG
+Wire Wire Line
+	7400 5500 7350 5500
+Text Label 9000 5500 0    50   ~ 0
+BATT_IO
+Wire Wire Line
+	9000 5500 8950 5500
+$Comp
+L open-automation:R_10K R38
+U 1 1 5CCD1A7F
+P 11150 2700
+F 0 "R38" H 11220 2746 50  0000 L CNN
+F 1 "R_10K" H 11220 2655 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 11080 2700 50  0001 C CNN
+F 3 "" V 11230 2700 50  0001 C CNN
+F 4 "RC0603JR-0710KL" V 11330 2800 60  0001 C CNN "Part Number"
+	1    11150 2700
+	1    0    0    -1  
+$EndComp
+$Comp
+L open-automation:GND #PWR?
+U 1 1 5CCD3160
+P 11150 2950
+AR Path="/5ABD187E/5CCD3160" Ref="#PWR?"  Part="1" 
+AR Path="/5CCD3160" Ref="#PWR0101"  Part="1" 
+F 0 "#PWR0101" H 11150 2700 50  0001 C CNN
+F 1 "GND" H 11150 2800 50  0000 C CNN
+F 2 "" H 11150 2950 50  0000 C CNN
+F 3 "" H 11150 2950 50  0000 C CNN
+	1    11150 2950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	11150 2950 11150 2900
+Text Label 11150 2050 0    50   ~ 0
+BATTERY
+Wire Wire Line
+	11150 2050 11150 2100
+Text Label 11150 2450 0    50   ~ 0
+BATT_IO
+Wire Wire Line
+	11150 2400 11150 2500
+$Comp
+L open-automation:R_100K R14
+U 1 1 5CC2B7E7
+P 11150 2250
+F 0 "R14" H 11220 2296 50  0000 L CNN
+F 1 "R_100K" H 11220 2205 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 11080 2250 50  0001 C CNN
+F 3 "" V 11230 2250 50  0001 C CNN
+F 4 "RC0603JR-07100KL" V 11330 2350 60  0001 C CNN "Part Number"
+	1    11150 2250
+	1    0    0    -1  
+$EndComp
+Text Label 7350 5600 2    50   ~ 0
+CURRENT_SENSE
+Wire Wire Line
+	7350 5600 7400 5600
+$EndSCHEMATC

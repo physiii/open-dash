@@ -1,0 +1,67 @@
+.container,
+.iframe,
+.overlay {
+	display: block;
+	width: 100%;
+	height: 100%;
+	border: 0;
+	position: relative;
+}
+
+.controls {
+	width: 210px;
+	height: 200px;
+	position: absolute;
+	bottom: 20px;
+	left: calc(50% - 105px);
+}
+
+.button {
+	width: 80px;
+	height: 80px;
+	border-radius: 40px;
+	position: absolute;
+    background: #bbada0;
+	border: 2px solid #776e65;
+
+	outline: none;
+	-webkit-appearance: none;
+
+	font-size: 2em;
+	font-weight: bold;
+	color: #faf8ef;
+	text-shadow: 2px 2px 0 #776e65;
+}
+
+.upButton,
+.rightButton,
+.downButton,
+.leftButton {
+	composes: button;
+}
+
+.upButton {
+	top: 0;
+	left: calc(50% - 40px);
+}
+
+.rightButton {
+	top: calc(50% - 40px);
+	right: 0;
+}
+
+.downButton {
+	bottom: 0;
+	left: calc(50% - 40px);
+}
+
+.leftButton {
+	top: calc(50% - 40px);
+	left: 0;
+}
+
+.overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+}

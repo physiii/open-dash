@@ -1,0 +1,17 @@
+.container {
+	display: flex;
+	flex-flow: column nowrap;
+	width: 100vw;
+	height: 100vh;
+	position: absolute;
+}
+
+.gameBoard {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+}
+
+.gameBoard.isHidden {
+	display: none;
+}

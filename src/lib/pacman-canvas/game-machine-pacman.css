@@ -1,0 +1,67 @@
+* {
+	user-select: none;
+}
+
+body {
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	overflow: hidden;
+	background: #000000;
+}
+
+.container {
+	height: 100%;
+}
+
+.main {
+	display: flex;
+	justify-content: center;
+	max-width: none;
+	height: 100%;
+	margin: 0;
+	padding: 10px 0;
+	box-sizing: border-box;
+}
+
+#highscore,
+#instructions,
+.controlSound {
+	display: none;
+}
+
+.content {
+    display: block;
+    width: auto;
+	max-width: none;
+    height: 100%;
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+.game {
+	height: 100%;
+	max-width: none;
+}
+
+#canvas-container {
+	height: calc(100% - 23px - 215px);
+}
+
+#canvas-overlay-container {
+	width: 100%;
+}
+
+#canvas-overlay-content {
+	width: 100%;
+	top: 40%;
+}
+
+#myCanvas {
+	width: auto;
+	height: 100%;
+}
+
+.button#back {
+	top: 0;
+}
