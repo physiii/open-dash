@@ -9,6 +9,7 @@ export class J1850 extends React.Component {
 
 		this.state = {
 			j1850Codes: [],
+			j1850CodesCopy: [],
 			showOnlyNewCodes: false,
 			newCodes: [],
 			codeTotal: 0,
@@ -18,16 +19,27 @@ export class J1850 extends React.Component {
 		this.props.back.on('j1850', (data) => {
 			// console.log(TAG, 'Incoming message', data);
 			this.state.codeTotalRep++;
-			let index = this.state.j1850Codes.findIndex(code => code.j1850 === data.j1850);
+			let index = this.state.j1850Codes.findIndex(code => code.j1850 === data.j1850),
+				indexNew = this.state.newCodes.findIndex(code => code.j1850 === data.j1850),
+				indexCopy = this.state.j1850CodesCopy.findIndex(code => code.j1850 === data.j1850);
+
 			if (index > -1) {
 					this.state.j1850Codes[index].count++;
-					this.state.newCodes[index].count++;
 			} else {
 				data.count = 1;
 				this.state.j1850Codes.push(data);
-				this.state.newCodes.push(data);
 				this.state.codeTotal++;
 			}
+
+			if (indexCopy < 0) {
+				if (indexNew > -1) {
+						this.state.newCodes[indexNew].count++;
+				} else {
+					data.count = 1;
+					this.state.newCodes.push(data);
+				}
+			}
+
 			this.setState(this.state)
 		});
 
@@ -48,6 +60,7 @@ export class J1850 extends React.Component {
 		console.log(TAG, "Showing only new codes.");
 		this.state.showOnlyNewCodes = true;
 		this.state.newCodes = [];
+		this.state.j1850CodesCopy = this.state.j1850Codes;
 		this.setState(this.state);
 	}
 
@@ -61,6 +74,14 @@ export class J1850 extends React.Component {
 		console.log(TAG, "Sorting codes.");
 		this.state.j1850Codes.sort(this.compare);
 		this.state.newCodes.sort(this.compare);
+		this.setState(this.state);
+	}
+
+	clearCodes () {
+		console.log(TAG, "Clearing codes.");
+		this.state.newCodes = [];
+		this.state.j1850Codes = [];
+		this.state.j1850CodesCopy = [];
 		this.setState(this.state);
 	}
 
@@ -80,6 +101,11 @@ export class J1850 extends React.Component {
 				key="button"
 				onClick={ this.sortCodes.bind(this) }
 				styleName='button'>Sort Codes</button>
+			<button
+				key="button"
+				onClick={ this.clearCodes.bind(this) }
+				styleName='button'>Clear Codes</button>
+			<br />
 			Total: { this.state.codeTotal } ({ this.state.codeTotalRep })
 			<br />
 			<br />
