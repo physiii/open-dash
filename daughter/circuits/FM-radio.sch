@@ -1,10 +1,9 @@
 EESchema Schematic File Version 4
-LIBS:open-dash-daughterboard-cache
-EELAYER 29 0
+EELAYER 30 0
 EELAYER END
 $Descr A 11000 8500
 encoding utf-8
-Sheet 3 7
+Sheet 3 9
 Title ""
 Date ""
 Rev ""
