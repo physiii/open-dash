@@ -458,7 +458,7 @@ F 3 "" H 2250 1550 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Open_Automation:Q_PNP Q18
+L open-dash-daughterboard-rescue:Q_PNP-Open_Automation Q18
 U 1 1 601A5292
 P 7150 4250
 F 0 "Q18" H 7341 4296 50  0000 L CNN
@@ -471,7 +471,7 @@ F 5 "C8542" H 7800 4600 50  0001 C CNN "LCSC"
 	1    0    0    -1  
 $EndComp
 $Comp
-L Open_Automation:Q_NPN Q17
+L open-dash-daughterboard-rescue:Q_NPN-Open_Automation Q17
 U 1 1 601A478F
 P 7150 3700
 F 0 "Q17" H 7341 3746 50  0000 L CNN

@@ -466,7 +466,7 @@ Wire Wire Line
 Text Label 12250 2550 0    50   ~ 0
 RF+
 $Comp
-L open-automation:GND #PWR?
+L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 60B52478
 P 11650 2650
 AR Path="/5B15E02A/60B52478" Ref="#PWR?"  Part="1" 
@@ -488,7 +488,7 @@ Wire Wire Line
 Wire Wire Line
 	12250 1950 12200 1950
 $Comp
-L open-automation:GND #PWR?
+L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 60B901EE
 P 11650 1950
 AR Path="/5B15E02A/60B901EE" Ref="#PWR?"  Part="1" 
@@ -1098,7 +1098,7 @@ BATTERY
 Text Label 5500 2450 0    50   ~ 0
 BATTERY
 $Comp
-L open-automation:GND #PWR?
+L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 5FD3DF83
 P 11650 1750
 AR Path="/5B15E02A/5FD3DF83" Ref="#PWR?"  Part="1" 

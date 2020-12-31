@@ -765,7 +765,7 @@ ENDDEF
 DEF Open_Automation_MCP23017_SS U 0 40 Y Y 1 F N
 F0 "U" -450 950 50 H V C CNN
 F1 "Open_Automation_MCP23017_SS" 0 0 50 H V C CNN
-F2 "Package_SO:SSOP-28_5.3x10.2mm_P0.65mm" 200 -1000 50 H I L CNN
+F2 "Package_SO:SOIC-28W_7.5x17.9mm_P1.27mm" 200 -1000 50 H I L CNN
 F3 "" 200 -1100 50 H I L CNN
 F4 "MCP23017-E/SO" 0 0 50 H I C CNN "Part Number"
 F5 "C47023" 0 0 50 H I C CNN "LCSC"
@@ -1027,48 +1027,6 @@ X C 3 250 -250 100 L 50 50 1 1 P
 X E 4 250 -450 100 L 50 50 1 1 P
 X B 5 -200 -350 225 R 50 50 1 1 I
 X C 6 250 100 100 L 50 50 1 1 P
-ENDDRAW
-ENDDEF
-#
-# Open_Automation_Q_NPN
-#
-DEF Open_Automation_Q_NPN Q 0 0 Y N 1 F N
-F0 "Q" 200 50 50 H V L CNN
-F1 "Open_Automation_Q_NPN" 200 -50 50 H V L CNN
-F2 "Package_TO_SOT_SMD:SOT-23" 800 200 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
-F4 "SS8050" 750 300 50 H I C CNN "Part Number"
-F5 "C2150" 750 400 50 H I C CNN "LCSC"
-DRAW
-C 50 0 111 0 1 10 N
-P 2 0 1 0 25 25 100 100 N
-P 3 0 1 0 25 -25 100 -100 100 -100 N
-P 3 0 1 20 25 75 25 -75 25 -75 N
-P 5 0 1 0 50 -70 70 -50 90 -90 50 -70 50 -70 F
-X B 1 -200 0 225 R 50 50 1 1 I
-X C 2 100 200 100 D 50 50 1 1 P
-X E 3 100 -200 100 U 50 50 1 1 P
-ENDDRAW
-ENDDEF
-#
-# Open_Automation_Q_PNP
-#
-DEF Open_Automation_Q_PNP Q 0 0 Y N 1 F N
-F0 "Q" 200 50 50 H V L CNN
-F1 "Open_Automation_Q_PNP" 200 -50 50 H V L CNN
-F2 "Package_TO_SOT_SMD:SOT-23" 750 150 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
-F4 "SS8550" 650 250 50 H I C CNN "Part Number"
-F5 "C8542" 650 350 50 H I C CNN "LCSC"
-DRAW
-C 50 0 111 0 1 10 N
-P 2 0 1 0 25 25 100 100 N
-P 3 0 1 0 25 -25 100 -100 100 -100 N
-P 3 0 1 20 25 75 25 -75 25 -75 N
-P 5 0 1 0 90 -70 70 -90 50 -50 90 -70 90 -70 F
-X B 1 -200 0 225 R 50 50 1 1 I
-X E 2 100 -200 100 U 50 50 1 1 P
-X C 3 100 200 100 D 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
@@ -1421,16 +1379,58 @@ X PAD 7 100 -300 100 U 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# open-automation_GND
+# open-dash-daughterboard-rescue_GND-open-automation
 #
-DEF open-automation_GND #PWR 0 0 Y Y 1 F P
+DEF open-dash-daughterboard-rescue_GND-open-automation #PWR 0 0 Y Y 1 F P
 F0 "#PWR" 0 -250 50 H I C CNN
-F1 "open-automation_GND" 0 -150 50 H V C CNN
+F1 "open-dash-daughterboard-rescue_GND-open-automation" 0 -150 50 H V C CNN
 F2 "" 0 0 50 H V C CNN
 F3 "" 0 0 50 H V C CNN
 DRAW
 P 6 0 1 0 0 0 0 -50 50 -50 0 -100 -50 -50 0 -50 N
 X GND 1 0 0 0 D 50 50 1 1 W N
+ENDDRAW
+ENDDEF
+#
+# open-dash-daughterboard-rescue_Q_NPN-Open_Automation
+#
+DEF open-dash-daughterboard-rescue_Q_NPN-Open_Automation Q 0 0 Y N 1 F N
+F0 "Q" 200 50 50 H V L CNN
+F1 "open-dash-daughterboard-rescue_Q_NPN-Open_Automation" 200 -50 50 H V L CNN
+F2 "Package_TO_SOT_SMD:SOT-23" 800 200 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+F4 "SS8050" 750 300 50 H I C CNN "Part Number"
+F5 "C2150" 750 400 50 H I C CNN "LCSC"
+DRAW
+C 50 0 111 0 1 10 N
+P 2 0 1 0 25 25 100 100 N
+P 3 0 1 0 25 -25 100 -100 100 -100 N
+P 3 0 1 20 25 75 25 -75 25 -75 N
+P 5 0 1 0 50 -70 70 -50 90 -90 50 -70 50 -70 F
+X B 1 -200 0 225 R 50 50 1 1 I
+X C 2 100 200 100 D 50 50 1 1 P
+X E 3 100 -200 100 U 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+# open-dash-daughterboard-rescue_Q_PNP-Open_Automation
+#
+DEF open-dash-daughterboard-rescue_Q_PNP-Open_Automation Q 0 0 Y N 1 F N
+F0 "Q" 200 50 50 H V L CNN
+F1 "open-dash-daughterboard-rescue_Q_PNP-Open_Automation" 200 -50 50 H V L CNN
+F2 "Package_TO_SOT_SMD:SOT-23" 750 150 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+F4 "SS8550" 650 250 50 H I C CNN "Part Number"
+F5 "C8542" 650 350 50 H I C CNN "LCSC"
+DRAW
+C 50 0 111 0 1 10 N
+P 2 0 1 0 25 25 100 100 N
+P 3 0 1 0 25 -25 100 -100 100 -100 N
+P 3 0 1 20 25 75 25 -75 25 -75 N
+P 5 0 1 0 90 -70 70 -90 50 -50 90 -70 90 -70 F
+X B 1 -200 0 225 R 50 50 1 1 I
+X E 2 100 -200 100 U 50 50 1 1 P
+X C 3 100 200 100 D 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #

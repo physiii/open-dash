@@ -59,7 +59,7 @@ F 5 "C22112" H 0   0   50  0001 C CNN "LCSC"
 	1    0    0    -1  
 $EndComp
 $Comp
-L open-automation:GND #PWR?
+L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 5FD18EF7
 P 5700 2650
 AR Path="/5ABD187E/5FD18EF7" Ref="#PWR?"  Part="1" 
@@ -75,7 +75,7 @@ F 3 "" H 5700 2650 50  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L open-automation:GND #PWR?
+L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 5FD18EFD
 P 5700 3050
 AR Path="/5ABD187E/5FD18EFD" Ref="#PWR?"  Part="1" 
@@ -101,7 +101,7 @@ Wire Wire Line
 Wire Wire Line
 	5700 3050 5700 3000
 $Comp
-L open-automation:GND #PWR?
+L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 5FD18F10
 P 6400 2650
 AR Path="/5ABD187E/5FD18F10" Ref="#PWR?"  Part="1" 

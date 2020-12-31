@@ -258,7 +258,7 @@ AIN5
 Text Label 3500 2400 2    50   ~ 0
 AIN4
 $Comp
-L open-automation:GND #PWR?
+L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 5FC16751
 P 5550 3100
 AR Path="/5ABD187E/5FC16751" Ref="#PWR?"  Part="1" 
@@ -380,7 +380,7 @@ Wire Wire Line
 Wire Wire Line
 	11550 7450 11600 7450
 $Comp
-L open-automation:GND #PWR?
+L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 5FF05705
 P 12350 7700
 AR Path="/5ABD187E/5FF05705" Ref="#PWR?"  Part="1" 
@@ -416,7 +416,7 @@ Wire Wire Line
 Wire Wire Line
 	11550 6450 11600 6450
 $Comp
-L open-automation:GND #PWR?
+L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 5FF0572B
 P 12350 6700
 AR Path="/5ABD187E/5FF0572B" Ref="#PWR?"  Part="1" 
@@ -861,7 +861,7 @@ OUT8
 Wire Wire Line
 	14600 2200 14550 2200
 $Comp
-L open-automation:GND #PWR?
+L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 5FDA34F9
 P 14600 2500
 AR Path="/5ABD187E/5FDA34F9" Ref="#PWR?"  Part="1" 
@@ -879,7 +879,7 @@ $EndComp
 Wire Wire Line
 	14600 2500 14550 2500
 $Comp
-L open-automation:GND #PWR?
+L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 5FDB34AF
 P 14600 2900
 AR Path="/5ABD187E/5FDB34AF" Ref="#PWR?"  Part="1" 
@@ -901,7 +901,7 @@ OUT9
 Wire Wire Line
 	14600 2600 14550 2600
 $Comp
-L open-automation:GND #PWR?
+L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 5FE28040
 P 13800 2550
 AR Path="/5ABD187E/5FE28040" Ref="#PWR?"  Part="1" 
@@ -919,7 +919,7 @@ $EndComp
 Wire Wire Line
 	13800 2550 13750 2550
 $Comp
-L open-automation:GND #PWR?
+L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 5FE37015
 P 13800 2900
 AR Path="/5ABD187E/5FE37015" Ref="#PWR?"  Part="1" 
@@ -1073,7 +1073,7 @@ OUT10
 Wire Wire Line
 	14600 3700 14550 3700
 $Comp
-L open-automation:GND #PWR?
+L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 5FFC1633
 P 14600 4000
 AR Path="/5ABD187E/5FFC1633" Ref="#PWR?"  Part="1" 
@@ -1091,7 +1091,7 @@ $EndComp
 Wire Wire Line
 	14600 4000 14550 4000
 $Comp
-L open-automation:GND #PWR?
+L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 5FFC163E
 P 14600 4400
 AR Path="/5ABD187E/5FFC163E" Ref="#PWR?"  Part="1" 
@@ -1113,7 +1113,7 @@ OUT11
 Wire Wire Line
 	14600 4100 14550 4100
 $Comp
-L open-automation:GND #PWR?
+L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 5FFC164B
 P 13800 4050
 AR Path="/5ABD187E/5FFC164B" Ref="#PWR?"  Part="1" 
@@ -1131,7 +1131,7 @@ $EndComp
 Wire Wire Line
 	13800 4050 13750 4050
 $Comp
-L open-automation:GND #PWR?
+L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 5FFC1656
 P 13800 4400
 AR Path="/5ABD187E/5FFC1656" Ref="#PWR?"  Part="1" 
@@ -1285,7 +1285,7 @@ OUT0
 Wire Wire Line
 	9100 2200 9050 2200
 $Comp
-L open-automation:GND #PWR?
+L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 60044DD0
 P 9100 2500
 AR Path="/5ABD187E/60044DD0" Ref="#PWR?"  Part="1" 
@@ -1303,7 +1303,7 @@ $EndComp
 Wire Wire Line
 	9100 2500 9050 2500
 $Comp
-L open-automation:GND #PWR?
+L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 60044DDB
 P 9100 2900
 AR Path="/5ABD187E/60044DDB" Ref="#PWR?"  Part="1" 
@@ -1325,7 +1325,7 @@ OUT1
 Wire Wire Line
 	9100 2600 9050 2600
 $Comp
-L open-automation:GND #PWR?
+L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 60044DE8
 P 8300 2550
 AR Path="/5ABD187E/60044DE8" Ref="#PWR?"  Part="1" 
@@ -1343,7 +1343,7 @@ $EndComp
 Wire Wire Line
 	8300 2550 8250 2550
 $Comp
-L open-automation:GND #PWR?
+L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 60044DF3
 P 8300 2900
 AR Path="/5ABD187E/60044DF3" Ref="#PWR?"  Part="1" 
@@ -1497,7 +1497,7 @@ OUT2
 Wire Wire Line
 	9100 3700 9050 3700
 $Comp
-L open-automation:GND #PWR?
+L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 60044E57
 P 9100 4000
 AR Path="/5ABD187E/60044E57" Ref="#PWR?"  Part="1" 
@@ -1515,7 +1515,7 @@ $EndComp
 Wire Wire Line
 	9100 4000 9050 4000
 $Comp
-L open-automation:GND #PWR?
+L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 60044E62
 P 9100 4400
 AR Path="/5ABD187E/60044E62" Ref="#PWR?"  Part="1" 
@@ -1537,7 +1537,7 @@ OUT3
 Wire Wire Line
 	9100 4100 9050 4100
 $Comp
-L open-automation:GND #PWR?
+L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 60044E6F
 P 8300 4050
 AR Path="/5ABD187E/60044E6F" Ref="#PWR?"  Part="1" 
@@ -1555,7 +1555,7 @@ $EndComp
 Wire Wire Line
 	8300 4050 8250 4050
 $Comp
-L open-automation:GND #PWR?
+L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 60044E7A
 P 8300 4400
 AR Path="/5ABD187E/60044E7A" Ref="#PWR?"  Part="1" 
@@ -1709,7 +1709,7 @@ OUT4
 Wire Wire Line
 	11800 2200 11750 2200
 $Comp
-L open-automation:GND #PWR?
+L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 600C2937
 P 11800 2500
 AR Path="/5ABD187E/600C2937" Ref="#PWR?"  Part="1" 
@@ -1727,7 +1727,7 @@ $EndComp
 Wire Wire Line
 	11800 2500 11750 2500
 $Comp
-L open-automation:GND #PWR?
+L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 600C2942
 P 11800 2900
 AR Path="/5ABD187E/600C2942" Ref="#PWR?"  Part="1" 
@@ -1749,7 +1749,7 @@ OUT5
 Wire Wire Line
 	11800 2600 11750 2600
 $Comp
-L open-automation:GND #PWR?
+L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 600C294F
 P 11000 2550
 AR Path="/5ABD187E/600C294F" Ref="#PWR?"  Part="1" 
@@ -1767,7 +1767,7 @@ $EndComp
 Wire Wire Line
 	11000 2550 10950 2550
 $Comp
-L open-automation:GND #PWR?
+L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 600C295A
 P 11000 2900
 AR Path="/5ABD187E/600C295A" Ref="#PWR?"  Part="1" 
@@ -1921,7 +1921,7 @@ OUT6
 Wire Wire Line
 	11800 3700 11750 3700
 $Comp
-L open-automation:GND #PWR?
+L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 600C29BE
 P 11800 4000
 AR Path="/5ABD187E/600C29BE" Ref="#PWR?"  Part="1" 
@@ -1939,7 +1939,7 @@ $EndComp
 Wire Wire Line
 	11800 4000 11750 4000
 $Comp
-L open-automation:GND #PWR?
+L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 600C29C9
 P 11800 4400
 AR Path="/5ABD187E/600C29C9" Ref="#PWR?"  Part="1" 
@@ -1961,7 +1961,7 @@ OUT7
 Wire Wire Line
 	11800 4100 11750 4100
 $Comp
-L open-automation:GND #PWR?
+L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 600C29D6
 P 11000 4050
 AR Path="/5ABD187E/600C29D6" Ref="#PWR?"  Part="1" 
@@ -1979,7 +1979,7 @@ $EndComp
 Wire Wire Line
 	11000 4050 10950 4050
 $Comp
-L open-automation:GND #PWR?
+L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 600C29E1
 P 11000 4400
 AR Path="/5ABD187E/600C29E1" Ref="#PWR?"  Part="1" 
@@ -2138,7 +2138,7 @@ F 5 "C25804" H 0   0   50  0001 C CNN "LCSC"
 	0    1    1    0   
 $EndComp
 $Comp
-L open-automation:GND #PWR?
+L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 5FD33BAF
 P 9450 6700
 AR Path="/5ABD187E/5FD33BAF" Ref="#PWR?"  Part="1" 
@@ -2155,7 +2155,7 @@ F 3 "" H 9450 6700 50  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L open-automation:GND #PWR?
+L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 5FD4BF2F
 P 9450 7100
 AR Path="/5ABD187E/5FD4BF2F" Ref="#PWR?"  Part="1" 
@@ -2180,7 +2180,7 @@ Wire Wire Line
 Wire Wire Line
 	9500 6500 9450 6500
 $Comp
-L open-automation:GND #PWR?
+L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 5FDA2CBB
 P 10150 7100
 AR Path="/5ABD187E/5FDA2CBB" Ref="#PWR?"  Part="1" 
@@ -2203,7 +2203,7 @@ Wire Wire Line
 Wire Wire Line
 	9450 7100 9450 7050
 $Comp
-L open-automation:GND #PWR?
+L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 5FDD129E
 P 10150 6700
 AR Path="/5ABD187E/5FDD129E" Ref="#PWR?"  Part="1" 
@@ -2330,7 +2330,7 @@ AIN10
 Text HLabel 1700 2600 0    60   Input ~ 0
 AIN9
 $Comp
-L open-automation:GND #PWR?
+L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 608E2588
 P 5450 7350
 AR Path="/5ABD187E/608E2588" Ref="#PWR?"  Part="1" 

@@ -641,7 +641,7 @@ F 5 "C25804" H 0   0   50  0001 C CNN "LCSC"
 	1    0    0    -1  
 $EndComp
 $Comp
-L open-automation:GND #PWR?
+L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 5FEE393F
 P 1950 3700
 AR Path="/5ABD187E/5FEE393F" Ref="#PWR?"  Part="1" 
@@ -978,7 +978,7 @@ F 5 "C150824" H 4950 5050 50  0001 C CNN "LCSC"
 	1    0    0    -1  
 $EndComp
 $Comp
-L open-automation:GND #PWR022
+L open-dash-daughterboard-rescue:GND-open-automation #PWR022
 U 1 1 5FCCD5C3
 P 4950 5500
 F 0 "#PWR022" H 4950 5250 50  0001 C CNN
@@ -989,7 +989,7 @@ F 3 "" H 4950 5500 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L open-automation:GND #PWR017
+L open-dash-daughterboard-rescue:GND-open-automation #PWR017
 U 1 1 5CCAD634
 P 3800 1900
 F 0 "#PWR017" H 3800 1650 50  0001 C CNN
@@ -1078,7 +1078,7 @@ F 5 "C96446" H 0   0   50  0001 C CNN "LCSC"
 	1    0    0    -1  
 $EndComp
 $Comp
-L open-automation:GND #PWR019
+L open-dash-daughterboard-rescue:GND-open-automation #PWR019
 U 1 1 5B21A954
 P 4300 3300
 F 0 "#PWR019" H 4300 3050 50  0001 C CNN
@@ -1089,7 +1089,7 @@ F 3 "" H 4300 3300 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L open-automation:GND #PWR024
+L open-dash-daughterboard-rescue:GND-open-automation #PWR024
 U 1 1 5B18B8C6
 P 5400 3450
 F 0 "#PWR024" H 5400 3200 50  0001 C CNN
@@ -1100,7 +1100,7 @@ F 3 "" H 5400 3450 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L open-automation:GND #PWR020
+L open-dash-daughterboard-rescue:GND-open-automation #PWR020
 U 1 1 5B1782DE
 P 4525 3175
 F 0 "#PWR020" H 4525 2925 50  0001 C CNN
@@ -1126,7 +1126,7 @@ F 4 " EEU-FC1E102" H 1275 3350 60  0001 C CNN "Part Number"
 	1    0    0    -1  
 $EndComp
 $Comp
-L open-automation:GND #PWR021
+L open-dash-daughterboard-rescue:GND-open-automation #PWR021
 U 1 1 5CBEBB48
 P 5000 1900
 F 0 "#PWR021" H 5000 1650 50  0001 C CNN
@@ -1137,7 +1137,7 @@ F 3 "" H 5000 1900 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L open-automation:GND #PWR026
+L open-dash-daughterboard-rescue:GND-open-automation #PWR026
 U 1 1 5CBE9929
 P 6300 1900
 F 0 "#PWR026" H 6300 1650 50  0001 C CNN
@@ -1174,7 +1174,7 @@ F 5 "C116748" H 0   0   50  0001 C CNN "LCSC"
 	1    0    0    -1  
 $EndComp
 $Comp
-L open-automation:GND #PWR032
+L open-dash-daughterboard-rescue:GND-open-automation #PWR032
 U 1 1 5CBD7AFF
 P 8100 3800
 F 0 "#PWR032" H 8100 3550 50  0001 C CNN
@@ -1323,7 +1323,7 @@ F 5 "C25804" H 0   0   50  0001 C CNN "LCSC"
 	0    1    1    0   
 $EndComp
 $Comp
-L open-automation:GND #PWR?
+L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 5FD5E397
 P 1900 5050
 AR Path="/5ABD187E/5FD5E397" Ref="#PWR?"  Part="1" 
@@ -1339,7 +1339,7 @@ F 3 "" H 1900 5050 50  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L open-automation:GND #PWR?
+L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 5FD5E39D
 P 1900 5450
 AR Path="/5ABD187E/5FD5E39D" Ref="#PWR?"  Part="1" 
@@ -1355,7 +1355,7 @@ F 3 "" H 1900 5450 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L open-automation:GND #PWR?
+L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 5FD5E3A7
 P 2600 5450
 AR Path="/5ABD187E/5FD5E3A7" Ref="#PWR?"  Part="1" 
@@ -1371,7 +1371,7 @@ F 3 "" H 2600 5450 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L open-automation:GND #PWR?
+L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 5FD5E3B0
 P 2600 5050
 AR Path="/5ABD187E/5FD5E3B0" Ref="#PWR?"  Part="1" 
