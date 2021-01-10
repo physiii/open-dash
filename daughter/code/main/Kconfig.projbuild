@@ -1,5 +1,17 @@
 menu "Power Configuration"
 
+    config LED_STRIP_FLUSH_TIMEOUT
+            int "makes esp-idf-lib work"
+            default 12
+            help
+                This option selects the GPIO pin used for the main power signal.
+
+    config I2CDEV_TIMEOUT
+            int "makes esp-idf-lib work"
+            default 1000
+            help
+                This option selects the GPIO pin used for the main power signal.
+
     config IGNITION_WIRE_IO
         int "Ignition power GPIO number"
         default 12

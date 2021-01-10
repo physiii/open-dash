@@ -555,6 +555,8 @@ Wire Wire Line
 	12200 2250 12250 2250
 Wire Wire Line
 	11600 2050 11700 2050
+Text Label 5700 6450 2    50   ~ 0
+IO32
 Text Label 5700 6250 2    50   ~ 0
 IO26
 Text Label 5700 6150 2    50   ~ 0
@@ -1125,6 +1127,4 @@ F 3 "" H 8750 2300 50  0001 C CNN
 $EndComp
 Text Label 8750 2200 2    50   ~ 0
 BATTERY
-Text Label 5700 6450 2    50   ~ 0
-IGNITION_SENSE
 $EndSCHEMATC
