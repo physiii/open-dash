@@ -26,7 +26,11 @@ DCD
 Text HLabel 1350 1050 0    60   Input ~ 0
 TXD
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:C_47pF-Open_Automation C?
+=======
+L Open_Automation:C_47pF C?
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 5C04EC17
 P 3600 3950
 AR Path="/5B15E02A/5C04EC17" Ref="C?"  Part="1" 
@@ -43,7 +47,11 @@ F 6 "C1671" H 0   0   50  0001 C CNN "LCSC"
 	1    0    0    -1  
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:C_0.1uF-Open_Automation C?
+=======
+L Open_Automation:C_0.1uF C?
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 5C04EC39
 P 5200 1100
 AR Path="/5B15E02A/5C04EC39" Ref="C?"  Part="1" 
@@ -59,7 +67,11 @@ F 5 "C14663" H 0   0   50  0001 C CNN "LCSC"
 	1    0    0    -1  
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:C_4.7uF-Open_Automation C?
+=======
+L Open_Automation:C_4.7uF C?
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 5C04EC41
 P 4800 1100
 AR Path="/5B15E02A/5C04EC41" Ref="C?"  Part="1" 
@@ -95,7 +107,11 @@ USBDP
 Wire Wire Line
 	2950 1300 2900 1300
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:FT231XS-Open_Automation U?
+=======
+L Open_Automation:FT231XS U?
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 5CCE180E
 P 4750 4000
 AR Path="/5B15E02A/5CCE180E" Ref="U?"  Part="1" 
@@ -111,7 +127,11 @@ F 6 "C132160" H 0   0   50  0001 C CNN "LCSC"
 	1    0    0    -1  
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:USB_MINI_B-Open_Automation J?
+=======
+L Open_Automation:USB_MINI_B J?
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 5CBFBAFC
 P 2600 1300
 AR Path="/5B15E02A/5CBFBAFC" Ref="J?"  Part="1" 
@@ -222,7 +242,11 @@ Wire Wire Line
 Wire Wire Line
 	6450 4050 7250 4050
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:R_10K-Open_Automation R?
+=======
+L Open_Automation:R_10K R?
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 5CC1ED63
 P 6750 3700
 AR Path="/5B15E02A/5CC1ED63" Ref="R?"  Part="1" 
@@ -237,7 +261,11 @@ F 5 "C25804" H 0   0   50  0001 C CNN "LCSC"
 	0    1    1    0   
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:R_10K-Open_Automation R?
+=======
+L Open_Automation:R_10K R?
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 5CC209A3
 P 6700 4250
 AR Path="/5B15E02A/5CC209A3" Ref="R?"  Part="1" 
@@ -252,7 +280,11 @@ F 5 "C25804" H 0   0   50  0001 C CNN "LCSC"
 	0    -1   -1   0   
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:R_27-Open_Automation R?
+=======
+L Open_Automation:R_27 R?
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 5CC410DE
 P 3850 3700
 AR Path="/5B15E02A/5CC410DE" Ref="R?"  Part="1" 
@@ -267,7 +299,11 @@ F 5 "C22966" H 0   0   50  0001 C CNN "LCSC"
 	0    1    1    0   
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:R_27-Open_Automation R?
+=======
+L Open_Automation:R_27 R?
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 5CC41378
 P 3850 3800
 AR Path="/5B15E02A/5CC41378" Ref="R?"  Part="1" 
@@ -282,7 +318,11 @@ F 5 "C22966" H 0   0   50  0001 C CNN "LCSC"
 	0    1    1    0   
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:C_47pF-Open_Automation C?
+=======
+L Open_Automation:C_47pF C?
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 5CC29668
 P 3200 3950
 AR Path="/5B15E02A/5CC29668" Ref="C?"  Part="1" 
@@ -305,7 +345,11 @@ Wire Wire Line
 Text Label 3300 1100 0    50   ~ 0
 5V
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:D_1N5819HW-Open_Automation D?
+=======
+L Open_Automation:D_1N5819HW D?
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 5CD8937E
 P 3150 1100
 AR Path="/5B15E02A/5CD8937E" Ref="D?"  Part="1" 
@@ -321,7 +365,11 @@ F 6 "C117948" H 50  0   50  0001 C CNN "LCSC"
 	-1   0    0    1   
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:GND-power #PWR?
+=======
+L power:GND #PWR?
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 601C912E
 P 4400 1300
 AR Path="/5ABD187E/601C912E" Ref="#PWR?"  Part="1" 
@@ -338,7 +386,11 @@ $EndComp
 Text Label 4400 900  2    50   ~ 0
 3V3OUT
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:C_0.1uF-Open_Automation C?
+=======
+L Open_Automation:C_0.1uF C?
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 5C04EC31
 P 4400 1100
 AR Path="/5B15E02A/5C04EC31" Ref="C?"  Part="1" 
@@ -354,7 +406,11 @@ F 5 "C14663" H 0   0   50  0001 C CNN "LCSC"
 	1    0    0    -1  
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:GND-power #PWR?
+=======
+L power:GND #PWR?
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 601D64E1
 P 4800 1300
 AR Path="/5ABD187E/601D64E1" Ref="#PWR?"  Part="1" 
@@ -369,7 +425,11 @@ F 3 "" H 4800 1300 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:GND-power #PWR?
+=======
+L power:GND #PWR?
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 601D67F8
 P 5200 1300
 AR Path="/5ABD187E/601D67F8" Ref="#PWR?"  Part="1" 
@@ -398,7 +458,11 @@ Wire Wire Line
 Wire Wire Line
 	4650 4900 4750 4900
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:GND-power #PWR?
+=======
+L power:GND #PWR?
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 601DCE69
 P 4750 4900
 AR Path="/5ABD187E/601DCE69" Ref="#PWR?"  Part="1" 
@@ -413,7 +477,11 @@ F 3 "" H 4750 4900 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:GND-power #PWR?
+=======
+L power:GND #PWR?
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 601DDAAB
 P 3600 4150
 AR Path="/5ABD187E/601DDAAB" Ref="#PWR?"  Part="1" 
@@ -428,7 +496,11 @@ F 3 "" H 3600 4150 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:GND-power #PWR?
+=======
+L power:GND #PWR?
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 601DDE83
 P 3200 4150
 AR Path="/5ABD187E/601DDE83" Ref="#PWR?"  Part="1" 
@@ -443,7 +515,11 @@ F 3 "" H 3200 4150 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:GND-power #PWR?
+=======
+L power:GND #PWR?
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 602A32A3
 P 2250 1550
 AR Path="/5ABD187E/602A32A3" Ref="#PWR?"  Part="1" 
@@ -458,7 +534,11 @@ F 3 "" H 2250 1550 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:Q_PNP-Open_Automation Q18
+=======
+L Open_Automation:Q_PNP Q18
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 601A5292
 P 7150 4250
 F 0 "Q18" H 7341 4296 50  0000 L CNN
@@ -471,7 +551,11 @@ F 5 "C8542" H 7800 4600 50  0001 C CNN "LCSC"
 	1    0    0    -1  
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:Q_NPN-Open_Automation Q17
+=======
+L Open_Automation:Q_NPN Q17
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 601A478F
 P 7150 3700
 F 0 "Q17" H 7341 3746 50  0000 L CNN
@@ -487,7 +571,11 @@ Connection ~ 4750 4900
 Wire Wire Line
 	4750 4900 4850 4900
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:Conn_02x02_Counter_Clockwise-Connector_Generic J12
+=======
+L Connector_Generic:Conn_02x02_Counter_Clockwise J12
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 5FDB1E21
 P 2600 2150
 F 0 "J12" H 2650 2367 50  0000 C CNN
@@ -498,7 +586,11 @@ F 3 "~" H 2600 2150 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:GND-power #PWR?
+=======
+L power:GND #PWR?
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 5FDB583B
 P 2350 2150
 AR Path="/5ABD187E/5FDB583B" Ref="#PWR?"  Part="1" 

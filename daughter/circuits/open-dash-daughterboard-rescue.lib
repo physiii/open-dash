@@ -45,6 +45,7 @@ X GND 9 200 -1200 200 U 50 50 1 1 W
 ENDDRAW
 ENDDEF
 #
+<<<<<<< HEAD
 # ACS711-Open_Automation
 #
 DEF ACS711-Open_Automation U 0 20 Y Y 1 F N
@@ -649,6 +650,8 @@ X ~CTS 9 700 300 150 L 50 50 1 1 I
 ENDDRAW
 ENDDEF
 #
+=======
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 # GND-open-automation
 #
 DEF GND-open-automation #PWR 0 0 Y Y 1 F P
@@ -662,6 +665,7 @@ X GND 1 0 0 0 D 50 50 1 1 W N
 ENDDRAW
 ENDDEF
 #
+<<<<<<< HEAD
 # GND-power
 #
 DEF GND-power #PWR 0 0 Y Y 1 F P
@@ -675,6 +679,8 @@ X GND 1 0 0 0 D 50 50 1 1 W N
 ENDDRAW
 ENDDEF
 #
+=======
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 # LED-open-automation
 #
 DEF LED-open-automation D 0 40 Y N 1 F N
@@ -1133,6 +1139,7 @@ X C3 3 500 0 200 L 50 50 1 1 B
 ENDDRAW
 ENDDEF
 #
+<<<<<<< HEAD
 # Q_DMT3020-Open_Automation
 #
 DEF Q_DMT3020-Open_Automation Q 0 0 Y N 1 F N
@@ -1222,6 +1229,8 @@ X C 6 250 100 100 L 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
+=======
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 # Q_NPN-Open_Automation
 #
 DEF Q_NPN-Open_Automation Q 0 0 Y N 1 F N
@@ -1264,6 +1273,7 @@ X C 3 100 200 100 D 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
+<<<<<<< HEAD
 # REG_3V3-Open_Automation
 #
 DEF REG_3V3-Open_Automation U1 0 40 Y Y 1 F N
@@ -1612,4 +1622,6 @@ S 250 150 -250 -150 0 1 0 f
 ENDDRAW
 ENDDEF
 #
+=======
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 #End Library

@@ -56,7 +56,11 @@ ESP_EN
 Text Label 10000 4200 2    50   ~ 0
 PROG
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:radio-housing-mounts-Open_Automation U?
+=======
+L Open_Automation:radio-housing-mounts U?
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 5CCA1F9C
 P 1150 1000
 AR Path="/5ABD187E/5CCA1F9C" Ref="U?"  Part="1" 
@@ -656,7 +660,11 @@ LOW_REF
 Wire Wire Line
 	5200 3000 5150 3000
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:D_1N5819HW-Open_Automation D1
+=======
+L Open_Automation:D_1N5819HW D1
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 5FC75BB4
 P 11950 3200
 F 0 "D1" H 11800 3250 50  0000 C CNN
@@ -670,7 +678,11 @@ F 6 "C117948" H 0   0   50  0001 C CNN "LCSC"
 	-1   0    0    1   
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:Molex_Mini-Fit_Jr_5566-Open_Automation J2
+=======
+L Open_Automation:Molex_Mini-Fit_Jr_5566 J2
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 5FD129DC
 P 5150 2150
 F 0 "J2" H 5200 2867 50  0000 C CNN
@@ -683,7 +695,11 @@ F 5 "https://www.molex.com/molex/products/part-detail/pcb_headers/0039299243" H 
 	1    0    0    -1  
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:Molex_Mini-Fit_Jr_5566-Open_Automation J3
+=======
+L Open_Automation:Molex_Mini-Fit_Jr_5566 J3
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 5FD1543D
 P 9000 2100
 F 0 "J3" H 9050 2817 50  0000 C CNN
@@ -696,7 +712,11 @@ F 5 "https://www.molex.com/molex/products/part-detail/pcb_headers/0039299243" H 
 	1    0    0    -1  
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:Molex_Mini-Fit_Jr_5566-Open_Automation J4
+=======
+L Open_Automation:Molex_Mini-Fit_Jr_5566 J4
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 5FD16ADB
 P 11900 2150
 F 0 "J4" H 11950 2867 50  0000 C CNN
@@ -711,7 +731,11 @@ $EndComp
 Text Label 2550 4300 2    50   ~ 0
 5V
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:GND-power #PWR?
+=======
+L power:GND #PWR?
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 601BEF81
 P 4900 2750
 AR Path="/5ABD187E/601BEF81" Ref="#PWR?"  Part="1" 
@@ -725,7 +749,11 @@ F 3 "" H 4900 2750 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:GND-power #PWR?
+=======
+L power:GND #PWR?
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 601BF455
 P 5500 2750
 AR Path="/5ABD187E/601BF455" Ref="#PWR?"  Part="1" 
@@ -739,7 +767,11 @@ F 3 "" H 5500 2750 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:GND-power #PWR?
+=======
+L power:GND #PWR?
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 601BFAAA
 P 5200 3000
 AR Path="/5ABD187E/601BFAAA" Ref="#PWR?"  Part="1" 
@@ -753,7 +785,11 @@ F 3 "" H 5200 3000 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:GND-power #PWR?
+=======
+L power:GND #PWR?
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 601C110C
 P 9350 2700
 AR Path="/5ABD187E/601C110C" Ref="#PWR?"  Part="1" 
@@ -767,7 +803,11 @@ F 3 "" H 9350 2700 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:GND-power #PWR?
+=======
+L power:GND #PWR?
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 601C1687
 P 8750 2700
 AR Path="/5ABD187E/601C1687" Ref="#PWR?"  Part="1" 
@@ -829,7 +869,11 @@ Wire Wire Line
 Wire Wire Line
 	2550 4000 2600 4000
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:GND-power #PWR?
+=======
+L power:GND #PWR?
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 5FE25541
 P 2500 3800
 AR Path="/5ABD187E/5FE25541" Ref="#PWR?"  Part="1" 
@@ -844,7 +888,11 @@ F 3 "" H 2500 3800 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:GND-power #PWR?
+=======
+L power:GND #PWR?
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 5FE25547
 P 2550 4600
 AR Path="/5ABD187E/5FE25547" Ref="#PWR?"  Part="1" 
@@ -879,7 +927,11 @@ IO26
 Text Label 3150 4500 0    50   ~ 0
 IO25
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:Conn_02x09_Odd_Even-Connector_Generic J1
+=======
+L Connector_Generic:Conn_02x09_Odd_Even J1
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 600AFE56
 P 2800 4200
 F 0 "J1" H 2850 4817 50  0000 C CNN
@@ -1080,7 +1132,11 @@ Text Label 9350 2500 0    50   ~ 0
 Text Label 9350 2200 0    50   ~ 0
 3V3
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:GND-power #PWR?
+=======
+L power:GND #PWR?
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 5FD4D8D5
 P 9350 2400
 AR Path="/5ABD187E/5FD4D8D5" Ref="#PWR?"  Part="1" 
@@ -1112,7 +1168,11 @@ F 3 "" H 11650 1750 50  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:GND-power #PWR?
+=======
+L power:GND #PWR?
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 5FD70CA6
 P 8750 2300
 AR Path="/5ABD187E/5FD70CA6" Ref="#PWR?"  Part="1" 

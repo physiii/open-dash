@@ -314,7 +314,11 @@ Wire Wire Line
 Connection ~ 6300 3000
 Connection ~ 6600 3000
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:C_0.1uF-Open_Automation C20
+=======
+L Open_Automation:C_0.1uF C20
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 5B224815
 P 6600 2800
 F 0 "C20" H 6600 2900 50  0000 L CNN
@@ -327,7 +331,11 @@ F 5 "C14663" H 0   0   50  0001 C CNN "LCSC"
 	1    0    0    -1  
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:C_1uF-Open_Automation C18
+=======
+L Open_Automation:C_1uF C18
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 5B2CAF63
 P 6300 2800
 F 0 "C18" H 6150 2900 50  0000 L CNN
@@ -340,7 +348,11 @@ F 5 "C96446" H 0   0   50  0001 C CNN "LCSC"
 	1    0    0    -1  
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:C_0.1uF-Open_Automation C12
+=======
+L Open_Automation:C_0.1uF C12
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 5CC10031
 P 4850 4350
 F 0 "C12" V 4900 4150 50  0000 L CNN
@@ -353,7 +365,11 @@ F 5 "C14663" H 0   0   50  0001 C CNN "LCSC"
 	0    -1   -1   0   
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:R_1K-Open_Automation R23
+=======
+L Open_Automation:R_1K R23
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 5CC13A39
 P 4500 4350
 F 0 "R23" V 4400 4350 50  0000 C CNN
@@ -366,7 +382,11 @@ F 5 " C21190" H 0   0   50  0001 C CNN "LCSC"
 	0    1    1    0   
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:C_0.1uF-Open_Automation C13
+=======
+L Open_Automation:C_0.1uF C13
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 5CC18F9C
 P 4850 4600
 F 0 "C13" V 4900 4400 50  0000 L CNN
@@ -379,7 +399,11 @@ F 5 "C14663" H 0   0   50  0001 C CNN "LCSC"
 	0    -1   -1   0   
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:C_0.1uF-Open_Automation C14
+=======
+L Open_Automation:C_0.1uF C14
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 5CC19662
 P 4850 4850
 F 0 "C14" V 4900 4650 50  0000 L CNN
@@ -392,7 +416,11 @@ F 5 "C14663" H 0   0   50  0001 C CNN "LCSC"
 	0    -1   -1   0   
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:C_0.1uF-Open_Automation C15
+=======
+L Open_Automation:C_0.1uF C15
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 5CC19683
 P 4850 5100
 F 0 "C15" V 4900 4900 50  0000 L CNN
@@ -405,7 +433,11 @@ F 5 "C14663" H 0   0   50  0001 C CNN "LCSC"
 	0    -1   -1   0   
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:GND-power #PWR044
+=======
+L power:GND #PWR044
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 5CC4D3C7
 P 3250 3100
 F 0 "#PWR044" H 3250 2850 50  0001 C CNN
@@ -416,7 +448,11 @@ F 3 "" H 3250 3100 50  0000 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:C_1uF-Open_Automation C11
+=======
+L Open_Automation:C_1uF C11
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 5CC4FB58
 P 3050 3100
 F 0 "C11" V 3000 2900 50  0000 L CNN
@@ -429,7 +465,11 @@ F 5 "C96446" H 0   0   50  0001 C CNN "LCSC"
 	0    -1   -1   0   
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:C_1uF-Open_Automation C10
+=======
+L Open_Automation:C_1uF C10
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 5CC50D4D
 P 2950 3500
 F 0 "C10" V 2900 3300 50  0000 L CNN
@@ -442,7 +482,11 @@ F 5 "C96446" H 0   0   50  0001 C CNN "LCSC"
 	0    -1   -1   0   
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:C_10uF-Open_Automation C16
+=======
+L Open_Automation:C_10uF C16
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 5CC5C9F6
 P 5900 5950
 F 0 "C16" H 6000 5950 50  0000 L CNN
@@ -455,7 +499,11 @@ F 5 "C96446" H 0   0   50  0001 C CNN "LCSC"
 	1    0    0    -1  
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:C_470nF-Open_Automation C19
+=======
+L Open_Automation:C_470nF C19
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 5CC6B3DC
 P 6300 5950
 F 0 "C19" H 6400 5950 50  0000 L CNN
@@ -468,7 +516,11 @@ F 5 "C1623" H 6300 5950 50  0001 C CNN "LCSC"
 	1    0    0    -1  
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:R_47.5k-Open_Automation R27
+=======
+L Open_Automation:R_47.5k R27
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 5CC75CA6
 P 6800 5950
 F 0 "R27" V 6800 5900 50  0000 L CNN
@@ -481,7 +533,11 @@ F 5 "C23061" H 0   0   50  0001 C CNN "LCSC"
 	1    0    0    -1  
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:R_47.5k-Open_Automation R22
+=======
+L Open_Automation:R_47.5k R22
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 5CC79680
 P 2550 3500
 F 0 "R22" V 2550 3450 50  0000 L CNN
@@ -494,7 +550,11 @@ F 5 "C23061" H 0   0   50  0001 C CNN "LCSC"
 	0    -1   -1   0   
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:R_10K-Open_Automation R?
+=======
+L Open_Automation:R_10K R?
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 5CC3371E
 P 2550 3100
 AR Path="/5A7BADDB/5CC3371E" Ref="R?"  Part="1" 
@@ -509,7 +569,11 @@ F 5 "C25804" H 0   0   50  0001 C CNN "LCSC"
 	0    -1   -1   0   
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:TDA7851F-Open_Automation U8
+=======
+L Open_Automation:TDA7851F U8
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 5CBEF223
 P 6350 4200
 F 0 "U8" H 6350 4815 50  0000 C CNN
@@ -522,11 +586,17 @@ F 5 "https://www.digikey.com/product-detail/en/stmicroelectronics/TDA7851F/497-1
 	1    0    0    -1  
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:Conn_01x05-Connector_Generic J9
 U 1 1 5CC71579
 P 2550 5550
 AR Path="/5CC71579" Ref="J9"  Part="1" 
 AR Path="/5ABD1806/5CC71579" Ref="J9"  Part="1" 
+=======
+L Connector_Generic:Conn_01x05 J9
+U 1 1 5CC71579
+P 2550 5550
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 F 0 "J9" H 2468 5125 50  0000 C CNN
 F 1 "Conn_01x05" H 2468 5216 50  0000 C CNN
 F 2 "Connector_PinHeader_2.54mm:PinHeader_1x05_P2.54mm_Vertical" H 2550 5550 50  0001 C CNN
@@ -535,7 +605,11 @@ F 3 "~" H 2550 5550 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:AudioJack_3.5TRS-Open_Automation J8
+=======
+L Open_Automation:AudioJack_3.5TRS J8
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 5CD5A35B
 P 2350 4500
 F 0 "J8" H 2307 4725 50  0000 C CNN
@@ -548,7 +622,11 @@ F 5 "SJ1-3525N" H 2250 3850 50  0001 C CNN "Part Number"
 	1    0    0    -1  
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:AudioJack_3.5TRS-Open_Automation J10
+=======
+L Open_Automation:AudioJack_3.5TRS J10
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 5CD5F394
 P 3300 4500
 F 0 "J10" H 3257 4725 50  0000 C CNN
@@ -561,7 +639,11 @@ F 5 "SJ1-3525N" H 3200 3850 50  0001 C CNN "Part Number"
 	1    0    0    -1  
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:C_470uF-Open_Automation C17
+=======
+L Open_Automation:C_470uF C17
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 5D065E91
 P 5950 2800
 F 0 "C17" H 5650 2800 50  0000 L CNN
@@ -573,7 +655,11 @@ F 4 " 860020474014" H 5950 2800 50  0001 C CNN "Part Number"
 	1    0    0    -1  
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:GND-power #PWR043
+=======
+L power:GND #PWR043
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 60235C86
 P 3150 3500
 F 0 "#PWR043" H 3150 3250 50  0001 C CNN
@@ -584,7 +670,11 @@ F 3 "" H 3150 3500 50  0000 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:GND-power #PWR042
+=======
+L power:GND #PWR042
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 602360FB
 P 2800 5800
 F 0 "#PWR042" H 2800 5550 50  0001 C CNN
@@ -595,7 +685,11 @@ F 3 "" H 2800 5800 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:GND-power #PWR041
+=======
+L power:GND #PWR041
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 6023AB77
 P 2600 4750
 F 0 "#PWR041" H 2600 4500 50  0001 C CNN
@@ -606,7 +700,11 @@ F 3 "" H 2600 4750 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:GND-power #PWR045
+=======
+L power:GND #PWR045
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 6023B096
 P 3550 4750
 F 0 "#PWR045" H 3550 4500 50  0001 C CNN
@@ -617,7 +715,11 @@ F 3 "" H 3550 4750 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:GND-power #PWR046
+=======
+L power:GND #PWR046
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 6023B6B6
 P 5900 6150
 F 0 "#PWR046" H 5900 5900 50  0001 C CNN
@@ -628,7 +730,11 @@ F 3 "" H 5900 6150 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:GND-power #PWR047
+=======
+L power:GND #PWR047
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 6023BC10
 P 6300 6150
 F 0 "#PWR047" H 6300 5900 50  0001 C CNN
@@ -639,7 +745,11 @@ F 3 "" H 6300 6150 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:GND-power #PWR050
+=======
+L power:GND #PWR050
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 6023BED7
 P 6800 6150
 F 0 "#PWR050" H 6800 5900 50  0001 C CNN
@@ -650,7 +760,11 @@ F 3 "" H 6800 6150 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:GND-power #PWR048
+=======
+L power:GND #PWR048
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 6023C49A
 P 6600 3000
 F 0 "#PWR048" H 6600 2750 50  0001 C CNN
@@ -661,7 +775,11 @@ F 3 "" H 6600 3000 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:GND-power #PWR049
+=======
+L power:GND #PWR049
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 60244214
 P 6650 5150
 F 0 "#PWR049" H 6650 4900 50  0001 C CNN
@@ -672,7 +790,11 @@ F 3 "" H 6650 5150 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:R_1K-Open_Automation R24
+=======
+L Open_Automation:R_1K R24
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 60274D86
 P 4500 4600
 F 0 "R24" V 4400 4600 50  0000 C CNN
@@ -685,7 +807,11 @@ F 5 " C21190" H 0   0   50  0001 C CNN "LCSC"
 	0    1    1    0   
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:R_1K-Open_Automation R25
+=======
+L Open_Automation:R_1K R25
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 6027525B
 P 4500 4850
 F 0 "R25" V 4400 4850 50  0000 C CNN
@@ -698,7 +824,11 @@ F 5 " C21190" H 0   0   50  0001 C CNN "LCSC"
 	0    1    1    0   
 $EndComp
 $Comp
+<<<<<<< HEAD
 L open-dash-daughterboard-rescue:R_1K-Open_Automation R26
+=======
+L Open_Automation:R_1K R26
+>>>>>>> 838ad22d89a02b6ddd09d1c66078cda1048e30ee
 U 1 1 602754FA
 P 4500 5100
 F 0 "R26" V 4400 5100 50  0000 C CNN
