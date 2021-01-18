@@ -4,7 +4,13 @@ const crypto = require('crypto'),
   http = require('http'),
 	url = require('url'),
 	SerialPort = require('serialport'),
-	port = new SerialPort('/dev/ttyUSB0', { baudRate: 115200 }),
+	port = new SerialPort('/dev/ttyUSB0', {
+		baudRate: 115200,
+
+		xon: false,
+		xoff: false,
+		rtscts: true
+	}),
   os = require('os'),
 	fs = require('fs'),
 	io = require('socket.io')(http),
@@ -92,7 +98,7 @@ console.log(TAG, "Starting dash service on port", socketPort);
 					let message = JSON.parse(line);
 					parseMessage(message)
 				} else {
-					// console.log(TAG, "[NOT JSON]", line);
+					console.log(TAG, "[NOT JSON]", line);
 				}
 			}
 			buffer = '';
