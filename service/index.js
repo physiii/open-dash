@@ -6,10 +6,6 @@ const crypto = require('crypto'),
 	SerialPort = require('serialport'),
 	port = new SerialPort('/dev/ttyUSB0', {
 		baudRate: 115200,
-
-		xon: false,
-		xoff: false,
-		rtscts: true
 	}),
   os = require('os'),
 	fs = require('fs'),
@@ -84,7 +80,7 @@ listener.sockets.on('connection',function(socket){
 		}
 	}
 
-console.log(TAG, "Starting dash service on port", socketPort);
+  console.log(TAG, "Starting dash service on port", socketPort);
 
 	let buffer = '';
 
@@ -104,3 +100,7 @@ console.log(TAG, "Starting dash service on port", socketPort);
 			buffer = '';
 		}
 	})
+
+  setInterval(()=>{
+    port.write("!! HELLO !!");
+  }, 3000);

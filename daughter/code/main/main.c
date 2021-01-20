@@ -1,5 +1,5 @@
 
-// #include "services/gpio.c"
+#include "services/gpio.c"
 #include "services/hvac.c"
 #include "services/uart.c"
 // #include "services/can.c"
@@ -10,7 +10,7 @@
 
 void app_main(void)
 {
-	// gpio_main();
+	gpio_main();
 	hvac_main();
 	uart_main();
 	// twai_main();

@@ -1,7 +1,7 @@
 #include "drivers/i2c.c"
 #include "drivers/max11617.c"
 #include "drivers/mcp23x17.c"
-#include "drivers/timer_group/main/timer_group_example_main.c"
+#include "drivers/timer.c"
 
 #define INSIDE_AIR_TEMP										AIN0
 #define AMBIENT_AIR_TEMP  		 						AIN1
@@ -155,9 +155,8 @@ static void hvac_task(void* arg)
 	int i = 0;
 
 	while(1) {
-		printf("get_inside_air_temp: %d\n", get_inside_air_temp());
 		set_blower_level(i);
-		i > 7 ? i=0 : i++;
+		i >= 7 ? i=0 : i++;
 
 		// adc_values = get_max_values();
 		// io_values = get_mcp_values();
