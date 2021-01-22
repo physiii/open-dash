@@ -179,7 +179,7 @@ static void example_tg0_timer_init(int timer_idx,
     timer_start(TIMER_GROUP_0, timer_idx);
 }
 
-static void timer_example_evt_task(void *arg)
+static void j1850_evt_task(void *arg)
 {
     while (1) {
         timer_event_t evt;
@@ -316,7 +316,7 @@ static void j1850_task(void* arg)
   CRCInit();
 	while(1) {
 		vTaskDelay(1000 / portTICK_RATE_MS);
-		printTestData();
+		// printTestData();
 	}
 }
 
@@ -327,5 +327,5 @@ void j1850_main(void)
 
   timer_queue = xQueueCreate(10, sizeof(timer_event_t));
   example_tg0_timer_init(TIMER_1, TEST_WITH_RELOAD,    TIMER_INTERVAL1_SEC);
-  xTaskCreate(timer_example_evt_task, "timer_evt_task", 2048, NULL, 5, NULL);
+  xTaskCreate(j1850_evt_task, "j1850_evt_task", 2048, NULL, 5, NULL);
 }

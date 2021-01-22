@@ -8,6 +8,7 @@ export class J1850 extends React.Component {
 		super(props);
 
 		this.state = {
+			daughterMessage: "",
 			j1850Codes: [],
 			j1850CodesCopy: [],
 			showOnlyNewCodes: false,
@@ -41,6 +42,9 @@ export class J1850 extends React.Component {
 			}
 
 			this.setState(this.state)
+
+			this.handleChange = this.handleChange.bind(this);
+			this.handleSubmit = this.handleSubmit.bind(this);
 		});
 
 		this.setState(this.state);
@@ -85,30 +89,53 @@ export class J1850 extends React.Component {
 		this.setState(this.state);
 	}
 
+
+  handleChange(event) {
+		this.setState({daughterMessage: event.target.value});
+	}
+
+  handleSubmit(event) {
+		this.props.back.emit('daughter',this.state.daughterMessage);
+    console.log('A name was submitted: ' + this.state.daughterMessage);
+    event.preventDefault();
+  }
+
 	render () {
     const { j1850Codes } = this.state;
 		return (
 			<div>
-			<button
-				key="button"
-				onClick={ this.showAllCodes.bind(this) }
-				styleName='button'>Show All Codes</button>
-			<button
-				key="button"
-				onClick={ this.showNewCodes.bind(this) }
-				styleName='button'>Show New Codes</button>
-			<button
-				key="button"
-				onClick={ this.sortCodes.bind(this) }
-				styleName='button'>Sort Codes</button>
-			<button
-				key="button"
-				onClick={ this.clearCodes.bind(this) }
-				styleName='button'>Clear Codes</button>
-			<br />
-			Total: { this.state.codeTotal } ({ this.state.codeTotalRep })
-			<br />
-			<br />
+				<div>
+          <input
+						type='text'
+						style={{width:'85%', height:'30px'}}
+						value={this.state.daughterMessage}
+						onChange={this.handleChange} />
+					<button
+						key="button"
+						style={{width:'10%', height:'35px'}}
+						onClick={this.handleSubmit}
+						styleName='button'>send</button>
+				</div>
+				<button
+					key="button"
+					onClick={ this.showAllCodes.bind(this) }
+					styleName='button'>Show All Codes</button>
+				<button
+					key="button"
+					onClick={ this.showNewCodes.bind(this) }
+					styleName='button'>Show New Codes</button>
+				<button
+					key="button"
+					onClick={ this.sortCodes.bind(this) }
+					styleName='button'>Sort Codes</button>
+				<button
+					key="button"
+					onClick={ this.clearCodes.bind(this) }
+					styleName='button'>Clear Codes</button>
+				<br />
+				Total: { this.state.codeTotal } ({ this.state.codeTotalRep })
+				<br />
+				<br />
 
 			{!this.state.showOnlyNewCodes ?
 				<div>

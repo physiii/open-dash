@@ -50,6 +50,15 @@ var listener = io.listen(server);
 listener.sockets.on('connection',function(socket){
 	console.log(TAG, "Client connected.");
 
+	socket.on('daughter',(msg) => {
+
+		// {"type":"power","payload":{"set_display_power": true}}
+
+		// msg = JSON.toString(msg);
+		console.log(TAG, "Sending:", msg);
+    port.write(msg);
+	});
+
 	socket.on('disconnect',function(socket){
 		console.log(TAG, "Client disconnected.");
 	});
@@ -67,7 +76,8 @@ listener.sockets.on('connection',function(socket){
 	}
 
 	function parseMessage(msg) {
-		console.log(TAG, msg);
+		console.log(TAG);
+		console.log(msg);
 
 		io.emit('j1850', msg);
 
@@ -84,12 +94,13 @@ listener.sockets.on('connection',function(socket){
 
 	let buffer = '';
 
-	port.on('readable', function () {
+	port.on('readable', () => {
 		buffer += port.read().toString('utf8');
 		if (buffer.slice(-1) === "\n") {
 		  let lines = buffer.split('\n');
 			for (let i=0; i < lines.length; i++) {
 				let line = lines[i];
+				if (line.length <= 2) continue;
 				if (isJson(line)) {
 					let message = JSON.parse(line);
 					parseMessage(message)
@@ -101,6 +112,14 @@ listener.sockets.on('connection',function(socket){
 		}
 	})
 
+	let i = 0;
   setInterval(()=>{
-    port.write("!! HELLO !!");
+		// let power = { "type": "hvac", "payload": { "blower_motor_level": i } };
+		// let powerStr = JSON.stringify(power);
+    // port.write("{ \"type\": \"hvac\", \"payload\": { \"set_blower_motor\": " + i + " } }");
+
+    // port.write("{ \"type\": \"hvac\", \"payload\": { \"get_state\": true } }");
+
+		// port.write("{ \"type\": \"power\", \"payload\": { \"set_display_power\": false } }");
+		i == 7 ? i = 0 : i++;
   }, 3000);

@@ -143,27 +143,115 @@ uint16_t get_passenger_sunload()
 	return get_max_values()[PASSENGER_SUNLOAD];
 }
 
+void send_hvac_state () {
+		char msg[1024];
+		sprintf(msg,
+				"{\"air_temp\": {\"ambient\": %d, \"inside\": %d,"
+				" \"upper\":{\"left\": %d, \"right\": %d},"
+				" \"lower\":{\"left\": %d, \"right\": %d}}, "
+				"\"light_level\":{\"ambient\": %d, \"driver\": %d, \"passenger\": %d}}"
+				"\n",
+				get_ambient_air_temp(), get_inside_air_temp(),
+				get_upper_left_air_temp(), get_upper_right_air_temp(),
+				get_lower_left_air_temp(), get_lower_right_air_temp(),
+				get_ambient_light_level(), get_driver_sunload(), get_passenger_sunload());
+		outgoing_uart_message = cJSON_Parse(msg);
+}
+
+void handle_hvac_message (cJSON * msg) {
+	char mode[100];
+
+	if (cJSON_GetObjectItem(msg,"set_blower_motor")) {
+		int level = cJSON_GetObjectItem(msg,"set_blower_motor")->valueint;
+		set_blower_level(level);
+	}
+
+	if (cJSON_GetObjectItem(msg,"set_left_air_temp")) {
+		sprintf(mode, "%s", cJSON_GetObjectItem(msg,"set_left_air_temp")->valuestring);
+		if (strcmp(mode, "raise")==0) {
+			set_left_air_temp(true, false);
+		}
+		if (strcmp(mode, "lower")==0) {
+			set_left_air_temp(false, true);
+		}
+	}
+
+	if (cJSON_GetObjectItem(msg,"set_right_air_temp")) {
+		sprintf(mode, "%s", cJSON_GetObjectItem(msg,"set_right_air_temp")->valuestring);
+		if (strcmp(mode, "raise")==0) {
+			set_right_air_temp(true, false);
+		}
+		if (strcmp(mode, "lower")==0) {
+			set_right_air_temp(false, true);
+		}
+	}
+
+	if (cJSON_GetObjectItem(msg,"set_mode")) {
+		sprintf(mode, "%s", cJSON_GetObjectItem(msg,"set_mode")->valuestring);
+		if (strcmp(mode, "lower")==0) {
+			set_mode(true, false);
+		}
+		if (strcmp(mode, "upper")==0) {
+			set_mode(false, true);
+		}
+	}
+
+	if (cJSON_GetObjectItem(msg,"set_recirculation")) {
+		sprintf(mode, "%s", cJSON_GetObjectItem(msg,"set_recirculation")->valuestring);
+		if (strcmp(mode, "A")==0) {
+			set_recirculation(true, false);
+		}
+		if (strcmp(mode, "B")==0) {
+			set_recirculation(false, true);
+		}
+	}
+
+	if (cJSON_GetObjectItem(msg,"set_rear_defog")) {
+		if (cJSON_IsTrue(cJSON_GetObjectItem(msg,"set_rear_defog"))) {
+			set_rear_defog(true);
+		} else {
+			set_rear_defog(false);
+		}
+	}
+
+	if (cJSON_GetObjectItem(msg,"set_air_temp_blower")) {
+		if (cJSON_IsTrue(cJSON_GetObjectItem(msg,"set_air_temp_blower"))) {
+			set_air_temp_blower(true);
+		} else {
+			set_air_temp_blower(false);
+		}
+	}
+
+	if (cJSON_GetObjectItem(msg,"get_state")) {
+		send_hvac_state();
+	}
+}
+
 static void hvac_task(void* arg)
 {
-	uint16_t * adc_values;
-	uint16_t io_values;
+	char type[100];
+	cJSON * payload = NULL;
 
 	set_mcp_io_dir(DRIVER_HEATED_SEAT_STATUS, MCP_INPUT);
 	set_mcp_io_dir(PASSENGER_HEATED_SEAT_STATUS, MCP_INPUT);
 
-	bool on = true;
-	int i = 0;
-
 	while(1) {
-		set_blower_level(i);
-		i >= 7 ? i=0 : i++;
+		if (service_message != NULL) {
+			if (cJSON_GetObjectItem(service_message,"type")) {
+	  		snprintf(type,sizeof(type),"%s",cJSON_GetObjectItem(service_message,"type")->valuestring);
+			}
 
-		// adc_values = get_max_values();
-		// io_values = get_mcp_values();
+			if (strcmp(type,"hvac")==0) {
+				if (cJSON_GetObjectItem(service_message,"payload")) {
+					payload = cJSON_GetObjectItemCaseSensitive(service_message,"payload");
+					handle_hvac_message(payload);
+					printf("%s\n", cJSON_PrintUnformatted(payload));
+					service_message = NULL;
+				}
+			}
+		}
 
-
-		// printHvacData(adc_values, io_values);
-		vTaskDelay(2000 / portTICK_RATE_MS);
+		vTaskDelay(1000 / portTICK_RATE_MS);
 	}
 }
 
@@ -173,5 +261,5 @@ void hvac_main(void)
 	max11617_main();
 	mcp23x17_main();
 	timer_main();
-	xTaskCreate(hvac_task, "hvac_task", 2048, NULL, 10, NULL);
+	xTaskCreate(hvac_task, "hvac_task", 1024 * 5, NULL, 10, NULL);
 }

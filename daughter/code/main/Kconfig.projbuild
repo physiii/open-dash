@@ -14,7 +14,7 @@ menu "Power Configuration"
 
     config IGNITION_WIRE_IO
         int "Ignition power GPIO number"
-        default 12
+        default 32
         help
             This option selects the GPIO pin used for the main power signal.
 

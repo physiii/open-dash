@@ -1,10 +1,13 @@
+#include "cJSON.h"
 
+cJSON *service_message = NULL;
+
+#include "services/uart.c"
 #include "services/gpio.c"
 #include "services/hvac.c"
-#include "services/uart.c"
+#include "services/j1850.c"
 // #include "services/can.c"
-// #include "services/j1850.c"
-// #include "services/power.c"
+#include "services/power.c"
 // #include "services/ap.c"
 // #include "services/webserver/main.c"
 
@@ -14,8 +17,8 @@ void app_main(void)
 	hvac_main();
 	uart_main();
 	// twai_main();
-	// power_main();
-	// j1850_main();
+	j1850_main();
+	power_main();
 	// ap_main();
 	// webserver_main();
 
