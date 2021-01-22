@@ -42,11 +42,12 @@ export class J1850 extends React.Component {
 			}
 
 			this.setState(this.state)
-
-			this.handleChange = this.handleChange.bind(this);
-			this.handleSubmit = this.handleSubmit.bind(this);
 		});
 
+
+
+		this.handleChange = this.handleChange.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
 		this.setState(this.state);
   }
 
