@@ -57,7 +57,7 @@ static void oneshot_timer_callback(void* arg)
 static void periodic_timer_callback(void* arg)
 {
     // gpio_set_level(BLOWER_MOTOR_PIN, true);
-    set_mcp_io(BLOWER_MOTOR, true);
+    if (pwm_width != LEVEL_0) set_mcp_io(BLOWER_MOTOR, true);
     ESP_ERROR_CHECK(esp_timer_start_once(oneshot_timer, pwm_width));
 
     // int64_t time_since_boot = esp_timer_get_time();

@@ -70,13 +70,19 @@ void handle_power_message (cJSON * msg) {
 	char mode[100];
 
 	if (cJSON_GetObjectItem(msg,"set_main_power")) {
-		int level = cJSON_GetObjectItem(msg,"set_main_power")->valueint;
-		set_main_power(level);
+		if (cJSON_IsTrue(cJSON_GetObjectItem(msg,"set_main_power"))) {
+			set_main_power(true);
+		} else {
+			set_main_power(false);
+		}
 	}
 
 	if (cJSON_GetObjectItem(msg,"set_display_power")) {
-		int level = cJSON_GetObjectItem(msg,"set_display_power")->valueint;
-		set_display_power(level);
+		if (cJSON_IsTrue(cJSON_GetObjectItem(msg,"set_display_power"))) {
+			set_display_power(true);
+		} else {
+			set_display_power(false);
+		}
 	}
 
 	if (cJSON_GetObjectItem(msg,"get_state")) {

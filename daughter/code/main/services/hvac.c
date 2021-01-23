@@ -60,6 +60,8 @@ void set_mode(bool valA, bool valB)
 {
 	set_mcp_io(MODE_A, valA);
 	set_mcp_io(MODE_B, valB);
+
+	printf("Set Mode\tA:%d\tB:%d\n", valA, valB);
 }
 
 void set_recirculation(bool valA, bool valB)
@@ -167,59 +169,45 @@ void handle_hvac_message (cJSON * msg) {
 	}
 
 	if (cJSON_GetObjectItem(msg,"set_left_air_temp")) {
-		sprintf(mode, "%s", cJSON_GetObjectItem(msg,"set_left_air_temp")->valuestring);
-		if (strcmp(mode, "raise")==0) {
-			set_left_air_temp(true, false);
-		}
-		if (strcmp(mode, "lower")==0) {
-			set_left_air_temp(false, true);
-		}
+		cJSON * mode = cJSON_GetObjectItem(msg,"set_left_air_temp");
+		bool modeA = cJSON_IsTrue(cJSON_GetObjectItem(mode,"A"));
+		bool modeB = cJSON_IsTrue(cJSON_GetObjectItem(mode,"B"));
+
+		set_left_air_temp(modeA, modeB);
 	}
 
 	if (cJSON_GetObjectItem(msg,"set_right_air_temp")) {
-		sprintf(mode, "%s", cJSON_GetObjectItem(msg,"set_right_air_temp")->valuestring);
-		if (strcmp(mode, "raise")==0) {
-			set_right_air_temp(true, false);
-		}
-		if (strcmp(mode, "lower")==0) {
-			set_right_air_temp(false, true);
-		}
+		cJSON * mode = cJSON_GetObjectItem(msg,"set_right_air_temp");
+		bool modeA = cJSON_IsTrue(cJSON_GetObjectItem(mode,"A"));
+		bool modeB = cJSON_IsTrue(cJSON_GetObjectItem(mode,"B"));
+
+		set_right_air_temp(modeA, modeB);
 	}
 
 	if (cJSON_GetObjectItem(msg,"set_mode")) {
-		sprintf(mode, "%s", cJSON_GetObjectItem(msg,"set_mode")->valuestring);
-		if (strcmp(mode, "lower")==0) {
-			set_mode(true, false);
-		}
-		if (strcmp(mode, "upper")==0) {
-			set_mode(false, true);
-		}
+		cJSON * mode = cJSON_GetObjectItem(msg,"set_mode");
+		bool modeA = cJSON_IsTrue(cJSON_GetObjectItem(mode,"A"));
+		bool modeB = cJSON_IsTrue(cJSON_GetObjectItem(mode,"B"));
+
+		set_mode(modeA, modeB);
 	}
 
 	if (cJSON_GetObjectItem(msg,"set_recirculation")) {
-		sprintf(mode, "%s", cJSON_GetObjectItem(msg,"set_recirculation")->valuestring);
-		if (strcmp(mode, "A")==0) {
-			set_recirculation(true, false);
-		}
-		if (strcmp(mode, "B")==0) {
-			set_recirculation(false, true);
-		}
+		cJSON * mode = cJSON_GetObjectItem(msg,"set_recirculation");
+		bool modeA = cJSON_IsTrue(cJSON_GetObjectItem(mode,"A"));
+		bool modeB = cJSON_IsTrue(cJSON_GetObjectItem(mode,"B"));
+
+		set_recirculation(modeA, modeB);
 	}
 
 	if (cJSON_GetObjectItem(msg,"set_rear_defog")) {
-		if (cJSON_IsTrue(cJSON_GetObjectItem(msg,"set_rear_defog"))) {
-			set_rear_defog(true);
-		} else {
-			set_rear_defog(false);
-		}
+			bool on = cJSON_IsTrue(cJSON_GetObjectItem(msg,"set_rear_defog"));
+			set_rear_defog(on);
 	}
 
 	if (cJSON_GetObjectItem(msg,"set_air_temp_blower")) {
-		if (cJSON_IsTrue(cJSON_GetObjectItem(msg,"set_air_temp_blower"))) {
-			set_air_temp_blower(true);
-		} else {
-			set_air_temp_blower(false);
-		}
+		bool on = cJSON_IsTrue(cJSON_GetObjectItem(msg,"set_air_temp_blower"));
+		set_air_temp_blower(on);
 	}
 
 	if (cJSON_GetObjectItem(msg,"get_state")) {
@@ -257,6 +245,7 @@ static void hvac_task(void* arg)
 
 void hvac_main(void)
 {
+	// {"type":"hvac", "payload":{"get_state":true}}
 	i2c_main();
 	max11617_main();
 	mcp23x17_main();

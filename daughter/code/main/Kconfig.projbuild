@@ -32,13 +32,13 @@ menu "Power Configuration"
 
     config AUDIO_STBY_IO
         int "Audio standby power GPIO number"
-        default 33
+        default 19
         help
             This option selects the GPIO pin used for the audio power signal.
 
     config AUDIO_MUTE_IO
       int "Audio mute power GPIO number"
-      default 32
+      default 23
       help
             This option selects the GPIO pin used for the audio power signal.
 

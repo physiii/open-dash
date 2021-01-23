@@ -142,7 +142,10 @@ void read_io() {
 		data_wr[0] = REG_GPIOA;
 		mcp_write(data_wr, 1);
 		mcp_read(data_rd, 2);
-		MCP_IO_VALUES = (data_rd[0] << 8) | data_rd[1];
+
+		uint16_t values = (data_rd[0] << 8) | data_rd[1];
+		values &= MCP_DIR; // only read values for inputs
+		MCP_IO_VALUES |= values; // switch values for inputs
 }
 
 static void mcp23x17_task(void* arg)
