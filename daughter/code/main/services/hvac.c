@@ -148,7 +148,7 @@ uint16_t get_passenger_sunload()
 void send_hvac_state () {
 		char msg[1024];
 		sprintf(msg,
-				"{\"air_temp\": {\"ambient\": %d, \"inside\": %d,"
+				"{\"type\": \"hvac\", \"air_temp\": {\"ambient\": %d, \"inside\": %d,"
 				" \"upper\":{\"left\": %d, \"right\": %d},"
 				" \"lower\":{\"left\": %d, \"right\": %d}}, "
 				"\"light_level\":{\"ambient\": %d, \"driver\": %d, \"passenger\": %d}}"

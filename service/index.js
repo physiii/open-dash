@@ -51,10 +51,6 @@ listener.sockets.on('connection',function(socket){
 	console.log(TAG, "Client connected.");
 
 	socket.on('daughter',(msg) => {
-
-		// {"type":"power","payload":{"set_display_power": true}}
-
-		// msg = JSON.toString(msg);
 		console.log(TAG, "Sending:", msg);
     port.write(msg);
 	});
@@ -63,7 +59,6 @@ listener.sockets.on('connection',function(socket){
 		console.log(TAG, "Client disconnected.");
 	});
 });
-
 
 	// ------------------------------- //
 	function isJson(str) {
@@ -76,10 +71,20 @@ listener.sockets.on('connection',function(socket){
 	}
 
 	function parseMessage(msg) {
-		console.log(TAG);
-		console.log(msg);
+		// console.log(TAG);
+		console.log(JSON.stringify(msg));
 
-		io.emit('j1850', msg);
+		if (msg.type == "j1850") {
+			io.emit('j1850', msg);
+		}
+
+		if (msg.type == "hvac") {
+			io.emit('hvac', msg);
+		}
+
+		if (msg.type == "power") {
+			io.emit('power', msg);
+		}
 
 		if (msg.ignition === "off") {
 	  	Exec("gnome-session-quit --power-off");
@@ -112,14 +117,17 @@ listener.sockets.on('connection',function(socket){
 		}
 	})
 
-	let i = 0;
+
   setInterval(()=>{
-		// let power = { "type": "hvac", "payload": { "blower_motor_level": i } };
-		// let powerStr = JSON.stringify(power);
-    // port.write("{ \"type\": \"hvac\", \"payload\": { \"set_blower_motor\": " + i + " } }");
+		let get_state = {type: "power", payload: {get_state: true}};
 
-    // port.write("{ \"type\": \"hvac\", \"payload\": { \"get_state\": true } }");
+		// console.log("sending.....", JSON.stringify(get_state));
+		port.write(JSON.stringify(get_state));
+  }, 10 * 1000);
 
-		// port.write("{ \"type\": \"power\", \"payload\": { \"set_display_power\": false } }");
-		i == 7 ? i = 0 : i++;
-  }, 3000);
+  setInterval(()=>{
+		let get_state = {type: "hvac", payload: {get_state: true}};
+
+		// console.log("sending.....", JSON.stringify(get_state));
+		port.write(JSON.stringify(get_state));
+  }, 10 * 1000);

@@ -43,11 +43,7 @@ export class J1850 extends React.Component {
 
 			this.setState(this.state)
 		});
-
-
-
-		this.handleChange = this.handleChange.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
+		
 		this.setState(this.state);
   }
 
@@ -90,33 +86,10 @@ export class J1850 extends React.Component {
 		this.setState(this.state);
 	}
 
-
-  handleChange(event) {
-		this.setState({daughterMessage: event.target.value});
-	}
-
-  handleSubmit(event) {
-		this.props.back.emit('daughter',this.state.daughterMessage);
-    console.log('A name was submitted: ' + this.state.daughterMessage);
-    event.preventDefault();
-  }
-
 	render () {
     const { j1850Codes } = this.state;
 		return (
 			<div>
-				<div>
-          <input
-						type='text'
-						style={{width:'85%', height:'30px'}}
-						value={this.state.daughterMessage}
-						onChange={this.handleChange} />
-					<button
-						key="button"
-						style={{width:'10%', height:'35px'}}
-						onClick={this.handleSubmit}
-						styleName='button'>send</button>
-				</div>
 				<button
 					key="button"
 					onClick={ this.showAllCodes.bind(this) }

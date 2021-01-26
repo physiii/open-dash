@@ -204,7 +204,7 @@ static void j1850_evt_task(void *arg)
 
             if (calculated_crc == received_crc) {
               // printf("[j1850] Message (%d bits): %llX\n", bit_count, message_buffer,);
-              printf("{\"j1850\":\"%llX\", \"bits\":%d}\n", message_buffer, bit_count);
+              printf("{\"type\":\"j1850\", \"j1850\":\"%llX\", \"bits\":%d}\n", message_buffer, bit_count);
             }
 
             // ----------------- //

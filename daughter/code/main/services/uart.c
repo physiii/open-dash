@@ -14,10 +14,10 @@
 #include "string.h"
 #include "driver/gpio.h"
 
-static const int RX_BUF_SIZE = 1024;
-char received_message[1024];
+static const int RX_BUF_SIZE = 2000;
+char received_message[2048];
 cJSON * outgoing_uart_message;
-char outgoing_message_str[1024];
+char outgoing_message_str[2048];
 
 #define TXD_PIN (GPIO_NUM_1)
 #define RXD_PIN (GPIO_NUM_3)
@@ -105,8 +105,7 @@ static void rx_task(void *arg)
 
 						if (valid_json) {
 							service_message = root;
-							// char *str = cJSON_PrintUnformatted(service_message);
-							// sprintf(received_message, "%s", str);
+							// outgoing_uart_message = service_message;
 						}
         }
     }
