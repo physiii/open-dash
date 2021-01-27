@@ -112,11 +112,11 @@ export class App extends React.Component {
 								type='text'
 								style={{width:'85%', height:'30px'}}
 								value={this.state.daughterMessage}
-								onChange={this.handleChange} />
+								onChange={this.handleChange.bind(this)} />
 							<button
 								key="button"
 								style={{width:'10%', height:'35px'}}
-								onClick={this.handleSubmit}
+								onClick={this.handleSubmit.bind(this)}
 								styleName='button'>send</button>
 						</div>
 						<button

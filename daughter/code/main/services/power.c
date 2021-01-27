@@ -17,7 +17,7 @@ static void IRAM_ATTR ignition_isr_handler(void* arg)
 
 
 char * get_ignition() {
-	char * state = ignition_state ? "true" : "false";
+	char * state = ignition_state ? "false" : "true";
 	return state;
 }
 

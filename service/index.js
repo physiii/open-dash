@@ -123,7 +123,7 @@ listener.sockets.on('connection',function(socket){
 
 		// console.log("sending.....", JSON.stringify(get_state));
 		port.write(JSON.stringify(get_state));
-  }, 10 * 1000);
+  }, 9 * 1000);
 
   setInterval(()=>{
 		let get_state = {type: "hvac", payload: {get_state: true}};

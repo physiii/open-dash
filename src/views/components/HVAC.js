@@ -15,7 +15,7 @@ export class HVAC extends React.Component {
 				mode: {A: false, B: false},
 				leftAirTemp: {A: false, B: false},
 				rightAirTemp: {A: false, B: false},
-				recirculation: false,
+				recirculation: {A: false, B: false},
 				rearDefog: false,
 				airTempBlower: false,
 			}
@@ -31,11 +31,19 @@ export class HVAC extends React.Component {
 	 }
  	}
 
+	setBlowerMotor (level) {
+		this.state.controllers.blowerMotor = level;
+
+		let msg = {type:"hvac", payload: {set_blower_motor: level}}
+		this.props.back.emit('daughter', JSON.stringify(msg));
+		this.setState(this.state);
+	}
+
 	toggleMode (mode) {
 		if (mode === 'A') this.state.controllers.mode.A = !this.state.controllers.mode.A;
 		if (mode === 'B') this.state.controllers.mode.B = !this.state.controllers.mode.B;
 
-		let msg = {type:"hvac", payload: {mode: this.state.controllers.mode}}
+		let msg = {type:"hvac", payload: {set_mode: this.state.controllers.mode}}
 		this.props.back.emit('daughter', JSON.stringify(msg));
 		this.setState(this.state);
 	}
@@ -58,10 +66,11 @@ export class HVAC extends React.Component {
 		this.setState(this.state);
 	}
 
-	toggleRecirculation () {
-		this.state.controllers.recirculation = !this.state.controllers.recirculation;
+	toggleRecirculation (mode) {
+		if (mode === 'A') this.state.controllers.recirculation.A = !this.state.controllers.recirculation.A;
+		if (mode === 'B') this.state.controllers.recirculation.B = !this.state.controllers.recirculation.B;
 
-		let msg = {type:"hvac", payload: {recirculation: this.state.controllers.recirculation}}
+		let msg = {type:"hvac", payload: {set_recirculation: this.state.controllers.recirculation}}
 		this.props.back.emit('daughter', JSON.stringify(msg));
 		this.setState(this.state);
 	}
@@ -69,7 +78,7 @@ export class HVAC extends React.Component {
 	toggleRearDefog () {
 		this.state.controllers.rearDefog = !this.state.controllers.rearDefog;
 
-		let msg = {type:"hvac", payload: {rear_defog: this.state.controllers.rearDefog}}
+		let msg = {type:"hvac", payload: {set_rear_defog: this.state.controllers.rearDefog}}
 		this.props.back.emit('daughter', JSON.stringify(msg));
 		this.setState(this.state);
 	}
@@ -77,7 +86,7 @@ export class HVAC extends React.Component {
 	toggleAirTempBlower () {
 		this.state.controllers.airTempBlower = !this.state.controllers.airTempBlower;
 
-		let msg = {type:"hvac", payload: {air_temp_blower: this.state.controllers.airTempBlower}}
+		let msg = {type:"hvac", payload: {set_air_temp_blower: this.state.controllers.airTempBlower}}
 		this.props.back.emit('daughter', JSON.stringify(msg));
 		this.setState(this.state);
 	}
@@ -87,6 +96,43 @@ export class HVAC extends React.Component {
 		return (
 			<div>
 				<h3>Control</h3>
+
+				<h5>Blower</h5>
+				<div style={{width:'100%', display:'flex', flexFlow: 'row nowrap'}}>
+				<button
+					key="button"
+					onClick={ this.setBlowerMotor.bind(this, 0) }
+					styleName='button'>off</button>
+				<button
+					key="button"
+					onClick={ this.setBlowerMotor.bind(this, 1) }
+					styleName='button'>one</button>
+				<button
+					key="button"
+					onClick={ this.setBlowerMotor.bind(this, 2) }
+					styleName='button'>two</button>
+				<button
+					key="button"
+					onClick={ this.setBlowerMotor.bind(this, 3) }
+					styleName='button'>three</button>
+					<button
+						key="button"
+						onClick={ this.setBlowerMotor.bind(this, 4) }
+						styleName='button'>four</button>
+					<button
+						key="button"
+						onClick={ this.setBlowerMotor.bind(this, 5) }
+						styleName='button'>five</button>
+					<button
+						key="button"
+						onClick={ this.setBlowerMotor.bind(this, 6) }
+						styleName='button'>six</button>
+					<button
+						key="button"
+						onClick={ this.setBlowerMotor.bind(this, 7) }
+						styleName='button'>seven</button>
+
+				</div>
 
 				<h5>Mode</h5>
 				<div style={{width:'100%', display:'flex', flexFlow: 'row nowrap'}}>
@@ -136,11 +182,16 @@ export class HVAC extends React.Component {
 				<h5>Recirculation</h5>
 				<div style={{width:'100%', display:'flex', flexFlow: 'row nowrap'}}>
 					<Toggle
-						isOn={this.state.controllers.recirculation}
+						isOn={this.state.controllers.recirculation.A}
 						showLabels={false}
-						onChange={this.toggleRecirculation.bind(this)}
+						onChange={this.toggleRecirculation.bind(this, 'A')}
 						disabled={false} />
 						<div style={{width:'30px'}}></div>
+					<Toggle
+						isOn={this.state.controllers.recirculation.B}
+						showLabels={false}
+						onChange={this.toggleRecirculation.bind(this, 'B')}
+						disabled={false} />
 				</div>
 
 				<h5>Rear Defog</h5>
