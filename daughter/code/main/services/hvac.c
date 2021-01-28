@@ -30,6 +30,14 @@
 #define DRIVER_SEAT_TEMP_CONTROL					B6
 #define PASSENGER_SEAT_TEMP_CONTROL				B7
 
+int actuator_interval = 3200;
+int actuator_pulse_width = 160;
+
+bool left_air_temp_A = false;
+bool left_air_temp_B = false;
+bool right_air_temp_A = false;
+bool right_air_temp_B = false;
+
 void printHvacData(uint16_t * adc_values, uint16_t io_values) {
 	printf("HVAC ADC\t");
 	for (int i=0; i < ADC_CHANNELS; i++)
@@ -48,12 +56,14 @@ void set_left_air_temp(bool valA, bool valB)
 {
 	set_mcp_io(LEFT_AIR_TEMP_CONTROL_A, valA);
 	set_mcp_io(LEFT_AIR_TEMP_CONTROL_B, valB);
+	printf("set_left_air_temp\tA:%d\tB:%d\n", valA, valB);
 }
 
 void set_right_air_temp(bool valA, bool valB)
 {
 	set_mcp_io(RIGHT_AIR_TEMP_CONTROL_A, valA);
 	set_mcp_io(RIGHT_AIR_TEMP_CONTROL_B, valB);
+	printf("set_right_air_temp\tA:%d\tB:%d\n", valA, valB);
 }
 
 void set_mode(bool valA, bool valB)
@@ -170,18 +180,14 @@ void handle_hvac_message (cJSON * msg) {
 
 	if (cJSON_GetObjectItem(msg,"set_left_air_temp")) {
 		cJSON * mode = cJSON_GetObjectItem(msg,"set_left_air_temp");
-		bool modeA = cJSON_IsTrue(cJSON_GetObjectItem(mode,"A"));
-		bool modeB = cJSON_IsTrue(cJSON_GetObjectItem(mode,"B"));
-
-		set_left_air_temp(modeA, modeB);
+		bool left_air_temp_A = cJSON_IsTrue(cJSON_GetObjectItem(mode,"A"));
+		bool left_air_temp_B = cJSON_IsTrue(cJSON_GetObjectItem(mode,"B"));
 	}
 
 	if (cJSON_GetObjectItem(msg,"set_right_air_temp")) {
 		cJSON * mode = cJSON_GetObjectItem(msg,"set_right_air_temp");
-		bool modeA = cJSON_IsTrue(cJSON_GetObjectItem(mode,"A"));
-		bool modeB = cJSON_IsTrue(cJSON_GetObjectItem(mode,"B"));
-
-		set_right_air_temp(modeA, modeB);
+		bool right_air_temp_A = cJSON_IsTrue(cJSON_GetObjectItem(mode,"A"));
+		bool right_air_temp_B = cJSON_IsTrue(cJSON_GetObjectItem(mode,"B"));
 	}
 
 	if (cJSON_GetObjectItem(msg,"set_mode")) {
@@ -212,6 +218,26 @@ void handle_hvac_message (cJSON * msg) {
 
 	if (cJSON_GetObjectItem(msg,"get_state")) {
 		send_hvac_state();
+	}
+}
+
+static void left_air_temp_task(void* arg)
+{
+	while (1) {
+		set_left_air_temp(left_air_temp_A, left_air_temp_B);
+		vTaskDelay(actuator_pulse_width / portTICK_RATE_MS);
+		set_left_air_temp(false, false);
+		vTaskDelay((actuator_interval - actuator_pulse_width) / portTICK_RATE_MS);
+	}
+}
+
+static void right_air_temp_task(void* arg)
+{
+	while (1) {
+		set_right_air_temp(right_air_temp_A, right_air_temp_B);
+		vTaskDelay(actuator_pulse_width / portTICK_RATE_MS);
+		set_right_air_temp(false, false);
+		vTaskDelay((actuator_interval - actuator_pulse_width) / portTICK_RATE_MS);
 	}
 }
 
@@ -250,5 +276,7 @@ void hvac_main(void)
 	max11617_main();
 	mcp23x17_main();
 	timer_main();
+	xTaskCreate(hvac_task, "left_air_temp_task", 1024 * 5, NULL, 10, NULL);
+	xTaskCreate(hvac_task, "right_air_temp_task", 1024 * 5, NULL, 10, NULL);
 	xTaskCreate(hvac_task, "hvac_task", 1024 * 5, NULL, 10, NULL);
 }

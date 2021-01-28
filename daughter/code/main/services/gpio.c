@@ -6,7 +6,6 @@
 #include "freertos/queue.h"
 #include "driver/gpio.h"
 #include "driver/gpio.h"
-#include <mcp23x17.h>
 #include <string.h>
 
 #define IGNITION_WIRE_IO CONFIG_IGNITION_WIRE_IO
