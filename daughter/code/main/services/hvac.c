@@ -13,8 +13,8 @@
 #define DRIVER_SUNLOAD				  					AIN7
 #define PASSENGER_SUNLOAD									AIN8
 
-#define LEFT_AIR_TEMP_CONTROL_A						B6
-#define LEFT_AIR_TEMP_CONTROL_B						B7
+#define LEFT_AIR_TEMP_CONTROL_A						25
+#define LEFT_AIR_TEMP_CONTROL_B						26
 // #define LEFT_AIR_TEMP_CONTROL_A						A0
 // #define LEFT_AIR_TEMP_CONTROL_B						A1
 #define RIGHT_AIR_TEMP_CONTROL_A					A2
@@ -29,13 +29,13 @@
 #define DRIVER_HEATED_SEAT_STATUS					B4
 #define PASSENGER_HEATED_SEAT_STATUS			B5
 
-// #define DRIVER_SEAT_TEMP_CONTROL					B6
-// #define PASSENGER_SEAT_TEMP_CONTROL				B7
-#define DRIVER_SEAT_TEMP_CONTROL					B0
-#define PASSENGER_SEAT_TEMP_CONTROL				B1
-
+#define DRIVER_SEAT_TEMP_CONTROL					B6
+#define PASSENGER_SEAT_TEMP_CONTROL				B7
 
 int actuator_interval = 3200;
+
+int actuator_A_start_pulse_width = 500;
+int actuator_B_start_pulse_width = 500;
 int actuator_A_pulse_width = 280;
 int actuator_B_pulse_width = 360;
 int actuator_end_pulse_width = 900;
@@ -61,18 +61,20 @@ void set_blower_level(int val)
 
 void set_left_air_temp(bool valA, bool valB)
 {
-	set_mcp_io(LEFT_AIR_TEMP_CONTROL_A, valA);
-	set_mcp_io(LEFT_AIR_TEMP_CONTROL_B, valB);
+	gpio_set_level(LEFT_AIR_TEMP_CONTROL_A, valA);
+	gpio_set_level(LEFT_AIR_TEMP_CONTROL_B, valB);
+	// set_mcp_io(LEFT_AIR_TEMP_CONTROL_A, valA);
+	// set_mcp_io(LEFT_AIR_TEMP_CONTROL_B, valB);
 
 
-	printf("set_left_air_temp\tA:%d\tB:%d\n", valA, valB);
+	// printf("set_left_air_temp\tA:%d\tB:%d\n", valA, valB);
 }
 
 void set_right_air_temp(bool valA, bool valB)
 {
 	set_mcp_io(RIGHT_AIR_TEMP_CONTROL_A, valA);
 	set_mcp_io(RIGHT_AIR_TEMP_CONTROL_B, valB);
-	printf("set_right_air_temp\tA:%d\tB:%d\n", valA, valB);
+	// printf("set_right_air_temp\tA:%d\tB:%d\n", valA, valB);
 }
 
 void set_mode(bool valA, bool valB)
@@ -236,35 +238,51 @@ static void left_air_temp_task(void* arg)
 	bool prev_B = false;
 
 	while (1) {
-		if (left_air_temp_A) {
-			set_left_air_temp(true, false);
-			vTaskDelay(actuator_A_pulse_width / portTICK_RATE_MS);
-			set_left_air_temp(false, false);
-			vTaskDelay((actuator_interval - actuator_A_pulse_width) / portTICK_RATE_MS);
+		bool temp_A = left_air_temp_A;
+		bool temp_B = left_air_temp_B;
+
+		if (temp_A) {
+			if (prev_A) {
+				set_left_air_temp(true, false);
+				vTaskDelay(actuator_A_pulse_width / portTICK_RATE_MS);
+				set_left_air_temp(false, false);
+				vTaskDelay((actuator_interval - actuator_A_pulse_width) / portTICK_RATE_MS);
+			} else {
+				set_left_air_temp(true, false);
+				vTaskDelay(actuator_A_start_pulse_width / portTICK_RATE_MS);
+				set_left_air_temp(false, false);
+				vTaskDelay((actuator_interval - actuator_A_start_pulse_width) / portTICK_RATE_MS);
+			}
 		} else if (prev_A) {
 			set_left_air_temp(true, false);
 			vTaskDelay(actuator_end_pulse_width / portTICK_RATE_MS);
 			set_left_air_temp(false, false);
 			left_air_temp_A = false;
-		}
-
-		if (left_air_temp_B) {
-			set_left_air_temp(false, true);
-			vTaskDelay(actuator_B_pulse_width / portTICK_RATE_MS);
-			set_left_air_temp(false, false);
-			vTaskDelay((actuator_interval - actuator_B_pulse_width) / portTICK_RATE_MS);
+		} else if (temp_B) {
+			if (prev_B) {
+					set_left_air_temp(false, true);
+					vTaskDelay(actuator_B_pulse_width / portTICK_RATE_MS);
+					set_left_air_temp(false, false);
+					vTaskDelay((actuator_interval - actuator_B_pulse_width) / portTICK_RATE_MS);
+			} else {
+					set_left_air_temp(false, true);
+					vTaskDelay(actuator_B_start_pulse_width / portTICK_RATE_MS);
+					set_left_air_temp(false, false);
+					vTaskDelay((actuator_interval - actuator_B_start_pulse_width) / portTICK_RATE_MS);
+			}
 		} else if (prev_B) {
 			set_left_air_temp(false, true);
 			vTaskDelay(actuator_end_pulse_width / portTICK_RATE_MS);
-			set_left_air_temp(true, true);
+			set_left_air_temp(true, false);
 			vTaskDelay(100 / portTICK_RATE_MS);
 			set_left_air_temp(false, false);
 			left_air_temp_B = false;
+		} else {
+			vTaskDelay(100 / portTICK_RATE_MS);
 		}
 
-		prev_A = left_air_temp_A;
-		prev_B = left_air_temp_B;
-		vTaskDelay(100 / portTICK_RATE_MS);
+		prev_A = temp_A;
+		prev_B = temp_B;
 	}
 }
 
