@@ -17,7 +17,7 @@
 #define B6	14
 #define B7	15
 
-#define MCP23X17_ADDR 0x27
+#define MCP23X17_ADDR 0x20
 #define IO_CHANNELS 16                  /*!< Data buffer length of test buffer */
 #define DATA_LENGTH 3                  /*!< Data buffer length of test buffer */
 #define RW_TEST_LENGTH 128               /*!< Data length for r/w test, [0,DATA_LENGTH] */

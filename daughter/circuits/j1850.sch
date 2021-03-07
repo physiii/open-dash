@@ -3,7 +3,7 @@ EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 4 8
+Sheet 4 14
 Title ""
 Date ""
 Rev ""
@@ -48,8 +48,8 @@ L open-dash-daughterboard-rescue:LTV-827S-Open_Automation U?
 U 1 1 5FD18EDF
 P 6050 2750
 AR Path="/5FBF1F61/5FD18EDF" Ref="U?"  Part="1" 
-AR Path="/6063934A/5FD18EDF" Ref="U12"  Part="1" 
-F 0 "U12" H 6050 3275 50  0000 C CNN
+AR Path="/6063934A/5FD18EDF" Ref="U8"  Part="1" 
+F 0 "U8" H 6050 3275 50  0000 C CNN
 F 1 "LTV-827S" H 6050 3184 50  0000 C CNN
 F 2 "Package_DIP:SMDIP-8_W9.53mm" H 6000 3300 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/1811092010_Lite-On-LTV-827S-TA1_C22112.pdf" H 5950 3150 50  0001 C CNN
@@ -66,8 +66,8 @@ AR Path="/5ABD187E/5FD18EF7" Ref="#PWR?"  Part="1"
 AR Path="/5FD18EF7" Ref="#PWR?"  Part="1" 
 AR Path="/5FBF1F61/5FD18EF7" Ref="#PWR?"  Part="1" 
 AR Path="/5FFBD8EA/5FD18EF7" Ref="#PWR?"  Part="1" 
-AR Path="/6063934A/5FD18EF7" Ref="#PWR082"  Part="1" 
-F 0 "#PWR082" H 5700 2400 50  0001 C CNN
+AR Path="/6063934A/5FD18EF7" Ref="#PWR068"  Part="1" 
+F 0 "#PWR068" H 5700 2400 50  0001 C CNN
 F 1 "GND" V 5650 2500 50  0000 C CNN
 F 2 "" H 5700 2650 50  0000 C CNN
 F 3 "" H 5700 2650 50  0000 C CNN
@@ -82,8 +82,8 @@ AR Path="/5ABD187E/5FD18EFD" Ref="#PWR?"  Part="1"
 AR Path="/5FD18EFD" Ref="#PWR?"  Part="1" 
 AR Path="/5FBF1F61/5FD18EFD" Ref="#PWR?"  Part="1" 
 AR Path="/5FFBD8EA/5FD18EFD" Ref="#PWR?"  Part="1" 
-AR Path="/6063934A/5FD18EFD" Ref="#PWR083"  Part="1" 
-F 0 "#PWR083" H 5700 2800 50  0001 C CNN
+AR Path="/6063934A/5FD18EFD" Ref="#PWR069"  Part="1" 
+F 0 "#PWR069" H 5700 2800 50  0001 C CNN
 F 1 "GND" H 5700 2900 50  0000 C CNN
 F 2 "" H 5700 3050 50  0000 C CNN
 F 3 "" H 5700 3050 50  0000 C CNN
@@ -108,8 +108,8 @@ AR Path="/5ABD187E/5FD18F10" Ref="#PWR?"  Part="1"
 AR Path="/5FD18F10" Ref="#PWR?"  Part="1" 
 AR Path="/5FBF1F61/5FD18F10" Ref="#PWR?"  Part="1" 
 AR Path="/5FFBD8EA/5FD18F10" Ref="#PWR?"  Part="1" 
-AR Path="/6063934A/5FD18F10" Ref="#PWR084"  Part="1" 
-F 0 "#PWR084" H 6400 2400 50  0001 C CNN
+AR Path="/6063934A/5FD18F10" Ref="#PWR070"  Part="1" 
+F 0 "#PWR070" H 6400 2400 50  0001 C CNN
 F 1 "GND" V 6500 2600 50  0000 C CNN
 F 2 "" H 6400 2650 50  0000 C CNN
 F 3 "" H 6400 2650 50  0000 C CNN
@@ -132,10 +132,10 @@ Wire Wire Line
 Text Label 5350 2450 2    50   ~ 0
 J1850
 $Comp
-L open-dash-daughterboard-rescue:R_1K-Open_Automation R69
+L open-dash-daughterboard-rescue:R_1K-Open_Automation R28
 U 1 1 5FD1CF29
 P 5550 2450
-F 0 "R69" V 5450 2450 50  0000 C CNN
+F 0 "R28" V 5450 2450 50  0000 C CNN
 F 1 "R_1K" V 5550 2450 50  0000 C CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 5480 2450 50  0001 C CNN
 F 3 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-3GEYJ102V/P1.0KGDKR-ND/577615" V 5630 2450 50  0001 C CNN
@@ -149,10 +149,10 @@ Wire Wire Line
 Text Label 5350 2800 2    50   ~ 0
 J1850_TX
 $Comp
-L open-dash-daughterboard-rescue:R_1K-Open_Automation R70
+L open-dash-daughterboard-rescue:R_1K-Open_Automation R29
 U 1 1 5FD20151
 P 5550 2800
-F 0 "R70" V 5650 2800 50  0000 C CNN
+F 0 "R29" V 5650 2800 50  0000 C CNN
 F 1 "R_1K" V 5550 2800 50  0000 C CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 5480 2800 50  0001 C CNN
 F 3 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-3GEYJ102V/P1.0KGDKR-ND/577615" V 5630 2800 50  0001 C CNN
@@ -172,10 +172,10 @@ Wire Wire Line
 Wire Wire Line
 	6350 2800 6450 2800
 $Comp
-L open-dash-daughterboard-rescue:R_1K-Open_Automation R72
+L open-dash-daughterboard-rescue:R_1K-Open_Automation R31
 U 1 1 5FD34872
 P 6600 2800
-F 0 "R72" V 6500 2800 50  0000 C CNN
+F 0 "R31" V 6500 2800 50  0000 C CNN
 F 1 "R_1K" V 6600 2800 50  0000 C CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 6530 2800 50  0001 C CNN
 F 3 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-3GEYJ102V/P1.0KGDKR-ND/577615" V 6680 2800 50  0001 C CNN
@@ -233,8 +233,8 @@ AR Path="/5ABD187E/5FD3E587" Ref="#PWR?"  Part="1"
 AR Path="/5FD3E587" Ref="#PWR?"  Part="1" 
 AR Path="/5FBF1F61/5FD3E587" Ref="#PWR?"  Part="1" 
 AR Path="/5FFBD8EA/5FD3E587" Ref="#PWR?"  Part="1" 
-AR Path="/6063934A/5FD3E587" Ref="#PWR085"  Part="1" 
-F 0 "#PWR085" H 6400 3100 50  0001 C CNN
+AR Path="/6063934A/5FD3E587" Ref="#PWR071"  Part="1" 
+F 0 "#PWR071" H 6400 3100 50  0001 C CNN
 F 1 "GND" H 6400 3200 50  0000 C CNN
 F 2 "" H 6400 3350 50  0000 C CNN
 F 3 "" H 6400 3350 50  0000 C CNN
@@ -242,10 +242,10 @@ F 3 "" H 6400 3350 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L open-dash-daughterboard-rescue:R_1K-Open_Automation R71
+L open-dash-daughterboard-rescue:R_1K-Open_Automation R30
 U 1 1 5FD45435
 P 6600 2450
-F 0 "R71" V 6700 2450 50  0000 C CNN
+F 0 "R30" V 6700 2450 50  0000 C CNN
 F 1 "R_1K" V 6600 2450 50  0000 C CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 6530 2450 50  0001 C CNN
 F 3 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-3GEYJ102V/P1.0KGDKR-ND/577615" V 6680 2450 50  0001 C CNN

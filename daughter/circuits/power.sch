@@ -3,7 +3,7 @@ EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 2 8
+Sheet 2 14
 Title ""
 Date ""
 Rev ""
@@ -323,8 +323,6 @@ Wire Wire Line
 Wire Wire Line
 	7900 4150 7900 4100
 Wire Wire Line
-	10100 1750 9700 1750
-Wire Wire Line
 	10100 1750 10100 1850
 Connection ~ 9700 1750
 Wire Wire Line
@@ -355,12 +353,12 @@ Wire Wire Line
 Wire Wire Line
 	4950 4600 5400 4600
 Wire Wire Line
-	1450 4850 1500 4850
-Text Label 1450 4850 2    50   ~ 0
+	1550 4850 1600 4850
+Text Label 1550 4850 2    50   ~ 0
 TRIGGER0
 Wire Wire Line
-	1450 5200 1500 5200
-Text Label 1450 5200 2    50   ~ 0
+	1550 5200 1600 5200
+Text Label 1550 5200 2    50   ~ 0
 TRIGGER1
 Wire Wire Line
 	1900 5400 1950 5400
@@ -441,30 +439,13 @@ Wire Wire Line
 Wire Wire Line
 	3800 1650 3750 1650
 $Comp
-L open-dash-daughterboard-rescue:R_10K-Open_Automation R?
-U 1 1 60216BC1
-P 5400 4800
-AR Path="/5FBF1F61/60216BC1" Ref="R?"  Part="1" 
-AR Path="/5FFBD8EA/60216BC1" Ref="R?"  Part="1" 
-AR Path="/6063934A/60216BC1" Ref="R?"  Part="1" 
-AR Path="/5A7BADB8/60216BC1" Ref="R9"  Part="1" 
-F 0 "R9" H 5550 4850 50  0000 C CNN
-F 1 "R_10K" H 5550 4950 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 5330 4800 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0603WAF1002T5E_C25804.pdf" V 5480 4800 50  0001 C CNN
-F 4 "0603WAF1002T5E" V 5580 4900 60  0001 C CNN "Part Number"
-F 5 "C25804" H 0   0   50  0001 C CNN "LCSC"
-	1    5400 4800
-	1    0    0    -1  
-$EndComp
-$Comp
 L open-dash-daughterboard-rescue:GND-power #PWR?
 U 1 1 6021316E
 P 8150 5450
 AR Path="/5ABD187E/6021316E" Ref="#PWR?"  Part="1" 
 AR Path="/6021316E" Ref="#PWR?"  Part="1" 
-AR Path="/5A7BADB8/6021316E" Ref="#PWR033"  Part="1" 
-F 0 "#PWR033" H 8150 5200 50  0001 C CNN
+AR Path="/5A7BADB8/6021316E" Ref="#PWR046"  Part="1" 
+F 0 "#PWR046" H 8150 5200 50  0001 C CNN
 F 1 "GND" H 8150 5300 50  0000 C CNN
 F 2 "" H 8150 5450 50  0000 C CNN
 F 3 "" H 8150 5450 50  0000 C CNN
@@ -477,8 +458,8 @@ U 1 1 6021249F
 P 9800 6100
 AR Path="/5ABD187E/6021249F" Ref="#PWR?"  Part="1" 
 AR Path="/6021249F" Ref="#PWR?"  Part="1" 
-AR Path="/5A7BADB8/6021249F" Ref="#PWR039"  Part="1" 
-F 0 "#PWR039" H 9800 5850 50  0001 C CNN
+AR Path="/5A7BADB8/6021249F" Ref="#PWR052"  Part="1" 
+F 0 "#PWR052" H 9800 5850 50  0001 C CNN
 F 1 "GND" H 9800 5950 50  0000 C CNN
 F 2 "" H 9800 6100 50  0000 C CNN
 F 3 "" H 9800 6100 50  0000 C CNN
@@ -491,8 +472,8 @@ U 1 1 60211B85
 P 9350 5700
 AR Path="/5ABD187E/60211B85" Ref="#PWR?"  Part="1" 
 AR Path="/60211B85" Ref="#PWR?"  Part="1" 
-AR Path="/5A7BADB8/60211B85" Ref="#PWR036"  Part="1" 
-F 0 "#PWR036" H 9350 5450 50  0001 C CNN
+AR Path="/5A7BADB8/60211B85" Ref="#PWR049"  Part="1" 
+F 0 "#PWR049" H 9350 5450 50  0001 C CNN
 F 1 "GND" H 9350 5550 50  0000 C CNN
 F 2 "" H 9350 5700 50  0000 C CNN
 F 3 "" H 9350 5700 50  0000 C CNN
@@ -501,12 +482,12 @@ F 3 "" H 9350 5700 50  0000 C CNN
 $EndComp
 $Comp
 L open-dash-daughterboard-rescue:GND-power #PWR?
-U 1 1 602112D3
+U 1 1 63705D98
 P 7600 5700
-AR Path="/5ABD187E/602112D3" Ref="#PWR?"  Part="1" 
-AR Path="/602112D3" Ref="#PWR?"  Part="1" 
-AR Path="/5A7BADB8/602112D3" Ref="#PWR029"  Part="1" 
-F 0 "#PWR029" H 7600 5450 50  0001 C CNN
+AR Path="/5ABD187E/63705D98" Ref="#PWR?"  Part="1" 
+AR Path="/63705D98" Ref="#PWR?"  Part="1" 
+AR Path="/5A7BADB8/63705D98" Ref="#PWR042"  Part="1" 
+F 0 "#PWR042" H 7600 5450 50  0001 C CNN
 F 1 "GND" H 7600 5550 50  0000 C CNN
 F 2 "" H 7600 5700 50  0000 C CNN
 F 3 "" H 7600 5700 50  0000 C CNN
@@ -519,8 +500,8 @@ U 1 1 602109A6
 P 7550 4050
 AR Path="/5ABD187E/602109A6" Ref="#PWR?"  Part="1" 
 AR Path="/602109A6" Ref="#PWR?"  Part="1" 
-AR Path="/5A7BADB8/602109A6" Ref="#PWR028"  Part="1" 
-F 0 "#PWR028" H 7550 3800 50  0001 C CNN
+AR Path="/5A7BADB8/602109A6" Ref="#PWR041"  Part="1" 
+F 0 "#PWR041" H 7550 3800 50  0001 C CNN
 F 1 "GND" H 7550 3900 50  0000 C CNN
 F 2 "" H 7550 4050 50  0000 C CNN
 F 3 "" H 7550 4050 50  0000 C CNN
@@ -533,8 +514,8 @@ U 1 1 60210483
 P 9300 4050
 AR Path="/5ABD187E/60210483" Ref="#PWR?"  Part="1" 
 AR Path="/60210483" Ref="#PWR?"  Part="1" 
-AR Path="/5A7BADB8/60210483" Ref="#PWR035"  Part="1" 
-F 0 "#PWR035" H 9300 3800 50  0001 C CNN
+AR Path="/5A7BADB8/60210483" Ref="#PWR048"  Part="1" 
+F 0 "#PWR048" H 9300 3800 50  0001 C CNN
 F 1 "GND" H 9300 3900 50  0000 C CNN
 F 2 "" H 9300 4050 50  0000 C CNN
 F 3 "" H 9300 4050 50  0000 C CNN
@@ -547,8 +528,8 @@ U 1 1 6020E9C6
 P 9750 4450
 AR Path="/5ABD187E/6020E9C6" Ref="#PWR?"  Part="1" 
 AR Path="/6020E9C6" Ref="#PWR?"  Part="1" 
-AR Path="/5A7BADB8/6020E9C6" Ref="#PWR038"  Part="1" 
-F 0 "#PWR038" H 9750 4200 50  0001 C CNN
+AR Path="/5A7BADB8/6020E9C6" Ref="#PWR051"  Part="1" 
+F 0 "#PWR051" H 9750 4200 50  0001 C CNN
 F 1 "GND" H 9750 4300 50  0000 C CNN
 F 2 "" H 9750 4450 50  0000 C CNN
 F 3 "" H 9750 4450 50  0000 C CNN
@@ -561,8 +542,8 @@ U 1 1 6020E1F7
 P 10100 2550
 AR Path="/5ABD187E/6020E1F7" Ref="#PWR?"  Part="1" 
 AR Path="/6020E1F7" Ref="#PWR?"  Part="1" 
-AR Path="/5A7BADB8/6020E1F7" Ref="#PWR040"  Part="1" 
-F 0 "#PWR040" H 10100 2300 50  0001 C CNN
+AR Path="/5A7BADB8/6020E1F7" Ref="#PWR053"  Part="1" 
+F 0 "#PWR053" H 10100 2300 50  0001 C CNN
 F 1 "GND" H 10100 2400 50  0000 C CNN
 F 2 "" H 10100 2550 50  0000 C CNN
 F 3 "" H 10100 2550 50  0000 C CNN
@@ -575,8 +556,8 @@ U 1 1 6020D92C
 P 9700 2550
 AR Path="/5ABD187E/6020D92C" Ref="#PWR?"  Part="1" 
 AR Path="/6020D92C" Ref="#PWR?"  Part="1" 
-AR Path="/5A7BADB8/6020D92C" Ref="#PWR037"  Part="1" 
-F 0 "#PWR037" H 9700 2300 50  0001 C CNN
+AR Path="/5A7BADB8/6020D92C" Ref="#PWR050"  Part="1" 
+F 0 "#PWR050" H 9700 2300 50  0001 C CNN
 F 1 "GND" H 9700 2400 50  0000 C CNN
 F 2 "" H 9700 2550 50  0000 C CNN
 F 3 "" H 9700 2550 50  0000 C CNN
@@ -589,8 +570,8 @@ U 1 1 6020D0D7
 P 9250 2150
 AR Path="/5ABD187E/6020D0D7" Ref="#PWR?"  Part="1" 
 AR Path="/6020D0D7" Ref="#PWR?"  Part="1" 
-AR Path="/5A7BADB8/6020D0D7" Ref="#PWR034"  Part="1" 
-F 0 "#PWR034" H 9250 1900 50  0001 C CNN
+AR Path="/5A7BADB8/6020D0D7" Ref="#PWR047"  Part="1" 
+F 0 "#PWR047" H 9250 1900 50  0001 C CNN
 F 1 "GND" H 9250 2000 50  0000 C CNN
 F 2 "" H 9250 2150 50  0000 C CNN
 F 3 "" H 9250 2150 50  0000 C CNN
@@ -599,12 +580,12 @@ F 3 "" H 9250 2150 50  0000 C CNN
 $EndComp
 $Comp
 L open-dash-daughterboard-rescue:GND-power #PWR?
-U 1 1 6020CB95
+U 1 1 63705D96
 P 8050 1900
-AR Path="/5ABD187E/6020CB95" Ref="#PWR?"  Part="1" 
-AR Path="/6020CB95" Ref="#PWR?"  Part="1" 
-AR Path="/5A7BADB8/6020CB95" Ref="#PWR031"  Part="1" 
-F 0 "#PWR031" H 8050 1650 50  0001 C CNN
+AR Path="/5ABD187E/63705D96" Ref="#PWR?"  Part="1" 
+AR Path="/63705D96" Ref="#PWR?"  Part="1" 
+AR Path="/5A7BADB8/63705D96" Ref="#PWR044"  Part="1" 
+F 0 "#PWR044" H 8050 1650 50  0001 C CNN
 F 1 "GND" H 8050 1750 50  0000 C CNN
 F 2 "" H 8050 1900 50  0000 C CNN
 F 3 "" H 8050 1900 50  0000 C CNN
@@ -613,31 +594,16 @@ F 3 "" H 8050 1900 50  0000 C CNN
 $EndComp
 $Comp
 L open-dash-daughterboard-rescue:GND-power #PWR?
-U 1 1 601F2844
+U 1 1 63705D95
 P 7800 2150
-AR Path="/5ABD187E/601F2844" Ref="#PWR?"  Part="1" 
-AR Path="/601F2844" Ref="#PWR?"  Part="1" 
-AR Path="/5A7BADB8/601F2844" Ref="#PWR030"  Part="1" 
-F 0 "#PWR030" H 7800 1900 50  0001 C CNN
+AR Path="/5ABD187E/63705D95" Ref="#PWR?"  Part="1" 
+AR Path="/63705D95" Ref="#PWR?"  Part="1" 
+AR Path="/5A7BADB8/63705D95" Ref="#PWR043"  Part="1" 
+F 0 "#PWR043" H 7800 1900 50  0001 C CNN
 F 1 "GND" H 7800 2000 50  0000 C CNN
 F 2 "" H 7800 2150 50  0000 C CNN
 F 3 "" H 7800 2150 50  0000 C CNN
 	1    7800 2150
-	1    0    0    -1  
-$EndComp
-$Comp
-L open-dash-daughterboard-rescue:R_10K-Open_Automation R?
-U 1 1 5FEE3939
-P 1950 3450
-AR Path="/5FEE3939" Ref="R?"  Part="1" 
-AR Path="/5A7BADB8/5FEE3939" Ref="R4"  Part="1" 
-F 0 "R4" H 2020 3496 50  0000 L CNN
-F 1 "R_10K" H 2020 3405 50  0000 L CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 1880 3450 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0603WAF1002T5E_C25804.pdf" V 2030 3450 50  0001 C CNN
-F 4 "0603WAF1002T5E" V 2130 3550 60  0001 C CNN "Part Number"
-F 5 "C25804" H 0   0   50  0001 C CNN "LCSC"
-	1    1950 3450
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -646,8 +612,8 @@ U 1 1 5FEE393F
 P 1950 3700
 AR Path="/5ABD187E/5FEE393F" Ref="#PWR?"  Part="1" 
 AR Path="/5FEE393F" Ref="#PWR?"  Part="1" 
-AR Path="/5A7BADB8/5FEE393F" Ref="#PWR014"  Part="1" 
-F 0 "#PWR014" H 1950 3450 50  0001 C CNN
+AR Path="/5A7BADB8/5FEE393F" Ref="#PWR029"  Part="1" 
+F 0 "#PWR029" H 1950 3450 50  0001 C CNN
 F 1 "GND" H 1950 3550 50  0000 C CNN
 F 2 "" H 1950 3700 50  0000 C CNN
 F 3 "" H 1950 3700 50  0000 C CNN
@@ -655,25 +621,10 @@ F 3 "" H 1950 3700 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L open-dash-daughterboard-rescue:R_100K-Open_Automation R?
-U 1 1 5FEE394B
-P 1950 3000
-AR Path="/5FEE394B" Ref="R?"  Part="1" 
-AR Path="/5A7BADB8/5FEE394B" Ref="R3"  Part="1" 
-F 0 "R3" H 2020 3046 50  0000 L CNN
-F 1 "R_100K" H 2020 2955 50  0000 L CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 1880 3000 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0603WAF1003T5E_C25803.pdf" V 2030 3000 50  0001 C CNN
-F 4 "0603WAF1003T5E" V 2130 3100 60  0001 C CNN "Part Number"
-F 5 "C25803" H 0   0   50  0001 C CNN "LCSC"
-	1    1950 3000
-	1    0    0    -1  
-$EndComp
-$Comp
-L open-dash-daughterboard-rescue:LED_G-Open_Automation D4
+L open-dash-daughterboard-rescue:LED_G-Open_Automation D7
 U 1 1 5FD159AF
 P 10200 5500
-F 0 "D4" V 10200 5450 50  0000 R CNN
+F 0 "D7" V 10200 5450 50  0000 R CNN
 F 1 "LED_G" V 10200 5450 50  0001 R CNN
 F 2 "LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 10100 5500 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/Everlight-Elec-19-217-BHC-ZL1M2RY-3T_C72041.pdf" H 10200 5600 50  0001 C CNN
@@ -683,10 +634,10 @@ F 5 "C72041" H 0   0   50  0001 C CNN "LCSC"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L open-dash-daughterboard-rescue:GND-power #PWR023
+L open-dash-daughterboard-rescue:GND-power #PWR055
 U 1 1 5FCF5993
 P 10200 6050
-F 0 "#PWR023" H 10200 5800 50  0001 C CNN
+F 0 "#PWR055" H 10200 5800 50  0001 C CNN
 F 1 "GND" H 10250 5900 50  0000 R CNN
 F 2 "" H 10200 6050 50  0001 C CNN
 F 3 "" H 10200 6050 50  0001 C CNN
@@ -694,10 +645,10 @@ F 3 "" H 10200 6050 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L open-dash-daughterboard-rescue:R_1K-Open_Automation R8
-U 1 1 5FCE1AA0
+L open-dash-daughterboard-rescue:R_1K-Open_Automation R20
+U 1 1 63705D90
 P 10200 5850
-F 0 "R8" H 10300 5800 50  0000 C CNN
+F 0 "R20" H 10300 5800 50  0000 C CNN
 F 1 "R_1K" H 10300 5700 50  0000 C CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 10130 5850 50  0001 C CNN
 F 3 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-3GEYJ102V/P1.0KGDKR-ND/577615" V 10280 5850 50  0001 C CNN
@@ -707,96 +658,10 @@ F 5 " C21190" H 0   0   50  0001 C CNN "LCSC"
 	1    0    0    -1  
 $EndComp
 $Comp
-L open-dash-daughterboard-rescue:R_10K-Open_Automation R?
-U 1 1 5FD5B420
-P 7900 3900
-AR Path="/5FBF1F61/5FD5B420" Ref="R?"  Part="1" 
-AR Path="/5FFBD8EA/5FD5B420" Ref="R?"  Part="1" 
-AR Path="/6063934A/5FD5B420" Ref="R?"  Part="1" 
-AR Path="/5A7BADB8/5FD5B420" Ref="R12"  Part="1" 
-F 0 "R12" V 7900 3900 50  0000 C CNN
-F 1 "R_10K" V 7800 3900 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 7830 3900 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0603WAF1002T5E_C25804.pdf" V 7980 3900 50  0001 C CNN
-F 4 "0603WAF1002T5E" V 8080 4000 60  0001 C CNN "Part Number"
-F 5 "C25804" H 0   0   50  0001 C CNN "LCSC"
-	1    7900 3900
-	1    0    0    -1  
-$EndComp
-$Comp
-L open-dash-daughterboard-rescue:R_10K-Open_Automation R?
-U 1 1 5FD5A201
-P 8000 5550
-AR Path="/5FBF1F61/5FD5A201" Ref="R?"  Part="1" 
-AR Path="/5FFBD8EA/5FD5A201" Ref="R?"  Part="1" 
-AR Path="/6063934A/5FD5A201" Ref="R?"  Part="1" 
-AR Path="/5A7BADB8/5FD5A201" Ref="R13"  Part="1" 
-F 0 "R13" V 8000 5550 50  0000 C CNN
-F 1 "R_10K" V 7900 5550 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 7930 5550 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0603WAF1002T5E_C25804.pdf" V 8080 5550 50  0001 C CNN
-F 4 "0603WAF1002T5E" V 8180 5650 60  0001 C CNN "Part Number"
-F 5 "C25804" H 0   0   50  0001 C CNN "LCSC"
-	1    8000 5550
-	1    0    0    -1  
-$EndComp
-$Comp
-L open-dash-daughterboard-rescue:C_10uF-Open_Automation C5
-U 1 1 5FD4EF4B
-P 7600 5500
-F 0 "C5" H 7400 5500 50  0000 L CNN
-F 1 "C_10uF" H 7300 5400 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder" H 7700 5800 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/Samsung-Electro-Mechanics-CL10A106MA8NRNC_C96446.pdf" H 7600 5250 50  0001 C CNN
-F 4 "CL10A106MA8NRNC" H 7725 5700 60  0001 C CNN "Part Number"
-F 5 "C96446" H 0   0   50  0001 C CNN "LCSC"
-	1    7600 5500
-	1    0    0    -1  
-$EndComp
-$Comp
-L open-dash-daughterboard-rescue:C_10uF-Open_Automation C6
-U 1 1 5FD4E7FD
-P 7800 1950
-F 0 "C6" H 7600 1950 50  0000 L CNN
-F 1 "C_10uF" H 7500 1850 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder" H 7900 2250 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/Samsung-Electro-Mechanics-CL10A106MA8NRNC_C96446.pdf" H 7800 1700 50  0001 C CNN
-F 4 "CL10A106MA8NRNC" H 7925 2150 60  0001 C CNN "Part Number"
-F 5 "C96446" H 0   0   50  0001 C CNN "LCSC"
-	1    7800 1950
-	1    0    0    -1  
-$EndComp
-$Comp
-L open-dash-daughterboard-rescue:C_10uF-Open_Automation C4
-U 1 1 5FD4E1D3
-P 7550 3850
-F 0 "C4" H 7350 3850 50  0000 L CNN
-F 1 "C_10uF" H 7250 3750 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder" H 7650 4150 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/Samsung-Electro-Mechanics-CL10A106MA8NRNC_C96446.pdf" H 7550 3600 50  0001 C CNN
-F 4 "CL10A106MA8NRNC" H 7675 4050 60  0001 C CNN "Part Number"
-F 5 "C96446" H 0   0   50  0001 C CNN "LCSC"
-	1    7550 3850
-	1    0    0    -1  
-$EndComp
-$Comp
-L open-dash-daughterboard-rescue:C_10uF-Open_Automation C2
-U 1 1 5FD4DCF9
-P 4300 3100
-F 0 "C2" H 4100 3100 50  0000 L CNN
-F 1 "C_10uF" H 4000 3000 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder" H 4400 3400 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/Samsung-Electro-Mechanics-CL10A106MA8NRNC_C96446.pdf" H 4300 2850 50  0001 C CNN
-F 4 "CL10A106MA8NRNC" H 4425 3300 60  0001 C CNN "Part Number"
-F 5 "C96446" H 0   0   50  0001 C CNN "LCSC"
-	1    4300 3100
-	1    0    0    -1  
-$EndComp
-$Comp
-L open-dash-daughterboard-rescue:Barrel_Jack_OD5.5_ID2.5-Open_Automation J6
+L open-dash-daughterboard-rescue:Barrel_Jack_OD5.5_ID2.5-Open_Automation J10
 U 1 1 5FD316B2
 P 4650 1750
-F 0 "J6" H 4500 1950 50  0000 C CNN
+F 0 "J10" H 4500 1950 50  0000 C CNN
 F 1 "Barrel_Jack_OD5.5_ID2.5" H 4650 1550 50  0001 C CNN
 F 2 "Open_Automation:BarrelJack_OD5.5_ID2.5" H 4650 1450 50  0001 C CNN
 F 3 "https://www.cui.com/product/resource/pj-202b.pdf" H 4700 1710 50  0001 C CNN
@@ -806,10 +671,10 @@ F 5 "PJ-202A" H 4650 1750 50  0001 C CNN "Part Number"
 	1    0    0    -1  
 $EndComp
 $Comp
-L open-dash-daughterboard-rescue:Barrel_Jack_OD5.5_ID2.5-Open_Automation J7
+L open-dash-daughterboard-rescue:Barrel_Jack_OD5.5_ID2.5-Open_Automation J11
 U 1 1 5FD30DF0
 P 5950 1750
-F 0 "J7" H 5800 1950 50  0000 C CNN
+F 0 "J11" H 5800 1950 50  0000 C CNN
 F 1 "Barrel_Jack_OD5.5_ID2.5" H 5950 1550 50  0001 C CNN
 F 2 "Open_Automation:BarrelJack_OD5.5_ID2.5" H 5950 1450 50  0001 C CNN
 F 3 "https://www.cui.com/product/resource/pj-202b.pdf" H 6000 1710 50  0001 C CNN
@@ -819,10 +684,10 @@ F 5 "PJ-202A" H 5950 1750 50  0001 C CNN "Part Number"
 	1    0    0    -1  
 $EndComp
 $Comp
-L open-dash-daughterboard-rescue:GND-power #PWR010
+L open-dash-daughterboard-rescue:GND-power #PWR025
 U 1 1 5FD22FE0
 P 1150 3350
-F 0 "#PWR010" H 1150 3100 50  0001 C CNN
+F 0 "#PWR025" H 1150 3100 50  0001 C CNN
 F 1 "GND" V 1155 3222 50  0000 R CNN
 F 2 "" H 1150 3350 50  0001 C CNN
 F 3 "" H 1150 3350 50  0001 C CNN
@@ -830,10 +695,10 @@ F 3 "" H 1150 3350 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L open-dash-daughterboard-rescue:GND-power #PWR011
+L open-dash-daughterboard-rescue:GND-power #PWR026
 U 1 1 5FD22FD6
 P 1500 3350
-F 0 "#PWR011" H 1500 3100 50  0001 C CNN
+F 0 "#PWR026" H 1500 3100 50  0001 C CNN
 F 1 "GND" V 1505 3222 50  0000 R CNN
 F 2 "" H 1500 3350 50  0001 C CNN
 F 3 "" H 1500 3350 50  0001 C CNN
@@ -841,10 +706,10 @@ F 3 "" H 1500 3350 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L open-dash-daughterboard-rescue:LED_G-Open_Automation D5
+L open-dash-daughterboard-rescue:LED_G-Open_Automation D4
 U 1 1 5FD16B8A
 P 5650 3250
-F 0 "D5" V 5650 3150 50  0000 R CNN
+F 0 "D4" V 5650 3150 50  0000 R CNN
 F 1 "LED_G" V 5650 3200 50  0001 R CNN
 F 2 "LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 5550 3250 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/Everlight-Elec-19-217-BHC-ZL1M2RY-3T_C72041.pdf" H 5650 3350 50  0001 C CNN
@@ -854,10 +719,10 @@ F 5 "C72041" H 0   0   50  0001 C CNN "LCSC"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L open-dash-daughterboard-rescue:LED_G-Open_Automation D7
+L open-dash-daughterboard-rescue:LED_G-Open_Automation D5
 U 1 1 5FD16569
 P 10100 2000
-F 0 "D7" V 10100 1950 50  0000 R CNN
+F 0 "D5" V 10100 1950 50  0000 R CNN
 F 1 "LED_G" V 10100 1950 50  0001 R CNN
 F 2 "LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 10000 2000 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/Everlight-Elec-19-217-BHC-ZL1M2RY-3T_C72041.pdf" H 10100 2100 50  0001 C CNN
@@ -880,10 +745,10 @@ F 5 "C72041" H 0   0   50  0001 C CNN "LCSC"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L open-dash-daughterboard-rescue:GND-power #PWR027
+L open-dash-daughterboard-rescue:GND-power #PWR054
 U 1 1 5FCFE295
 P 10150 4400
-F 0 "#PWR027" H 10150 4150 50  0001 C CNN
+F 0 "#PWR054" H 10150 4150 50  0001 C CNN
 F 1 "GND" H 10200 4250 50  0000 R CNN
 F 2 "" H 10150 4400 50  0001 C CNN
 F 3 "" H 10150 4400 50  0001 C CNN
@@ -891,10 +756,10 @@ F 3 "" H 10150 4400 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L open-dash-daughterboard-rescue:GND-power #PWR018
+L open-dash-daughterboard-rescue:GND-power #PWR030
 U 1 1 5FCF5777
 P 2450 3600
-F 0 "#PWR018" H 2450 3350 50  0001 C CNN
+F 0 "#PWR030" H 2450 3350 50  0001 C CNN
 F 1 "GND" H 2500 3450 50  0000 R CNN
 F 2 "" H 2450 3600 50  0001 C CNN
 F 3 "" H 2450 3600 50  0001 C CNN
@@ -902,10 +767,10 @@ F 3 "" H 2450 3600 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L open-dash-daughterboard-rescue:GND-power #PWR025
+L open-dash-daughterboard-rescue:GND-power #PWR039
 U 1 1 5FCF26BD
 P 5650 3800
-F 0 "#PWR025" H 5650 3550 50  0001 C CNN
+F 0 "#PWR039" H 5650 3550 50  0001 C CNN
 F 1 "GND" V 5655 3672 50  0000 R CNN
 F 2 "" H 5650 3800 50  0001 C CNN
 F 3 "" H 5650 3800 50  0001 C CNN
@@ -913,10 +778,10 @@ F 3 "" H 5650 3800 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L open-dash-daughterboard-rescue:R_1K-Open_Automation R11
+L open-dash-daughterboard-rescue:R_1K-Open_Automation R19
 U 1 1 5FCE2025
 P 10150 4200
-F 0 "R11" H 10250 4150 50  0000 C CNN
+F 0 "R19" H 10250 4150 50  0000 C CNN
 F 1 "R_1K" H 10250 4050 50  0000 C CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 10080 4200 50  0001 C CNN
 F 3 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-3GEYJ102V/P1.0KGDKR-ND/577615" V 10230 4200 50  0001 C CNN
@@ -926,24 +791,11 @@ F 5 " C21190" H 0   0   50  0001 C CNN "LCSC"
 	1    0    0    -1  
 $EndComp
 $Comp
-L open-dash-daughterboard-rescue:R_1K-Open_Automation R7
-U 1 1 5FCDE6CD
-P 2450 3400
-F 0 "R7" H 2550 3350 50  0000 C CNN
-F 1 "R_1K" H 2550 3250 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 2380 3400 50  0001 C CNN
-F 3 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-3GEYJ102V/P1.0KGDKR-ND/577615" V 2530 3400 50  0001 C CNN
-F 4 "ERJ-3GEYJ102V" V 2630 3500 60  0001 C CNN "Part Number"
-F 5 " C21190" H 0   0   50  0001 C CNN "LCSC"
-	1    2450 3400
-	1    0    0    -1  
-$EndComp
-$Comp
-L open-dash-daughterboard-rescue:R_1K-Open_Automation R20
+L open-dash-daughterboard-rescue:R_1K-Open_Automation R18
 U 1 1 5FCDE18A
 P 10100 2350
-F 0 "R20" H 10200 2250 50  0000 C CNN
-F 1 "R_1K" H 10250 2350 50  0000 C CNN
+F 0 "R18" V 10100 2350 50  0000 C CNN
+F 1 "R_1K" V 10200 2350 50  0000 C CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 10030 2350 50  0001 C CNN
 F 3 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-3GEYJ102V/P1.0KGDKR-ND/577615" V 10180 2350 50  0001 C CNN
 F 4 "ERJ-3GEYJ102V" V 10280 2450 60  0001 C CNN "Part Number"
@@ -952,10 +804,10 @@ F 5 " C21190" H 0   0   50  0001 C CNN "LCSC"
 	1    0    0    -1  
 $EndComp
 $Comp
-L open-dash-daughterboard-rescue:R_1K-Open_Automation R10
+L open-dash-daughterboard-rescue:R_1K-Open_Automation R9
 U 1 1 5FCDC801
 P 5650 3600
-F 0 "R10" H 5750 3550 50  0000 C CNN
+F 0 "R9" H 5750 3550 50  0000 C CNN
 F 1 "R_1K" H 5750 3450 50  0000 C CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 5580 3600 50  0001 C CNN
 F 3 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-3GEYJ102V/P1.0KGDKR-ND/577615" V 5730 3600 50  0001 C CNN
@@ -965,10 +817,10 @@ F 5 " C21190" H 0   0   50  0001 C CNN "LCSC"
 	1    0    0    -1  
 $EndComp
 $Comp
-L open-dash-daughterboard-rescue:ACS711-Open_Automation U3
+L open-dash-daughterboard-rescue:ACS711-Open_Automation U2
 U 1 1 5FD441C0
 P 4950 5050
-F 0 "U3" H 5150 5300 50  0000 C CNN
+F 0 "U2" H 5150 5300 50  0000 C CNN
 F 1 "ACS711" H 5150 5400 50  0000 C CNN
 F 2 "Sensor_Current:Allegro_QFN-12-10-1EP_3x3mm_P0.5mm" H 3900 5700 50  0001 L CIN
 F 3 "https://datasheet.lcsc.com/szlcsc/Allegro-MicroSystems-LLC-ACS711KEXLT-15AB-T_C150824.pdf" H 4950 5050 50  0001 C CNN
@@ -978,10 +830,10 @@ F 5 "C150824" H 4950 5050 50  0001 C CNN "LCSC"
 	1    0    0    -1  
 $EndComp
 $Comp
-L open-dash-daughterboard-rescue:GND-open-automation #PWR022
+L open-dash-daughterboard-rescue:GND-open-automation #PWR036
 U 1 1 5FCCD5C3
 P 4950 5500
-F 0 "#PWR022" H 4950 5250 50  0001 C CNN
+F 0 "#PWR036" H 4950 5250 50  0001 C CNN
 F 1 "GND" H 4950 5350 50  0000 C CNN
 F 2 "" H 4950 5500 50  0000 C CNN
 F 3 "" H 4950 5500 50  0000 C CNN
@@ -989,10 +841,10 @@ F 3 "" H 4950 5500 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L open-dash-daughterboard-rescue:GND-open-automation #PWR017
+L open-dash-daughterboard-rescue:GND-open-automation #PWR033
 U 1 1 5CCAD634
 P 3800 1900
-F 0 "#PWR017" H 3800 1650 50  0001 C CNN
+F 0 "#PWR033" H 3800 1650 50  0001 C CNN
 F 1 "GND" H 3800 1750 50  0000 C CNN
 F 2 "" H 3800 1900 50  0000 C CNN
 F 3 "" H 3800 1900 50  0000 C CNN
@@ -1000,10 +852,10 @@ F 3 "" H 3800 1900 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L open-dash-daughterboard-rescue:Barrel_Jack_OD5.5_ID2.5-Open_Automation J5
+L open-dash-daughterboard-rescue:Barrel_Jack_OD5.5_ID2.5-Open_Automation J9
 U 1 1 5CCAD62A
 P 3450 1750
-F 0 "J5" H 3300 1950 50  0000 C CNN
+F 0 "J9" H 3300 1950 50  0000 C CNN
 F 1 "Barrel_Jack_OD5.5_ID2.5" H 3450 1550 50  0001 C CNN
 F 2 "Open_Automation:BarrelJack_OD5.5_ID2.5" H 3450 1450 50  0001 C CNN
 F 3 "https://www.cui.com/product/resource/pj-202b.pdf" H 3500 1710 50  0001 C CNN
@@ -1026,62 +878,10 @@ F 5 "C8835" H 0   0   50  0001 C CNN "LCSC"
 	0    1    1    0   
 $EndComp
 $Comp
-L open-dash-daughterboard-rescue:R_20K-Open_Automation R18
-U 1 1 5CC982EC
-P 9800 5500
-F 0 "R18" H 9850 5450 50  0000 L CNN
-F 1 "R_20K" H 9800 5350 50  0000 L CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 9730 5500 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0603WAF2002T5E_C4184.pdf" V 9880 5500 50  0001 C CNN
-F 4 "0603WAF2002T5E" V 9980 5600 60  0001 C CNN "Part Number"
-F 5 "C4184" H 0   0   50  0001 C CNN "LCSC"
-	1    9800 5500
-	1    0    0    -1  
-$EndComp
-$Comp
-L open-dash-daughterboard-rescue:R_20K-Open_Automation R16
-U 1 1 5CC96EC7
-P 9750 3850
-F 0 "R16" H 9800 3800 50  0000 L CNN
-F 1 "R_20K" H 9750 3700 50  0000 L CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 9680 3850 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0603WAF2002T5E_C4184.pdf" V 9830 3850 50  0001 C CNN
-F 4 "0603WAF2002T5E" V 9930 3950 60  0001 C CNN "Part Number"
-F 5 "C4184" H 0   0   50  0001 C CNN "LCSC"
-	1    9750 3850
-	1    0    0    -1  
-$EndComp
-$Comp
-L open-dash-daughterboard-rescue:R_20K-Open_Automation R14
-U 1 1 5CC94E35
-P 9700 1950
-F 0 "R14" H 9750 1900 50  0000 L CNN
-F 1 "R_20K" H 9700 1800 50  0000 L CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 9630 1950 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0603WAF2002T5E_C4184.pdf" V 9780 1950 50  0001 C CNN
-F 4 "0603WAF2002T5E" V 9880 2050 60  0001 C CNN "Part Number"
-F 5 "C4184" H 0   0   50  0001 C CNN "LCSC"
-	1    9700 1950
-	1    0    0    -1  
-$EndComp
-$Comp
-L open-dash-daughterboard-rescue:C_10uF-Open_Automation C3
-U 1 1 5CBEB247
-P 5400 3250
-F 0 "C3" H 5200 3250 50  0000 L CNN
-F 1 "C_10uF" H 5100 3150 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder" H 5500 3550 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/Samsung-Electro-Mechanics-CL10A106MA8NRNC_C96446.pdf" H 5400 3000 50  0001 C CNN
-F 4 "CL10A106MA8NRNC" H 5525 3450 60  0001 C CNN "Part Number"
-F 5 "C96446" H 0   0   50  0001 C CNN "LCSC"
-	1    5400 3250
-	1    0    0    -1  
-$EndComp
-$Comp
-L open-dash-daughterboard-rescue:GND-open-automation #PWR019
+L open-dash-daughterboard-rescue:GND-open-automation #PWR034
 U 1 1 5B21A954
 P 4300 3300
-F 0 "#PWR019" H 4300 3050 50  0001 C CNN
+F 0 "#PWR034" H 4300 3050 50  0001 C CNN
 F 1 "GND" H 4300 3150 50  0000 C CNN
 F 2 "" H 4300 3300 50  0000 C CNN
 F 3 "" H 4300 3300 50  0000 C CNN
@@ -1089,10 +889,10 @@ F 3 "" H 4300 3300 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L open-dash-daughterboard-rescue:GND-open-automation #PWR024
+L open-dash-daughterboard-rescue:GND-open-automation #PWR038
 U 1 1 5B18B8C6
 P 5400 3450
-F 0 "#PWR024" H 5400 3200 50  0001 C CNN
+F 0 "#PWR038" H 5400 3200 50  0001 C CNN
 F 1 "GND" H 5400 3300 50  0000 C CNN
 F 2 "" H 5400 3450 50  0000 C CNN
 F 3 "" H 5400 3450 50  0000 C CNN
@@ -1100,10 +900,10 @@ F 3 "" H 5400 3450 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L open-dash-daughterboard-rescue:GND-open-automation #PWR020
+L open-dash-daughterboard-rescue:GND-open-automation #PWR035
 U 1 1 5B1782DE
 P 4525 3175
-F 0 "#PWR020" H 4525 2925 50  0001 C CNN
+F 0 "#PWR035" H 4525 2925 50  0001 C CNN
 F 1 "GND" H 4525 3025 50  0000 C CNN
 F 2 "" H 4525 3175 50  0000 C CNN
 F 3 "" H 4525 3175 50  0000 C CNN
@@ -1126,10 +926,10 @@ F 4 " EEU-FC1E102" H 1275 3350 60  0001 C CNN "Part Number"
 	1    0    0    -1  
 $EndComp
 $Comp
-L open-dash-daughterboard-rescue:GND-open-automation #PWR021
+L open-dash-daughterboard-rescue:GND-open-automation #PWR037
 U 1 1 5CBEBB48
 P 5000 1900
-F 0 "#PWR021" H 5000 1650 50  0001 C CNN
+F 0 "#PWR037" H 5000 1650 50  0001 C CNN
 F 1 "GND" H 5000 1750 50  0000 C CNN
 F 2 "" H 5000 1900 50  0000 C CNN
 F 3 "" H 5000 1900 50  0000 C CNN
@@ -1137,10 +937,10 @@ F 3 "" H 5000 1900 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L open-dash-daughterboard-rescue:GND-open-automation #PWR026
+L open-dash-daughterboard-rescue:GND-open-automation #PWR040
 U 1 1 5CBE9929
 P 6300 1900
-F 0 "#PWR026" H 6300 1650 50  0001 C CNN
+F 0 "#PWR040" H 6300 1650 50  0001 C CNN
 F 1 "GND" H 6300 1750 50  0000 C CNN
 F 2 "" H 6300 1900 50  0000 C CNN
 F 3 "" H 6300 1900 50  0000 C CNN
@@ -1148,10 +948,10 @@ F 3 "" H 6300 1900 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L open-dash-daughterboard-rescue:MIC29302WU-Open_Automation U6
+L open-dash-daughterboard-rescue:MIC29302WU-Open_Automation U5
 U 1 1 5CBD35FE
 P 8650 3650
-F 0 "U6" H 8700 3997 60  0000 C CNN
+F 0 "U5" H 8700 3997 60  0000 C CNN
 F 1 "MIC29302WU" H 8700 3891 60  0000 C CNN
 F 2 "Package_TO_SOT_SMD:TO-263-5_TabPin3" H 8750 4050 60  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/Microchip-Tech-MIC29302WU_C11149.pdf" H 8600 3350 60  0001 C CNN
@@ -1174,10 +974,10 @@ F 5 "C116748" H 0   0   50  0001 C CNN "LCSC"
 	1    0    0    -1  
 $EndComp
 $Comp
-L open-dash-daughterboard-rescue:GND-open-automation #PWR032
+L open-dash-daughterboard-rescue:GND-open-automation #PWR045
 U 1 1 5CBD7AFF
 P 8100 3800
-F 0 "#PWR032" H 8100 3550 50  0001 C CNN
+F 0 "#PWR045" H 8100 3550 50  0001 C CNN
 F 1 "GND" H 8200 3700 50  0000 C CNN
 F 2 "" H 8100 3800 50  0000 C CNN
 F 3 "" H 8100 3800 50  0000 C CNN
@@ -1185,23 +985,10 @@ F 3 "" H 8100 3800 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L open-dash-daughterboard-rescue:R_2.2K-Open_Automation R17
-U 1 1 5CC044FA
-P 9750 4250
-F 0 "R17" H 9800 4150 50  0000 L CNN
-F 1 "R_2.2K" H 9800 4250 50  0000 L CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 9680 4250 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0603WAF2201T5E_C4190.pdf" V 9830 4250 50  0001 C CNN
-F 4 "0603WAF2201T5E" V 9930 4350 60  0001 C CNN "Part Number"
-F 5 "C4190" H 0   0   50  0001 C CNN "LCSC"
-	1    9750 4250
-	1    0    0    -1  
-$EndComp
-$Comp
-L open-dash-daughterboard-rescue:MIC29302WU-Open_Automation U5
-U 1 1 5CC3055E
+L open-dash-daughterboard-rescue:MIC29302WU-Open_Automation U4
+U 1 1 63705D8B
 P 8600 1750
-F 0 "U5" H 8650 2097 60  0000 C CNN
+F 0 "U4" H 8650 2097 60  0000 C CNN
 F 1 "MIC29302WU" H 8650 1991 60  0000 C CNN
 F 2 "Package_TO_SOT_SMD:TO-263-5_TabPin3" H 8700 2150 60  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/Microchip-Tech-MIC29302WU_C11149.pdf" H 8550 1450 60  0001 C CNN
@@ -1237,10 +1024,10 @@ F 5 "C72041" H 0   0   50  0001 C CNN "LCSC"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L open-dash-daughterboard-rescue:MIC29302WU-Open_Automation U7
+L open-dash-daughterboard-rescue:MIC29302WU-Open_Automation U6
 U 1 1 5CC27316
 P 8700 5300
-F 0 "U7" H 8750 5647 60  0000 C CNN
+F 0 "U6" H 8750 5647 60  0000 C CNN
 F 1 "MIC29302WU" H 8750 5541 60  0000 C CNN
 F 2 "Package_TO_SOT_SMD:TO-263-5_TabPin3" H 8800 5700 60  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/Microchip-Tech-MIC29302WU_C11149.pdf" H 8650 5000 60  0001 C CNN
@@ -1263,25 +1050,12 @@ F 5 "C116748" H 0   0   50  0001 C CNN "LCSC"
 	1    0    0    -1  
 $EndComp
 $Comp
-L open-dash-daughterboard-rescue:R_2.2K-Open_Automation R19
-U 1 1 5CC27388
-P 9800 5900
-F 0 "R19" V 9800 5850 50  0000 L CNN
-F 1 "R_2.2K" H 9850 5900 50  0000 L CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 9730 5900 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0603WAF2201T5E_C4190.pdf" V 9880 5900 50  0001 C CNN
-F 4 "0603WAF2201T5E" V 9980 6000 60  0001 C CNN "Part Number"
-F 5 "C4190" H 0   0   50  0001 C CNN "LCSC"
-	1    9800 5900
-	1    0    0    -1  
-$EndComp
-$Comp
 L open-dash-daughterboard-rescue:LTV-827S-Open_Automation U?
 U 1 1 5FD5E37F
 P 2250 5150
 AR Path="/5FBF1F61/5FD5E37F" Ref="U?"  Part="1" 
-AR Path="/5A7BADB8/5FD5E37F" Ref="U2"  Part="1" 
-F 0 "U2" H 2250 5675 50  0000 C CNN
+AR Path="/5A7BADB8/5FD5E37F" Ref="U1"  Part="1" 
+F 0 "U1" H 2250 5675 50  0000 C CNN
 F 1 "LTV-827S" H 2250 5584 50  0000 C CNN
 F 2 "Package_DIP:SMDIP-8_W9.53mm" H 2200 5700 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/1811092010_Lite-On-LTV-827S-TA1_C22112.pdf" H 2150 5550 50  0001 C CNN
@@ -1291,38 +1065,6 @@ F 5 "C22112" H 0   0   50  0001 C CNN "LCSC"
 	1    0    0    -1  
 $EndComp
 $Comp
-L open-dash-daughterboard-rescue:R_10K-Open_Automation R?
-U 1 1 5FD5E386
-P 1700 4850
-AR Path="/5FBF1F61/5FD5E386" Ref="R?"  Part="1" 
-AR Path="/5FFBD8EA/5FD5E386" Ref="R?"  Part="1" 
-AR Path="/5A7BADB8/5FD5E386" Ref="R1"  Part="1" 
-F 0 "R1" V 1700 4850 50  0000 C CNN
-F 1 "R_10K" V 1600 4850 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 1630 4850 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0603WAF1002T5E_C25804.pdf" V 1780 4850 50  0001 C CNN
-F 4 "0603WAF1002T5E" V 1880 4950 60  0001 C CNN "Part Number"
-F 5 "C25804" H 0   0   50  0001 C CNN "LCSC"
-	1    1700 4850
-	0    1    1    0   
-$EndComp
-$Comp
-L open-dash-daughterboard-rescue:R_10K-Open_Automation R?
-U 1 1 5FD5E391
-P 1700 5200
-AR Path="/5FBF1F61/5FD5E391" Ref="R?"  Part="1" 
-AR Path="/5FFBD8EA/5FD5E391" Ref="R?"  Part="1" 
-AR Path="/5A7BADB8/5FD5E391" Ref="R2"  Part="1" 
-F 0 "R2" V 1700 5200 50  0000 C CNN
-F 1 "R_10K" V 1800 5200 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 1630 5200 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0603WAF1002T5E_C25804.pdf" V 1780 5200 50  0001 C CNN
-F 4 "0603WAF1002T5E" V 1880 5300 60  0001 C CNN "Part Number"
-F 5 "C25804" H 0   0   50  0001 C CNN "LCSC"
-	1    1700 5200
-	0    1    1    0   
-$EndComp
-$Comp
 L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 5FD5E397
 P 1900 5050
@@ -1330,8 +1072,8 @@ AR Path="/5ABD187E/5FD5E397" Ref="#PWR?"  Part="1"
 AR Path="/5FD5E397" Ref="#PWR?"  Part="1" 
 AR Path="/5FBF1F61/5FD5E397" Ref="#PWR?"  Part="1" 
 AR Path="/5FFBD8EA/5FD5E397" Ref="#PWR?"  Part="1" 
-AR Path="/5A7BADB8/5FD5E397" Ref="#PWR012"  Part="1" 
-F 0 "#PWR012" H 1900 4800 50  0001 C CNN
+AR Path="/5A7BADB8/5FD5E397" Ref="#PWR027"  Part="1" 
+F 0 "#PWR027" H 1900 4800 50  0001 C CNN
 F 1 "GND" V 1850 4900 50  0000 C CNN
 F 2 "" H 1900 5050 50  0000 C CNN
 F 3 "" H 1900 5050 50  0000 C CNN
@@ -1346,8 +1088,8 @@ AR Path="/5ABD187E/5FD5E39D" Ref="#PWR?"  Part="1"
 AR Path="/5FD5E39D" Ref="#PWR?"  Part="1" 
 AR Path="/5FBF1F61/5FD5E39D" Ref="#PWR?"  Part="1" 
 AR Path="/5FFBD8EA/5FD5E39D" Ref="#PWR?"  Part="1" 
-AR Path="/5A7BADB8/5FD5E39D" Ref="#PWR013"  Part="1" 
-F 0 "#PWR013" H 1900 5200 50  0001 C CNN
+AR Path="/5A7BADB8/5FD5E39D" Ref="#PWR028"  Part="1" 
+F 0 "#PWR028" H 1900 5200 50  0001 C CNN
 F 1 "GND" H 1900 5300 50  0000 C CNN
 F 2 "" H 1900 5450 50  0000 C CNN
 F 3 "" H 1900 5450 50  0000 C CNN
@@ -1362,8 +1104,8 @@ AR Path="/5ABD187E/5FD5E3A7" Ref="#PWR?"  Part="1"
 AR Path="/5FD5E3A7" Ref="#PWR?"  Part="1" 
 AR Path="/5FBF1F61/5FD5E3A7" Ref="#PWR?"  Part="1" 
 AR Path="/5FFBD8EA/5FD5E3A7" Ref="#PWR?"  Part="1" 
-AR Path="/5A7BADB8/5FD5E3A7" Ref="#PWR016"  Part="1" 
-F 0 "#PWR016" H 2600 5200 50  0001 C CNN
+AR Path="/5A7BADB8/5FD5E3A7" Ref="#PWR032"  Part="1" 
+F 0 "#PWR032" H 2600 5200 50  0001 C CNN
 F 1 "GND" H 2600 5300 50  0000 C CNN
 F 2 "" H 2600 5450 50  0000 C CNN
 F 3 "" H 2600 5450 50  0000 C CNN
@@ -1378,8 +1120,8 @@ AR Path="/5ABD187E/5FD5E3B0" Ref="#PWR?"  Part="1"
 AR Path="/5FD5E3B0" Ref="#PWR?"  Part="1" 
 AR Path="/5FBF1F61/5FD5E3B0" Ref="#PWR?"  Part="1" 
 AR Path="/5FFBD8EA/5FD5E3B0" Ref="#PWR?"  Part="1" 
-AR Path="/5A7BADB8/5FD5E3B0" Ref="#PWR015"  Part="1" 
-F 0 "#PWR015" H 2600 4800 50  0001 C CNN
+AR Path="/5A7BADB8/5FD5E3B0" Ref="#PWR031"  Part="1" 
+F 0 "#PWR031" H 2600 4800 50  0001 C CNN
 F 1 "GND" V 2700 5000 50  0000 C CNN
 F 2 "" H 2600 5050 50  0000 C CNN
 F 3 "" H 2600 5050 50  0000 C CNN
@@ -1387,42 +1129,10 @@ F 3 "" H 2600 5050 50  0000 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L open-dash-daughterboard-rescue:R_10K-Open_Automation R?
-U 1 1 5FD5E3BA
-P 2850 4850
-AR Path="/5FBF1F61/5FD5E3BA" Ref="R?"  Part="1" 
-AR Path="/5FFBD8EA/5FD5E3BA" Ref="R?"  Part="1" 
-AR Path="/5A7BADB8/5FD5E3BA" Ref="R5"  Part="1" 
-F 0 "R5" V 2850 4850 50  0000 C CNN
-F 1 "R_10K" V 2750 4850 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 2780 4850 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0603WAF1002T5E_C25804.pdf" V 2930 4850 50  0001 C CNN
-F 4 "0603WAF1002T5E" V 3030 4950 60  0001 C CNN "Part Number"
-F 5 "C25804" H 0   0   50  0001 C CNN "LCSC"
-	1    2850 4850
-	0    1    1    0   
-$EndComp
-$Comp
-L open-dash-daughterboard-rescue:R_10K-Open_Automation R?
-U 1 1 5FD5E3C2
-P 2850 5200
-AR Path="/5FBF1F61/5FD5E3C2" Ref="R?"  Part="1" 
-AR Path="/5FFBD8EA/5FD5E3C2" Ref="R?"  Part="1" 
-AR Path="/5A7BADB8/5FD5E3C2" Ref="R6"  Part="1" 
-F 0 "R6" V 2850 5200 50  0000 C CNN
-F 1 "R_10K" V 2750 5200 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 2780 5200 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0603WAF1002T5E_C25804.pdf" V 2930 5200 50  0001 C CNN
-F 4 "0603WAF1002T5E" V 3030 5300 60  0001 C CNN "Part Number"
-F 5 "C25804" H 0   0   50  0001 C CNN "LCSC"
-	1    2850 5200
-	0    1    1    0   
-$EndComp
-$Comp
-L open-dash-daughterboard-rescue:REG_3V3-Open_Automation U4
+L open-dash-daughterboard-rescue:REG_3V3-Open_Automation U3
 U 1 1 5B2197B1
 P 4975 3050
-F 0 "U4" H 4950 3375 50  0000 C CNN
+F 0 "U3" H 4950 3375 50  0000 C CNN
 F 1 "REG_3V3" H 4950 3284 50  0000 C CNN
 F 2 "Package_TO_SOT_SMD:TO-252-2" H 4925 2775 50  0001 C CIN
 F 3 "https://datasheet.lcsc.com/szlcsc/ON-Semicon-ON-NCP1117DT33T5G_C152529.pdf" H 4950 2700 50  0001 C CNN
@@ -1432,16 +1142,276 @@ F 5 "C152529" H 0   0   50  0001 C CNN "LCSC"
 	1    0    0    -1  
 $EndComp
 $Comp
-L open-dash-daughterboard-rescue:R_6.5K-Open_Automation R15
-U 1 1 5CBDFD46
+L Open_Automation:R_6.8K R13
+U 1 1 605754FA
 P 9700 2350
-F 0 "R15" H 9750 2250 50  0000 L CNN
-F 1 "R_6.5K" H 9750 2350 50  0000 L CNN
+F 0 "R13" V 9700 2300 50  0000 L CNN
+F 1 "R_6.8K" V 9800 2200 50  0000 L CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 9630 2350 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0603WAF3652T5E_C23029.pdf" V 9780 2350 50  0001 C CNN
-F 4 "0603WAF3652T5E" V 9880 2450 60  0001 C CNN "Part Number"
-F 5 "C23029" H 0   0   50  0001 C CNN "LCSC"
+F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0603WAF6801T5E_C23212.pdf" V 9780 2350 50  0001 C CNN
+F 4 "0603WAF6801T5E" V 9880 2450 60  0001 C CNN "Part Number"
+F 5 "C23212" V 9550 2350 50  0001 C CNN "LCSC"
 	1    9700 2350
 	1    0    0    -1  
+$EndComp
+$Comp
+L Open_Automation:R_10K_0402 R6
+U 1 1 604681A3
+P 2850 4850
+F 0 "R6" V 2850 4850 50  0000 C CNN
+F 1 "R_10K_0402" V 2750 5000 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder" V 2780 4850 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0402WGF1002TCE_C25744.pdf" V 2930 4850 50  0001 C CNN
+F 4 "0402WGF1002TCE" V 3030 4950 60  0001 C CNN "Part Number"
+F 5 "C25744" V 3100 4850 50  0001 C CNN "LCSC"
+	1    2850 4850
+	0    1    1    0   
+$EndComp
+$Comp
+L Open_Automation:R_10K_0402 R7
+U 1 1 60470BC9
+P 2850 5200
+F 0 "R7" V 2850 5200 50  0000 C CNN
+F 1 "R_10K_0402" V 2750 5350 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder" V 2780 5200 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0402WGF1002TCE_C25744.pdf" V 2930 5200 50  0001 C CNN
+F 4 "0402WGF1002TCE" V 3030 5300 60  0001 C CNN "Part Number"
+F 5 "C25744" V 3100 5200 50  0001 C CNN "LCSC"
+	1    2850 5200
+	0    1    1    0   
+$EndComp
+$Comp
+L Open_Automation:R_10K_0402 R4
+U 1 1 6047E6CC
+P 1950 3450
+F 0 "R4" V 1950 3450 50  0000 C CNN
+F 1 "R_10K_0402" V 1850 3500 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder" V 1880 3450 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0402WGF1002TCE_C25744.pdf" V 2030 3450 50  0001 C CNN
+F 4 "0402WGF1002TCE" V 2130 3550 60  0001 C CNN "Part Number"
+F 5 "C25744" V 2200 3450 50  0001 C CNN "LCSC"
+	1    1950 3450
+	-1   0    0    1   
+$EndComp
+$Comp
+L Open_Automation:R_1K R1
+U 1 1 604843EB
+P 1750 4850
+F 0 "R1" V 1750 4800 50  0000 L CNN
+F 1 "R_1K" V 1650 4750 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 1680 4850 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-3GEYJ102V/P1.0KGDKR-ND/577615" V 1830 4850 50  0001 C CNN
+F 4 "ERJ-3GEYJ102V" V 1930 4950 60  0001 C CNN "Part Number"
+F 5 " C21190" H 1750 4850 50  0001 C CNN "LCSC"
+	1    1750 4850
+	0    1    1    0   
+$EndComp
+$Comp
+L Open_Automation:R_1K R2
+U 1 1 6048D68D
+P 1750 5200
+F 0 "R2" V 1750 5200 50  0000 C CNN
+F 1 "R_1K" V 1850 5200 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 1680 5200 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-3GEYJ102V/P1.0KGDKR-ND/577615" V 1830 5200 50  0001 C CNN
+F 4 "ERJ-3GEYJ102V" V 1930 5300 60  0001 C CNN "Part Number"
+F 5 " C21190" H 1750 5200 50  0001 C CNN "LCSC"
+	1    1750 5200
+	0    1    1    0   
+$EndComp
+$Comp
+L Open_Automation:R_1K R5
+U 1 1 60443CCC
+P 2450 3400
+F 0 "R5" V 2450 3350 50  0000 L CNN
+F 1 "R_1K" V 2350 3300 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 2380 3400 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-3GEYJ102V/P1.0KGDKR-ND/577615" V 2530 3400 50  0001 C CNN
+F 4 "ERJ-3GEYJ102V" V 2630 3500 60  0001 C CNN "Part Number"
+F 5 " C21190" H 2450 3400 50  0001 C CNN "LCSC"
+	1    2450 3400
+	-1   0    0    1   
+$EndComp
+$Comp
+L Open_Automation:R_100K R3
+U 1 1 6044C59E
+P 1950 3000
+F 0 "R3" V 1950 2950 50  0000 L CNN
+F 1 "R_100K" V 2050 2900 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 1880 3000 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0603WAF1003T5E_C25803.pdf" V 2030 3000 50  0001 C CNN
+F 4 "0603WAF1003T5E" V 2130 3100 60  0001 C CNN "Part Number"
+F 5 "C25803" V 1800 3000 50  0001 C CNN "LCSC"
+	1    1950 3000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Open_Automation:R_10K_0402 R8
+U 1 1 604513EA
+P 5400 4800
+F 0 "R8" V 5400 4800 50  0000 C CNN
+F 1 "R_10K_0402" V 5300 4650 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder" V 5330 4800 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0402WGF1002TCE_C25744.pdf" V 5480 4800 50  0001 C CNN
+F 4 "0402WGF1002TCE" V 5580 4900 60  0001 C CNN "Part Number"
+F 5 "C25744" V 5650 4800 50  0001 C CNN "LCSC"
+	1    5400 4800
+	-1   0    0    1   
+$EndComp
+$Comp
+L Open_Automation:R_10K_0402 R11
+U 1 1 604588E2
+P 8000 5550
+F 0 "R11" V 8000 5550 50  0000 C CNN
+F 1 "R_10K_0402" V 8100 5600 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder" V 7930 5550 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0402WGF1002TCE_C25744.pdf" V 8080 5550 50  0001 C CNN
+F 4 "0402WGF1002TCE" V 8180 5650 60  0001 C CNN "Part Number"
+F 5 "C25744" V 8250 5550 50  0001 C CNN "LCSC"
+	1    8000 5550
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	10100 1750 9700 1750
+$Comp
+L Open_Automation:R_20K R14
+U 1 1 60473BDD
+P 9750 3850
+F 0 "R14" V 9750 3800 50  0000 L CNN
+F 1 "R_20K" V 9850 3750 50  0000 L CNN
+F 2 "Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder" V 9680 3850 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0402WGF2002TCE_C25765.pdf" V 9830 3850 50  0001 C CNN
+F 4 "0402WGF2002TCE" V 9930 3950 60  0001 C CNN "Part Number"
+F 5 "C25765" V 9600 3850 50  0001 C CNN "LCSC"
+	1    9750 3850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Open_Automation:R_20K R16
+U 1 1 60474496
+P 9800 5500
+F 0 "R16" V 9800 5450 50  0000 L CNN
+F 1 "R_20K" V 9900 5400 50  0000 L CNN
+F 2 "Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder" V 9730 5500 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0402WGF2002TCE_C25765.pdf" V 9880 5500 50  0001 C CNN
+F 4 "0402WGF2002TCE" V 9980 5600 60  0001 C CNN "Part Number"
+F 5 "C25765" V 9650 5500 50  0001 C CNN "LCSC"
+	1    9800 5500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Open_Automation:R_2.2K R17
+U 1 1 60477DC0
+P 9800 5900
+F 0 "R17" V 9800 5850 50  0000 L CNN
+F 1 "R_2.2K" V 9900 5800 50  0000 L CNN
+F 2 "Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder" V 9730 5900 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0402WGF2201TCE_C25879.pdf" V 9880 5900 50  0001 C CNN
+F 4 "C4190" V 9650 5900 50  0001 C CNN "LCSC"
+	1    9800 5900
+	1    0    0    -1  
+$EndComp
+$Comp
+L Open_Automation:R_2.2K R15
+U 1 1 6047AB88
+P 9750 4250
+F 0 "R15" V 9750 4200 50  0000 L CNN
+F 1 "R_2.2K" V 9850 4150 50  0000 L CNN
+F 2 "Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder" V 9680 4250 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0402WGF2201TCE_C25879.pdf" V 9830 4250 50  0001 C CNN
+F 4 "C4190" V 9600 4250 50  0001 C CNN "LCSC"
+	1    9750 4250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Open_Automation:R_20K R12
+U 1 1 6047CBC9
+P 9700 1950
+F 0 "R12" V 9700 1900 50  0000 L CNN
+F 1 "R_20K" V 9800 1850 50  0000 L CNN
+F 2 "Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder" V 9630 1950 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0402WGF2002TCE_C25765.pdf" V 9780 1950 50  0001 C CNN
+F 4 "0402WGF2002TCE" V 9880 2050 60  0001 C CNN "Part Number"
+F 5 "C25765" V 9550 1950 50  0001 C CNN "LCSC"
+	1    9700 1950
+	1    0    0    -1  
+$EndComp
+$Comp
+L Open_Automation:C_10uF C?
+U 1 1 60502A0A
+P 4300 3100
+F 0 "C?" H 4100 3100 50  0000 L CNN
+F 1 "C_10uF" H 4000 3000 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder" H 4550 3550 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Samsung-Electro-Mechanics-CL21A106KAYNNNE_C15850.pdf" H 4300 2850 50  0001 C CNN
+F 4 "CL21A106KAYNNNE" H 4350 3650 60  0001 C CNN "Part Number"
+F 5 "C15850" H 4300 3750 50  0001 C CNN "LCSC"
+	1    4300 3100
+	1    0    0    -1  
+$EndComp
+$Comp
+L Open_Automation:C_10uF C?
+U 1 1 605049B8
+P 5400 3250
+F 0 "C?" H 5200 3250 50  0000 L CNN
+F 1 "C_10uF" H 5100 3150 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder" H 5650 3700 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Samsung-Electro-Mechanics-CL21A106KAYNNNE_C15850.pdf" H 5400 3000 50  0001 C CNN
+F 4 "CL21A106KAYNNNE" H 5450 3800 60  0001 C CNN "Part Number"
+F 5 "C15850" H 5400 3900 50  0001 C CNN "LCSC"
+	1    5400 3250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Open_Automation:C_10uF C?
+U 1 1 605052BC
+P 7800 1950
+F 0 "C?" H 7600 1950 50  0000 L CNN
+F 1 "C_10uF" H 7500 1850 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder" H 8050 2400 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Samsung-Electro-Mechanics-CL21A106KAYNNNE_C15850.pdf" H 7800 1700 50  0001 C CNN
+F 4 "CL21A106KAYNNNE" H 7850 2500 60  0001 C CNN "Part Number"
+F 5 "C15850" H 7800 2600 50  0001 C CNN "LCSC"
+	1    7800 1950
+	1    0    0    -1  
+$EndComp
+$Comp
+L Open_Automation:C_10uF C?
+U 1 1 60506FE4
+P 7550 3850
+F 0 "C?" H 7350 3850 50  0000 L CNN
+F 1 "C_10uF" H 7250 3750 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder" H 7800 4300 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Samsung-Electro-Mechanics-CL21A106KAYNNNE_C15850.pdf" H 7550 3600 50  0001 C CNN
+F 4 "CL21A106KAYNNNE" H 7600 4400 60  0001 C CNN "Part Number"
+F 5 "C15850" H 7550 4500 50  0001 C CNN "LCSC"
+	1    7550 3850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Open_Automation:C_10uF C?
+U 1 1 605088D7
+P 7600 5500
+F 0 "C?" H 7400 5500 50  0000 L CNN
+F 1 "C_10uF" H 7300 5400 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder" H 7850 5950 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Samsung-Electro-Mechanics-CL21A106KAYNNNE_C15850.pdf" H 7600 5250 50  0001 C CNN
+F 4 "CL21A106KAYNNNE" H 7650 6050 60  0001 C CNN "Part Number"
+F 5 "C15850" H 7600 6150 50  0001 C CNN "LCSC"
+	1    7600 5500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Open_Automation:R_10K_0402 R?
+U 1 1 605484A2
+P 7900 3900
+F 0 "R?" V 7900 3900 50  0000 C CNN
+F 1 "R_10K_0402" V 8000 3950 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder" V 7830 3900 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0402WGF1002TCE_C25744.pdf" V 7980 3900 50  0001 C CNN
+F 4 "0402WGF1002TCE" V 8080 4000 60  0001 C CNN "Part Number"
+F 5 "C25744" V 8150 3900 50  0001 C CNN "LCSC"
+	1    7900 3900
+	-1   0    0    1   
 $EndComp
 $EndSCHEMATC
