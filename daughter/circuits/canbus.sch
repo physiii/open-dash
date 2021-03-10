@@ -245,10 +245,10 @@ CAN_RX
 Text Notes 3150 3650 0    50   ~ 0
 shift RX from 5 to 3.3 volts
 $Comp
-L Open_Automation:R_10K_0402 R?
+L Open_Automation:R_10K_0402 R39
 U 1 1 605738FD
 P 3600 4500
-F 0 "R?" H 3670 4546 50  0000 L CNN
+F 0 "R39" H 3670 4546 50  0000 L CNN
 F 1 "R_10K_0402" H 3670 4455 50  0000 L CNN
 F 2 "Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder" V 3530 4500 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0402WGF1002TCE_C25744.pdf" V 3680 4500 50  0001 C CNN
@@ -258,10 +258,10 @@ F 5 "C25744" V 3850 4500 50  0001 C CNN "LCSC"
 	1    0    0    -1  
 $EndComp
 $Comp
-L Open_Automation:R_4.7K R?
+L Open_Automation:R_4.7K R38
 U 1 1 6057A3E4
 P 3600 4000
-F 0 "R?" H 3670 4046 50  0000 L CNN
+F 0 "R38" H 3670 4046 50  0000 L CNN
 F 1 "R_4.7K" H 3670 3955 50  0000 L CNN
 F 2 "Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder" V 3530 4000 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0402WGF4701TCE_C25900.pdf" V 3680 4000 50  0001 C CNN
@@ -271,10 +271,10 @@ F 5 "C25900" V 3850 4000 50  0001 C CNN "LCSC"
 	1    0    0    -1  
 $EndComp
 $Comp
-L Open_Automation:R_4.7K R?
+L Open_Automation:R_4.7K R40
 U 1 1 6057D4BE
 P 4900 4500
-F 0 "R?" H 4970 4546 50  0000 L CNN
+F 0 "R40" H 4970 4546 50  0000 L CNN
 F 1 "R_4.7K" H 4970 4455 50  0000 L CNN
 F 2 "Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder" V 4830 4500 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0402WGF4701TCE_C25900.pdf" V 4980 4500 50  0001 C CNN
@@ -284,10 +284,10 @@ F 5 "C25900" V 5150 4500 50  0001 C CNN "LCSC"
 	1    0    0    -1  
 $EndComp
 $Comp
-L Open_Automation:C_470pF C?
+L Open_Automation:C_470pF C27
 U 1 1 6047599C
 P 5550 2300
-F 0 "C?" H 5650 2300 50  0000 L CNN
+F 0 "C27" H 5650 2300 50  0000 L CNN
 F 1 "C_470pF" H 5550 2200 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder" H 5650 2600 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/Guangdong-Fenghua-Advanced-Tech-0402B471K500NT_C1537.pdf" H 5550 2050 50  0001 C CNN
@@ -297,10 +297,10 @@ F 5 "C1537" H 5550 2700 50  0001 C CNN "LCSC"
 	1    0    0    -1  
 $EndComp
 $Comp
-L Open_Automation:C_470pF C?
+L Open_Automation:C_470pF C26
 U 1 1 604775F0
 P 5100 2300
-F 0 "C?" H 4900 2300 50  0000 L CNN
+F 0 "C26" H 4900 2300 50  0000 L CNN
 F 1 "C_470pF" H 4750 2200 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder" H 5200 2600 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/Guangdong-Fenghua-Advanced-Tech-0402B471K500NT_C1537.pdf" H 5100 2050 50  0001 C CNN
@@ -310,10 +310,10 @@ F 5 "C1537" H 5100 2700 50  0001 C CNN "LCSC"
 	1    0    0    -1  
 $EndComp
 $Comp
-L Open_Automation:R_100 R?
+L Open_Automation:R_100 R41
 U 1 1 604944AE
 P 5100 1900
-F 0 "R?" V 5100 1850 50  0000 L CNN
+F 0 "R41" V 5100 1850 50  0000 L CNN
 F 1 "R_100" H 5100 1750 50  0000 L CNN
 F 2 "Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder" V 5030 1900 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0402WGF1000TCE_C25076.pdf" V 5180 1900 50  0001 C CNN
@@ -323,10 +323,10 @@ F 5 "C25076" V 5400 1900 50  0001 C CNN "LCSC"
 	1    0    0    -1  
 $EndComp
 $Comp
-L Open_Automation:R_100 R?
+L Open_Automation:R_100 R42
 U 1 1 60494C03
 P 5550 1900
-F 0 "R?" V 5550 1850 50  0000 L CNN
+F 0 "R42" V 5550 1850 50  0000 L CNN
 F 1 "R_100" H 5550 1750 50  0000 L CNN
 F 2 "Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder" V 5480 1900 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0402WGF1000TCE_C25076.pdf" V 5630 1900 50  0001 C CNN

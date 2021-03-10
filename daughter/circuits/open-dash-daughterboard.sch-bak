@@ -299,9 +299,9 @@ Wire Wire Line
 Wire Wire Line
 	8950 7600 9000 7600
 Text Label 7400 5650 2    50   ~ 0
-IO26
+INTB
 Text Label 7400 5550 2    50   ~ 0
-IO25
+INTA
 Wire Wire Line
 	7400 5050 7450 5050
 $Sheet
@@ -370,7 +370,7 @@ F 6 "C117948" H -10250 -700 50  0001 C CNN "LCSC"
 	1    1700 2500
 	-1   0    0    1   
 $EndComp
-Text Label 1700 4050 2    50   ~ 0
+Text Label 2300 3650 0    50   ~ 0
 5V
 $Comp
 L open-dash-daughterboard-rescue:GND-power #PWR?
@@ -398,99 +398,18 @@ Wire Wire Line
 	7650 8450 7600 8450
 Wire Wire Line
 	7600 8350 7650 8350
-Text Label 2300 3950 0    50   ~ 0
-TXD
 Wire Wire Line
-	2250 3750 2300 3750
-Text Label 2300 4050 0    50   ~ 0
-RXD
-Wire Wire Line
-	1750 4350 1700 4350
-Wire Wire Line
-	2250 3850 2300 3850
-Text Label 2300 3850 0    50   ~ 0
-SCL
-Text Label 2300 3750 0    50   ~ 0
-SDA
-Wire Wire Line
-	2250 4050 2300 4050
-Wire Wire Line
-	2300 3950 2250 3950
-Wire Wire Line
-	1750 3950 1700 3950
-Text Label 1700 4250 2    50   ~ 0
-PROG
-Wire Wire Line
-	1750 4250 1700 4250
+	1750 3750 1700 3750
 Text Label 1700 3750 2    50   ~ 0
-FACT
-Text Label 1700 3850 2    50   ~ 0
-ESP_EN
-Wire Wire Line
-	1750 3850 1700 3850
-Wire Wire Line
-	1700 3750 1750 3750
-$Comp
-L open-dash-daughterboard-rescue:GND-power #PWR?
-U 1 1 5FE25541
-P 1650 3550
-AR Path="/5ABD187E/5FE25541" Ref="#PWR?"  Part="1" 
-AR Path="/5FE25541" Ref="#PWR02"  Part="1" 
-AR Path="/5A7BADDB/5FE25541" Ref="#PWR?"  Part="1" 
-AR Path="/6077D777/5FE25541" Ref="#PWR?"  Part="1" 
-F 0 "#PWR02" H 1650 3300 50  0001 C CNN
-F 1 "GND" V 1650 3350 50  0000 C CNN
-F 2 "" H 1650 3550 50  0001 C CNN
-F 3 "" H 1650 3550 50  0001 C CNN
-	1    1650 3550
-	0    1    1    0   
-$EndComp
-$Comp
-L open-dash-daughterboard-rescue:GND-power #PWR?
-U 1 1 5FE25547
-P 1700 4350
-AR Path="/5ABD187E/5FE25547" Ref="#PWR?"  Part="1" 
-AR Path="/5FE25547" Ref="#PWR03"  Part="1" 
-AR Path="/5A7BADDB/5FE25547" Ref="#PWR?"  Part="1" 
-AR Path="/6077D777/5FE25547" Ref="#PWR?"  Part="1" 
-F 0 "#PWR03" H 1700 4100 50  0001 C CNN
-F 1 "GND" V 1650 4200 50  0000 C CNN
-F 2 "" H 1700 4350 50  0001 C CNN
-F 3 "" H 1700 4350 50  0001 C CNN
-	1    1700 4350
-	0    1    1    0   
-$EndComp
-Text Label 1700 3950 2    50   ~ 0
 3V3
 Wire Wire Line
-	1700 4050 1750 4050
+	2300 3650 2250 3650
 Wire Wire Line
-	1700 4150 1750 4150
-Wire Wire Line
-	2250 4150 2300 4150
+	1700 3550 1750 3550
 Text Label 7400 6300 2    50   ~ 0
 FACT
 Wire Wire Line
 	7400 6300 7450 6300
-Wire Wire Line
-	2250 4350 2300 4350
-Wire Wire Line
-	2300 4250 2250 4250
-Text Label 2300 4350 0    50   ~ 0
-IO26
-Text Label 2300 4250 0    50   ~ 0
-IO25
-$Comp
-L open-dash-daughterboard-rescue:Conn_02x09_Odd_Even-Connector_Generic J5
-U 1 1 600AFE56
-P 1950 3950
-F 0 "J5" H 2000 4567 50  0000 C CNN
-F 1 "Conn_02x09_Odd_Even" H 2000 4476 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_2x09_P2.54mm_Vertical_SMD" H 1950 3950 50  0001 C CNN
-F 3 "~" H 1950 3950 50  0001 C CNN
-	1    1950 3950
-	1    0    0    -1  
-$EndComp
 Text Label 11200 5100 2    50   ~ 0
 SCL
 Text Label 11200 5200 2    50   ~ 0
@@ -522,7 +441,7 @@ REAR_DEFOG
 Text Label 11200 4850 2    50   ~ 0
 BATTERY
 Text Label 12450 6100 0    50   ~ 0
-OUT11
+C_OUT3
 Text Label 11200 5350 2    50   ~ 0
 INSIDE_AIR_TEMP
 Text Label 11200 5450 2    50   ~ 0
@@ -617,25 +536,13 @@ Wire Wire Line
 	12400 5000 12450 5000
 Wire Wire Line
 	12450 4850 12400 4850
-Text Label 2300 3550 0    50   ~ 0
-OUT11
-Text Label 2300 4150 0    50   ~ 0
-AIN9
-Text Label 2300 3650 0    50   ~ 0
-AIN10
-Wire Wire Line
-	2300 3650 2250 3650
-Wire Wire Line
-	2300 3550 2250 3550
 Text Label 1700 3650 2    50   ~ 0
 5V
-Wire Wire Line
-	1650 3550 1750 3550
 Wire Wire Line
 	1700 3650 1750 3650
 Text Label 7400 6150 2    50   ~ 0
 BATTERY_VOLTAGE_SENSE
-Text Label 1700 4150 2    50   ~ 0
+Text Label 1700 3550 2    50   ~ 0
 BATTERY
 Text Label 7400 5850 2    50   ~ 0
 IGNITION_SENSE
@@ -648,9 +555,9 @@ Wire Wire Line
 Wire Wire Line
 	12450 6500 12400 6500
 Text Label 12450 6600 0    50   ~ 0
-IO26
+INTB
 Text Label 12450 6500 0    50   ~ 0
-IO25
+INTA
 $Sheet
 S 11250 4800 1150 1850
 U 601F213A
@@ -786,375 +693,65 @@ Wire Wire Line
 Connection ~ 1100 1000
 Wire Wire Line
 	1100 1000 1100 1200
-$Comp
-L open-dash-daughterboard-rescue:GND-power #PWR?
-U 1 1 63879F60
-P 11050 3050
-AR Path="/5ABD187E/63879F60" Ref="#PWR?"  Part="1" 
-AR Path="/63879F60" Ref="#PWR016"  Part="1" 
-AR Path="/5A7BADB8/63879F60" Ref="#PWR?"  Part="1" 
-AR Path="/62CC146C/63879F60" Ref="#PWR?"  Part="1" 
-F 0 "#PWR016" H 11050 2800 50  0001 C CNN
-F 1 "GND" V 11100 2900 50  0000 C CNN
-F 2 "" H 11050 3050 50  0001 C CNN
-F 3 "" H 11050 3050 50  0001 C CNN
-	1    11050 3050
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	11050 3050 11100 3050
-$Comp
-L open-dash-daughterboard-rescue:GND-power #PWR?
-U 1 1 6387A393
-P 11050 3150
-AR Path="/5ABD187E/6387A393" Ref="#PWR?"  Part="1" 
-AR Path="/6387A393" Ref="#PWR017"  Part="1" 
-AR Path="/5A7BADB8/6387A393" Ref="#PWR?"  Part="1" 
-AR Path="/62CC146C/6387A393" Ref="#PWR?"  Part="1" 
-F 0 "#PWR017" H 11050 2900 50  0001 C CNN
-F 1 "GND" V 11100 3000 50  0000 C CNN
-F 2 "" H 11050 3150 50  0001 C CNN
-F 3 "" H 11050 3150 50  0001 C CNN
-	1    11050 3150
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	11050 3150 11100 3150
-$Comp
-L open-dash-daughterboard-rescue:GND-power #PWR?
-U 1 1 6387A39E
-P 11650 3050
-AR Path="/5ABD187E/6387A39E" Ref="#PWR?"  Part="1" 
-AR Path="/6387A39E" Ref="#PWR021"  Part="1" 
-AR Path="/5A7BADB8/6387A39E" Ref="#PWR?"  Part="1" 
-AR Path="/62CC146C/6387A39E" Ref="#PWR?"  Part="1" 
-F 0 "#PWR021" H 11650 2800 50  0001 C CNN
-F 1 "GND" V 11600 2900 50  0000 C CNN
-F 2 "" H 11650 3050 50  0001 C CNN
-F 3 "" H 11650 3050 50  0001 C CNN
-	1    11650 3050
-	0    -1   -1   0   
-$EndComp
-Wire Wire Line
-	11650 3050 11600 3050
-$Comp
-L open-dash-daughterboard-rescue:GND-power #PWR?
-U 1 1 6387A3A9
-P 11650 3150
-AR Path="/5ABD187E/6387A3A9" Ref="#PWR?"  Part="1" 
-AR Path="/6387A3A9" Ref="#PWR022"  Part="1" 
-AR Path="/5A7BADB8/6387A3A9" Ref="#PWR?"  Part="1" 
-AR Path="/62CC146C/6387A3A9" Ref="#PWR?"  Part="1" 
-F 0 "#PWR022" H 11650 2900 50  0001 C CNN
-F 1 "GND" V 11600 3000 50  0000 C CNN
-F 2 "" H 11650 3150 50  0001 C CNN
-F 3 "" H 11650 3150 50  0001 C CNN
-	1    11650 3150
-	0    -1   -1   0   
-$EndComp
-Wire Wire Line
-	11650 3150 11600 3150
 Text Label 11650 2950 0    50   ~ 0
 BATTERY
 Wire Wire Line
 	11650 2950 11600 2950
-Wire Wire Line
-	9050 2950 9050 2850
-Wire Wire Line
-	9000 2950 9050 2950
-Wire Wire Line
-	9050 3150 9050 3050
-Wire Wire Line
-	9000 3150 9050 3150
-Wire Wire Line
-	8450 2950 8450 2850
-Wire Wire Line
-	8500 2950 8450 2950
-Wire Wire Line
-	8450 3150 8450 3050
-Wire Wire Line
-	8450 3150 8500 3150
-Connection ~ 9050 2650
-Wire Wire Line
-	9050 2650 9050 2550
-Wire Wire Line
-	9050 2750 9050 2650
-Connection ~ 9050 2350
-Wire Wire Line
-	9050 2350 9050 2250
-Wire Wire Line
-	9050 2450 9050 2350
-Wire Wire Line
-	9050 2050 9050 1950
-Connection ~ 9050 2050
-Wire Wire Line
-	9000 2050 9050 2050
-Wire Wire Line
-	9050 2150 9050 2050
-Wire Wire Line
-	9000 2150 9050 2150
-Wire Wire Line
-	9050 1750 9050 1650
-Connection ~ 9050 1750
-Wire Wire Line
-	9000 1750 9050 1750
-Wire Wire Line
-	9050 1850 9050 1750
-Wire Wire Line
-	9000 1650 9050 1650
-Text Label 8450 2250 2    50   ~ 0
+Text Label 8450 2550 2    50   ~ 0
 RR-
-Connection ~ 8450 2350
 Wire Wire Line
-	8450 2350 8450 2250
-Wire Wire Line
-	8450 2450 8450 2350
-Connection ~ 8450 2650
-Wire Wire Line
-	8450 2650 8450 2550
-Wire Wire Line
-	8450 2750 8450 2650
-Text Label 9050 2550 0    50   ~ 0
-RF+
-Wire Wire Line
-	8500 2550 8450 2550
-Wire Wire Line
-	8450 2450 8500 2450
-Connection ~ 8450 2050
-Wire Wire Line
-	8450 2050 8450 1950
-Wire Wire Line
-	8450 2150 8450 2050
-Wire Wire Line
-	8450 1750 8450 1850
-Connection ~ 8450 1750
-Wire Wire Line
-	8450 1750 8450 1650
-Wire Wire Line
-	8450 1950 8500 1950
-Text Label 9050 1650 0    50   ~ 0
+	8450 2150 8500 2150
+Text Label 8450 2250 2    50   ~ 0
 LR+
 Wire Wire Line
-	8450 1650 8500 1650
-Text Label 8450 2550 2    50   ~ 0
-RR+
-Text Label 6600 3050 0    50   ~ 0
+	8450 1850 8500 1850
+Text Label 6000 2250 2    50   ~ 0
 BATTERY
 Wire Wire Line
-	6600 3050 6550 3050
-Text Label 6000 3050 2    50   ~ 0
-BATTERY
+	6000 2250 6050 2250
 Wire Wire Line
-	6000 3050 6050 3050
-Wire Wire Line
-	6600 3250 6550 3250
-$Comp
-L open-dash-daughterboard-rescue:GND-open-automation #PWR?
-U 1 1 6387A3E7
-P 6600 3250
-AR Path="/5B15E02A/6387A3E7" Ref="#PWR?"  Part="1" 
-AR Path="/5C04BFCE/6387A3E7" Ref="#PWR?"  Part="1" 
-AR Path="/6387A3E7" Ref="#PWR09"  Part="1" 
-AR Path="/62CC146C/6387A3E7" Ref="#PWR?"  Part="1" 
-F 0 "#PWR09" H 6600 3000 50  0001 C CNN
-F 1 "GND" V 6600 3050 50  0000 C CNN
-F 2 "" H 6600 3250 50  0000 C CNN
-F 3 "" H 6600 3250 50  0000 C CNN
-	1    6600 3250
-	0    -1   -1   0   
-$EndComp
-$Comp
-L open-dash-daughterboard-rescue:GND-open-automation #PWR?
-U 1 1 6387A3F1
-P 6000 3250
-AR Path="/5B15E02A/6387A3F1" Ref="#PWR?"  Part="1" 
-AR Path="/5C04BFCE/6387A3F1" Ref="#PWR?"  Part="1" 
-AR Path="/6387A3F1" Ref="#PWR06"  Part="1" 
-AR Path="/62CC146C/6387A3F1" Ref="#PWR?"  Part="1" 
-F 0 "#PWR06" H 6000 3000 50  0001 C CNN
-F 1 "GND" V 5950 3100 50  0000 C CNN
-F 2 "" H 6000 3250 50  0000 C CNN
-F 3 "" H 6000 3250 50  0000 C CNN
-	1    6000 3250
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	6050 3250 6000 3250
-Wire Wire Line
-	6000 2150 6050 2150
-Text Label 6000 2150 2    50   ~ 0
-RECIRCULATION_A
-Wire Wire Line
-	6000 1950 6050 1950
-Text Label 6000 1950 2    50   ~ 0
-MODE_A
-Wire Wire Line
-	6000 1750 6050 1750
+	6050 1750 6000 1750
 Text Label 6000 1750 2    50   ~ 0
-RIGHT_AIR_TEMP_CONTROL_A
+RIGHT_AIR_TEMP_CONTROL_B
 Wire Wire Line
-	6000 1550 6050 1550
+	6050 1550 6000 1550
 Text Label 6000 1550 2    50   ~ 0
-LEFT_AIR_TEMP_CONTROL_A
-Wire Wire Line
-	6550 2150 6600 2150
-Text Label 6600 2150 0    50   ~ 0
-RECIRCULATION_B
-Wire Wire Line
-	6550 1950 6600 1950
-Text Label 6600 1950 0    50   ~ 0
-MODE_B
-Wire Wire Line
-	6550 1750 6600 1750
-Text Label 6600 1750 0    50   ~ 0
-RIGHT_AIR_TEMP_CONTROL_B
-Wire Wire Line
-	6550 1650 6600 1650
-Text Label 6600 1650 0    50   ~ 0
-RIGHT_AIR_TEMP_CONTROL_B
-Wire Wire Line
-	6550 1550 6600 1550
-Text Label 6600 1550 0    50   ~ 0
 LEFT_AIR_TEMP_CONTROL_B
 $Comp
 L open-dash-daughterboard-rescue:GND-power #PWR?
-U 1 1 6387A40E
-P 11650 3250
-AR Path="/5ABD187E/6387A40E" Ref="#PWR?"  Part="1" 
-AR Path="/6387A40E" Ref="#PWR023"  Part="1" 
-AR Path="/5A7BADB8/6387A40E" Ref="#PWR?"  Part="1" 
-AR Path="/62CC146C/6387A40E" Ref="#PWR?"  Part="1" 
-F 0 "#PWR023" H 11650 3000 50  0001 C CNN
-F 1 "GND" V 11600 3100 50  0000 C CNN
-F 2 "" H 11650 3250 50  0001 C CNN
-F 3 "" H 11650 3250 50  0001 C CNN
-	1    11650 3250
-	0    -1   -1   0   
-$EndComp
-Wire Wire Line
-	11650 3250 11600 3250
-$Comp
-L open-dash-daughterboard-rescue:GND-power #PWR?
-U 1 1 6387A419
-P 11050 3250
-AR Path="/5ABD187E/6387A419" Ref="#PWR?"  Part="1" 
-AR Path="/6387A419" Ref="#PWR018"  Part="1" 
-AR Path="/5A7BADB8/6387A419" Ref="#PWR?"  Part="1" 
-AR Path="/62CC146C/6387A419" Ref="#PWR?"  Part="1" 
-F 0 "#PWR018" H 11050 3000 50  0001 C CNN
-F 1 "GND" V 11100 3100 50  0000 C CNN
-F 2 "" H 11050 3250 50  0001 C CNN
-F 3 "" H 11050 3250 50  0001 C CNN
-	1    11050 3250
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	11050 3250 11100 3250
-$Comp
-L open-dash-daughterboard-rescue:GND-power #PWR?
-U 1 1 6387A424
-P 9050 3250
-AR Path="/5ABD187E/6387A424" Ref="#PWR?"  Part="1" 
-AR Path="/6387A424" Ref="#PWR013"  Part="1" 
-AR Path="/5A7BADB8/6387A424" Ref="#PWR?"  Part="1" 
-AR Path="/62CC146C/6387A424" Ref="#PWR?"  Part="1" 
-F 0 "#PWR013" H 9050 3000 50  0001 C CNN
-F 1 "GND" V 9100 3100 50  0000 C CNN
-F 2 "" H 9050 3250 50  0001 C CNN
-F 3 "" H 9050 3250 50  0001 C CNN
-	1    9050 3250
-	0    -1   -1   0   
-$EndComp
-Wire Wire Line
-	9050 3250 9000 3250
-$Comp
-L open-dash-daughterboard-rescue:GND-power #PWR?
 U 1 1 6387A42F
-P 9050 3350
+P 9000 3400
 AR Path="/5ABD187E/6387A42F" Ref="#PWR?"  Part="1" 
 AR Path="/6387A42F" Ref="#PWR014"  Part="1" 
 AR Path="/5A7BADB8/6387A42F" Ref="#PWR?"  Part="1" 
 AR Path="/62CC146C/6387A42F" Ref="#PWR?"  Part="1" 
-F 0 "#PWR014" H 9050 3100 50  0001 C CNN
-F 1 "GND" V 9100 3200 50  0000 C CNN
-F 2 "" H 9050 3350 50  0001 C CNN
-F 3 "" H 9050 3350 50  0001 C CNN
-	1    9050 3350
-	0    -1   -1   0   
+F 0 "#PWR014" H 9000 3150 50  0001 C CNN
+F 1 "GND" H 9000 3250 50  0000 C CNN
+F 2 "" H 9000 3400 50  0001 C CNN
+F 3 "" H 9000 3400 50  0001 C CNN
+	1    9000 3400
+	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	9050 3350 9000 3350
 Text Label 8450 1450 2    50   ~ 0
 BATTERY
 Wire Wire Line
 	8450 1450 8500 1450
-Text Label 8450 1550 2    50   ~ 0
-BATTERY
 Wire Wire Line
 	8450 1550 8500 1550
 Text Label 9050 1450 0    50   ~ 0
 BATTERY
 Wire Wire Line
 	9050 1450 9000 1450
-Text Label 9050 1550 0    50   ~ 0
-BATTERY
 Wire Wire Line
 	9050 1550 9000 1550
-Text Label 9050 2250 0    50   ~ 0
+Text Label 8450 2150 2    50   ~ 0
 RF-
 Wire Wire Line
-	9000 2750 9050 2750
-Wire Wire Line
-	8450 2350 8500 2350
-Wire Wire Line
-	8500 2750 8450 2750
-Wire Wire Line
-	9050 2550 9000 2550
-Wire Wire Line
-	8450 2150 8500 2150
-Wire Wire Line
-	9050 2350 9000 2350
-Wire Wire Line
-	8450 1750 8500 1750
-Wire Wire Line
-	9000 1850 9050 1850
-Wire Wire Line
-	9050 3050 9000 3050
-Wire Wire Line
-	9050 2850 9000 2850
-Text Label 9050 2850 0    50   ~ 0
-AUDIO_IN3
-Text Label 9050 3050 0    50   ~ 0
-AUDIO_IN4
-Wire Wire Line
-	8450 3050 8500 3050
-Wire Wire Line
-	8450 2850 8500 2850
-Text Label 8450 2850 2    50   ~ 0
-AUDIO_IN1
-Text Label 8450 3050 2    50   ~ 0
-AUDIO_IN2
+	8450 2550 8500 2550
 Text Label 11050 2950 2    50   ~ 0
 BATTERY
 Wire Wire Line
 	11050 2950 11100 2950
-$Comp
-L open-dash-daughterboard-rescue:GND-open-automation #PWR?
-U 1 1 6387A45F
-P 8450 3250
-AR Path="/5B15E02A/6387A45F" Ref="#PWR?"  Part="1" 
-AR Path="/5C04BFCE/6387A45F" Ref="#PWR?"  Part="1" 
-AR Path="/6387A45F" Ref="#PWR011"  Part="1" 
-AR Path="/62CC146C/6387A45F" Ref="#PWR?"  Part="1" 
-F 0 "#PWR011" H 8450 3000 50  0001 C CNN
-F 1 "GND" V 8400 3100 50  0000 C CNN
-F 2 "" H 8450 3250 50  0000 C CNN
-F 3 "" H 8450 3250 50  0000 C CNN
-	1    8450 3250
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	8450 3250 8500 3250
 Text Label 11050 2750 2    50   ~ 0
 BATTERY
 Wire Wire Line
@@ -1163,18 +760,18 @@ Text Label 11650 2750 0    50   ~ 0
 BATTERY
 Wire Wire Line
 	11650 2750 11600 2750
-Text Label 6000 2950 2    50   ~ 0
+Text Label 6600 2650 0    50   ~ 0
 IGNITION
 Wire Wire Line
-	6000 2950 6050 2950
-Text Label 6000 2750 2    50   ~ 0
+	6600 2650 6550 2650
+Text Label 6000 3050 2    50   ~ 0
 MAIN_POWER
-Text Label 6000 2650 2    50   ~ 0
+Text Label 6000 2950 2    50   ~ 0
 DISPLAY_POWER
 Wire Wire Line
-	6000 2650 6050 2650
+	6000 2950 6050 2950
 Wire Wire Line
-	6000 2750 6050 2750
+	6000 3050 6050 3050
 Wire Wire Line
 	6000 2550 6050 2550
 Text Label 6000 2550 2    50   ~ 0
@@ -1191,213 +788,124 @@ Text Label 11650 2850 0    50   ~ 0
 BATTERY
 Wire Wire Line
 	11650 2850 11600 2850
-Text Label 6000 3150 2    50   ~ 0
-BATTERY
 Wire Wire Line
-	6000 3150 6050 3150
-Text Label 6600 3150 0    50   ~ 0
-BATTERY
+	6000 2350 6050 2350
 Wire Wire Line
-	6600 3150 6550 3150
-Wire Wire Line
-	6050 2850 6000 2850
-Text Label 6600 2950 0    50   ~ 0
+	6050 2750 6000 2750
+Text Label 6000 2650 2    50   ~ 0
 J1850
-Text Label 6000 2850 2    50   ~ 0
+Text Label 6000 2750 2    50   ~ 0
 CAN+
 Wire Wire Line
-	6600 2950 6550 2950
-$Comp
-L open-dash-daughterboard-rescue:GND-power #PWR?
-U 1 1 6387A484
-P 11050 3350
-AR Path="/5ABD187E/6387A484" Ref="#PWR?"  Part="1" 
-AR Path="/6387A484" Ref="#PWR019"  Part="1" 
-AR Path="/5A7BADB8/6387A484" Ref="#PWR?"  Part="1" 
-AR Path="/62CC146C/6387A484" Ref="#PWR?"  Part="1" 
-F 0 "#PWR019" H 11050 3100 50  0001 C CNN
-F 1 "GND" V 11100 3200 50  0000 C CNN
-F 2 "" H 11050 3350 50  0001 C CNN
-F 3 "" H 11050 3350 50  0001 C CNN
-	1    11050 3350
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	11050 3350 11100 3350
+	6000 2650 6050 2650
 $Comp
 L open-dash-daughterboard-rescue:GND-power #PWR?
 U 1 1 6387A48F
-P 11650 3350
+P 11600 3400
 AR Path="/5ABD187E/6387A48F" Ref="#PWR?"  Part="1" 
 AR Path="/6387A48F" Ref="#PWR024"  Part="1" 
 AR Path="/5A7BADB8/6387A48F" Ref="#PWR?"  Part="1" 
 AR Path="/62CC146C/6387A48F" Ref="#PWR?"  Part="1" 
-F 0 "#PWR024" H 11650 3100 50  0001 C CNN
-F 1 "GND" V 11600 3200 50  0000 C CNN
-F 2 "" H 11650 3350 50  0001 C CNN
-F 3 "" H 11650 3350 50  0001 C CNN
-	1    11650 3350
-	0    -1   -1   0   
+F 0 "#PWR024" H 11600 3150 50  0001 C CNN
+F 1 "GND" H 11600 3250 50  0000 C CNN
+F 2 "" H 11600 3400 50  0001 C CNN
+F 3 "" H 11600 3400 50  0001 C CNN
+	1    11600 3400
+	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	11650 3350 11600 3350
 Text Label 11650 2450 0    50   ~ 0
 SENSE1
-Wire Wire Line
-	9000 1950 9050 1950
-Wire Wire Line
-	9050 2250 9000 2250
-Text Label 6600 2750 0    50   ~ 0
+Text Label 6600 3050 0    50   ~ 0
 MAIN_POWER
-Text Label 6600 2650 0    50   ~ 0
+Text Label 6600 2950 0    50   ~ 0
 DISPLAY_POWER
 Wire Wire Line
 	11650 2450 11600 2450
 Wire Wire Line
-	6600 2650 6550 2650
+	6600 2950 6550 2950
 Wire Wire Line
-	6600 2750 6550 2750
+	6600 3050 6550 3050
 Wire Wire Line
-	8450 2250 8500 2250
-Wire Wire Line
-	8500 2650 8450 2650
-Text Label 8450 1650 2    50   ~ 0
+	8450 2450 8500 2450
+Text Label 8450 1850 2    50   ~ 0
 LF+
-Text Label 9050 1950 0    50   ~ 0
+Text Label 8450 2350 2    50   ~ 0
 LR-
 $Comp
 L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 6387A4A6
-P 6000 3350
+P 6050 3400
 AR Path="/5B15E02A/6387A4A6" Ref="#PWR?"  Part="1" 
 AR Path="/5C04BFCE/6387A4A6" Ref="#PWR?"  Part="1" 
 AR Path="/6387A4A6" Ref="#PWR07"  Part="1" 
 AR Path="/62CC146C/6387A4A6" Ref="#PWR?"  Part="1" 
-F 0 "#PWR07" H 6000 3100 50  0001 C CNN
-F 1 "GND" V 5950 3200 50  0000 C CNN
-F 2 "" H 6000 3350 50  0000 C CNN
-F 3 "" H 6000 3350 50  0000 C CNN
-	1    6000 3350
-	0    1    1    0   
+F 0 "#PWR07" H 6050 3150 50  0001 C CNN
+F 1 "GND" V 6000 3250 50  0000 C CNN
+F 2 "" H 6050 3400 50  0000 C CNN
+F 3 "" H 6050 3400 50  0000 C CNN
+	1    6050 3400
+	1    0    0    -1  
 $EndComp
 Text Label 11700 2350 0    50   ~ 0
 TRIGGER1
 Wire Wire Line
-	8450 2050 8500 2050
-Wire Wire Line
-	8450 1850 8500 1850
-Wire Wire Line
 	11700 2350 11600 2350
-Wire Wire Line
-	6600 3350 6550 3350
 $Comp
 L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 6387A4B5
-P 6600 3350
+P 6550 3400
 AR Path="/5B15E02A/6387A4B5" Ref="#PWR?"  Part="1" 
 AR Path="/5C04BFCE/6387A4B5" Ref="#PWR?"  Part="1" 
 AR Path="/6387A4B5" Ref="#PWR010"  Part="1" 
 AR Path="/62CC146C/6387A4B5" Ref="#PWR?"  Part="1" 
-F 0 "#PWR010" H 6600 3100 50  0001 C CNN
-F 1 "GND" V 6600 3150 50  0000 C CNN
-F 2 "" H 6600 3350 50  0000 C CNN
-F 3 "" H 6600 3350 50  0000 C CNN
-	1    6600 3350
-	0    -1   -1   0   
+F 0 "#PWR010" H 6550 3150 50  0001 C CNN
+F 1 "GND" V 6550 3200 50  0000 C CNN
+F 2 "" H 6550 3400 50  0000 C CNN
+F 3 "" H 6550 3400 50  0000 C CNN
+	1    6550 3400
+	1    0    0    -1  
 $EndComp
 $Comp
 L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 6387A4BF
-P 8450 3350
+P 8500 3400
 AR Path="/5B15E02A/6387A4BF" Ref="#PWR?"  Part="1" 
 AR Path="/5C04BFCE/6387A4BF" Ref="#PWR?"  Part="1" 
 AR Path="/6387A4BF" Ref="#PWR012"  Part="1" 
 AR Path="/62CC146C/6387A4BF" Ref="#PWR?"  Part="1" 
-F 0 "#PWR012" H 8450 3100 50  0001 C CNN
-F 1 "GND" V 8400 3200 50  0000 C CNN
-F 2 "" H 8450 3350 50  0000 C CNN
-F 3 "" H 8450 3350 50  0000 C CNN
-	1    8450 3350
-	0    1    1    0   
+F 0 "#PWR012" H 8500 3150 50  0001 C CNN
+F 1 "GND" H 8500 3250 50  0000 C CNN
+F 2 "" H 8500 3400 50  0000 C CNN
+F 3 "" H 8500 3400 50  0000 C CNN
+	1    8500 3400
+	1    0    0    -1  
 $EndComp
-Text Label 6600 2850 0    50   ~ 0
+Text Label 6000 2850 2    50   ~ 0
 CAN-
 Wire Wire Line
-	6050 3350 6000 3350
+	6050 3350 6050 3400
 Wire Wire Line
-	8450 3350 8500 3350
-Wire Wire Line
-	6550 2850 6600 2850
-Wire Wire Line
-	9000 2650 9050 2650
-Wire Wire Line
-	9050 2450 9000 2450
+	6050 2850 6000 2850
 Text Label 8450 1950 2    50   ~ 0
 LF-
-$Comp
-L open-dash-daughterboard-rescue:GND-power #PWR?
-U 1 1 6387A4D0
-P 6600 2450
-AR Path="/5ABD187E/6387A4D0" Ref="#PWR?"  Part="1" 
-AR Path="/6387A4D0" Ref="#PWR08"  Part="1" 
-AR Path="/5A7BADB8/6387A4D0" Ref="#PWR?"  Part="1" 
-AR Path="/62CC146C/6387A4D0" Ref="#PWR?"  Part="1" 
-F 0 "#PWR08" H 6600 2200 50  0001 C CNN
-F 1 "GND" V 6650 2300 50  0000 C CNN
-F 2 "" H 6600 2450 50  0001 C CNN
-F 3 "" H 6600 2450 50  0001 C CNN
-	1    6600 2450
-	0    -1   -1   0   
-$EndComp
-Text Label 6600 2350 0    50   ~ 0
-BATTERY
 Wire Wire Line
-	6600 2450 6550 2450
+	6050 2450 6000 2450
 Wire Wire Line
-	6600 2350 6550 2350
+	6050 2150 6000 2150
 Wire Wire Line
-	6550 2250 6600 2250
-Wire Wire Line
-	6550 2050 6600 2050
-Wire Wire Line
-	6550 1850 6600 1850
-Wire Wire Line
-	6550 1450 6600 1450
-Text Label 6600 1850 0    50   ~ 0
+	6050 1950 6000 1950
+Text Label 6000 1950 2    50   ~ 0
 MODE_B
-Text Label 6600 2050 0    50   ~ 0
+Text Label 6000 2150 2    50   ~ 0
 RECIRCULATION_B
-Text Label 6600 1450 0    50   ~ 0
-LEFT_AIR_TEMP_CONTROL_B
-Text Label 6600 2250 0    50   ~ 0
+Text Label 6000 2450 2    50   ~ 0
 LOWER_RIGHT_AIR_TEMP
-Text Label 6000 2350 2    50   ~ 0
-BATTERY
-$Comp
-L open-dash-daughterboard-rescue:GND-power #PWR?
-U 1 1 6387A4E6
-P 6000 2450
-AR Path="/5ABD187E/6387A4E6" Ref="#PWR?"  Part="1" 
-AR Path="/6387A4E6" Ref="#PWR05"  Part="1" 
-AR Path="/5A7BADB8/6387A4E6" Ref="#PWR?"  Part="1" 
-AR Path="/62CC146C/6387A4E6" Ref="#PWR?"  Part="1" 
-F 0 "#PWR05" H 6000 2200 50  0001 C CNN
-F 1 "GND" V 6000 2250 50  0000 C CNN
-F 2 "" H 6000 2450 50  0001 C CNN
-F 3 "" H 6000 2450 50  0001 C CNN
-	1    6000 2450
-	0    1    1    0   
-$EndComp
 Wire Wire Line
 	11050 2650 11100 2650
-Wire Wire Line
-	6000 2450 6050 2450
-Wire Wire Line
-	6000 2350 6050 2350
-Text Label 6000 2250 2    50   ~ 0
+Text Label 6600 2450 0    50   ~ 0
 LOWER_LEFT_AIR_TEMP
 Wire Wire Line
-	6000 2250 6050 2250
+	6600 2450 6550 2450
 Text Label 11050 2650 2    50   ~ 0
 LOW_REF
 Wire Wire Line
@@ -1553,18 +1061,6 @@ F 4 "SBH11-PBPC-D20-ST-BK" H 6250 2350 50  0001 C CNN "Part Number"
 	1    0    0    -1  
 $EndComp
 $Comp
-L Open_Automation:Conn_IDE_40 J7
-U 1 1 659BAB3D
-P 8700 2350
-F 0 "J7" H 8750 3467 50  0000 C CNN
-F 1 "Conn_IDE_40" H 8750 3376 50  0000 C CNN
-F 2 "Connector_IDC:IDC-Header_2x20_P2.54mm_Vertical" H 8700 2350 50  0001 C CNN
-F 3 "https://s3.amazonaws.com/catalogspreads-pdf/PAGE122%20.100%20SBH11%20SERIES%20MALE%20BOX%20HDR%20ST%20RA%20SMT.pdf" H 8700 2350 50  0001 C CNN
-F 4 "SBH11-PBPC-D20-ST-BK" H 8700 2350 50  0001 C CNN "Part Number"
-	1    8700 2350
-	1    0    0    -1  
-$EndComp
-$Comp
 L Open_Automation:Conn_IDE_40 J8
 U 1 1 659BC0F8
 P 11300 2350
@@ -1576,4 +1072,363 @@ F 4 "SBH11-PBPC-D20-ST-BK" H 11300 2350 50  0001 C CNN "Part Number"
 	1    11300 2350
 	1    0    0    -1  
 $EndComp
+Wire Wire Line
+	2300 3550 2250 3550
+Text Label 2300 3550 0    50   ~ 0
+BATTERY
+Wire Wire Line
+	2250 3750 2300 3750
+Text Label 2300 3750 0    50   ~ 0
+3V3
+Text Label 1700 3950 2    50   ~ 0
+C_OUT3
+Wire Wire Line
+	1700 3950 1750 3950
+Text Label 9050 2750 0    50   ~ 0
+AUDIO_IN3
+Text Label 9050 2650 0    50   ~ 0
+AUDIO_IN4
+Wire Wire Line
+	9050 2850 9000 2850
+Wire Wire Line
+	9050 2650 9000 2650
+Text Label 9050 2950 0    50   ~ 0
+AUDIO_IN1
+Text Label 9050 2850 0    50   ~ 0
+AUDIO_IN2
+Wire Wire Line
+	9050 2750 9000 2750
+Wire Wire Line
+	9050 2950 9000 2950
+$Comp
+L Open_Automation:Conn_IDE_40 J7
+U 1 1 659BAB3D
+P 8700 2350
+F 0 "J7" H 8750 3467 50  0000 C CNN
+F 1 "Conn_IDE_40" H 8750 3376 50  0000 C CNN
+F 2 "Connector_IDC:IDC-Header_2x20_P2.54mm_Vertical" H 8700 2350 50  0001 C CNN
+F 3 "https://s3.amazonaws.com/catalogspreads-pdf/PAGE122%20.100%20SBH11%20SERIES%20MALE%20BOX%20HDR%20ST%20RA%20SMT.pdf" H 8700 2350 50  0001 C CNN
+F 4 "SBH11-PBPC-D20-ST-BK" H 8700 2350 50  0001 C CNN "Part Number"
+	1    8700 2350
+	1    0    0    -1  
+$EndComp
+Text Label 8450 2450 2    50   ~ 0
+RR+
+Text Label 8450 2050 2    50   ~ 0
+RF+
+Wire Wire Line
+	8450 1950 8500 1950
+Wire Wire Line
+	8450 2050 8500 2050
+Wire Wire Line
+	8450 2250 8500 2250
+Wire Wire Line
+	8450 2350 8500 2350
+Wire Wire Line
+	8450 2950 8500 2950
+Wire Wire Line
+	8450 2750 8500 2750
+Text Label 8450 2850 2    50   ~ 0
+AUDIO_IN2
+Text Label 8450 2950 2    50   ~ 0
+AUDIO_IN1
+Wire Wire Line
+	8450 2650 8500 2650
+Wire Wire Line
+	8450 2850 8500 2850
+Text Label 8450 2650 2    50   ~ 0
+AUDIO_IN4
+Text Label 8450 2750 2    50   ~ 0
+AUDIO_IN3
+Wire Wire Line
+	8450 1550 8450 1450
+Wire Wire Line
+	8500 1650 8450 1650
+Wire Wire Line
+	8450 1650 8450 1550
+Connection ~ 8450 1550
+Wire Wire Line
+	8450 1650 8450 1750
+Wire Wire Line
+	8450 1750 8500 1750
+Connection ~ 8450 1650
+Wire Wire Line
+	9000 1750 9050 1750
+Wire Wire Line
+	9050 1750 9050 1650
+Wire Wire Line
+	9000 1650 9050 1650
+Connection ~ 9050 1650
+Wire Wire Line
+	9050 1650 9050 1550
+Wire Wire Line
+	9050 1550 9050 1450
+Connection ~ 9050 1550
+Text Label 9050 2550 0    50   ~ 0
+RR-
+Wire Wire Line
+	9050 2150 9000 2150
+Text Label 9050 2250 0    50   ~ 0
+LR+
+Wire Wire Line
+	9050 1850 9000 1850
+Text Label 9050 2150 0    50   ~ 0
+RF-
+Wire Wire Line
+	9050 2550 9000 2550
+Wire Wire Line
+	9050 2450 9000 2450
+Text Label 9050 1850 0    50   ~ 0
+LF+
+Text Label 9050 2350 0    50   ~ 0
+LR-
+Text Label 9050 1950 0    50   ~ 0
+LF-
+Text Label 9050 2450 0    50   ~ 0
+RR+
+Text Label 9050 2050 0    50   ~ 0
+RF+
+Wire Wire Line
+	9050 1950 9000 1950
+Wire Wire Line
+	9050 2050 9000 2050
+Wire Wire Line
+	9050 2250 9000 2250
+Wire Wire Line
+	9050 2350 9000 2350
+Wire Wire Line
+	6550 1750 6600 1750
+Text Label 6600 1750 0    50   ~ 0
+RIGHT_AIR_TEMP_CONTROL_B
+Wire Wire Line
+	6550 1550 6600 1550
+Text Label 6600 1550 0    50   ~ 0
+LEFT_AIR_TEMP_CONTROL_B
+Wire Wire Line
+	6550 2150 6600 2150
+Wire Wire Line
+	6550 1950 6600 1950
+Text Label 6600 1950 0    50   ~ 0
+MODE_B
+Text Label 6600 2150 0    50   ~ 0
+RECIRCULATION_B
+Wire Wire Line
+	6600 2050 6550 2050
+Wire Wire Line
+	6600 1850 6550 1850
+Wire Wire Line
+	6600 1650 6550 1650
+Wire Wire Line
+	6600 1450 6550 1450
+Text Label 6600 1850 0    50   ~ 0
+MODE_A
+Text Label 6600 2050 0    50   ~ 0
+RECIRCULATION_A
+Text Label 6600 1650 0    50   ~ 0
+RIGHT_AIR_TEMP_CONTROL_A
+Text Label 6600 1450 0    50   ~ 0
+LEFT_AIR_TEMP_CONTROL_A
+Wire Wire Line
+	6050 3250 6050 3350
+Connection ~ 6050 3350
+Wire Wire Line
+	6550 3400 6550 3350
+Wire Wire Line
+	6550 3350 6550 3250
+Connection ~ 6550 3350
+Wire Wire Line
+	6000 2350 6000 2250
+Text Label 6600 2250 0    50   ~ 0
+BATTERY
+Wire Wire Line
+	6600 2250 6550 2250
+Wire Wire Line
+	6600 2350 6550 2350
+Wire Wire Line
+	6600 2350 6600 2250
+Wire Wire Line
+	6050 3150 6050 3250
+Connection ~ 6050 3250
+Wire Wire Line
+	6550 3150 6550 3250
+Connection ~ 6550 3250
+Text Label 6600 2750 0    50   ~ 0
+BATTERY
+$Comp
+L open-dash-daughterboard-rescue:GND-open-automation #PWR?
+U 1 1 61BAB1BE
+P 6600 2850
+AR Path="/5B15E02A/61BAB1BE" Ref="#PWR?"  Part="1" 
+AR Path="/5C04BFCE/61BAB1BE" Ref="#PWR?"  Part="1" 
+AR Path="/61BAB1BE" Ref="#PWR0158"  Part="1" 
+AR Path="/62CC146C/61BAB1BE" Ref="#PWR?"  Part="1" 
+F 0 "#PWR0158" H 6600 2600 50  0001 C CNN
+F 1 "GND" V 6650 2700 50  0000 C CNN
+F 2 "" H 6600 2850 50  0000 C CNN
+F 3 "" H 6600 2850 50  0000 C CNN
+	1    6600 2850
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	6600 2850 6550 2850
+Wire Wire Line
+	6550 2750 6600 2750
+Wire Wire Line
+	11600 3050 11600 3150
+Wire Wire Line
+	11600 3150 11600 3250
+Connection ~ 11600 3150
+Wire Wire Line
+	11600 3350 11600 3250
+Connection ~ 11600 3250
+Wire Wire Line
+	11600 3350 11600 3400
+Connection ~ 11600 3350
+$Comp
+L open-dash-daughterboard-rescue:GND-power #PWR?
+U 1 1 6387A484
+P 11100 3400
+AR Path="/5ABD187E/6387A484" Ref="#PWR?"  Part="1" 
+AR Path="/6387A484" Ref="#PWR019"  Part="1" 
+AR Path="/5A7BADB8/6387A484" Ref="#PWR?"  Part="1" 
+AR Path="/62CC146C/6387A484" Ref="#PWR?"  Part="1" 
+F 0 "#PWR019" H 11100 3150 50  0001 C CNN
+F 1 "GND" H 11100 3250 50  0000 C CNN
+F 2 "" H 11100 3400 50  0001 C CNN
+F 3 "" H 11100 3400 50  0001 C CNN
+	1    11100 3400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	11100 3050 11100 3150
+Wire Wire Line
+	11100 3150 11100 3250
+Connection ~ 11100 3150
+Wire Wire Line
+	11100 3350 11100 3250
+Connection ~ 11100 3250
+Wire Wire Line
+	11100 3350 11100 3400
+Connection ~ 11100 3350
+Wire Wire Line
+	8500 3400 8500 3350
+Wire Wire Line
+	8500 3250 8500 3350
+Connection ~ 8500 3350
+Wire Wire Line
+	8500 3250 8500 3150
+Connection ~ 8500 3250
+Wire Wire Line
+	8500 3150 8500 3050
+Connection ~ 8500 3150
+Wire Wire Line
+	9000 3350 9000 3400
+Wire Wire Line
+	9000 3050 9000 3150
+Wire Wire Line
+	9000 3150 9000 3250
+Connection ~ 9000 3150
+Wire Wire Line
+	9000 3250 9000 3350
+Connection ~ 9000 3250
+Connection ~ 9000 3350
+$Comp
+L open-dash-daughterboard-rescue:Conn_02x02_Counter_Clockwise-Connector_Generic J?
+U 1 1 62018099
+P 1950 4500
+AR Path="/60DDD162/62018099" Ref="J?"  Part="1" 
+AR Path="/62018099" Ref="J43"  Part="1" 
+F 0 "J43" H 2000 4717 50  0000 C CNN
+F 1 "Conn_02x02_Counter_Clockwise" H 2000 4626 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x02_P2.54mm_Vertical_SMD" H 1950 4500 50  0001 C CNN
+F 3 "~" H 1950 4500 50  0001 C CNN
+	1    1950 4500
+	1    0    0    -1  
+$EndComp
+$Comp
+L open-dash-daughterboard-rescue:GND-power #PWR?
+U 1 1 6201809F
+P 1700 4500
+AR Path="/5ABD187E/6201809F" Ref="#PWR?"  Part="1" 
+AR Path="/6201809F" Ref="#PWR0159"  Part="1" 
+AR Path="/5A7BADB8/6201809F" Ref="#PWR?"  Part="1" 
+AR Path="/60DDD162/6201809F" Ref="#PWR?"  Part="1" 
+F 0 "#PWR0159" H 1700 4250 50  0001 C CNN
+F 1 "GND" V 1700 4300 50  0000 C CNN
+F 2 "" H 1700 4500 50  0000 C CNN
+F 3 "" H 1700 4500 50  0000 C CNN
+	1    1700 4500
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	1700 4500 1750 4500
+Wire Wire Line
+	1700 4600 1750 4600
+Wire Wire Line
+	2250 4600 2300 4600
+Wire Wire Line
+	2300 4500 2250 4500
+Text Label 2300 4500 0    50   ~ 0
+SCL
+Text Label 2300 4600 0    50   ~ 0
+SDA
+Text Label 1700 4600 2    50   ~ 0
+3V3
+$Comp
+L open-dash-daughterboard-rescue:GND-power #PWR?
+U 1 1 5FE25541
+P 2350 4050
+AR Path="/5ABD187E/5FE25541" Ref="#PWR?"  Part="1" 
+AR Path="/5FE25541" Ref="#PWR02"  Part="1" 
+AR Path="/5A7BADDB/5FE25541" Ref="#PWR?"  Part="1" 
+AR Path="/6077D777/5FE25541" Ref="#PWR?"  Part="1" 
+F 0 "#PWR02" H 2350 3800 50  0001 C CNN
+F 1 "GND" V 2350 3850 50  0000 C CNN
+F 2 "" H 2350 4050 50  0001 C CNN
+F 3 "" H 2350 4050 50  0001 C CNN
+	1    2350 4050
+	0    -1   -1   0   
+$EndComp
+Text Label 2300 3950 0    50   ~ 0
+AIN9
+Text Label 2300 3850 0    50   ~ 0
+AIN10
+Wire Wire Line
+	2300 3850 2250 3850
+Wire Wire Line
+	2350 4050 2250 4050
+Wire Wire Line
+	2250 3950 2300 3950
+Wire Wire Line
+	1750 4050 1700 4050
+$Comp
+L open-dash-daughterboard-rescue:GND-power #PWR?
+U 1 1 5FE25547
+P 1700 4050
+AR Path="/5ABD187E/5FE25547" Ref="#PWR?"  Part="1" 
+AR Path="/5FE25547" Ref="#PWR03"  Part="1" 
+AR Path="/5A7BADDB/5FE25547" Ref="#PWR?"  Part="1" 
+AR Path="/6077D777/5FE25547" Ref="#PWR?"  Part="1" 
+F 0 "#PWR03" H 1700 3800 50  0001 C CNN
+F 1 "GND" V 1650 3900 50  0000 C CNN
+F 2 "" H 1700 4050 50  0001 C CNN
+F 3 "" H 1700 4050 50  0001 C CNN
+	1    1700 4050
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector_Generic:Conn_02x06_Odd_Even J5
+U 1 1 6203B62F
+P 1950 3750
+F 0 "J5" H 2000 4167 50  0000 C CNN
+F 1 "Conn_02x06_Odd_Even" H 2000 4076 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x06_P2.54mm_Vertical_SMD" H 1950 3750 50  0001 C CNN
+F 3 "~" H 1950 3750 50  0001 C CNN
+	1    1950 3750
+	1    0    0    -1  
+$EndComp
+Text Label 1700 3850 2    50   ~ 0
+FACT
+Wire Wire Line
+	1700 3850 1750 3850
 $EndSCHEMATC

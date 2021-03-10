@@ -203,8 +203,8 @@ U 1 1 5CC69855
 P 3750 4450
 AR Path="/5ABD187E/5CC69855" Ref="SW?"  Part="1" 
 AR Path="/5A7BADDB/5CC69855" Ref="SW?"  Part="1" 
-AR Path="/6077D777/5CC69855" Ref="SW3"  Part="1" 
-F 0 "SW3" H 3750 4625 50  0000 C CNN
+AR Path="/6077D777/5CC69855" Ref="FACT1"  Part="1" 
+F 0 "FACT1" H 3750 4625 50  0000 C CNN
 F 1 "SW_PUSH" H 3725 4350 50  0000 C CNN
 F 2 "Button_Switch_SMD:SW_SPST_PTS645" H 3750 4450 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/1811082113_Korean-Hroparts-Elec-K2-1102SP-C4SC-04_C127509.pdf" H 3750 4450 50  0001 C CNN
@@ -219,8 +219,8 @@ U 1 1 5CC68117
 P 3200 4450
 AR Path="/5ABD187E/5CC68117" Ref="SW?"  Part="1" 
 AR Path="/5A7BADDB/5CC68117" Ref="SW?"  Part="1" 
-AR Path="/6077D777/5CC68117" Ref="SW2"  Part="1" 
-F 0 "SW2" H 3200 4625 50  0000 C CNN
+AR Path="/6077D777/5CC68117" Ref="PROG1"  Part="1" 
+F 0 "PROG1" H 3200 4625 50  0000 C CNN
 F 1 "SW_PUSH" H 3175 4350 50  0000 C CNN
 F 2 "Button_Switch_SMD:SW_SPST_PTS645" H 3200 4450 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/1811082113_Korean-Hroparts-Elec-K2-1102SP-C4SC-04_C127509.pdf" H 3200 4450 50  0001 C CNN
@@ -235,8 +235,8 @@ U 1 1 5CC89C1F
 P 2600 4450
 AR Path="/5ABD187E/5CC89C1F" Ref="SW?"  Part="1" 
 AR Path="/5A7BADDB/5CC89C1F" Ref="SW?"  Part="1" 
-AR Path="/6077D777/5CC89C1F" Ref="SW1"  Part="1" 
-F 0 "SW1" H 2600 4625 50  0000 C CNN
+AR Path="/6077D777/5CC89C1F" Ref="EN1"  Part="1" 
+F 0 "EN1" H 2600 4625 50  0000 C CNN
 F 1 "SW_PUSH" H 2575 4350 50  0000 C CNN
 F 2 "Button_Switch_SMD:SW_SPST_PTS645" H 2600 4450 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/1811082113_Korean-Hroparts-Elec-K2-1102SP-C4SC-04_C127509.pdf" H 2600 4450 50  0001 C CNN
@@ -602,10 +602,10 @@ F 5 "C430229" H 0   0   50  0001 C CNN "LCSC"
 	1    0    0    -1  
 $EndComp
 $Comp
-L Open_Automation:C_10uF C?
+L Open_Automation:C_10uF C22
 U 1 1 604C35AE
 P 3100 2050
-F 0 "C?" H 2900 2050 50  0000 L CNN
+F 0 "C22" H 2900 2050 50  0000 L CNN
 F 1 "C_10uF" H 2800 1950 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder" H 3350 2500 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/Samsung-Electro-Mechanics-CL21A106KAYNNNE_C15850.pdf" H 3100 1800 50  0001 C CNN
@@ -615,10 +615,10 @@ F 5 "C15850" H 3100 2700 50  0001 C CNN "LCSC"
 	1    0    0    -1  
 $EndComp
 $Comp
-L Open_Automation:C_1uF C?
+L Open_Automation:C_1uF C23
 U 1 1 604D0693
 P 3400 2050
-F 0 "C?" H 3515 2096 50  0000 L CNN
+F 0 "C23" H 3515 2096 50  0000 L CNN
 F 1 "C_1uF" H 3515 2005 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0402_1005Metric_Pad0.74x0.62mm_HandSolder" H 3500 2350 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/Samsung-Electro-Mechanics-CL05A105KA5NQNC_C52923.pdf" H 3400 1800 50  0001 C CNN
@@ -628,10 +628,10 @@ F 5 "CL05A105KA5NQNC" H 3525 2250 60  0001 C CNN "Part Number"
 	1    0    0    -1  
 $EndComp
 $Comp
-L Open_Automation:R_10K_0402 R?
+L Open_Automation:R_10K_0402 R32
 U 1 1 604D6E5B
 P 2600 3850
-F 0 "R?" V 2600 3800 50  0000 L CNN
+F 0 "R32" V 2600 3800 50  0000 L CNN
 F 1 "R_10K_0402" V 2700 3550 50  0000 L CNN
 F 2 "Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder" V 2530 3850 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0402WGF1002TCE_C25744.pdf" V 2680 3850 50  0001 C CNN
@@ -641,10 +641,10 @@ F 5 "C25744" V 2850 3850 50  0001 C CNN "LCSC"
 	1    0    0    -1  
 $EndComp
 $Comp
-L Open_Automation:R_10K_0402 R?
+L Open_Automation:R_10K_0402 R33
 U 1 1 604D9703
 P 3200 3850
-F 0 "R?" V 3200 3800 50  0000 L CNN
+F 0 "R33" V 3200 3800 50  0000 L CNN
 F 1 "R_10K_0402" V 3300 3550 50  0000 L CNN
 F 2 "Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder" V 3130 3850 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0402WGF1002TCE_C25744.pdf" V 3280 3850 50  0001 C CNN
@@ -654,10 +654,10 @@ F 5 "C25744" V 3450 3850 50  0001 C CNN "LCSC"
 	1    0    0    -1  
 $EndComp
 $Comp
-L Open_Automation:R_10K_0402 R?
+L Open_Automation:R_10K_0402 R34
 U 1 1 604D9A3E
 P 3750 3850
-F 0 "R?" V 3750 3800 50  0000 L CNN
+F 0 "R34" V 3750 3800 50  0000 L CNN
 F 1 "R_10K_0402" V 3850 3550 50  0000 L CNN
 F 2 "Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder" V 3680 3850 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0402WGF1002TCE_C25744.pdf" V 3830 3850 50  0001 C CNN
@@ -667,10 +667,10 @@ F 5 "C25744" V 4000 3850 50  0001 C CNN "LCSC"
 	1    0    0    -1  
 $EndComp
 $Comp
-L Open_Automation:R_10K_0402 R?
+L Open_Automation:R_10K_0402 R37
 U 1 1 604DD677
 P 8200 2900
-F 0 "R?" V 8200 2850 50  0000 L CNN
+F 0 "R37" V 8200 2850 50  0000 L CNN
 F 1 "R_10K_0402" V 8300 2600 50  0000 L CNN
 F 2 "Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder" V 8130 2900 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0402WGF1002TCE_C25744.pdf" V 8280 2900 50  0001 C CNN
@@ -680,10 +680,10 @@ F 5 "C25744" V 8450 2900 50  0001 C CNN "LCSC"
 	1    0    0    -1  
 $EndComp
 $Comp
-L Open_Automation:R_10K_0402 R?
+L Open_Automation:R_10K_0402 R36
 U 1 1 604DEC4B
 P 8050 2900
-F 0 "R?" V 8050 2850 50  0000 L CNN
+F 0 "R36" V 8050 2850 50  0000 L CNN
 F 1 "R_10K_0402" V 8150 2750 50  0000 L CNN
 F 2 "Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder" V 7980 2900 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0402WGF1002TCE_C25744.pdf" V 8130 2900 50  0001 C CNN
@@ -693,10 +693,10 @@ F 5 "C25744" V 8300 2900 50  0001 C CNN "LCSC"
 	-1   0    0    1   
 $EndComp
 $Comp
-L Open_Automation:R_10K_0402 R?
+L Open_Automation:R_10K_0402 R35
 U 1 1 604DF274
 P 7700 2900
-F 0 "R?" V 7700 2850 50  0000 L CNN
+F 0 "R35" V 7700 2850 50  0000 L CNN
 F 1 "R_10K_0402" V 7800 2750 50  0000 L CNN
 F 2 "Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder" V 7630 2900 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0402WGF1002TCE_C25744.pdf" V 7780 2900 50  0001 C CNN
@@ -706,10 +706,10 @@ F 5 "C25744" V 7950 2900 50  0001 C CNN "LCSC"
 	-1   0    0    1   
 $EndComp
 $Comp
-L Open_Automation:C_0.1uF C?
+L Open_Automation:C_0.1uF C25
 U 1 1 604F0FE9
 P 7450 4500
-F 0 "C?" H 7450 4600 50  0000 L CNN
+F 0 "C25" H 7450 4600 50  0000 L CNN
 F 1 "C_0.1uF" H 7450 4400 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0402_1005Metric_Pad0.74x0.62mm_HandSolder" H 7550 4800 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/Samsung-Electro-Mechanics-CL05B104KO5NNNC_C1525.pdf" H 7450 4250 50  0001 C CNN

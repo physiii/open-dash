@@ -686,23 +686,12 @@ $EndComp
 $Comp
 L open-dash-daughterboard-rescue:GND-power #PWR025
 U 1 1 5FD22FE0
-P 1150 3350
-F 0 "#PWR025" H 1150 3100 50  0001 C CNN
-F 1 "GND" V 1155 3222 50  0000 R CNN
-F 2 "" H 1150 3350 50  0001 C CNN
-F 3 "" H 1150 3350 50  0001 C CNN
-	1    1150 3350
-	1    0    0    -1  
-$EndComp
-$Comp
-L open-dash-daughterboard-rescue:GND-power #PWR026
-U 1 1 5FD22FD6
-P 1500 3350
-F 0 "#PWR026" H 1500 3100 50  0001 C CNN
-F 1 "GND" V 1505 3222 50  0000 R CNN
-F 2 "" H 1500 3350 50  0001 C CNN
-F 3 "" H 1500 3350 50  0001 C CNN
-	1    1500 3350
+P 1150 3400
+F 0 "#PWR025" H 1150 3150 50  0001 C CNN
+F 1 "GND" V 1155 3272 50  0000 R CNN
+F 2 "" H 1150 3400 50  0001 C CNN
+F 3 "" H 1150 3400 50  0001 C CNN
+	1    1150 3400
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -908,21 +897,6 @@ F 1 "GND" H 4525 3025 50  0000 C CNN
 F 2 "" H 4525 3175 50  0000 C CNN
 F 3 "" H 4525 3175 50  0000 C CNN
 	1    4525 3175
-	1    0    0    -1  
-$EndComp
-$Comp
-L open-dash-daughterboard-rescue:C_1000uF-Open_Automation C?
-U 1 1 5CC3872E
-P 1150 3150
-AR Path="/5ABD18ED/5CC3872E" Ref="C?"  Part="1" 
-AR Path="/5CC3872E" Ref="C?"  Part="1" 
-AR Path="/5A7BADB8/5CC3872E" Ref="C1"  Part="1" 
-F 0 "C1" V 1300 3100 50  0000 L CNN
-F 1 "C_1000uF" V 1000 2950 50  0000 L CNN
-F 2 "Capacitor_THT:CP_Radial_D12.5mm_P5.00mm" H 1250 3450 50  0001 C CNN
-F 3 "https://industrial.panasonic.com/ww/products/capacitors/aluminum-capacitors/aluminum-cap-lead/fc/EEUFC1E102" H 1150 2900 50  0001 C CNN
-F 4 " EEU-FC1E102" H 1275 3350 60  0001 C CNN "Part Number"
-	1    1150 3150
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -1337,10 +1311,10 @@ F 5 "C25765" V 9550 1950 50  0001 C CNN "LCSC"
 	1    0    0    -1  
 $EndComp
 $Comp
-L Open_Automation:C_10uF C?
+L Open_Automation:C_10uF C3
 U 1 1 60502A0A
 P 4300 3100
-F 0 "C?" H 4100 3100 50  0000 L CNN
+F 0 "C3" H 4100 3100 50  0000 L CNN
 F 1 "C_10uF" H 4000 3000 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder" H 4550 3550 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/Samsung-Electro-Mechanics-CL21A106KAYNNNE_C15850.pdf" H 4300 2850 50  0001 C CNN
@@ -1350,10 +1324,10 @@ F 5 "C15850" H 4300 3750 50  0001 C CNN "LCSC"
 	1    0    0    -1  
 $EndComp
 $Comp
-L Open_Automation:C_10uF C?
+L Open_Automation:C_10uF C4
 U 1 1 605049B8
 P 5400 3250
-F 0 "C?" H 5200 3250 50  0000 L CNN
+F 0 "C4" H 5200 3250 50  0000 L CNN
 F 1 "C_10uF" H 5100 3150 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder" H 5650 3700 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/Samsung-Electro-Mechanics-CL21A106KAYNNNE_C15850.pdf" H 5400 3000 50  0001 C CNN
@@ -1363,10 +1337,10 @@ F 5 "C15850" H 5400 3900 50  0001 C CNN "LCSC"
 	1    0    0    -1  
 $EndComp
 $Comp
-L Open_Automation:C_10uF C?
+L Open_Automation:C_10uF C10
 U 1 1 605052BC
 P 7800 1950
-F 0 "C?" H 7600 1950 50  0000 L CNN
+F 0 "C10" H 7600 1950 50  0000 L CNN
 F 1 "C_10uF" H 7500 1850 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder" H 8050 2400 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/Samsung-Electro-Mechanics-CL21A106KAYNNNE_C15850.pdf" H 7800 1700 50  0001 C CNN
@@ -1376,10 +1350,10 @@ F 5 "C15850" H 7800 2600 50  0001 C CNN "LCSC"
 	1    0    0    -1  
 $EndComp
 $Comp
-L Open_Automation:C_10uF C?
+L Open_Automation:C_10uF C5
 U 1 1 60506FE4
 P 7550 3850
-F 0 "C?" H 7350 3850 50  0000 L CNN
+F 0 "C5" H 7350 3850 50  0000 L CNN
 F 1 "C_10uF" H 7250 3750 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder" H 7800 4300 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/Samsung-Electro-Mechanics-CL21A106KAYNNNE_C15850.pdf" H 7550 3600 50  0001 C CNN
@@ -1389,10 +1363,10 @@ F 5 "C15850" H 7550 4500 50  0001 C CNN "LCSC"
 	1    0    0    -1  
 $EndComp
 $Comp
-L Open_Automation:C_10uF C?
+L Open_Automation:C_10uF C6
 U 1 1 605088D7
 P 7600 5500
-F 0 "C?" H 7400 5500 50  0000 L CNN
+F 0 "C6" H 7400 5500 50  0000 L CNN
 F 1 "C_10uF" H 7300 5400 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder" H 7850 5950 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/Samsung-Electro-Mechanics-CL21A106KAYNNNE_C15850.pdf" H 7600 5250 50  0001 C CNN
@@ -1402,10 +1376,10 @@ F 5 "C15850" H 7600 6150 50  0001 C CNN "LCSC"
 	1    0    0    -1  
 $EndComp
 $Comp
-L Open_Automation:R_10K_0402 R?
+L Open_Automation:R_10K_0402 R10
 U 1 1 605484A2
 P 7900 3900
-F 0 "R?" V 7900 3900 50  0000 C CNN
+F 0 "R10" V 7900 3900 50  0000 C CNN
 F 1 "R_10K_0402" V 8000 3950 50  0000 C CNN
 F 2 "Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder" V 7830 3900 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0402WGF1002TCE_C25744.pdf" V 7980 3900 50  0001 C CNN
@@ -1414,4 +1388,44 @@ F 5 "C25744" V 8150 3900 50  0001 C CNN "LCSC"
 	1    7900 3900
 	-1   0    0    1   
 $EndComp
+$Comp
+L Open_Automation:C_470uF C2
+U 1 1 604A9AA4
+P 1150 3150
+F 0 "C2" H 1250 3150 50  0000 L CNN
+F 1 "C_470uF" H 1150 3050 50  0000 L CNN
+F 2 "Capacitor_SMD:CP_Elec_10x10" H 1150 3150 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/1809192324_Honor-Elec-RVT1V471M1010_C3350.pdf" H 1150 3150 50  0001 C CNN
+F 4 "RVT1V471M1010" H 1150 3150 50  0001 C CNN "Part Number"
+F 5 "C3350" H 1150 3150 50  0001 C CNN "LCSC"
+	1    1150 3150
+	1    0    0    -1  
+$EndComp
+$Comp
+L Open_Automation:C_470uF C1
+U 1 1 604AC15F
+P 900 3150
+F 0 "C1" H 700 3150 50  0000 L CNN
+F 1 "C_470uF" H 550 3050 50  0000 L CNN
+F 2 "Capacitor_SMD:CP_Elec_10x10" H 900 3150 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/1809192324_Honor-Elec-RVT1V471M1010_C3350.pdf" H 900 3150 50  0001 C CNN
+F 4 "RVT1V471M1010" H 900 3150 50  0001 C CNN "Part Number"
+F 5 "C3350" H 900 3150 50  0001 C CNN "LCSC"
+	1    900  3150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	900  3000 900  2950
+Wire Wire Line
+	900  2950 1150 2950
+Connection ~ 1150 2950
+Wire Wire Line
+	900  3300 900  3350
+Wire Wire Line
+	900  3350 1150 3350
+Connection ~ 1150 3350
+Wire Wire Line
+	1500 3350 1150 3350
+Wire Wire Line
+	1150 3400 1150 3350
 $EndSCHEMATC
