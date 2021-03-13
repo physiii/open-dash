@@ -544,13 +544,13 @@ Wire Wire Line
 Wire Wire Line
 	2350 2750 2400 2750
 Wire Wire Line
-	2900 2750 2950 2750
+	2900 2650 2950 2650
 Wire Wire Line
-	2950 2650 2900 2650
+	2950 2750 2900 2750
 Text Label 2350 2750 2    50   ~ 0
 5V
-Text Label 2950 2650 0    50   ~ 0
-USB_RXD
 Text Label 2950 2750 0    50   ~ 0
+USB_RXD
+Text Label 2950 2650 0    50   ~ 0
 USB_TXD
 $EndSCHEMATC

@@ -1385,4 +1385,78 @@ F 5 "C25744" V 4050 3200 50  0001 C CNN "LCSC"
 	1    3800 3200
 	0    1    1    0   
 $EndComp
+$Comp
+L open-dash-daughterboard-rescue:GND-power #PWR?
+U 1 1 6066934C
+P 6600 2150
+AR Path="/5A7BADDB/6066934C" Ref="#PWR?"  Part="1" 
+AR Path="/6077D777/6066934C" Ref="#PWR?"  Part="1" 
+AR Path="/601F213A/6066934C" Ref="#PWR0140"  Part="1" 
+F 0 "#PWR0140" H 6600 1900 50  0001 C CNN
+F 1 "GND" H 6600 2000 50  0000 C CNN
+F 2 "" H 6600 2150 50  0000 C CNN
+F 3 "" H 6600 2150 50  0000 C CNN
+	1    6600 2150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6600 2100 6600 2150
+Wire Wire Line
+	6600 1750 6600 1800
+Text Label 6600 1750 0    50   ~ 0
+3V3
+$Comp
+L Open_Automation:C_1uF C?
+U 1 1 60669357
+P 6600 1950
+AR Path="/6077D777/60669357" Ref="C?"  Part="1" 
+AR Path="/601F213A/60669357" Ref="C36"  Part="1" 
+F 0 "C36" H 6715 1996 50  0000 L CNN
+F 1 "C_1uF" H 6715 1905 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0402_1005Metric_Pad0.74x0.62mm_HandSolder" H 6700 2250 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Samsung-Electro-Mechanics-CL05A105KA5NQNC_C52923.pdf" H 6600 1700 50  0001 C CNN
+F 4 "C52923" H 6600 2350 50  0001 C CNN "LCSC"
+F 5 "CL05A105KA5NQNC" H 6725 2150 60  0001 C CNN "Part Number"
+	1    6600 1950
+	1    0    0    -1  
+$EndComp
+$Comp
+L open-dash-daughterboard-rescue:GND-power #PWR?
+U 1 1 606729E4
+P 4150 6500
+AR Path="/5A7BADDB/606729E4" Ref="#PWR?"  Part="1" 
+AR Path="/6077D777/606729E4" Ref="#PWR?"  Part="1" 
+AR Path="/601F213A/606729E4" Ref="#PWR0141"  Part="1" 
+F 0 "#PWR0141" H 4150 6250 50  0001 C CNN
+F 1 "GND" H 4150 6350 50  0000 C CNN
+F 2 "" H 4150 6500 50  0000 C CNN
+F 3 "" H 4150 6500 50  0000 C CNN
+	1    4150 6500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4150 6450 4150 6500
+Wire Wire Line
+	4150 6100 4150 6150
+Text Label 4150 6100 0    50   ~ 0
+3V3
+$Comp
+L Open_Automation:C_1uF C?
+U 1 1 60672AAD
+P 4150 6300
+AR Path="/6077D777/60672AAD" Ref="C?"  Part="1" 
+AR Path="/601F213A/60672AAD" Ref="C35"  Part="1" 
+F 0 "C35" H 4265 6346 50  0000 L CNN
+F 1 "C_1uF" H 4265 6255 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0402_1005Metric_Pad0.74x0.62mm_HandSolder" H 4250 6600 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Samsung-Electro-Mechanics-CL05A105KA5NQNC_C52923.pdf" H 4150 6050 50  0001 C CNN
+F 4 "C52923" H 4150 6700 50  0001 C CNN "LCSC"
+F 5 "CL05A105KA5NQNC" H 4275 6500 60  0001 C CNN "Part Number"
+	1    4150 6300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4750 7000 4750 6900
+Connection ~ 4750 7000
+Connection ~ 4750 6900
 $EndSCHEMATC

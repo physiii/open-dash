@@ -170,8 +170,6 @@ Text Label 5950 3450 2    50   ~ 0
 AMP_IN2
 Text Label 5950 3700 2    50   ~ 0
 AMP_IN3
-Text Label 5950 3950 2    50   ~ 0
-AMP_IN4
 Text Label 3350 2800 0    50   ~ 0
 STBY
 Wire Wire Line
@@ -510,13 +508,13 @@ F 5 " C21190" H 1650 -1150 50  0001 C CNN "LCSC"
 	0    1    1    0   
 $EndComp
 Text HLabel 1750 1500 0    60   Input ~ 0
-IN2
+AMP_IN2
 Text HLabel 1750 1700 0    60   Input ~ 0
-IN4
+AMP_IN4
 Text HLabel 1750 1600 0    60   Input ~ 0
-IN3
+AMP_IN3
 Text HLabel 1750 1400 0    60   Input ~ 0
-IN1
+AMP_IN1
 Wire Wire Line
 	1800 1700 1750 1700
 Wire Wire Line
@@ -661,10 +659,6 @@ F 3 "" H 4450 6950 50  0000 C CNN
 $EndComp
 Wire Wire Line
 	4450 6950 4400 6950
-Text Label 4450 6550 0    50   ~ 0
-AMP_IN4
-Wire Wire Line
-	4450 6550 4400 6550
 Text Label 1550 6200 2    50   ~ 0
 AUDIO_GND1
 Text Label 1550 6950 2    50   ~ 0
@@ -897,4 +891,10 @@ Connection ~ 7350 1850
 Wire Wire Line
 	7050 1500 7350 1500
 Connection ~ 7350 1500
+Wire Wire Line
+	4450 6550 4400 6550
+Text Label 5950 3950 2    50   ~ 0
+AMP_IN4
+Text Label 4450 6550 0    50   ~ 0
+AMP_IN4
 $EndSCHEMATC

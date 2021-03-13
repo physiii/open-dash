@@ -126,10 +126,10 @@ F9 "LR_AUDIO_OUT-" I R 12550 8250 50
 F10 "AUDIO_STBY" I L 11000 7950 50 
 F11 "AUDIO_POWER" I L 11000 7700 50 
 F12 "AUDIO_MUTE" I L 11000 7850 50 
-F13 "IN2" I L 11000 8200 50 
-F14 "IN4" I L 11000 8400 50 
-F15 "IN3" I L 11000 8300 50 
-F16 "IN1" I L 11000 8100 50 
+F13 "AMP_IN2" I L 11000 8200 50 
+F14 "AMP_IN4" I L 11000 8400 50 
+F15 "AMP_IN3" I L 11000 8300 50 
+F16 "AMP_IN1" I L 11000 8100 50 
 $EndSheet
 Text Label 12600 7700 0    50   ~ 0
 LF+
@@ -280,8 +280,6 @@ Wire Wire Line
 	7400 6050 7450 6050
 Wire Wire Line
 	7400 6150 7450 6150
-Wire Wire Line
-	7400 5750 7450 5750
 Wire Wire Line
 	7450 5650 7400 5650
 Wire Wire Line
@@ -546,8 +544,6 @@ Text Label 1700 3550 2    50   ~ 0
 BATTERY
 Text Label 7400 5850 2    50   ~ 0
 IGNITION_SENSE
-Text Label 7400 5750 2    50   ~ 0
-IGNITION
 Text Label 7400 5050 2    50   ~ 0
 SENSE1
 Wire Wire Line
@@ -697,11 +693,11 @@ Text Label 11650 2950 0    50   ~ 0
 BATTERY
 Wire Wire Line
 	11650 2950 11600 2950
-Text Label 8450 2550 2    50   ~ 0
+Text Label 8450 1850 2    50   ~ 0
 RR-
 Wire Wire Line
 	8450 2150 8500 2150
-Text Label 8450 2250 2    50   ~ 0
+Text Label 8450 2150 2    50   ~ 0
 LR+
 Wire Wire Line
 	8450 1850 8500 1850
@@ -744,8 +740,6 @@ Wire Wire Line
 	9050 1450 9000 1450
 Wire Wire Line
 	9050 1550 9000 1550
-Text Label 8450 2150 2    50   ~ 0
-RF-
 Wire Wire Line
 	8450 2550 8500 2550
 Text Label 11050 2950 2    50   ~ 0
@@ -827,9 +821,9 @@ Wire Wire Line
 	6600 3050 6550 3050
 Wire Wire Line
 	8450 2450 8500 2450
-Text Label 8450 1850 2    50   ~ 0
+Text Label 8450 2250 2    50   ~ 0
 LF+
-Text Label 8450 2350 2    50   ~ 0
+Text Label 8450 2050 2    50   ~ 0
 LR-
 $Comp
 L open-dash-daughterboard-rescue:GND-open-automation #PWR?
@@ -886,7 +880,7 @@ Wire Wire Line
 	6050 3350 6050 3400
 Wire Wire Line
 	6050 2850 6000 2850
-Text Label 8450 1950 2    50   ~ 0
+Text Label 8450 2350 2    50   ~ 0
 LF-
 Wire Wire Line
 	6050 2450 6000 2450
@@ -1042,12 +1036,6 @@ Text Label 6600 2550 0    50   ~ 0
 WHEEL_CONTROLS_SUPPLY
 Wire Wire Line
 	6600 2550 6550 2550
-$Sheet
-S 1550 5000 900  750 
-U 657571BE
-F0 "Interface" 50
-F1 "interface.sch" 50
-$EndSheet
 $Comp
 L Open_Automation:Conn_IDE_40 J6
 U 1 1 659B5A32
@@ -1112,9 +1100,9 @@ F 4 "SBH11-PBPC-D20-ST-BK" H 8700 2350 50  0001 C CNN "Part Number"
 	1    8700 2350
 	1    0    0    -1  
 $EndComp
-Text Label 8450 2450 2    50   ~ 0
+Text Label 8450 1950 2    50   ~ 0
 RR+
-Text Label 8450 2050 2    50   ~ 0
+Text Label 8450 2450 2    50   ~ 0
 RF+
 Wire Wire Line
 	8450 1950 8500 1950
@@ -1164,38 +1152,6 @@ Wire Wire Line
 Wire Wire Line
 	9050 1550 9050 1450
 Connection ~ 9050 1550
-Text Label 9050 2550 0    50   ~ 0
-RR-
-Wire Wire Line
-	9050 2150 9000 2150
-Text Label 9050 2250 0    50   ~ 0
-LR+
-Wire Wire Line
-	9050 1850 9000 1850
-Text Label 9050 2150 0    50   ~ 0
-RF-
-Wire Wire Line
-	9050 2550 9000 2550
-Wire Wire Line
-	9050 2450 9000 2450
-Text Label 9050 1850 0    50   ~ 0
-LF+
-Text Label 9050 2350 0    50   ~ 0
-LR-
-Text Label 9050 1950 0    50   ~ 0
-LF-
-Text Label 9050 2450 0    50   ~ 0
-RR+
-Text Label 9050 2050 0    50   ~ 0
-RF+
-Wire Wire Line
-	9050 1950 9000 1950
-Wire Wire Line
-	9050 2050 9000 2050
-Wire Wire Line
-	9050 2250 9000 2250
-Wire Wire Line
-	9050 2350 9000 2350
 Wire Wire Line
 	6550 1750 6600 1750
 Text Label 6600 1750 0    50   ~ 0
@@ -1431,4 +1387,44 @@ Text Label 1700 3850 2    50   ~ 0
 FACT
 Wire Wire Line
 	1700 3850 1750 3850
+$Sheet
+S 1550 5000 900  750 
+U 657571BE
+F0 "Interface" 50
+F1 "interface.sch" 50
+$EndSheet
+Text Label 8450 2550 2    50   ~ 0
+RF-
+Text Label 9050 1850 0    50   ~ 0
+RR-
+Wire Wire Line
+	9050 2150 9000 2150
+Text Label 9050 2150 0    50   ~ 0
+LR+
+Wire Wire Line
+	9050 1850 9000 1850
+Wire Wire Line
+	9050 2550 9000 2550
+Wire Wire Line
+	9050 2450 9000 2450
+Text Label 9050 2250 0    50   ~ 0
+LF+
+Text Label 9050 2050 0    50   ~ 0
+LR-
+Text Label 9050 2350 0    50   ~ 0
+LF-
+Text Label 9050 1950 0    50   ~ 0
+RR+
+Text Label 9050 2450 0    50   ~ 0
+RF+
+Wire Wire Line
+	9050 1950 9000 1950
+Wire Wire Line
+	9050 2050 9000 2050
+Wire Wire Line
+	9050 2250 9000 2250
+Wire Wire Line
+	9050 2350 9000 2350
+Text Label 9050 2550 0    50   ~ 0
+RF-
 $EndSCHEMATC
