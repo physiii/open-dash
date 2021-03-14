@@ -191,22 +191,6 @@ Wire Wire Line
 Text Label 3300 1100 0    50   ~ 0
 5V
 $Comp
-L open-dash-daughterboard-rescue:D_1N5819HW-Open_Automation D?
-U 1 1 5CD8937E
-P 3150 1100
-AR Path="/5B15E02A/5CD8937E" Ref="D?"  Part="1" 
-AR Path="/60DDD162/5CD8937E" Ref="D14"  Part="1" 
-F 0 "D14" H 3150 884 50  0000 C CNN
-F 1 "D_1N5819HW" H 3150 975 50  0000 C CNN
-F 2 "Diode_SMD:D_SOD-123" H 3150 925 50  0001 C CNN
-F 3 "http://www.diodes.com/_files/datasheets/ds23022.pdf" H 3150 1100 50  0001 C CNN
-F 4 "1N5819HW-7-F" H 3150 1400 50  0001 C CNN "Part Number"
-F 5 "https://www.digikey.com/product-detail/en/diodes-incorporated/1N5819HW-7-F/1N5819HW-FDICT-ND/815283" H 3250 1300 50  0001 C CNN "Website"
-F 6 "C117948" H 50  0   50  0001 C CNN "LCSC"
-	1    3150 1100
-	-1   0    0    1   
-$EndComp
-$Comp
 L open-dash-daughterboard-rescue:GND-power #PWR?
 U 1 1 601C912E
 P 4400 1300
@@ -553,4 +537,19 @@ Text Label 2950 2750 0    50   ~ 0
 USB_RXD
 Text Label 2950 2650 0    50   ~ 0
 USB_TXD
+$Comp
+L Open_Automation:D_1N5819HW D?
+U 1 1 60770B3C
+P 3150 1100
+AR Path="/6063934A/60770B3C" Ref="D?"  Part="1" 
+AR Path="/60DDD162/60770B3C" Ref="D14"  Part="1" 
+F 0 "D14" H 3150 1000 50  0000 C CNN
+F 1 "D_1N5819HW" H 2800 1150 50  0000 C CNN
+F 2 "Diode_SMD:D_SOD-123" H 3150 925 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Diodes-Incorporated-1N5819HW-7-F_C82544.pdf" H 3150 1100 50  0001 C CNN
+F 4 "1N5819HW-7-F" H 3150 1400 50  0001 C CNN "Part Number"
+F 5 "C82544" H 3150 1500 50  0001 C CNN "LCSC"
+	1    3150 1100
+	-1   0    0    1   
+$EndComp
 $EndSCHEMATC

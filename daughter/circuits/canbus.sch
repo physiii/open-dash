@@ -174,21 +174,6 @@ F 3 "" H 6800 4050 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L open-dash-daughterboard-rescue:MCP2551-I-SN-Interface_CAN_LIN U?
-U 1 1 5AD6C5A2
-P 5450 4050
-AR Path="/5A8CA1AF/5AD6C5A2" Ref="U?"  Part="1" 
-AR Path="/60D3331D/5AD6C5A2" Ref="U11"  Part="1" 
-F 0 "U11" H 5800 3700 50  0000 C CNN
-F 1 "MCP2551-I_SN" H 5800 4400 50  0000 C CNN
-F 2 "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm" H 5450 3550 50  0001 C CIN
-F 3 "https://datasheet.lcsc.com/szlcsc/Microchip-Tech-MCP2551-I-SN_C7376.pdf" H 5450 4050 50  0001 C CNN
-F 4 "MCP2551-I/SN" H 5450 4050 50  0001 C CNN "Part Number"
-F 5 "C7376" H 0   0   50  0001 C CNN "LCSC"
-	1    5450 4050
-	1    0    0    -1  
-$EndComp
-$Comp
 L open-dash-daughterboard-rescue:C_0.1uF-Open_Automation C?
 U 1 1 5B19B412
 P 4350 2050
@@ -333,6 +318,19 @@ F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0402WGF1000TCE_C25076.pdf" 
 F 4 "0402WGF1000TCE" V 5730 2000 60  0001 C CNN "Part Number"
 F 5 "C25076" V 5850 1900 50  0001 C CNN "LCSC"
 	1    5550 1900
+	1    0    0    -1  
+$EndComp
+$Comp
+L Open_Automation:CAN_MCP2551-I-SN U3
+U 1 1 60714385
+P 5450 4050
+F 0 "U3" H 5100 4400 50  0000 C CNN
+F 1 "CAN_MCP2551-I-SN" H 5850 4400 50  0000 C CNN
+F 2 "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm" H 5450 3550 50  0001 C CIN
+F 3 "https://datasheet.lcsc.com/szlcsc/Microchip-Tech-MCP2551-I-SN_C7376.pdf" H 5450 4050 50  0001 C CNN
+F 4 "MCP2551-I/SN" H 5850 4500 50  0001 C CNN "Part Number"
+F 5 "C7376" H 5800 4600 50  0001 C CNN "LCSC"
+	1    5450 4050
 	1    0    0    -1  
 $EndComp
 $EndSCHEMATC

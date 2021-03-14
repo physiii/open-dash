@@ -72,7 +72,7 @@ Wire Wire Line
 Wire Wire Line
 	10100 2500 10100 2550
 Wire Wire Line
-	5650 3050 5650 3100
+	5750 3050 5750 3100
 Wire Wire Line
 	1700 1700 1750 1700
 Text HLabel 1700 1700 0    60   Input ~ 0
@@ -80,9 +80,9 @@ Text HLabel 1700 1700 0    60   Input ~ 0
 Text Label 1750 1700 0    50   ~ 0
 3V3
 Wire Wire Line
-	5650 3400 5650 3450
+	5750 3400 5750 3450
 Wire Wire Line
-	5650 3750 5650 3800
+	5750 3750 5750 3800
 Wire Wire Line
 	1700 1600 1750 1600
 Text HLabel 1700 1600 0    60   Input ~ 0
@@ -223,22 +223,10 @@ Wire Wire Line
 Wire Wire Line
 	1150 3350 1150 3300
 Wire Wire Line
-	4525 3175 4525 3150
+	5500 3050 5500 3100
 Wire Wire Line
-	4525 3150 4575 3150
-Wire Wire Line
-	5325 3050 5400 3050
-Wire Wire Line
-	5400 3050 5400 3100
-Wire Wire Line
-	5400 3450 5400 3400
-Wire Wire Line
-	4300 3250 4300 3300
-Wire Wire Line
-	4300 2950 4575 2950
-Text Label 4400 2950 2    50   ~ 0
-5V
-Text Label 5350 3050 0    50   ~ 0
+	5500 3450 5500 3400
+Text Label 5450 3050 0    50   ~ 0
 3V3
 Wire Wire Line
 	3750 1850 3800 1850
@@ -280,33 +268,6 @@ MAIN_POWER
 Text Label 1750 1150 0    50   ~ 0
 DISPLAY_POWER
 Wire Wire Line
-	4950 5500 4950 5450
-Text Label 4500 4850 2    50   ~ 0
-POWER_IN
-Text Label 4500 5150 2    50   ~ 0
-MAIN_POWER_IN
-Wire Wire Line
-	4500 5150 4550 5150
-Wire Wire Line
-	4500 4850 4550 4850
-Text Label 4950 4600 0    50   ~ 0
-3V3
-Wire Wire Line
-	4950 4600 4950 4650
-Wire Wire Line
-	5350 5050 5400 5050
-Wire Wire Line
-	5400 5050 5400 5000
-Text Label 5400 5150 0    50   ~ 0
-FAULT
-Wire Wire Line
-	5400 5150 5350 5150
-Text Label 5450 5050 0    50   ~ 0
-VIOUT
-Wire Wire Line
-	5450 5050 5400 5050
-Connection ~ 5400 5050
-Wire Wire Line
 	8050 5800 8000 5800
 Wire Wire Line
 	8000 5800 8000 5750
@@ -326,8 +287,7 @@ Wire Wire Line
 	10100 1750 10100 1850
 Connection ~ 9700 1750
 Wire Wire Line
-	5650 3050 5400 3050
-Connection ~ 5400 3050
+	5750 3050 5500 3050
 Wire Wire Line
 	10200 5650 10200 5700
 Wire Wire Line
@@ -350,8 +310,6 @@ Wire Wire Line
 	1950 2800 1950 2850
 Wire Wire Line
 	1950 3700 1950 3650
-Wire Wire Line
-	4950 4600 5400 4600
 Wire Wire Line
 	1550 4850 1600 4850
 Text Label 1550 4850 2    50   ~ 0
@@ -438,6 +396,51 @@ Wire Wire Line
 	5000 1650 4950 1650
 Wire Wire Line
 	3800 1650 3750 1650
+Wire Wire Line
+	10100 1750 9700 1750
+Wire Wire Line
+	900  3000 900  2950
+Wire Wire Line
+	900  2950 1150 2950
+Connection ~ 1150 2950
+Wire Wire Line
+	900  3300 900  3350
+Wire Wire Line
+	900  3350 1150 3350
+Connection ~ 1150 3350
+Wire Wire Line
+	1500 3350 1150 3350
+Wire Wire Line
+	1150 3400 1150 3350
+Text Label 4450 4850 2    50   ~ 0
+POWER_IN
+Text Label 4450 5150 2    50   ~ 0
+MAIN_POWER_IN
+Wire Wire Line
+	4450 5150 4500 5150
+Wire Wire Line
+	4450 4850 4500 4850
+Wire Wire Line
+	5350 5300 5300 5300
+Wire Wire Line
+	5350 5450 5450 5450
+Wire Wire Line
+	5350 5300 5350 5450
+Wire Wire Line
+	5450 5500 5450 5450
+Connection ~ 5450 5450
+Wire Wire Line
+	5450 5450 5550 5450
+Wire Wire Line
+	5300 5150 5550 5150
+Text Label 5350 5000 0    50   ~ 0
+VIOUT
+Wire Wire Line
+	5300 5000 5350 5000
+Text Label 5350 4850 0    50   ~ 0
+5V
+Wire Wire Line
+	5350 4850 5300 4850
 $Comp
 L open-dash-daughterboard-rescue:GND-power #PWR?
 U 1 1 6021316E
@@ -697,14 +700,14 @@ $EndComp
 $Comp
 L open-dash-daughterboard-rescue:LED_G-Open_Automation D4
 U 1 1 5FD16B8A
-P 5650 3250
-F 0 "D4" V 5650 3150 50  0000 R CNN
-F 1 "LED_G" V 5650 3200 50  0001 R CNN
-F 2 "LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 5550 3250 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/Everlight-Elec-19-217-BHC-ZL1M2RY-3T_C72041.pdf" H 5650 3350 50  0001 C CNN
-F 4 "19-217/BHC-ZL1M2RY/3T" H 5750 3450 50  0001 C CNN "Part Number"
-F 5 "C72041" H 0   0   50  0001 C CNN "LCSC"
-	1    5650 3250
+P 5750 3250
+F 0 "D4" V 5750 3150 50  0000 R CNN
+F 1 "LED_G" V 5750 3200 50  0001 R CNN
+F 2 "LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 5650 3250 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Everlight-Elec-19-217-BHC-ZL1M2RY-3T_C72041.pdf" H 5750 3350 50  0001 C CNN
+F 4 "19-217/BHC-ZL1M2RY/3T" H 5850 3450 50  0001 C CNN "Part Number"
+F 5 "C72041" H 100 0   50  0001 C CNN "LCSC"
+	1    5750 3250
 	0    -1   -1   0   
 $EndComp
 $Comp
@@ -758,12 +761,12 @@ $EndComp
 $Comp
 L open-dash-daughterboard-rescue:GND-power #PWR039
 U 1 1 5FCF26BD
-P 5650 3800
-F 0 "#PWR039" H 5650 3550 50  0001 C CNN
-F 1 "GND" V 5655 3672 50  0000 R CNN
-F 2 "" H 5650 3800 50  0001 C CNN
-F 3 "" H 5650 3800 50  0001 C CNN
-	1    5650 3800
+P 5750 3800
+F 0 "#PWR039" H 5750 3550 50  0001 C CNN
+F 1 "GND" V 5755 3672 50  0000 R CNN
+F 2 "" H 5750 3800 50  0001 C CNN
+F 3 "" H 5750 3800 50  0001 C CNN
+	1    5750 3800
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -795,38 +798,25 @@ $EndComp
 $Comp
 L open-dash-daughterboard-rescue:R_1K-Open_Automation R9
 U 1 1 5FCDC801
-P 5650 3600
-F 0 "R9" H 5750 3550 50  0000 C CNN
-F 1 "R_1K" H 5750 3450 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 5580 3600 50  0001 C CNN
-F 3 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-3GEYJ102V/P1.0KGDKR-ND/577615" V 5730 3600 50  0001 C CNN
-F 4 "ERJ-3GEYJ102V" V 5830 3700 60  0001 C CNN "Part Number"
-F 5 " C21190" H 0   0   50  0001 C CNN "LCSC"
-	1    5650 3600
-	1    0    0    -1  
-$EndComp
-$Comp
-L open-dash-daughterboard-rescue:ACS711-Open_Automation U2
-U 1 1 5FD441C0
-P 4950 5050
-F 0 "U2" H 5150 5300 50  0000 C CNN
-F 1 "ACS711" H 5150 5400 50  0000 C CNN
-F 2 "Sensor_Current:Allegro_QFN-12-10-1EP_3x3mm_P0.5mm" H 3900 5700 50  0001 L CIN
-F 3 "https://datasheet.lcsc.com/szlcsc/Allegro-MicroSystems-LLC-ACS711KEXLT-15AB-T_C150824.pdf" H 4950 5050 50  0001 C CNN
-F 4 "ACS711KEXLT-15AB-T" H 4950 5050 50  0001 C CNN "Part Number"
-F 5 "C150824" H 4950 5050 50  0001 C CNN "LCSC"
-	1    4950 5050
+P 5750 3600
+F 0 "R9" H 5850 3550 50  0000 C CNN
+F 1 "R_1K" H 5850 3450 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 5680 3600 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-3GEYJ102V/P1.0KGDKR-ND/577615" V 5830 3600 50  0001 C CNN
+F 4 "ERJ-3GEYJ102V" V 5930 3700 60  0001 C CNN "Part Number"
+F 5 " C21190" H 100 0   50  0001 C CNN "LCSC"
+	1    5750 3600
 	1    0    0    -1  
 $EndComp
 $Comp
 L open-dash-daughterboard-rescue:GND-open-automation #PWR036
 U 1 1 5FCCD5C3
-P 4950 5500
-F 0 "#PWR036" H 4950 5250 50  0001 C CNN
-F 1 "GND" H 4950 5350 50  0000 C CNN
-F 2 "" H 4950 5500 50  0000 C CNN
-F 3 "" H 4950 5500 50  0000 C CNN
-	1    4950 5500
+P 5450 5500
+F 0 "#PWR036" H 5450 5250 50  0001 C CNN
+F 1 "GND" H 5450 5350 50  0000 C CNN
+F 2 "" H 5450 5500 50  0000 C CNN
+F 3 "" H 5450 5500 50  0000 C CNN
+	1    5450 5500
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -867,36 +857,14 @@ F 5 "C8835" H 0   0   50  0001 C CNN "LCSC"
 	0    1    1    0   
 $EndComp
 $Comp
-L open-dash-daughterboard-rescue:GND-open-automation #PWR034
-U 1 1 5B21A954
-P 4300 3300
-F 0 "#PWR034" H 4300 3050 50  0001 C CNN
-F 1 "GND" H 4300 3150 50  0000 C CNN
-F 2 "" H 4300 3300 50  0000 C CNN
-F 3 "" H 4300 3300 50  0000 C CNN
-	1    4300 3300
-	1    0    0    -1  
-$EndComp
-$Comp
 L open-dash-daughterboard-rescue:GND-open-automation #PWR038
 U 1 1 5B18B8C6
-P 5400 3450
-F 0 "#PWR038" H 5400 3200 50  0001 C CNN
-F 1 "GND" H 5400 3300 50  0000 C CNN
-F 2 "" H 5400 3450 50  0000 C CNN
-F 3 "" H 5400 3450 50  0000 C CNN
-	1    5400 3450
-	1    0    0    -1  
-$EndComp
-$Comp
-L open-dash-daughterboard-rescue:GND-open-automation #PWR035
-U 1 1 5B1782DE
-P 4525 3175
-F 0 "#PWR035" H 4525 2925 50  0001 C CNN
-F 1 "GND" H 4525 3025 50  0000 C CNN
-F 2 "" H 4525 3175 50  0000 C CNN
-F 3 "" H 4525 3175 50  0000 C CNN
-	1    4525 3175
+P 5500 3450
+F 0 "#PWR038" H 5500 3200 50  0001 C CNN
+F 1 "GND" H 5500 3300 50  0000 C CNN
+F 2 "" H 5500 3450 50  0000 C CNN
+F 3 "" H 5500 3450 50  0000 C CNN
+	1    5500 3450
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -1024,21 +992,6 @@ F 5 "C116748" H 0   0   50  0001 C CNN "LCSC"
 	1    0    0    -1  
 $EndComp
 $Comp
-L open-dash-daughterboard-rescue:LTV-827S-Open_Automation U?
-U 1 1 5FD5E37F
-P 2250 5150
-AR Path="/5FBF1F61/5FD5E37F" Ref="U?"  Part="1" 
-AR Path="/5A7BADB8/5FD5E37F" Ref="U1"  Part="1" 
-F 0 "U1" H 2250 5675 50  0000 C CNN
-F 1 "LTV-827S" H 2250 5584 50  0000 C CNN
-F 2 "Package_DIP:SMDIP-8_W9.53mm" H 2200 5700 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/1811092010_Lite-On-LTV-827S-TA1_C22112.pdf" H 2150 5550 50  0001 C CNN
-F 4 "LTV-827S-TA1" H 2200 5800 50  0001 C CNN "Part Number"
-F 5 "C22112" H 0   0   50  0001 C CNN "LCSC"
-	1    2250 5150
-	1    0    0    -1  
-$EndComp
-$Comp
 L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 5FD5E397
 P 1900 5050
@@ -1101,19 +1054,6 @@ F 2 "" H 2600 5050 50  0000 C CNN
 F 3 "" H 2600 5050 50  0000 C CNN
 	1    2600 5050
 	0    -1   -1   0   
-$EndComp
-$Comp
-L open-dash-daughterboard-rescue:REG_3V3-Open_Automation U3
-U 1 1 5B2197B1
-P 4975 3050
-F 0 "U3" H 4950 3375 50  0000 C CNN
-F 1 "REG_3V3" H 4950 3284 50  0000 C CNN
-F 2 "Package_TO_SOT_SMD:TO-252-2" H 4925 2775 50  0001 C CIN
-F 3 "https://datasheet.lcsc.com/szlcsc/ON-Semicon-ON-NCP1117DT33T5G_C152529.pdf" H 4950 2700 50  0001 C CNN
-F 4 "NCP1117DT33T5G" H 5000 3375 60  0001 C CNN "Part Number"
-F 5 "C152529" H 0   0   50  0001 C CNN "LCSC"
-	1    4975 3050
-	1    0    0    -1  
 $EndComp
 $Comp
 L Open_Automation:R_6.8K R13
@@ -1220,19 +1160,6 @@ F 5 "C25803" V 1800 3000 50  0001 C CNN "LCSC"
 	1    0    0    -1  
 $EndComp
 $Comp
-L Open_Automation:R_10K_0402 R8
-U 1 1 604513EA
-P 5400 4800
-F 0 "R8" V 5400 4800 50  0000 C CNN
-F 1 "R_10K_0402" V 5300 4650 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder" V 5330 4800 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0402WGF1002TCE_C25744.pdf" V 5480 4800 50  0001 C CNN
-F 4 "0402WGF1002TCE" V 5580 4900 60  0001 C CNN "Part Number"
-F 5 "C25744" V 5650 4800 50  0001 C CNN "LCSC"
-	1    5400 4800
-	-1   0    0    1   
-$EndComp
-$Comp
 L Open_Automation:R_10K_0402 R11
 U 1 1 604588E2
 P 8000 5550
@@ -1245,8 +1172,6 @@ F 5 "C25744" V 8250 5550 50  0001 C CNN "LCSC"
 	1    8000 5550
 	-1   0    0    1   
 $EndComp
-Wire Wire Line
-	10100 1750 9700 1750
 $Comp
 L Open_Automation:R_20K R14
 U 1 1 60473BDD
@@ -1311,29 +1236,16 @@ F 5 "C25765" V 9550 1950 50  0001 C CNN "LCSC"
 	1    0    0    -1  
 $EndComp
 $Comp
-L Open_Automation:C_10uF C3
-U 1 1 60502A0A
-P 4300 3100
-F 0 "C3" H 4100 3100 50  0000 L CNN
-F 1 "C_10uF" H 4000 3000 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder" H 4550 3550 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/Samsung-Electro-Mechanics-CL21A106KAYNNNE_C15850.pdf" H 4300 2850 50  0001 C CNN
-F 4 "CL21A106KAYNNNE" H 4350 3650 60  0001 C CNN "Part Number"
-F 5 "C15850" H 4300 3750 50  0001 C CNN "LCSC"
-	1    4300 3100
-	1    0    0    -1  
-$EndComp
-$Comp
 L Open_Automation:C_10uF C4
 U 1 1 605049B8
-P 5400 3250
-F 0 "C4" H 5200 3250 50  0000 L CNN
-F 1 "C_10uF" H 5100 3150 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder" H 5650 3700 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/Samsung-Electro-Mechanics-CL21A106KAYNNNE_C15850.pdf" H 5400 3000 50  0001 C CNN
-F 4 "CL21A106KAYNNNE" H 5450 3800 60  0001 C CNN "Part Number"
-F 5 "C15850" H 5400 3900 50  0001 C CNN "LCSC"
-	1    5400 3250
+P 5500 3250
+F 0 "C4" H 5300 3250 50  0000 L CNN
+F 1 "C_10uF" H 5200 3150 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder" H 5750 3700 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Samsung-Electro-Mechanics-CL21A106KAYNNNE_C15850.pdf" H 5500 3000 50  0001 C CNN
+F 4 "CL21A106KAYNNNE" H 5550 3800 60  0001 C CNN "Part Number"
+F 5 "C15850" H 5500 3900 50  0001 C CNN "LCSC"
+	1    5500 3250
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -1414,18 +1326,96 @@ F 5 "C3350" H 900 3150 50  0001 C CNN "LCSC"
 	1    900  3150
 	1    0    0    -1  
 $EndComp
+$Comp
+L Open_Automation:C_1nF_0402 C37
+U 1 1 605B3FC4
+P 5550 5300
+F 0 "C37" H 5665 5346 50  0000 L CNN
+F 1 "C_1nF_0402" H 5665 5255 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0402_1005Metric_Pad0.74x0.62mm_HandSolder" H 5650 5600 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Guangdong-Fenghua-Advanced-Tech-0402B102K500NT_C1523.pdf" H 5550 5050 50  0001 C CNN
+F 4 "C1523" H 5550 5700 50  0001 C CNN "LCSC"
+F 5 "0402B102K500NT" H 5675 5500 60  0001 C CNN "Part Number"
+	1    5550 5300
+	1    0    0    -1  
+$EndComp
+$Comp
+L Open_Automation:ACS711 U2
+U 1 1 60580AB0
+P 4900 5050
+F 0 "U2" H 4900 5517 50  0000 C CNN
+F 1 "ACS711" H 4900 5426 50  0000 C CNN
+F 2 "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm" H 3850 5700 50  0001 L CIN
+F 3 "" H 4900 5050 50  0001 C CNN
+F 4 "ACS712ELCTR-20A-T" H 5600 5800 50  0001 C CNN "Part Number"
+F 5 "C10681" H 5850 5900 50  0001 C CNN "LCSC"
+	1    4900 5050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Open_Automation:Opto_TLP521 U1
+U 1 1 6065F0AE
+P 2250 5150
+F 0 "U1" H 2250 5675 50  0000 C CNN
+F 1 "Opto_TLP521" H 2250 5584 50  0000 C CNN
+F 2 "Package_DIP:SMDIP-8_W9.53mm" H 2200 5700 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/2009251934_Isocom-Components-TLP521-2SMT-R_C722233.pdf" H 2150 5550 50  0001 C CNN
+F 4 "TLP521-2SMT&R" H 2200 5800 50  0001 C CNN "Part Number"
+F 5 "C722233" H 2200 5900 50  0001 C CNN "LCSC"
+	1    2250 5150
+	1    0    0    -1  
+$EndComp
+$Comp
+L Open_Automation:C_10uF C3
+U 1 1 60502A0A
+P 4300 3100
+F 0 "C3" H 4100 3100 50  0000 L CNN
+F 1 "C_10uF" H 4000 3000 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder" H 4550 3550 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Samsung-Electro-Mechanics-CL21A106KAYNNNE_C15850.pdf" H 4300 2850 50  0001 C CNN
+F 4 "CL21A106KAYNNNE" H 4350 3650 60  0001 C CNN "Part Number"
+F 5 "C15850" H 4300 3750 50  0001 C CNN "LCSC"
+	1    4300 3100
+	1    0    0    -1  
+$EndComp
+$Comp
+L open-dash-daughterboard-rescue:GND-open-automation #PWR034
+U 1 1 5B21A954
+P 4300 3300
+F 0 "#PWR034" H 4300 3050 50  0001 C CNN
+F 1 "GND" H 4300 3150 50  0000 C CNN
+F 2 "" H 4300 3300 50  0000 C CNN
+F 3 "" H 4300 3300 50  0000 C CNN
+	1    4300 3300
+	1    0    0    -1  
+$EndComp
+Text Label 4400 2950 2    50   ~ 0
+5V
 Wire Wire Line
-	900  3000 900  2950
+	4300 3250 4300 3300
 Wire Wire Line
-	900  2950 1150 2950
-Connection ~ 1150 2950
+	4300 2950 4600 2950
 Wire Wire Line
-	900  3300 900  3350
+	4600 3150 4500 3150
 Wire Wire Line
-	900  3350 1150 3350
-Connection ~ 1150 3350
+	4500 3150 4500 3300
 Wire Wire Line
-	1500 3350 1150 3350
+	4500 3300 4300 3300
+Connection ~ 4300 3300
 Wire Wire Line
-	1150 3400 1150 3350
+	5350 3050 5500 3050
+Connection ~ 5500 3050
+$Comp
+L Open_Automation:REG_AMS1117-3.3 U11
+U 1 1 607097AC
+P 5000 3050
+F 0 "U11" H 4975 3375 50  0000 C CNN
+F 1 "REG_AMS1117-3.3" H 4975 3284 50  0000 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-223-3_TabPin2" H 4950 2775 50  0001 C CIN
+F 3 "https://datasheet.lcsc.com/szlcsc/1811201117_Advanced-Monolithic-Systems-AMS-AMS1117-3-3_C6186.pdf" H 4975 2700 50  0001 C CNN
+F 4 "AMS1117-3.3" H 5025 3375 60  0001 C CNN "Part Number"
+F 5 "C6186" H 4950 3450 50  0001 C CNN "LCSC"
+	1    5000 3050
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

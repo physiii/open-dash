@@ -589,19 +589,6 @@ SCL
 Wire Wire Line
 	7800 4550 7850 4550
 $Comp
-L open-dash-daughterboard-rescue:Si7020-A20-Sensor_Humidity U10
-U 1 1 602D690F
-P 8350 4450
-F 0 "U10" H 8650 4700 50  0000 L CNN
-F 1 "Si7020-A20" H 8500 4200 50  0000 L CNN
-F 2 "Package_DFN_QFN:DFN-6-1EP_3x3mm_P1mm_EP1.5x2.4mm" H 8350 4050 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/2005151605_SILICON-LABS-SI7020-A20-GM1_C430229.pdf" H 8150 4750 50  0001 C CNN
-F 4 "SI7020-A20-GM1" H 0   0   50  0001 C CNN "Part Number"
-F 5 "C430229" H 0   0   50  0001 C CNN "LCSC"
-	1    8350 4450
-	1    0    0    -1  
-$EndComp
-$Comp
 L Open_Automation:C_10uF C22
 U 1 1 604C35AE
 P 3100 2050
@@ -716,6 +703,19 @@ F 3 "https://datasheet.lcsc.com/szlcsc/Samsung-Electro-Mechanics-CL05B104KO5NNNC
 F 4 "CL05B104KO5NNNC" H 7575 4700 60  0001 C CNN "Part Number"
 F 5 "C1525" H 7450 4900 50  0001 C CNN "LCSC"
 	1    7450 4500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Open_Automation:Temp_Hum_HDC1080DMBR U10
+U 1 1 6064A5B2
+P 8350 4450
+F 0 "U10" H 8794 4496 50  0000 L CNN
+F 1 "Temp_Hum_HDC1080DMBR" H 8794 4405 50  0000 L CNN
+F 2 "Package_DFN_QFN:DFN-6-1EP_3x3mm_P1mm_EP1.5x2.4mm" H 8350 5200 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/1810271112_Texas-Instruments-HDC1080DMBR_C82227.pdf" H 8150 4750 50  0001 C CNN
+F 4 "HDC1080DMBR" H 8650 4800 50  0001 C CNN "Part Number"
+F 5 "C82227" H 8650 4900 50  0001 C CNN "LCSC"
+	1    8350 4450
 	1    0    0    -1  
 $EndComp
 $EndSCHEMATC

@@ -44,21 +44,6 @@ BATTERY
 Wire Wire Line
 	1250 1050 1200 1050
 $Comp
-L open-dash-daughterboard-rescue:LTV-827S-Open_Automation U?
-U 1 1 5FD18EDF
-P 6050 2750
-AR Path="/5FBF1F61/5FD18EDF" Ref="U?"  Part="1" 
-AR Path="/6063934A/5FD18EDF" Ref="U8"  Part="1" 
-F 0 "U8" H 6050 3275 50  0000 C CNN
-F 1 "LTV-827S" H 6050 3184 50  0000 C CNN
-F 2 "Package_DIP:SMDIP-8_W9.53mm" H 6000 3300 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/1811092010_Lite-On-LTV-827S-TA1_C22112.pdf" H 5950 3150 50  0001 C CNN
-F 4 "LTV-827S-TA1" H 6000 3400 50  0001 C CNN "Part Number"
-F 5 "C22112" H 0   0   50  0001 C CNN "LCSC"
-	1    6050 2750
-	1    0    0    -1  
-$EndComp
-$Comp
 L open-dash-daughterboard-rescue:GND-open-automation #PWR?
 U 1 1 5FD18EF7
 P 5700 2650
@@ -191,22 +176,6 @@ J1850
 Wire Wire Line
 	6800 3000 6750 3000
 $Comp
-L open-dash-daughterboard-rescue:D_1N5819HW-Open_Automation D?
-U 1 1 5FD3E56E
-P 6600 3000
-AR Path="/5FD3E56E" Ref="D?"  Part="1" 
-AR Path="/6063934A/5FD3E56E" Ref="D9"  Part="1" 
-F 0 "D9" H 6450 3050 50  0000 C CNN
-F 1 "D_1N5819HW" H 6400 3150 50  0000 C CNN
-F 2 "Diode_SMD:D_SOD-123" H 6600 2825 50  0001 C CNN
-F 3 "http://www.diodes.com/_files/datasheets/ds23022.pdf" H 6600 3000 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/diodes-incorporated/1N5819HW-7-F/1N5819HW-FDICT-ND/815283" H 6700 3200 50  0001 C CNN "Website"
-F 5 "1N5819HW-7-F" H 6600 3300 50  0001 C CNN "Part Number"
-F 6 "C117948" H 6600 3000 50  0001 C CNN "LCSC"
-	1    6600 3000
-	-1   0    0    1   
-$EndComp
-$Comp
 L open-dash-daughterboard-rescue:MM3Z8V2-Open_Automation D8
 U 1 1 5FD3E57A
 P 6400 3150
@@ -253,5 +222,33 @@ F 4 "ERJ-3GEYJ102V" V 6780 2550 60  0001 C CNN "Part Number"
 F 5 " C21190" H 0   0   50  0001 C CNN "LCSC"
 	1    6600 2450
 	0    1    1    0   
+$EndComp
+$Comp
+L Open_Automation:Opto_TLP521 U?
+U 1 1 6066A554
+P 6050 2750
+AR Path="/5A7BADB8/6066A554" Ref="U?"  Part="1" 
+AR Path="/6063934A/6066A554" Ref="U8"  Part="1" 
+F 0 "U8" H 6050 3275 50  0000 C CNN
+F 1 "Opto_TLP521" H 6050 3184 50  0000 C CNN
+F 2 "Package_DIP:SMDIP-8_W9.53mm" H 6000 3300 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/2009251934_Isocom-Components-TLP521-2SMT-R_C722233.pdf" H 5950 3150 50  0001 C CNN
+F 4 "TLP521-2SMT&R" H 6000 3400 50  0001 C CNN "Part Number"
+F 5 "C722233" H 6000 3500 50  0001 C CNN "LCSC"
+	1    6050 2750
+	1    0    0    -1  
+$EndComp
+$Comp
+L Open_Automation:D_1N5819HW D9
+U 1 1 6076C81A
+P 6600 3000
+F 0 "D9" H 6500 2950 50  0000 C CNN
+F 1 "D_1N5819HW" H 6450 3100 50  0000 C CNN
+F 2 "Diode_SMD:D_SOD-123" H 6600 2825 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Diodes-Incorporated-1N5819HW-7-F_C82544.pdf" H 6600 3000 50  0001 C CNN
+F 4 "1N5819HW-7-F" H 6600 3300 50  0001 C CNN "Part Number"
+F 5 "C82544" H 6600 3400 50  0001 C CNN "LCSC"
+	1    6600 3000
+	-1   0    0    1   
 $EndComp
 $EndSCHEMATC
