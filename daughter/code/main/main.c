@@ -1,7 +1,7 @@
 #include "cJSON.h"
 
 cJSON *service_message = NULL;
-
+#define SERVICE_LOOP	100
 #include "services/uart.c"
 #include "services/gpio.c"
 #include "services/hvac.c"
@@ -24,7 +24,7 @@ void app_main(void)
 
 	int cnt = 0;
 	while(1) {
-			printf("!! cnt: %d\n", cnt++);
+			printf("Uptime: %d minutes\n", cnt++);
 			vTaskDelay(60 * 1000 / portTICK_RATE_MS);
 	}
 }

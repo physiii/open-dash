@@ -9,8 +9,6 @@
 static void periodic_timer_callback(void* arg);
 static void oneshot_timer_callback(void* arg);
 
-#define BLOWER_MOTOR					B1
-
 #define PWM_INTERVAL          27500
 #define LEVEL_0								0
 #define LEVEL_1								21450
@@ -42,7 +40,10 @@ esp_timer_handle_t oneshot_timer;
 static void oneshot_timer_callback(void* arg)
 {
     // gpio_set_level(BLOWER_MOTOR_PIN, false);
-    set_mcp_io(BLOWER_MOTOR, false);
+
+    // set_mcp_io(BLOWER_MOTOR, false);
+    mcp23x17_set_level(&mcp_dev, BLOWER_MOTOR, false);
+
     // int64_t time_since_boot = esp_timer_get_time();
     // ESP_LOGI(TAG, "One-shot timer called, time since boot: %lld us", time_since_boot);
     // esp_timer_handle_t periodic_timer_handle = (esp_timer_handle_t) arg;
@@ -57,7 +58,10 @@ static void oneshot_timer_callback(void* arg)
 static void periodic_timer_callback(void* arg)
 {
     // gpio_set_level(BLOWER_MOTOR_PIN, true);
-    set_mcp_io(BLOWER_MOTOR, true);
+
+    // set_mcp_io(BLOWER_MOTOR, true);
+    mcp23x17_set_level(&mcp_dev, BLOWER_MOTOR, true);
+
     ESP_ERROR_CHECK(esp_timer_start_once(oneshot_timer, pwm_width));
 
     // int64_t time_since_boot = esp_timer_get_time();
@@ -96,7 +100,7 @@ static void timer_example_evt_task(void *arg)
   /* Start the timers */
   ESP_ERROR_CHECK(esp_timer_start_periodic(periodic_timer, PWM_INTERVAL));
   // ESP_ERROR_CHECK(esp_timer_start_once(oneshot_timer, 5000000));
-  ESP_LOGI(TAG, "Started timers, time since boot: %lld us", esp_timer_get_time());
+  // ESP_LOGI(TAG, "Started timers, time since boot: %lld us", esp_timer_get_time());
 
   while (1) {
 
@@ -113,14 +117,14 @@ static void timer_example_evt_task(void *arg)
   /* Timekeeping continues in light sleep, and timers are scheduled
    * correctly after light sleep.
    */
-  ESP_LOGI(TAG, "Entering light sleep for 0.5s, time since boot: %lld us",
-          esp_timer_get_time());
+  // ESP_LOGI(TAG, "Entering light sleep for 0.5s, time since boot: %lld us",
+  //         esp_timer_get_time());
 
   ESP_ERROR_CHECK(esp_sleep_enable_timer_wakeup(500000));
   esp_light_sleep_start();
 
-  ESP_LOGI(TAG, "Woke up from light sleep, time since boot: %lld us",
-              esp_timer_get_time());
+  // ESP_LOGI(TAG, "Woke up from light sleep, time since boot: %lld us",
+  //             esp_timer_get_time());
 
   /* Let the timer run for a little bit more */
   usleep(2000000);
@@ -129,7 +133,7 @@ static void timer_example_evt_task(void *arg)
   ESP_ERROR_CHECK(esp_timer_stop(periodic_timer));
   ESP_ERROR_CHECK(esp_timer_delete(periodic_timer));
   ESP_ERROR_CHECK(esp_timer_delete(oneshot_timer));
-  ESP_LOGI(TAG, "Stopped and deleted timers");
+  // ESP_LOGI(TAG, "Stopped and deleted timers");
 }
 
 

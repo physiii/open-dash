@@ -17,18 +17,21 @@
 #define J1850_OUTPUT_PIN CONFIG_J1850_OUTPUT_PIN
 #define J1850_DEBUG_PIN 22
 
-#define GPIO_OUTPUT_PIN_SEL  ((1ULL<<J1850_DEBUG_PIN) | (1ULL<<J1850_OUTPUT_PIN) | (1ULL<<MAIN_POWER_IO) | (1ULL<<DISPLAY_POWER_IO) | (1ULL<<AUDIO_STBY_IO) | (1ULL<<AUDIO_MUTE_IO) | (1ULL<<25) | (1ULL<<26))
-#define GPIO_INPUT_PIN_SEL  ((1ULL<<IGNITION_WIRE_IO) | (1ULL<<J1850_INPUT_PIN))
+#define INTA_GPIO 25
+#define INTB_GPIO 26
+
+#define GPIO_OUTPUT_PIN_SEL  ((1ULL<<J1850_DEBUG_PIN) | (1ULL<<J1850_OUTPUT_PIN) | (1ULL<<MAIN_POWER_IO) | (1ULL<<DISPLAY_POWER_IO) | (1ULL<<AUDIO_STBY_IO) | (1ULL<<AUDIO_MUTE_IO))
+#define GPIO_INPUT_PIN_SEL  ((1ULL<<IGNITION_WIRE_IO) | (1ULL<<J1850_INPUT_PIN) | (1ULL<<INTA_GPIO) | (1ULL<<INTA_GPIO))
 #define ESP_INTR_FLAG_DEFAULT 0
 
-#define INTA_GPIO 19  // INTA pin
 #define SDA_GPIO 21
 #define SCL_GPIO 22
 
-static void IRAM_ATTR intr_handler(void *arg)
-{
-    printf("Interrupt!\n");
-}
+
+// static void IRAM_ATTR intr_handler(void *arg)
+// {
+//     printf("Interrupt!\n");
+// }
 
 void gpio_main(void)
 {

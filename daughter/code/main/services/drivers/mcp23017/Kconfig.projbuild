@@ -72,7 +72,7 @@ menu "J1850 Configuration"
 
     config J1850_OUTPUT_PIN
         int "Output GPIO number"
-        default 4
+        default 17
         help
             This option selects the GPIO pin used for the j1850 output signal.
 

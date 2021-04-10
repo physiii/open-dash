@@ -1,7 +1,57 @@
-#include "drivers/i2c.c"
-#include "drivers/max11617.c"
-#include "drivers/mcp23x17.c"
-#include "drivers/timer.c"
+#define MCP23X17_ADDR 0x20
+#define IO_CHANNELS 16                  /*!< Data buffer length of test buffer */
+#define DATA_LENGTH 3                  /*!< Data buffer length of test buffer */
+#define RW_TEST_LENGTH 128               /*!< Data length for r/w test, [0,DATA_LENGTH] */
+
+#define I2C_FREQ_HZ 1000000  // Max 1MHz for esp-idf, but device supports up to 1.7Mhz
+
+#define REG_IODIRA   0x00
+#define REG_IODIRB   0x01
+#define REG_IPOLA    0x02
+#define REG_IPOLB    0x03
+#define REG_GPINTENA 0x04
+#define REG_GPINTENB 0x05
+#define REG_DEFVALA  0x06
+#define REG_DEFVALB  0x07
+#define REG_INTCONA  0x08
+#define REG_INTCONB  0x09
+#define REG_IOCON    0x0A
+#define REG_GPPUA    0x0C
+#define REG_GPPUB    0x0D
+#define REG_INTFA    0x0E
+#define REG_INTFB    0x0F
+#define REG_INTCAPA  0x10
+#define REG_INTCAPB  0x11
+#define REG_GPIOA    0x12
+#define REG_GPIOB    0x13
+#define REG_OLATA    0x14
+#define REG_OLATB    0x15
+
+#define BIT_IOCON_INTPOL 1
+#define BIT_IOCON_ODR    2
+#define BIT_IOCON_HAEN   3
+#define BIT_IOCON_DISSLW 4
+#define BIT_IOCON_SEQOP  5
+#define BIT_IOCON_MIRROR 6
+#define BIT_IOCON_BANK   7
+
+#define MCP_OUTPUT 0
+#define MCP_INPUT  1
+
+#define AIN0	0
+#define AIN1	1
+#define AIN2	2
+#define AIN3	3
+#define AIN4	4
+#define AIN5	5
+#define AIN6	6
+#define AIN7	7
+#define AIN8	8
+#define AIN9	9
+#define AIN10	10
+#define AIN11	11
+
+#define ADC_CHANNELS 12                  /*!< Data buffer length of test buffer */
 
 #define INSIDE_AIR_TEMP										AIN0
 #define AMBIENT_AIR_TEMP  		 						AIN1
@@ -13,24 +63,28 @@
 #define DRIVER_SUNLOAD				  					AIN7
 #define PASSENGER_SUNLOAD									AIN8
 
-#define LEFT_AIR_TEMP_CONTROL_A						25
-#define LEFT_AIR_TEMP_CONTROL_B						26
-// #define LEFT_AIR_TEMP_CONTROL_A						A0
-// #define LEFT_AIR_TEMP_CONTROL_B						A1
+#define LEFT_AIR_TEMP_CONTROL_A						A0
+#define LEFT_AIR_TEMP_CONTROL_B						A1
 #define RIGHT_AIR_TEMP_CONTROL_A					A2
 #define RIGHT_AIR_TEMP_CONTROL_B					A3
 #define MODE_A														A4
 #define MODE_B														A5
 #define RECIRCULATION_A										A6
 #define RECIRCULATION_B										A7
-#define INSIDE_AIR_TEMP_BLOWER						B0
-#define REAR_DEFOG												B2
 
-#define DRIVER_HEATED_SEAT_STATUS					B4
-#define PASSENGER_HEATED_SEAT_STATUS			B5
+#define DRIVER_SEAT_TEMP_CONTROL					B0
+#define PASSENGER_SEAT_TEMP_CONTROL				B1
+#define INSIDE_AIR_TEMP_BLOWER						B2
+#define BLOWER_MOTOR											B3
+#define REAR_DEFOG												B4
+#define C_OUT3														B5
+#define DRIVER_HEATED_SEAT_STATUS					B6
+#define PASSENGER_HEATED_SEAT_STATUS			B7
 
-#define DRIVER_SEAT_TEMP_CONTROL					B6
-#define PASSENGER_SEAT_TEMP_CONTROL				B7
+#include "../i2cdev/i2cdev.h"
+#include "drivers/mcp23017/mcp23017.c"
+#include "drivers/ads111x/ads1115.c"
+#include "drivers/timer.c"
 
 int actuator_interval = 3200;
 
@@ -61,109 +115,109 @@ void set_blower_level(int val)
 
 void set_left_air_temp(bool valA, bool valB)
 {
-	gpio_set_level(LEFT_AIR_TEMP_CONTROL_A, valA);
-	gpio_set_level(LEFT_AIR_TEMP_CONTROL_B, valB);
-	// set_mcp_io(LEFT_AIR_TEMP_CONTROL_A, valA);
-	// set_mcp_io(LEFT_AIR_TEMP_CONTROL_B, valB);
-
-
+	mcp23x17_set_level(&mcp_dev, LEFT_AIR_TEMP_CONTROL_A, valA);
+	mcp23x17_set_level(&mcp_dev, LEFT_AIR_TEMP_CONTROL_B, valB);
 	// printf("set_left_air_temp\tA:%d\tB:%d\n", valA, valB);
 }
 
 void set_right_air_temp(bool valA, bool valB)
 {
-	set_mcp_io(RIGHT_AIR_TEMP_CONTROL_A, valA);
-	set_mcp_io(RIGHT_AIR_TEMP_CONTROL_B, valB);
+	mcp23x17_set_level(&mcp_dev, RIGHT_AIR_TEMP_CONTROL_A, valA);
+	mcp23x17_set_level(&mcp_dev, RIGHT_AIR_TEMP_CONTROL_B, valB);
 	// printf("set_right_air_temp\tA:%d\tB:%d\n", valA, valB);
 }
 
 void set_mode(bool valA, bool valB)
 {
-	set_mcp_io(MODE_A, valA);
-	set_mcp_io(MODE_B, valB);
+	mcp23x17_set_level(&mcp_dev, MODE_A, valA);
+	mcp23x17_set_level(&mcp_dev, MODE_B, valB);
 
 	printf("Set Mode\tA:%d\tB:%d\n", valA, valB);
 }
 
 void set_recirculation(bool valA, bool valB)
 {
-	set_mcp_io(RECIRCULATION_A, valA);
-	set_mcp_io(RECIRCULATION_B, valB);
+	mcp23x17_set_level(&mcp_dev, RECIRCULATION_A, valA);
+	mcp23x17_set_level(&mcp_dev, RECIRCULATION_B, valB);
 }
 
 void set_rear_defog(bool val)
 {
-	set_mcp_io(REAR_DEFOG, val);
+	mcp23x17_set_level(&mcp_dev, REAR_DEFOG, val);
 }
 
 void set_air_temp_blower(bool val)
 {
-	set_mcp_io(INSIDE_AIR_TEMP_BLOWER, val);
+	mcp23x17_set_level(&mcp_dev, INSIDE_AIR_TEMP_BLOWER, val);
 }
 
 void set_driver_heated_seat(bool val)
 {
-	set_mcp_io(DRIVER_SEAT_TEMP_CONTROL, val);
+	mcp23x17_set_level(&mcp_dev, DRIVER_SEAT_TEMP_CONTROL, val);
 }
 
 void set_passenger_heated_seat(bool val)
 {
-	set_mcp_io(PASSENGER_SEAT_TEMP_CONTROL, val);
+	mcp23x17_set_level(&mcp_dev, PASSENGER_SEAT_TEMP_CONTROL, val);
 }
 
 uint16_t get_ambient_air_temp()
 {
-	return get_max_values()[AMBIENT_AIR_TEMP];
+	return get_ads_values()[AMBIENT_AIR_TEMP];
 }
 
 uint16_t get_inside_air_temp()
 {
-	return get_max_values()[INSIDE_AIR_TEMP];
+	return get_ads_values()[INSIDE_AIR_TEMP];
 }
 
 uint16_t get_upper_right_air_temp()
 {
-	return get_max_values()[UPPER_RIGHT_AIR_TEMP];
+	return get_ads_values()[UPPER_RIGHT_AIR_TEMP];
 }
 
 uint16_t get_upper_left_air_temp()
 {
-	return get_max_values()[UPPER_LEFT_AIR_TEMP];
+	return get_ads_values()[UPPER_LEFT_AIR_TEMP];
 }
 
 uint16_t get_lower_left_air_temp()
 {
-	return get_max_values()[LOWER_LEFT_AIR_TEMP];
+	return get_ads_values()[LOWER_LEFT_AIR_TEMP];
 }
 
 uint16_t get_lower_right_air_temp()
 {
-	return get_max_values()[LOWER_RIGHT_AIR_TEMP];
+	return get_ads_values()[LOWER_RIGHT_AIR_TEMP];
 }
 
 void get_driver_heated_status()
 {
-	get_mcp_io(DRIVER_HEATED_SEAT_STATUS);
+	uint32_t val = 0;
+	mcp23x17_get_level(&mcp_dev, DRIVER_HEATED_SEAT_STATUS, val);
+	return val;
 }
 
 void get_passenger_heated_status()
 {
-	get_mcp_io(PASSENGER_HEATED_SEAT_STATUS);
+	uint32_t val = 0;
+	mcp23x17_get_level(&mcp_dev, PASSENGER_HEATED_SEAT_STATUS, val);
+	return val;
 }
 
 uint16_t get_ambient_light_level()
 {
-	return get_max_values()[AMBIENT_LIGHT];
+	return get_ads_values()[AMBIENT_LIGHT];
 }
 
 uint16_t get_driver_sunload()
 {
-	return get_max_values()[DRIVER_SUNLOAD];
+	return get_ads_values()[DRIVER_SUNLOAD];
 }
 
 uint16_t get_passenger_sunload()
 {
-	return get_max_values()[PASSENGER_SUNLOAD];
+	return get_ads_values()[PASSENGER_SUNLOAD];
 }
 
 void send_hvac_state () {
@@ -179,6 +233,7 @@ void send_hvac_state () {
 				get_lower_left_air_temp(), get_lower_right_air_temp(),
 				get_ambient_light_level(), get_driver_sunload(), get_passenger_sunload());
 		outgoing_uart_message = cJSON_Parse(msg);
+		printf("send_hvac_state %s\n", msg);
 }
 
 void handle_hvac_message (cJSON * msg) {
@@ -301,8 +356,8 @@ static void hvac_task(void* arg)
 	char type[100];
 	cJSON * payload = NULL;
 
-	set_mcp_io_dir(DRIVER_HEATED_SEAT_STATUS, MCP_INPUT);
-	set_mcp_io_dir(PASSENGER_HEATED_SEAT_STATUS, MCP_INPUT);
+	mcp23x17_set_mode(&mcp_dev, DRIVER_HEATED_SEAT_STATUS, MCP23X17_GPIO_INPUT);
+	mcp23x17_set_mode(&mcp_dev, PASSENGER_HEATED_SEAT_STATUS, MCP23X17_GPIO_INPUT);
 
 	while(1) {
 		if (service_message != NULL) {
@@ -320,17 +375,45 @@ static void hvac_task(void* arg)
 			}
 		}
 
-		vTaskDelay(1000 / portTICK_RATE_MS);
+		// printHvacData(ADS_VALUES, 0);
+		// vTaskDelay(1000 / portTICK_RATE_MS);
+    // set_left_air_temp(true,false);
+		// vTaskDelay(1000 / portTICK_RATE_MS);
+    // set_left_air_temp(false,true);
+
+		vTaskDelay(SERVICE_LOOP / portTICK_RATE_MS);
 	}
 }
 
 void hvac_main(void)
 {
 	// {"type":"hvac", "payload":{"get_state":true}}
-	i2c_main();
-	max11617_main();
-	mcp23x17_main();
+  ESP_ERROR_CHECK(i2cdev_init());
+	ads1115_main();
+	mcp23017_main();
+
 	timer_main();
+
+  mcp23x17_set_mode(&mcp_dev, DRIVER_HEATED_SEAT_STATUS, MCP23X17_GPIO_INPUT);
+  mcp23x17_set_mode(&mcp_dev, PASSENGER_HEATED_SEAT_STATUS, MCP23X17_GPIO_INPUT);
+
+  mcp23x17_set_mode(&mcp_dev, LEFT_AIR_TEMP_CONTROL_A, MCP23X17_GPIO_OUTPUT);
+	mcp23x17_set_mode(&mcp_dev, LEFT_AIR_TEMP_CONTROL_B, MCP23X17_GPIO_OUTPUT);
+	mcp23x17_set_mode(&mcp_dev, RIGHT_AIR_TEMP_CONTROL_A, MCP23X17_GPIO_OUTPUT);
+	mcp23x17_set_mode(&mcp_dev, RIGHT_AIR_TEMP_CONTROL_B, MCP23X17_GPIO_OUTPUT);
+	mcp23x17_set_mode(&mcp_dev, MODE_A, MCP23X17_GPIO_OUTPUT);
+	mcp23x17_set_mode(&mcp_dev, MODE_B, MCP23X17_GPIO_OUTPUT);
+	mcp23x17_set_mode(&mcp_dev, RECIRCULATION_A, MCP23X17_GPIO_OUTPUT);
+	mcp23x17_set_mode(&mcp_dev, RECIRCULATION_B, MCP23X17_GPIO_OUTPUT);
+	mcp23x17_set_mode(&mcp_dev, DRIVER_SEAT_TEMP_CONTROL, MCP23X17_GPIO_OUTPUT);
+	mcp23x17_set_mode(&mcp_dev, PASSENGER_SEAT_TEMP_CONTROL, MCP23X17_GPIO_OUTPUT);
+	mcp23x17_set_mode(&mcp_dev, INSIDE_AIR_TEMP_BLOWER, MCP23X17_GPIO_OUTPUT);
+	mcp23x17_set_mode(&mcp_dev, REAR_DEFOG, MCP23X17_GPIO_OUTPUT);
+	mcp23x17_set_mode(&mcp_dev, C_OUT3, MCP23X17_GPIO_OUTPUT);
+
+  mcp23x17_set_interrupt(&mcp_dev, DRIVER_HEATED_SEAT_STATUS, MCP23X17_INT_ANY_EDGE);
+  mcp23x17_set_interrupt(&mcp_dev, PASSENGER_HEATED_SEAT_STATUS, MCP23X17_INT_ANY_EDGE);
+
 	xTaskCreate(left_air_temp_task, "left_air_temp_task", 1024 * 5, NULL, 10, NULL);
 	xTaskCreate(right_air_temp_task, "right_air_temp_task", 1024 * 5, NULL, 10, NULL);
 	xTaskCreate(hvac_task, "hvac_task", 1024 * 5, NULL, 10, NULL);
