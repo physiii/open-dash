@@ -11,34 +11,23 @@ uint8_t crcTable[256];
 uint8_t CalcCRC(uint8_t * buf, uint8_t len);
 void CRCInit(void);
 uint8_t buf[] = {0x08, 0xFF, 0x40, 0x03};
+esp_timer_handle_t eof_timer;
+uint64_t current_time = 0;
+uint64_t previous_time = 0;
+uint64_t pulse_width = 0;
 
-uint8_t CalcCRC(uint8_t * buf, uint8_t len) {
-        const uint8_t * ptr = buf;
-        uint8_t _crc = 0xFF;
+struct J1850
+{
+  uint64_t msgBuffer;
+  uint64_t message;
+  uint64_t queue[100];
+	bool readyToSend;
+	int timeout;
+	int queueCount;
+  uint8_t	bitCount;
+};
 
-        while(len--) _crc = crcTable[_crc ^ *ptr++];
-
-        return ~_crc;
-}
-
-void CRCInit(void) {
-        uint8_t _crc;
-        for (int i = 0; i < 0x100; i++) {
-                _crc = i;
-
-                for (uint8_t bit = 0; bit < 8; bit++) _crc = (_crc & 0x80) ? ((_crc << 1) ^ 0x1D) : (_crc << 1);
-
-                crcTable[i] = _crc;
-        }
-}
-
-// uint8_t message[12] = {0};
-uint64_t message = 0;
-uint64_t message_buffer = 0;
-uint8_t test_msg = 0;
-uint8_t	bit_count = 0;
-
-// J1850 Config
+struct J1850 jMsg;
 
 enum J1850_ERRORS {
     J1850_OK                        = 0x00,
@@ -91,12 +80,7 @@ uint64_t BREAK_NOM = 300;
 uint64_t BREAK_MIN = 280;
 uint64_t BREAK_MAX = 5000;
 
-// Timer Config
-
-#define TIMER_DIVIDER         16  //  Hardware timer clock divider
-#define TIMER_SCALE           (TIMER_BASE_CLK / TIMER_DIVIDER)  // convert counter value to seconds
-#define TIMER_INTERVAL1_SEC   (EOF_NOM / 1000000)   // sample test interval for the second timer
-#define TEST_WITH_RELOAD      1        // testing will be done with auto reload
+static void eof_timer_callback(void* arg);
 
 typedef struct {
     int type;  // the type of timer's event
@@ -105,137 +89,42 @@ typedef struct {
     uint64_t timer_counter_value;
 } timer_event_t;
 
-xQueueHandle timer_queue;
 
-static void inline print_timer_counter(uint64_t counter_value)
-{
-    printf("Counter: 0x%08x%08x\n", (uint32_t) (counter_value >> 32),
-           (uint32_t) (counter_value));
-    printf("Time   : %.8f s\n", (double) counter_value / TIMER_SCALE);
+uint8_t CalcCRC(uint8_t * buf, uint8_t len) {
+        const uint8_t * ptr = buf;
+        uint8_t _crc = 0xFF;
+
+        while(len--) _crc = crcTable[_crc ^ *ptr++];
+
+        return ~_crc;
 }
 
-void IRAM_ATTR timer_group0_isr(void *para)
+void CRCInit(void) {
+        uint8_t _crc;
+        for (int i = 0; i < 0x100; i++) {
+                _crc = i;
+
+                for (uint8_t bit = 0; bit < 8; bit++) _crc = (_crc & 0x80) ? ((_crc << 1) ^ 0x1D) : (_crc << 1);
+
+                crcTable[i] = _crc;
+        }
+}
+
+static void eof_timer_callback(void* arg)
 {
 		SOF = false;
     gpio_set_level(J1850_DEBUG_PIN, SOF);
-		byte_count = 0;
-
-    timer_spinlock_take(TIMER_GROUP_0);
-    int timer_idx = (int) para;
-
-    /* Retrieve the interrupt status and the counter value
-       from the timer that reported the interrupt */
-    uint32_t timer_intr = timer_group_get_intr_status_in_isr(TIMER_GROUP_0);
-    uint64_t timer_counter_value = timer_group_get_counter_value_in_isr(TIMER_GROUP_0, timer_idx);
-
-    /* Prepare basic event data
-       that will be then sent back to the main program task */
-    timer_event_t evt;
-    evt.timer_group = 0;
-    evt.timer_idx = timer_idx;
-    evt.timer_counter_value = timer_counter_value;
-
-    /* Clear the interrupt
-       and update the alarm time for the timer with without reload */
-    if (timer_intr & TIMER_INTR_T1) {
-        evt.type = TEST_WITH_RELOAD;
-        timer_group_clr_intr_status_in_isr(TIMER_GROUP_0, TIMER_1);
-    } else {
-        evt.type = -1; // not supported even type
-    }
-
-    /* After the alarm has been triggered
-      we need enable it again, so it is triggered the next time */
-    // timer_group_enable_alarm_in_isr(TIMER_GROUP_0, timer_idx);
-
-    /* Now just send the event data back to the main program task */
-    xQueueSendFromISR(timer_queue, &evt, NULL);
-    timer_spinlock_give(TIMER_GROUP_0);
+    jMsg.queue[jMsg.queueCount] = jMsg.msgBuffer;
+    jMsg.queueCount++;
 }
-
-static void example_tg0_timer_init(int timer_idx,
-                                   bool auto_reload, double timer_interval_sec)
-{
-    /* Select and initialize basic parameters of the timer */
-    timer_config_t config = {
-        .divider = TIMER_DIVIDER,
-        .counter_dir = TIMER_COUNT_UP,
-        .counter_en = TIMER_PAUSE,
-        .alarm_en = TIMER_ALARM_EN,
-        .auto_reload = auto_reload,
-    }; // default clock source is APB
-    timer_init(TIMER_GROUP_0, timer_idx, &config);
-
-    /* Timer's counter will initially start from value below.
-       Also, if auto_reload is set, this value will be automatically reload on alarm */
-    timer_set_counter_value(TIMER_GROUP_0, timer_idx, 0x00000000ULL);
-
-    /* Configure the alarm value and the interrupt on alarm. */
-    timer_set_alarm_value(TIMER_GROUP_0, timer_idx, timer_interval_sec * TIMER_SCALE);
-    timer_enable_intr(TIMER_GROUP_0, timer_idx);
-    timer_isr_register(TIMER_GROUP_0, timer_idx, timer_group0_isr,
-                       (void *) timer_idx, ESP_INTR_FLAG_IRAM, NULL);
-
-    timer_start(TIMER_GROUP_0, timer_idx);
-}
-
-static void j1850_evt_task(void *arg)
-{
-    while (1) {
-        timer_event_t evt;
-        xQueueReceive(timer_queue, &evt, portMAX_DELAY);
-
-				if (err == J1850_OK) {
-          if (message_buffer) {
-
-            if (bit_count < 24) continue;
-
-            // --- CRC Check --- //
-
-            uint8_t bytes = bit_count / 8 - 1;
-            uint8_t buffer[8] = { 0 };
-
-            for (int i = bytes, j = 0; i > 0; i--,j++) {
-              buffer[j] = message_buffer >> 8 * i;
-            }
-
-            uint8_t calculated_crc = CalcCRC(buffer, bytes);
-            uint8_t received_crc = message_buffer & 0xFF;
-
-            if (calculated_crc == received_crc) {
-              // printf("[j1850] Message (%d bits): %llX\n", bit_count, message_buffer,);
-              printf("{\"type\":\"j1850\", \"j1850\":\"%llX\", \"bits\":%d}\n", message_buffer, bit_count);
-            }
-
-            // ----------------- //
-
-            message_buffer = 0;
-            bit_count = 0;
-          }
-					// printf("[j1850] Message:\t");
-					// for (int i=0; i < 12; i++) {
-					// 	printf("%d ", message[i]);
-					// }
-					// printf("\n");
-				} else {
-					// (err == J1850_ERR_PULSE_OUT_OF_RANGE)
-					// 	? printf("[j1850] Error: pulse out of range\n")
-					// 	:	printf("[j1850] Error: %d\n", err);
-				}
-    }
-}
-
-// main program
-
-uint64_t current_time = 0;
-uint64_t previous_time = 0;
-uint64_t pulse_width = 0;
 
 static void IRAM_ATTR j1850_isr_handler(void* arg)
 {
 	uint32_t pin = (uint32_t) arg;
-	bool level = gpio_get_level(pin);
-	timer_group_enable_alarm_in_isr(TIMER_GROUP_0, TIMER_1);
+	bool level = gpio_get_level(pin);\
+
+  esp_timer_stop(eof_timer);
+  esp_timer_start_once(eof_timer, EOF_NOM);
 	err = J1850_OK;
 
 	previous_time = current_time;
@@ -254,24 +143,24 @@ static void IRAM_ATTR j1850_isr_handler(void* arg)
 
 	if (level == ACTIVE) {
 		if (pulse_width > ACTIVE_ZERO_MIN && pulse_width < ACTIVE_ZERO_MAX) {
-			message_buffer = (message_buffer << 1) | 0;
+			jMsg.msgBuffer = (jMsg.msgBuffer << 1) | 0;
 		} else if (pulse_width > ACTIVE_ONE_MIN && pulse_width < ACTIVE_ONE_MAX) {
-			message_buffer = (message_buffer << 1) | 1;
+			jMsg.msgBuffer = (jMsg.msgBuffer << 1) | 1;
 		} else {
 			err = J1850_ERR_PULSE_OUT_OF_RANGE;
 		}
 	} else {
 		if (pulse_width > PASSIVE_ZERO_MIN && pulse_width < PASSIVE_ZERO_MAX) {
-			message_buffer = (message_buffer << 1) | 0;
+			jMsg.msgBuffer = (jMsg.msgBuffer << 1) | 0;
 		} else if (pulse_width > PASSIVE_ONE_MIN && pulse_width < PASSIVE_ONE_MAX) {
-			message_buffer = (message_buffer << 1) | 1;
+			jMsg.msgBuffer = (jMsg.msgBuffer << 1) | 1;
 		} else {
 			err = J1850_ERR_PULSE_OUT_OF_RANGE;
 		}
 	}
 
   if (err == J1850_OK) {
-    bit_count++;
+    jMsg.bitCount++;
   }
 }
 
@@ -313,19 +202,62 @@ void printTestData () {
 
 static void j1850_task(void* arg)
 {
+  const esp_timer_create_args_t eof_timer_args = {
+          .callback = &eof_timer_callback,
+          /* argument specified here will be passed to timer callback function */
+          .arg = (void*) eof_timer,
+          .name = "eof"
+  };
+
+  ESP_ERROR_CHECK(esp_timer_create(&eof_timer_args, &eof_timer));
+
   CRCInit();
-	while(1) {
-		vTaskDelay(1000 / portTICK_RATE_MS);
-		// printTestData();
-	}
+  while (1) {
+      if (err == J1850_OK) {
+        if (jMsg.msgBuffer) {
+          if (jMsg.bitCount < 24) continue;
+
+          // --- CRC Check --- //
+          uint8_t bytes = jMsg.bitCount / 8 - 1;
+          uint8_t buffer[8] = { 0 };
+
+          for (int i = bytes, j = 0; i > 0; i--,j++) {
+            buffer[j] = jMsg.msgBuffer >> 8 * i;
+          }
+
+          uint8_t calculated_crc = CalcCRC(buffer, bytes);
+          uint8_t received_crc = jMsg.msgBuffer & 0xFF;
+
+          if (calculated_crc == received_crc) {
+            // printf("[j1850] Message (%d bits): %llX\n", jMsg.bitCount, jMsg.msgBuffer,);
+            printf("{\"type\":\"j1850\", \"j1850\":\"%llX\", \"bits\":%d}\n", jMsg.msgBuffer, jMsg.bitCount);
+          }
+
+          // ----------------- //
+
+          jMsg.msgBuffer = 0;
+          jMsg.bitCount = 0;
+        }
+        // printf("[j1850] Message:\t");
+        // for (int i=0; i < 12; i++) {
+        // 	printf("%d ", message[i]);
+        // }
+        // printf("\n");
+      } else {
+        // (err == J1850_ERR_PULSE_OUT_OF_RANGE)
+        // 	? printf("[j1850] Error: pulse out of range\n")
+        // 	:	printf("[j1850] Error: %d\n", err);
+      }
+
+
+      // printTestData();
+      printf("Message count: %d\n", jMsg.queueCount);
+      vTaskDelay(SERVICE_LOOP / portTICK_PERIOD_MS);
+  }
 }
 
 void j1850_main(void)
 {
 	gpio_isr_handler_add(J1850_INPUT_PIN, j1850_isr_handler, (void*) J1850_INPUT_PIN);
 	xTaskCreate(j1850_task, "j1850_task", 2048, NULL, 10, NULL);
-
-  timer_queue = xQueueCreate(10, sizeof(timer_event_t));
-  example_tg0_timer_init(TIMER_1, TEST_WITH_RELOAD,    TIMER_INTERVAL1_SEC);
-  xTaskCreate(j1850_evt_task, "j1850_evt_task", 2048, NULL, 5, NULL);
 }

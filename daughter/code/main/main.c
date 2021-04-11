@@ -1,7 +1,10 @@
 #include "cJSON.h"
-
 cJSON *service_message = NULL;
-#define SERVICE_LOOP	100
+#include <string.h>
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+
+#include "automation.h"
 #include "services/uart.c"
 #include "services/gpio.c"
 #include "services/hvac.c"
