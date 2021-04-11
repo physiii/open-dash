@@ -18,7 +18,6 @@ uint64_t pulse_width = 0;
 
 struct J1850
 {
-  uint64_t msgBuffer;
   uint64_t message;
   uint64_t queue[100];
 	bool readyToSend;
@@ -114,14 +113,51 @@ static void eof_timer_callback(void* arg)
 {
 		SOF = false;
     gpio_set_level(J1850_DEBUG_PIN, SOF);
-    jMsg.queue[jMsg.queueCount] = jMsg.msgBuffer;
-    jMsg.queueCount++;
+    // jMsg.queue[jMsg.queueCount] = jMsg.message;
+    // jMsg.queueCount++;
+
+		if (err == J1850_OK) {
+			if (jMsg.message) {
+				if (jMsg.bitCount < 24) return;
+
+				// --- CRC Check --- //
+				uint8_t bytes = jMsg.bitCount / 8 - 1;
+				uint8_t buffer[8] = { 0 };
+
+				for (int i = bytes, j = 0; i > 0; i--,j++) {
+					buffer[j] = jMsg.message >> 8 * i;
+				}
+
+				uint8_t calculated_crc = CalcCRC(buffer, bytes);
+				uint8_t received_crc = jMsg.message & 0xFF;
+
+				if (calculated_crc == received_crc) {
+					// printf("[j1850] Message (%d bits): %llX\n", jMsg.bitCount, jMsg.message,);
+					// printf("{\"type\":\"j1850\", \"j1850\":\"%llX\", \"bits\":%d}\n", jMsg.message, jMsg.bitCount);
+					addUartMessageToQueue(jMsg.message);
+				}
+
+				// ----------------- //
+
+				jMsg.message = 0;
+				jMsg.bitCount = 0;
+			}
+			// printf("[j1850] Message:\t");
+			// for (int i=0; i < 12; i++) {
+			// 	printf("%d ", jMsg.message[i]);
+			// }
+			// printf("\n");
+		} else {
+			(err == J1850_ERR_PULSE_OUT_OF_RANGE)
+				? printf("[j1850] Error: pulse out of range\n")
+				:	printf("[j1850] Error: %d\n", err);
+		}
 }
 
 static void IRAM_ATTR j1850_isr_handler(void* arg)
 {
 	uint32_t pin = (uint32_t) arg;
-	bool level = gpio_get_level(pin);\
+	bool level = gpio_get_level(pin);
 
   esp_timer_stop(eof_timer);
   esp_timer_start_once(eof_timer, EOF_NOM);
@@ -143,17 +179,17 @@ static void IRAM_ATTR j1850_isr_handler(void* arg)
 
 	if (level == ACTIVE) {
 		if (pulse_width > ACTIVE_ZERO_MIN && pulse_width < ACTIVE_ZERO_MAX) {
-			jMsg.msgBuffer = (jMsg.msgBuffer << 1) | 0;
+			jMsg.message = (jMsg.message << 1) | 0;
 		} else if (pulse_width > ACTIVE_ONE_MIN && pulse_width < ACTIVE_ONE_MAX) {
-			jMsg.msgBuffer = (jMsg.msgBuffer << 1) | 1;
+			jMsg.message = (jMsg.message << 1) | 1;
 		} else {
 			err = J1850_ERR_PULSE_OUT_OF_RANGE;
 		}
 	} else {
 		if (pulse_width > PASSIVE_ZERO_MIN && pulse_width < PASSIVE_ZERO_MAX) {
-			jMsg.msgBuffer = (jMsg.msgBuffer << 1) | 0;
+			jMsg.message = (jMsg.message << 1) | 0;
 		} else if (pulse_width > PASSIVE_ONE_MIN && pulse_width < PASSIVE_ONE_MAX) {
-			jMsg.msgBuffer = (jMsg.msgBuffer << 1) | 1;
+			jMsg.message = (jMsg.message << 1) | 1;
 		} else {
 			err = J1850_ERR_PULSE_OUT_OF_RANGE;
 		}
@@ -202,53 +238,42 @@ void printTestData () {
 
 static void j1850_task(void* arg)
 {
-  const esp_timer_create_args_t eof_timer_args = {
-          .callback = &eof_timer_callback,
-          /* argument specified here will be passed to timer callback function */
-          .arg = (void*) eof_timer,
-          .name = "eof"
-  };
-
-  ESP_ERROR_CHECK(esp_timer_create(&eof_timer_args, &eof_timer));
-
-  CRCInit();
   while (1) {
-      if (err == J1850_OK) {
-        if (jMsg.msgBuffer) {
-          if (jMsg.bitCount < 24) continue;
-
-          // --- CRC Check --- //
-          uint8_t bytes = jMsg.bitCount / 8 - 1;
-          uint8_t buffer[8] = { 0 };
-
-          for (int i = bytes, j = 0; i > 0; i--,j++) {
-            buffer[j] = jMsg.msgBuffer >> 8 * i;
-          }
-
-          uint8_t calculated_crc = CalcCRC(buffer, bytes);
-          uint8_t received_crc = jMsg.msgBuffer & 0xFF;
-
-          if (calculated_crc == received_crc) {
-            // printf("[j1850] Message (%d bits): %llX\n", jMsg.bitCount, jMsg.msgBuffer,);
-            printf("{\"type\":\"j1850\", \"j1850\":\"%llX\", \"bits\":%d}\n", jMsg.msgBuffer, jMsg.bitCount);
-          }
-
-          // ----------------- //
-
-          jMsg.msgBuffer = 0;
-          jMsg.bitCount = 0;
-        }
-        // printf("[j1850] Message:\t");
-        // for (int i=0; i < 12; i++) {
-        // 	printf("%d ", message[i]);
-        // }
-        // printf("\n");
-      } else {
-        // (err == J1850_ERR_PULSE_OUT_OF_RANGE)
-        // 	? printf("[j1850] Error: pulse out of range\n")
-        // 	:	printf("[j1850] Error: %d\n", err);
-      }
-
+      // if (err == J1850_OK) {
+      //   if (jMsg.message) {
+      //     if (jMsg.bitCount < 24) continue;
+			//
+      //     // --- CRC Check --- //
+      //     uint8_t bytes = jMsg.bitCount / 8 - 1;
+      //     uint8_t buffer[8] = { 0 };
+			//
+      //     for (int i = bytes, j = 0; i > 0; i--,j++) {
+      //       buffer[j] = jMsg.message >> 8 * i;
+      //     }
+			//
+      //     uint8_t calculated_crc = CalcCRC(buffer, bytes);
+      //     uint8_t received_crc = jMsg.message & 0xFF;
+			//
+      //     if (calculated_crc == received_crc) {
+      //       // printf("[j1850] Message (%d bits): %llX\n", jMsg.bitCount, jMsg.message,);
+      //       printf("{\"type\":\"j1850\", \"j1850\":\"%llX\", \"bits\":%d}\n", jMsg.message, jMsg.bitCount);
+      //     }
+			//
+      //     // ----------------- //
+			//
+      //     jMsg.message = 0;
+      //     jMsg.bitCount = 0;
+      //   }
+      //   // printf("[j1850] Message:\t");
+      //   // for (int i=0; i < 12; i++) {
+      //   // 	printf("%d ", message[i]);
+      //   // }
+      //   // printf("\n");
+      // } else {
+      //   // (err == J1850_ERR_PULSE_OUT_OF_RANGE)
+      //   // 	? printf("[j1850] Error: pulse out of range\n")
+      //   // 	:	printf("[j1850] Error: %d\n", err);
+      // }
 
       // printTestData();
       printf("Message count: %d\n", jMsg.queueCount);
@@ -258,6 +283,16 @@ static void j1850_task(void* arg)
 
 void j1850_main(void)
 {
+	CRCInit();
+  const esp_timer_create_args_t eof_timer_args = {
+          .callback = &eof_timer_callback,
+          /* argument specified here will be passed to timer callback function */
+          .arg = (void*) eof_timer,
+          .name = "eof"
+  };
+
+  ESP_ERROR_CHECK(esp_timer_create(&eof_timer_args, &eof_timer));
+
 	gpio_isr_handler_add(J1850_INPUT_PIN, j1850_isr_handler, (void*) J1850_INPUT_PIN);
 	xTaskCreate(j1850_task, "j1850_task", 2048, NULL, 10, NULL);
 }

@@ -10,6 +10,15 @@ struct ServiceMessage
 	int queueCount;
 };
 
+struct UartMessage
+{
+	cJSON *message;
+	cJSON messageQueue[100];
+	bool readyToSend;
+	int timeout;
+	int queueCount;
+};
+
 struct ClientMessage
 {
 	char message[1000];
@@ -21,6 +30,7 @@ struct ClientMessage
 
 struct ServiceMessage serviceMessage;
 struct ClientMessage clientMessage;
+struct UartMessage uartMessage;
 
 cJSON * checkServiceMessage(char *eventType)
 {
@@ -40,6 +50,13 @@ cJSON * checkServiceMessage(char *eventType)
 
 	serviceMessage.read = true;
 	return payload;
+}
+
+void addUartMessageToQueue (cJSON *message)
+{
+	uartMessage.queueCount++;
+	printf("addUartMessageToQueue (%d) %s\n", uartMessage.queueCount, cJSON_PrintUnformatted(message));
+	uartMessage.messageQueue[uartMessage.queueCount] = *message;
 }
 
 void addServiceMessageToQueue (cJSON *message)

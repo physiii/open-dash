@@ -232,7 +232,8 @@ void send_hvac_state () {
 				get_upper_left_air_temp(), get_upper_right_air_temp(),
 				get_lower_left_air_temp(), get_lower_right_air_temp(),
 				get_ambient_light_level(), get_driver_sunload(), get_passenger_sunload());
-		outgoing_uart_message = cJSON_Parse(msg);
+		// outgoing_uart_message = cJSON_Parse(msg);
+		addUartMessageToQueue(cJSON_Parse(msg));
 		printf("send_hvac_state %s\n", msg);
 }
 
@@ -410,6 +411,7 @@ void hvac_main(void)
 	mcp23x17_set_mode(&mcp_dev, INSIDE_AIR_TEMP_BLOWER, MCP23X17_GPIO_OUTPUT);
 	mcp23x17_set_mode(&mcp_dev, REAR_DEFOG, MCP23X17_GPIO_OUTPUT);
 	mcp23x17_set_mode(&mcp_dev, C_OUT3, MCP23X17_GPIO_OUTPUT);
+	mcp23x17_set_mode(&mcp_dev, BLOWER_MOTOR, MCP23X17_GPIO_OUTPUT);
 
   mcp23x17_set_interrupt(&mcp_dev, DRIVER_HEATED_SEAT_STATUS, MCP23X17_INT_ANY_EDGE);
   mcp23x17_set_interrupt(&mcp_dev, PASSENGER_HEATED_SEAT_STATUS, MCP23X17_INT_ANY_EDGE);

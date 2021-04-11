@@ -61,18 +61,40 @@ void init(void) {
     uart_set_pin(UART_NUM_0, TXD_PIN, RXD_PIN, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE);
 }
 
-static void tx_task(void *arg)
+static void uartMessageTask(void *arg)
 {
-    while (1) {
-			if (outgoing_uart_message != NULL) {
-				sprintf(outgoing_message_str, "%s\n", cJSON_PrintUnformatted(outgoing_uart_message));
-		    const int len = strlen(outgoing_message_str);
-		    const int txBytes = uart_write_bytes(UART_NUM_0, outgoing_message_str, len);
-				outgoing_uart_message = NULL;
+	int cnt = 0;
+  while (1) {
+		// if (uartMessage.readyToSend) {
+		// 	sprintf(outgoing_message_str, "%s\n", cJSON_PrintUnformatted(outgoing_uart_message));
+	  //   const int len = strlen(outgoing_message_str);
+	  //   const int txBytes = uart_write_bytes(UART_NUM_0, outgoing_message_str, len);
+		// 	outgoing_uart_message = NULL;
+		// 	// printf("tx_task RECEIVED: %s\n", received_message);
+		// 	uartMessage.readyToSend = false;
+		// }
+
+		if (!uartMessage.readyToSend) {
+			cnt = 0;
+			if (uartMessage.queueCount > 0) {
+				uartMessage.message = &uartMessage.messageQueue[uartMessage.queueCount];
+
+				sprintf(outgoing_message_str, "%s\n", cJSON_PrintUnformatted(uartMessage.message));
+			  const int len = strlen(outgoing_message_str);
+			  const int txBytes = uart_write_bytes(UART_NUM_0, outgoing_message_str, len);
 				// printf("tx_task RECEIVED: %s\n", received_message);
+				uartMessage.readyToSend = false;
+				uartMessage.queueCount--;
 			}
-	    vTaskDelay(100 / portTICK_PERIOD_MS);
-    }
+		} else if (cnt > 10) {
+			printf("uartMessage timeout reached.\n");
+			uartMessage.readyToSend = false;
+		} else {
+			cnt++;
+		}
+
+    vTaskDelay(SERVICE_LOOP / portTICK_PERIOD_MS);
+  }
 }
 
 static void rx_task(void *arg)
@@ -116,5 +138,5 @@ void uart_main(void)
 {
     init();
     xTaskCreate(rx_task, "uart_rx_task", 1024*5, NULL, configMAX_PRIORITIES, NULL);
-    xTaskCreate(tx_task, "uart_tx_task", 1024*5, NULL, configMAX_PRIORITIES-1, NULL);
+    xTaskCreate(uartMessageTask, "uartMessageTask", 1024*5, NULL, configMAX_PRIORITIES-1, NULL);
 }

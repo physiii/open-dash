@@ -59,7 +59,8 @@ void send_power_state () {
 				get_ignition(), get_audio_power(), get_display_power(), get_main_power(),
 				get_battery_voltage(), get_main_current(), get_wheel_state());
 
-		outgoing_uart_message = cJSON_Parse(msg);
+		// outgoing_uart_message = cJSON_Parse(msg);
+		addUartMessageToQueue(cJSON_Parse(msg));
 }
 
 void set_display_power(bool val)
