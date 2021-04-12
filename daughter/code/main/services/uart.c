@@ -65,15 +65,6 @@ static void uartMessageTask(void *arg)
 {
 	int cnt = 0;
   while (1) {
-		// if (uartMessage.readyToSend) {
-		// 	sprintf(outgoing_message_str, "%s\n", cJSON_PrintUnformatted(outgoing_uart_message));
-	  //   const int len = strlen(outgoing_message_str);
-	  //   const int txBytes = uart_write_bytes(UART_NUM_0, outgoing_message_str, len);
-		// 	outgoing_uart_message = NULL;
-		// 	// printf("tx_task RECEIVED: %s\n", received_message);
-		// 	uartMessage.readyToSend = false;
-		// }
-
 		if (!uartMessage.readyToSend) {
 			cnt = 0;
 			if (uartMessage.queueCount > 0) {
@@ -82,7 +73,6 @@ static void uartMessageTask(void *arg)
 				sprintf(outgoing_message_str, "%s\n", cJSON_PrintUnformatted(uartMessage.message));
 			  const int len = strlen(outgoing_message_str);
 			  const int txBytes = uart_write_bytes(UART_NUM_0, outgoing_message_str, len);
-				// printf("tx_task RECEIVED: %s\n", received_message);
 				uartMessage.readyToSend = false;
 				uartMessage.queueCount--;
 			}
@@ -93,7 +83,7 @@ static void uartMessageTask(void *arg)
 			cnt++;
 		}
 
-    vTaskDelay(SERVICE_LOOP / portTICK_PERIOD_MS);
+    vTaskDelay(SERVICE_LOOP_SHORT / portTICK_PERIOD_MS);
   }
 }
 

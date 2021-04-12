@@ -46,20 +46,20 @@ bool SOF = false;
 uint8_t byte_count = 0;
 
 uint64_t ACTIVE_ZERO_NOM = 128;
-uint64_t ACTIVE_ZERO_MIN = 112;
-uint64_t ACTIVE_ZERO_MAX = 145;
+uint64_t ACTIVE_ZERO_MIN = 112 - 12;
+uint64_t ACTIVE_ZERO_MAX = 145 + 12;
 
 uint64_t ACTIVE_ONE_NOM = 64;
-uint64_t ACTIVE_ONE_MIN = 49;
-uint64_t ACTIVE_ONE_MAX = 79;
+uint64_t ACTIVE_ONE_MIN = 49 - 24;
+uint64_t ACTIVE_ONE_MAX = 79 + 12;
 
 uint64_t PASSIVE_ZERO_NOM = 64;
-uint64_t PASSIVE_ZERO_MIN = 49;
-uint64_t PASSIVE_ZERO_MAX = 79;
+uint64_t PASSIVE_ZERO_MIN = 49 - 24;
+uint64_t PASSIVE_ZERO_MAX = 79 + 12;
 
 uint64_t PASSIVE_ONE_NOM = 128;
-uint64_t PASSIVE_ONE_MIN = 112;
-uint64_t PASSIVE_ONE_MAX = 145;
+uint64_t PASSIVE_ONE_MIN = 112 - 12;
+uint64_t PASSIVE_ONE_MAX = 145 + 12;
 
 uint64_t SOF_NOM = 200;
 uint64_t SOF_MIN = 182;
@@ -217,10 +217,10 @@ static void IRAM_ATTR j1850_isr_handler(void* arg)
 
 	 // gpio_set_level(J1850_DEBUG_PIN, level);
 
-	if (timingCnt == 24) {
-		timings[timingCnt] = pulse_width;
-		timingCnt++;
-	}
+	// if (timingCnt < 25) {
+	// 	timings[timingCnt] = pulse_width;
+	// 	timingCnt++;
+	// }
 
 	if (level == ACTIVE) {
 		if (pulse_width > ACTIVE_ZERO_MIN && pulse_width < ACTIVE_ZERO_MAX) {
@@ -332,15 +332,15 @@ static void j1850_task(void* arg)
       // printTestData();
       // printf("Message count: %d\n", jMsg.queueCount);
 
-			if (timings[24] != 0) {
-				printf("timings: ");
-				for (int i = 0; i < 25; i++) {
-					printf("%d ", timings[i]);
-					timings[24] = 0;
-					timingCnt = 0;
-				}
-				printf("\n");
-			}
+			// if (timings[24] != 0) {
+			// 	printf("timings: ");
+			// 	for (int i = 0; i < 25; i++) {
+			// 		printf("%lld ", timings[i]);
+			// 		timings[24] = 0;
+			// 		timingCnt = 0;
+			// 	}
+			// 	printf("\n");
+			// }
       vTaskDelay(SERVICE_LOOP / portTICK_PERIOD_MS);
   }
 }
