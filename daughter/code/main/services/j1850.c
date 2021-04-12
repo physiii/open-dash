@@ -187,6 +187,9 @@ static void eof_timer_callback(void* arg)
 		}
 }
 
+int64_t timings[25] = {0};
+int timingCnt = 0;
+
 static void IRAM_ATTR j1850_isr_handler(void* arg)
 {
 	uint32_t pin = (uint32_t) arg;
@@ -212,7 +215,12 @@ static void IRAM_ATTR j1850_isr_handler(void* arg)
     return;
   }
 
-  // gpio_set_level(J1850_DEBUG_PIN, level);
+	 // gpio_set_level(J1850_DEBUG_PIN, level);
+
+	if (timingCnt == 24) {
+		timings[timingCnt] = pulse_width;
+		timingCnt++;
+	}
 
 	if (level == ACTIVE) {
 		if (pulse_width > ACTIVE_ZERO_MIN && pulse_width < ACTIVE_ZERO_MAX) {
@@ -323,6 +331,16 @@ static void j1850_task(void* arg)
 
       // printTestData();
       // printf("Message count: %d\n", jMsg.queueCount);
+
+			if (timings[24] != 0) {
+				printf("timings: ");
+				for (int i = 0; i < 25; i++) {
+					printf("%d ", timings[i]);
+					timings[24] = 0;
+					timingCnt = 0;
+				}
+				printf("\n");
+			}
       vTaskDelay(SERVICE_LOOP / portTICK_PERIOD_MS);
   }
 }
