@@ -55,8 +55,8 @@ cJSON * checkServiceMessage(char *eventType)
 void addUartMessageToQueue (cJSON *message)
 {
 	uartMessage.queueCount++;
-	// printf("addUartMessageToQueue (%d) %s\n", uartMessage.queueCount, cJSON_PrintUnformatted(message));
 	uartMessage.messageQueue[uartMessage.queueCount] = *message;
+	// printf("addUartMessageToQueue (%d)\t%s\n", uartMessage.queueCount, cJSON_PrintUnformatted(&uartMessage.messageQueue[uartMessage.queueCount]));
 }
 
 void addServiceMessageToQueue (cJSON *message)

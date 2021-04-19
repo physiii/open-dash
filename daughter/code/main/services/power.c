@@ -1,11 +1,19 @@
 #include "drivers/adc.c"
 
+#define IGN_OFF true
+#define IGN_ON  false
+#define SHUTDOWN_DELAY 10
+#define ONE_SECOND_IN_MILLISECONDS 1000
+
 static xQueueHandle gpio_evt_queue = NULL;
-bool ignition_state = false;
+bool ignition_state = IGN_OFF;
 bool prev_ignition_state = false;
 bool audio_power_state = false;
 bool display_power_state = false;
 bool main_power_state = false;
+int shutdown_cnt = 0;
+
+
 
 void set_main_power(bool);
 
@@ -17,8 +25,8 @@ static void IRAM_ATTR ignition_isr_handler(void* arg)
 
 
 char * get_ignition() {
-	char * state = ignition_state ? "false" : "true";
-	return state;
+		char * state = ignition_state == IGN_ON ? "on" : "off";
+		return state;
 }
 
 char * get_audio_power() {
@@ -53,7 +61,7 @@ void send_power_state () {
 		char msg[1024];
 
 		sprintf(msg,
-				"{\"type\": \"power\", \"ignition_wire\": %s, \"audio\": %s, \"display\": %s, \"main\": %s, "
+				"{\"type\": \"power\", \"ignition\": \"%s\", \"audio\": %s, \"display\": %s, \"main\": %s, "
 				"\"battery_voltage\":%d, \"main_current\":%d, \"wheel\":%d}"
 				"\n",
 				get_ignition(), get_audio_power(), get_display_power(), get_main_power(),
@@ -88,11 +96,37 @@ void set_main_power(bool val)
 	send_power_state();
 }
 
+void start_shutdown_timer (bool val)
+{
+  if (val) {
+    shutdown_cnt = SHUTDOWN_DELAY;
+  } else {
+    shutdown_cnt = 0;
+  }
+}
+
+static void
+shutdown_timer (void *pvParameter)
+{
+  while (1) {
+		if (shutdown_cnt) {
+			if (shutdown_cnt == 1) {
+				set_main_power(false);
+			}
+			shutdown_cnt--;
+		}
+		vTaskDelay(ONE_SECOND_IN_MILLISECONDS / portTICK_PERIOD_MS);
+  }
+}
+
 void check_power_state() {
 	if (ignition_state == prev_ignition_state) return;
 
-	if (!ignition_state) {
+	if (ignition_state == IGN_ON) {
 		set_main_power(true);
+		start_shutdown_timer(false);
+	} else {
+		start_shutdown_timer(true);
 	}
 
 	send_power_state();
@@ -117,7 +151,6 @@ void handle_power_message (cJSON * msg) {
 			set_display_power(false);
 		}
 	}
-
 
 	if (cJSON_GetObjectItem(msg,"set_audio_power")) {
 		if (cJSON_IsTrue(cJSON_GetObjectItem(msg,"set_audio_power"))) {
@@ -155,7 +188,7 @@ static void power_task(void* arg)
 		}
 
 		check_power_state();
-		vTaskDelay(100 / portTICK_RATE_MS);
+		vTaskDelay(SERVICE_LOOP / portTICK_RATE_MS);
 	}
 }
 
@@ -170,4 +203,5 @@ void power_main(void)
 	gpio_evt_queue = xQueueCreate(10, sizeof(uint32_t));
 	gpio_isr_handler_add(IGNITION_WIRE_IO, ignition_isr_handler, (void*) IGNITION_WIRE_IO);
 	xTaskCreate(power_task, "ignition_task", 1024 * 5, NULL, 10, NULL);
+  xTaskCreate(shutdown_timer, "shutdown_timer", 2048, NULL, 10, NULL);
 }

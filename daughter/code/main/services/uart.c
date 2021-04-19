@@ -68,8 +68,8 @@ static void uartMessageTask(void *arg)
 		if (!uartMessage.readyToSend) {
 			cnt = 0;
 			if (uartMessage.queueCount > 0) {
+				// printf("uartMessageTask (%d)\t%s\n", uartMessage.queueCount, cJSON_PrintUnformatted(&uartMessage.messageQueue[uartMessage.queueCount]));
 				uartMessage.message = &uartMessage.messageQueue[uartMessage.queueCount];
-
 				sprintf(outgoing_message_str, "%s\n", cJSON_PrintUnformatted(uartMessage.message));
 			  const int len = strlen(outgoing_message_str);
 			  const int txBytes = uart_write_bytes(UART_NUM_0, outgoing_message_str, len);

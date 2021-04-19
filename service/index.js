@@ -13,6 +13,13 @@ const crypto = require('crypto'),
 	socketPort = 3030,
 	TAG = "[index.js]";
 
+let state = {
+	displayPower: false,
+	mainPower: false,
+	audioPower: false,
+	ignition: "off"
+};
+
 // --- webserver --- //
 var server= http.createServer(function(request,response){
 var path = url.parse(request.url).pathname;
@@ -70,8 +77,9 @@ listener.sockets.on('connection',function(socket){
 	    return true;
 	}
 
+
+
 	function parseMessage(msg) {
-		// console.log(TAG);
 		console.log(JSON.stringify(msg));
 
 		if (msg.type == "j1850") {
@@ -87,11 +95,19 @@ listener.sockets.on('connection',function(socket){
 		}
 
 		if (msg.ignition === "off") {
-	  	Exec("gnome-session-quit --power-off");
+			if (state.ignition === "on") {
+				state.ignition = msg.ignition;
+		  	Exec("gnome-session-quit --power-off");
+				console.log("!! SHUTDOWN IN 60 SECONDS !!");
+			}
 		}
 
 		if (msg.ignition === "on") {
-			Exec("xdotool key 0xff1b");
+			if (state.ignition === "off") {
+				state.ignition = msg.ignition;
+				Exec("xdotool key 0xff1b");
+				console.log("!! CANCEL SHUTDOWN !!");
+			}
 		}
 	}
 

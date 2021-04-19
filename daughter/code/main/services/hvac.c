@@ -233,8 +233,9 @@ void send_hvac_state () {
 				get_lower_left_air_temp(), get_lower_right_air_temp(),
 				get_ambient_light_level(), get_driver_sunload(), get_passenger_sunload());
 		// outgoing_uart_message = cJSON_Parse(msg);
+		// printf("send_hvac_state %s\n", msg);
 		addUartMessageToQueue(cJSON_Parse(msg));
-		printf("send_hvac_state %s\n", msg);
+		// printf("%s\n", msg);
 }
 
 void handle_hvac_message (cJSON * msg) {
