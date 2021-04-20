@@ -239,6 +239,8 @@ void send_hvac_state () {
 }
 
 void handle_hvac_message (cJSON * msg) {
+	if (msg == NULL) return;
+
 	char mode[100];
 
 	if (cJSON_GetObjectItem(msg,"set_blower_motor")) {
@@ -287,6 +289,8 @@ void handle_hvac_message (cJSON * msg) {
 	if (cJSON_GetObjectItem(msg,"get_state")) {
 		send_hvac_state();
 	}
+
+	cJSON_Delete(serviceMessage.message);
 }
 
 static void left_air_temp_task(void* arg)
@@ -362,27 +366,7 @@ static void hvac_task(void* arg)
 	mcp23x17_set_mode(&mcp_dev, PASSENGER_HEATED_SEAT_STATUS, MCP23X17_GPIO_INPUT);
 
 	while(1) {
-		if (service_message != NULL) {
-			if (cJSON_GetObjectItem(service_message,"type")) {
-	  		snprintf(type,sizeof(type),"%s",cJSON_GetObjectItem(service_message,"type")->valuestring);
-			}
-
-			if (strcmp(type,"hvac")==0) {
-				if (cJSON_GetObjectItem(service_message,"payload")) {
-					payload = cJSON_GetObjectItemCaseSensitive(service_message,"payload");
-					handle_hvac_message(payload);
-					printf("%s\n", cJSON_PrintUnformatted(payload));
-					service_message = NULL;
-				}
-			}
-		}
-
-		// printHvacData(ADS_VALUES, 0);
-		// vTaskDelay(1000 / portTICK_RATE_MS);
-    // set_left_air_temp(true,false);
-		// vTaskDelay(1000 / portTICK_RATE_MS);
-    // set_left_air_temp(false,true);
-
+		handle_hvac_message(checkServiceMessage("hvac"));
 		vTaskDelay(SERVICE_LOOP / portTICK_RATE_MS);
 	}
 }

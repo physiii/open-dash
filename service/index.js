@@ -77,8 +77,6 @@ listener.sockets.on('connection',function(socket){
 	    return true;
 	}
 
-
-
 	function parseMessage(msg) {
 		console.log(JSON.stringify(msg));
 
@@ -97,7 +95,7 @@ listener.sockets.on('connection',function(socket){
 		if (msg.ignition === "off") {
 			if (state.ignition === "on") {
 				state.ignition = msg.ignition;
-		  	Exec("gnome-session-quit --power-off");
+		  	// Exec("gnome-session-quit --power-off");
 				console.log("!! SHUTDOWN IN 60 SECONDS !!");
 			}
 		}
@@ -133,17 +131,16 @@ listener.sockets.on('connection',function(socket){
 		}
 	})
 
-
   setInterval(()=>{
-		let get_state = {type: "power", payload: {get_state: true}};
+		let get_state = {eventType: "power", payload: {get_state: true}};
 
 		// console.log("sending.....", JSON.stringify(get_state));
 		port.write(JSON.stringify(get_state));
-  }, 9 * 1000);
+  }, 5 * 1000);
 
   setInterval(()=>{
-		let get_state = {type: "hvac", payload: {get_state: true}};
+		let get_state = {eventType: "hvac", payload: {get_state: true}};
 
 		// console.log("sending.....", JSON.stringify(get_state));
 		port.write(JSON.stringify(get_state));
-  }, 10 * 1000);
+  }, 5.1 * 1000);

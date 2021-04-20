@@ -30,7 +30,7 @@ export class Power extends React.Component {
 	toggleDisplayPower () {
 		this.state.displayPower = !this.state.displayPower;
 
-		let msg = {type:"power", payload: {set_display_power: this.state.displayPower}}
+		let msg = {eventType:"power", payload: {set_display_power: this.state.displayPower}}
 		this.props.back.emit('daughter', JSON.stringify(msg));
 		this.setState(this.state);
 	}
@@ -38,7 +38,7 @@ export class Power extends React.Component {
 	toggleMainPower () {
 		this.state.mainPower = !this.state.mainPower;
 
-		let msg = {type:"power", payload: {set_main_power: this.state.mainPower}}
+		let msg = {eventType:"power", payload: {set_main_power: this.state.mainPower}}
 		this.props.back.emit('daughter', JSON.stringify(msg));
 		this.setState(this.state);
 	}
@@ -46,7 +46,7 @@ export class Power extends React.Component {
 	toggleAudioPower () {
 		this.state.audioPower = !this.state.audioPower;
 
-		let msg = {type:"power", payload: {set_audio_power: this.state.audioPower}}
+		let msg = {eventType:"power", payload: {set_audio_power: this.state.audioPower}}
 		this.props.back.emit('daughter', JSON.stringify(msg));
 		this.setState(this.state);
 	}

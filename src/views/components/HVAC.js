@@ -34,7 +34,7 @@ export class HVAC extends React.Component {
 	setBlowerMotor (level) {
 		this.state.controllers.blowerMotor = level;
 
-		let msg = {type:"hvac", payload: {set_blower_motor: level}}
+		let msg = {eventType:"hvac", payload: {set_blower_motor: level}}
 		this.props.back.emit('daughter', JSON.stringify(msg));
 		this.setState(this.state);
 	}
@@ -43,7 +43,7 @@ export class HVAC extends React.Component {
 		if (mode === 'A') this.state.controllers.mode.A = !this.state.controllers.mode.A;
 		if (mode === 'B') this.state.controllers.mode.B = !this.state.controllers.mode.B;
 
-		let msg = {type:"hvac", payload: {set_mode: this.state.controllers.mode}}
+		let msg = {eventType:"hvac", payload: {set_mode: this.state.controllers.mode}}
 		this.props.back.emit('daughter', JSON.stringify(msg));
 		this.setState(this.state);
 	}
@@ -52,7 +52,7 @@ export class HVAC extends React.Component {
 		if (mode === 'A') this.state.controllers.leftAirTemp.A = !this.state.controllers.leftAirTemp.A;
 		if (mode === 'B') this.state.controllers.leftAirTemp.B = !this.state.controllers.leftAirTemp.B;
 
-		let msg = {type:"hvac", payload: {set_left_air_temp: this.state.controllers.leftAirTemp}}
+		let msg = {eventType:"hvac", payload: {set_left_air_temp: this.state.controllers.leftAirTemp}}
 		this.props.back.emit('daughter', JSON.stringify(msg));
 		this.setState(this.state);
 	}
@@ -61,7 +61,7 @@ export class HVAC extends React.Component {
 		if (mode === 'A') this.state.controllers.rightAirTemp.A = !this.state.controllers.rightAirTemp.A;
 		if (mode === 'B') this.state.controllers.rightAirTemp.B = !this.state.controllers.rightAirTemp.B;
 
-		let msg = {type:"hvac", payload: {set_right_air_temp: this.state.controllers.rightAirTemp}}
+		let msg = {eventType:"hvac", payload: {set_right_air_temp: this.state.controllers.rightAirTemp}}
 		this.props.back.emit('daughter', JSON.stringify(msg));
 		this.setState(this.state);
 	}
@@ -70,7 +70,7 @@ export class HVAC extends React.Component {
 		if (mode === 'A') this.state.controllers.recirculation.A = !this.state.controllers.recirculation.A;
 		if (mode === 'B') this.state.controllers.recirculation.B = !this.state.controllers.recirculation.B;
 
-		let msg = {type:"hvac", payload: {set_recirculation: this.state.controllers.recirculation}}
+		let msg = {eventType:"hvac", payload: {set_recirculation: this.state.controllers.recirculation}}
 		this.props.back.emit('daughter', JSON.stringify(msg));
 		this.setState(this.state);
 	}
@@ -78,7 +78,7 @@ export class HVAC extends React.Component {
 	toggleRearDefog () {
 		this.state.controllers.rearDefog = !this.state.controllers.rearDefog;
 
-		let msg = {type:"hvac", payload: {set_rear_defog: this.state.controllers.rearDefog}}
+		let msg = {eventType:"hvac", payload: {set_rear_defog: this.state.controllers.rearDefog}}
 		this.props.back.emit('daughter', JSON.stringify(msg));
 		this.setState(this.state);
 	}
@@ -86,7 +86,7 @@ export class HVAC extends React.Component {
 	toggleAirTempBlower () {
 		this.state.controllers.airTempBlower = !this.state.controllers.airTempBlower;
 
-		let msg = {type:"hvac", payload: {set_air_temp_blower: this.state.controllers.airTempBlower}}
+		let msg = {eventType:"hvac", payload: {set_air_temp_blower: this.state.controllers.airTempBlower}}
 		this.props.back.emit('daughter', JSON.stringify(msg));
 		this.setState(this.state);
 	}

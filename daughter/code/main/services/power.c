@@ -2,15 +2,15 @@
 
 #define IGN_OFF true
 #define IGN_ON  false
-#define SHUTDOWN_DELAY 10
+#define SHUTDOWN_DELAY 70
 #define ONE_SECOND_IN_MILLISECONDS 1000
 
 static xQueueHandle gpio_evt_queue = NULL;
-bool ignition_state = IGN_OFF;
+bool ignition_state = IGN_ON;
 bool prev_ignition_state = false;
 bool audio_power_state = false;
 bool display_power_state = false;
-bool main_power_state = false;
+bool main_power_state = true;
 int shutdown_cnt = 0;
 
 
@@ -134,6 +134,7 @@ void check_power_state() {
 }
 
 void handle_power_message (cJSON * msg) {
+	if (msg == NULL) return;
 	char mode[100];
 
 	if (cJSON_GetObjectItem(msg,"set_main_power")) {
@@ -163,30 +164,14 @@ void handle_power_message (cJSON * msg) {
 	if (cJSON_GetObjectItem(msg,"get_state")) {
 		send_power_state();
 	}
+
+	cJSON_Delete(serviceMessage.message);
 }
 
 static void power_task(void* arg)
 {
-	char type[100];
-	cJSON * payload = NULL;
-
 	while(1) {
-
-		if (service_message != NULL) {
-			if (cJSON_GetObjectItem(service_message,"type")) {
-	  		snprintf(type,sizeof(type),"%s",cJSON_GetObjectItem(service_message,"type")->valuestring);
-			}
-
-			if (strcmp(type,"power")==0) {
-				if (cJSON_GetObjectItem(service_message,"payload")) {
-					payload = cJSON_GetObjectItemCaseSensitive(service_message,"payload");
-					handle_power_message(payload);
-					printf("%s\n", cJSON_PrintUnformatted(payload));
-					service_message = NULL;
-				}
-			}
-		}
-
+		handle_power_message(checkServiceMessage("power"));
 		check_power_state();
 		vTaskDelay(SERVICE_LOOP / portTICK_RATE_MS);
 	}
@@ -194,7 +179,7 @@ static void power_task(void* arg)
 
 void power_main(void)
 {
-	set_main_power(false);
+	set_main_power(true);
 	set_display_power(true);
 	set_audio_power(true);
 

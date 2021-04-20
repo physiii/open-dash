@@ -64,23 +64,19 @@ void init(void) {
 static void uartMessageTask(void *arg)
 {
 	int cnt = 0;
+	int len = 0;
+	int txBytes = 0;
+
   while (1) {
-		if (!uartMessage.readyToSend) {
-			cnt = 0;
-			if (uartMessage.queueCount > 0) {
-				// printf("uartMessageTask (%d)\t%s\n", uartMessage.queueCount, cJSON_PrintUnformatted(&uartMessage.messageQueue[uartMessage.queueCount]));
-				uartMessage.message = &uartMessage.messageQueue[uartMessage.queueCount];
-				sprintf(outgoing_message_str, "%s\n", cJSON_PrintUnformatted(uartMessage.message));
-			  const int len = strlen(outgoing_message_str);
-			  const int txBytes = uart_write_bytes(UART_NUM_0, outgoing_message_str, len);
-				uartMessage.readyToSend = false;
-				uartMessage.queueCount--;
-			}
-		} else if (cnt > 10) {
-			printf("uartMessage timeout reached.\n");
-			uartMessage.readyToSend = false;
-		} else {
-			cnt++;
+		if (uartMessage.queueCount > 0) {
+			uartMessage.message = uartMessage.messageQueue[uartMessage.queueCount];
+			char *msg = cJSON_PrintUnformatted(uartMessage.message);
+			sprintf(outgoing_message_str, "%s\n", msg);
+			len = strlen(outgoing_message_str);
+			txBytes = uart_write_bytes(UART_NUM_0, outgoing_message_str, len);
+			cJSON_Delete(uartMessage.message);
+			free(msg);
+			uartMessage.queueCount--;
 		}
 
     vTaskDelay(SERVICE_LOOP_SHORT / portTICK_PERIOD_MS);
@@ -91,10 +87,14 @@ static void rx_task(void *arg)
 {
     static const char *RX_TASK_TAG = "RX_TASK";
     esp_log_level_set(RX_TASK_TAG, ESP_LOG_INFO);
-    uint8_t* data = (uint8_t*) malloc(RX_BUF_SIZE+1);
     char rcv_buffer[RX_BUF_SIZE];
+    int rxBytes = 0;
+		int valid_json = 0;
+		cJSON *root;
+		char *error_ptr;
+		uint8_t* data = (uint8_t*) malloc(RX_BUF_SIZE+1);
     while (1) {
-        const int rxBytes = uart_read_bytes(UART_NUM_0, data, RX_BUF_SIZE, 10 / portTICK_RATE_MS);
+        rxBytes = uart_read_bytes(UART_NUM_0, data, RX_BUF_SIZE, 10 / portTICK_RATE_MS);
         if (rxBytes > 0) {
             data[rxBytes] = 0;
             // ESP_LOGI(RX_TASK_TAG, "Read %d bytes: '%s'", rxBytes, data);
@@ -102,12 +102,12 @@ static void rx_task(void *arg)
 
 						sprintf(rcv_buffer, "%s", data);
 
-						int valid_json = check_json(rcv_buffer);
+						valid_json = check_json(rcv_buffer);
 
-						cJSON *root = cJSON_Parse(rcv_buffer);
+						root = cJSON_Parse(rcv_buffer);
             if (root == NULL)
             {
-                const char *error_ptr = cJSON_GetErrorPtr();
+                error_ptr = cJSON_GetErrorPtr();
                 if (error_ptr != NULL)
                 {
                     printf("Error before: %s\n", error_ptr);
@@ -116,12 +116,13 @@ static void rx_task(void *arg)
             }
 
 						if (valid_json) {
-							service_message = root;
+							addServiceMessageToQueue(root);
+							// service_message = root;
 							// outgoing_uart_message = service_message;
 						}
         }
     }
-    free(data);
+		free(data);
 }
 
 void uart_main(void)

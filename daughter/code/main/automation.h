@@ -4,7 +4,7 @@
 struct ServiceMessage
 {
 	cJSON *message;
-	cJSON messageQueue[100];
+	cJSON *messageQueue[100];
 	bool read;
 	int timeout;
 	int queueCount;
@@ -13,7 +13,7 @@ struct ServiceMessage
 struct UartMessage
 {
 	cJSON *message;
-	cJSON messageQueue[100];
+	cJSON *messageQueue[100];
 	bool readyToSend;
 	int timeout;
 	int queueCount;
@@ -32,9 +32,11 @@ struct ServiceMessage serviceMessage;
 struct ClientMessage clientMessage;
 struct UartMessage uartMessage;
 
+cJSON *null_payload = NULL;
+cJSON *payload = NULL;
+
 cJSON * checkServiceMessage(char *eventType)
 {
-	cJSON *null_payload = NULL;
 	if (serviceMessage.read) return null_payload;
 
 	if (serviceMessage.message == NULL) return null_payload;
@@ -46,7 +48,7 @@ cJSON * checkServiceMessage(char *eventType)
 	if (strcmp(type, eventType)) return null_payload;
 	if (!cJSON_GetObjectItem(serviceMessage.message,"payload")) return null_payload;
 
-	cJSON *payload = cJSON_GetObjectItem(serviceMessage.message,"payload");
+	payload = cJSON_GetObjectItem(serviceMessage.message,"payload");
 
 	serviceMessage.read = true;
 	return payload;
@@ -55,34 +57,39 @@ cJSON * checkServiceMessage(char *eventType)
 void addUartMessageToQueue (cJSON *message)
 {
 	uartMessage.queueCount++;
-	uartMessage.messageQueue[uartMessage.queueCount] = *message;
-	// printf("addUartMessageToQueue (%d)\t%s\n", uartMessage.queueCount, cJSON_PrintUnformatted(&uartMessage.messageQueue[uartMessage.queueCount]));
+	uartMessage.messageQueue[uartMessage.queueCount] = message;
 }
 
 void addServiceMessageToQueue (cJSON *message)
 {
 	serviceMessage.queueCount++;
-	printf("addServiceMessageToQueue (%d) %s\n", serviceMessage.queueCount, cJSON_PrintUnformatted(message));
-	serviceMessage.messageQueue[serviceMessage.queueCount] = *message;
+	serviceMessage.messageQueue[serviceMessage.queueCount] = message;
+	return;
 }
 
 static void
 serviceMessageTask (void *pvParameter)
 {
-	int cnt = 0;
+	int timeout_cnt = 0;
+
   while (1) {
 		if (serviceMessage.read) {
-			cnt = 0;
+
+			timeout_cnt = 0;
 			if (serviceMessage.queueCount > 0) {
-				serviceMessage.message = &serviceMessage.messageQueue[serviceMessage.queueCount];
+				serviceMessage.message = serviceMessage.messageQueue[serviceMessage.queueCount];
 				serviceMessage.read = false;
 				serviceMessage.queueCount--;
 			}
-		} else if (cnt > 10) {
-			printf("serviceMessage timeout reached.\n");
+		}
+		else if (timeout_cnt > 10) {
+			printf("serviceMessageTask timeout reached.\n");
+			cJSON_Delete(serviceMessage.message);
 			serviceMessage.read = true;
+			serviceMessage.queueCount--;
+			timeout_cnt = 0;
 		} else {
-			cnt++;
+			timeout_cnt++;
 		}
 
     vTaskDelay(SERVICE_LOOP / portTICK_PERIOD_MS);
