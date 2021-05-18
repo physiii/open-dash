@@ -1,0 +1,6 @@
+Change usb circuit
+Add Jumpers to audio transformer to output grounds
+Add ext amp trigger circuit
+Remove middle break tab
+Move hvac/stereo connectors further apart
+Mount holes for interface connectors

@@ -4,6 +4,7 @@ import ArcadeGames from './ArcadeGames.js';
 import GameBoard from './GameBoard.js';
 import Dash from './Dash.js';
 import J1850 from './J1850.js';
+import Settings from './Settings.js';
 import HVAC from './HVAC.js';
 import Power from './Power.js';
 import Home from './Home.js';
@@ -20,6 +21,7 @@ export class App extends React.Component {
 			powerSensors: {},
 			showHome: true,
 			showHVAC: false,
+			showSettings: false,
 			showJ1850: false
 		};
 
@@ -55,6 +57,7 @@ export class App extends React.Component {
 		this.state.showPower = false;
 		this.state.showHome = true;
 		this.state.showJ1850 = false;
+		this.state.showSettings = false;
 		this.state.showHVAC = false;
 
 		this.setState(this.state);
@@ -64,7 +67,7 @@ export class App extends React.Component {
 	showHVAC() {
 		this.state.showPower = false;
 		this.state.showHome = false;
-		this.state.showJ1850 = false;
+		this.state.showSettings = false;
 		this.state.showHVAC = true;
 
 		this.setState(this.state);
@@ -73,7 +76,7 @@ export class App extends React.Component {
 
 	showPower() {
 		this.state.showHome = false;
-		this.state.showJ1850 = false;
+		this.state.showSettings = false;
 		this.state.showHVAC = false;
 		this.state.showPower = true;
 
@@ -86,20 +89,22 @@ export class App extends React.Component {
 		this.state.showHome = false;
 		this.state.showJ1850 = true;
 		this.state.showHVAC = false;
+		this.state.showSettings = false;
 
 		this.setState(this.state);
 		console.log(TAG, "Show J1850.");
   }
 
-  handleChange(event) {
-		this.setState({daughterMessage: event.target.value});
-	}
+	showSettings() {
+		this.state.showPower = false;
+		this.state.showHome = false;
+		this.state.showJ1850 = false;
+		this.state.showHVAC = false;
+		this.state.showSettings = true;
 
-  handleSubmit(event) {
-		this.props.back.emit('daughter', this.state.daughterMessage);
-    console.log('A name was submitted: ' + this.state.daughterMessage);
-    event.preventDefault();
-  }
+		this.setState(this.state);
+		console.log(TAG, "Show Settings.");
+	}
 
 	render () {
 		return (
@@ -107,30 +112,22 @@ export class App extends React.Component {
 
 				{this.state.showHome ?
 					<div>
-						<div>
-							<input
-								type='text'
-								style={{width:'85%', height:'30px'}}
-								value={this.state.daughterMessage}
-								onChange={this.handleChange.bind(this)} />
-							<button
-								key="button"
-								style={{width:'10%', height:'35px'}}
-								onClick={this.handleSubmit.bind(this)}
-								styleName='button'>send</button>
-						</div>
 						<button
 							key="button"
 							onClick={ this.showPower.bind(this) }
-							styleName='button'>Power</button>
+							styleName='mainButton'>Power</button>
 						<button
 							key="button"
 							onClick={ this.showHVAC.bind(this) }
-							styleName='button'>HVAC</button>
+							styleName='mainButton'>HVAC</button>
 						<button
 							key="button"
 							onClick={ this.showJ1850.bind(this) }
-							styleName='button'>J1850</button>
+							styleName='mainButton'>J1850</button>
+						<button
+							key="button"
+							onClick={ this.showSettings.bind(this) }
+							styleName='mainButton'>Settings</button>
 					</div> : ''
 				}
 
@@ -139,10 +136,11 @@ export class App extends React.Component {
 						<button
 							key="button"
 							onClick={ this.showHome.bind(this) }
-							style={{width:'100%'}}>Home</button>
-						{this.state.showHVAC ? <HVAC		back={this.props.back} sensors={this.state.hvacSensors} /> : ''}
-						{this.state.showPower ? <Power 	back={this.props.back} sensors={this.state.powerSensors} /> : ''}
-						{this.state.showJ1850 ? <J1850	back={this.props.back} /> : ''}
+							styleName="headerBar">Home</button>
+						{this.state.showHVAC ?  <HVAC back={this.props.back} sensors={this.state.hvacSensors} /> : ''}
+						{this.state.showPower ? <Power back={this.props.back} sensors={this.state.powerSensors} /> : ''}
+						{this.state.showJ1850 ? <J1850 back={this.props.back} /> : ''}
+						{this.state.showSettings ? <Settings	back={this.props.back} /> : ''}
 					</div> : ''
 				}
 

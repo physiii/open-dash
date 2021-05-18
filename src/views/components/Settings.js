@@ -1,34 +1,34 @@
 import React from 'react';
 import './GameBoard.css';
 
-const TAG = "[J1850]";
+const TAG = "[Settings]";
 
-export class J1850 extends React.Component {
+export class Settings extends React.Component {
 	constructor (props) {
 		super(props);
 
 		this.state = {
 			daughterMessage: "",
-			j1850Codes: [],
-			j1850CodesCopy: [],
+			settingsCodes: [],
+			settingsCodesCopy: [],
 			showOnlyNewCodes: false,
 			newCodes: [],
 			codeTotal: 0,
 			codeTotalRep: 0
 		};
 
-		this.props.back.on('j1850', (data) => {
+		this.props.back.on('settings', (data) => {
 			// console.log(TAG, 'Incoming message', data);
 			this.state.codeTotalRep++;
-			let index = this.state.j1850Codes.findIndex(code => code.j1850 === data.j1850),
-				indexNew = this.state.newCodes.findIndex(code => code.j1850 === data.j1850),
-				indexCopy = this.state.j1850CodesCopy.findIndex(code => code.j1850 === data.j1850);
+			let index = this.state.settingsCodes.findIndex(code => code.settings === data.settings),
+				indexNew = this.state.newCodes.findIndex(code => code.settings === data.settings),
+				indexCopy = this.state.settingsCodesCopy.findIndex(code => code.settings === data.settings);
 
 			if (index > -1) {
-					this.state.j1850Codes[index].count++;
+					this.state.settingsCodes[index].count++;
 			} else {
 				data.count = 1;
-				this.state.j1850Codes.push(data);
+				this.state.settingsCodes.push(data);
 				this.state.codeTotal++;
 			}
 
@@ -48,10 +48,10 @@ export class J1850 extends React.Component {
   }
 
 	compare ( a, b ) {
-	  if ( a.j1850 < b.j1850 ){
+	  if ( a.settings < b.settings ){
 	    return -1;
 	  }
-	  if ( a.j1850 > b.j1850 ){
+	  if ( a.settings > b.settings ){
 	    return 1;
 	  }
 	  return 0;
@@ -61,7 +61,7 @@ export class J1850 extends React.Component {
 		console.log(TAG, "Showing only new codes.");
 		this.state.showOnlyNewCodes = true;
 		this.state.newCodes = [];
-		this.state.j1850CodesCopy = this.state.j1850Codes;
+		this.state.settingsCodesCopy = this.state.settingsCodes;
 		this.setState(this.state);
 	}
 
@@ -73,7 +73,7 @@ export class J1850 extends React.Component {
 
 	sortCodes () {
 		console.log(TAG, "Sorting codes.");
-		this.state.j1850Codes.sort(this.compare);
+		this.state.settingsCodes.sort(this.compare);
 		this.state.newCodes.sort(this.compare);
 		this.setState(this.state);
 	}
@@ -81,15 +81,37 @@ export class J1850 extends React.Component {
 	clearCodes () {
 		console.log(TAG, "Clearing codes.");
 		this.state.newCodes = [];
-		this.state.j1850Codes = [];
-		this.state.j1850CodesCopy = [];
+		this.state.settingsCodes = [];
+		this.state.settingsCodesCopy = [];
 		this.setState(this.state);
 	}
 
+  handleChange(event) {
+		this.setState({daughterMessage: event.target.value});
+	}
+
+  handleSubmit(event) {
+		this.props.back.emit('daughter', this.state.daughterMessage);
+    console.log('A name was submitted: ' + this.state.daughterMessage);
+    event.preventDefault();
+  }
+
 	render () {
-    const { j1850Codes } = this.state;
+    const { settingsCodes } = this.state;
 		return (
 			<div>
+				<div>
+					<input
+						type='text'
+						style={{width:'85%', height:'30px'}}
+						value={this.state.daughterMessage}
+						onChange={this.handleChange.bind(this)} />
+					<button
+						key="button"
+						style={{width:'10%', height:'35px'}}
+						onClick={this.handleSubmit.bind(this)}
+						styleName='button'>send</button>
+				</div>
 				<button
 					key="button"
 					onClick={ this.showAllCodes.bind(this) }
@@ -113,13 +135,13 @@ export class J1850 extends React.Component {
 
 			{!this.state.showOnlyNewCodes ?
 				<div>
-					{this.state.j1850Codes.map((code) => (
-							<div>{code.j1850} ({code.count})</div>
+					{this.state.settingsCodes.map((code) => (
+							<div>{code.settings} ({code.count})</div>
 					))}
 				</div> :
 				<div>
 					{this.state.newCodes.map((code) => (
-							<div>{code.j1850} ({code.count})</div>
+							<div>{code.settings} ({code.count})</div>
 					))}
 				</div>
 			}
@@ -128,4 +150,4 @@ export class J1850 extends React.Component {
 	}
 }
 
-export default J1850;
+export default Settings;

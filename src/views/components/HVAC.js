@@ -1,5 +1,5 @@
 import React from 'react';
-import './GameBoard.css';
+import './HVAC.css';
 import Toggle from './Switch.js';
 
 const TAG = "[HVAC]";
@@ -95,42 +95,40 @@ export class HVAC extends React.Component {
     const { state } = this.state;
 		return (
 			<div>
-				<h3>Control</h3>
-
-				<h5>Blower</h5>
+				<div styleName='headerText'>Blower</div>
 				<div style={{width:'100%', display:'flex', flexFlow: 'row nowrap'}}>
 				<button
 					key="button"
 					onClick={ this.setBlowerMotor.bind(this, 0) }
-					styleName='button'>off</button>
+					styleName='blowerButton'>off</button>
 				<button
 					key="button"
-					onClick={ this.setBlowerMotor.bind(this, 1) }
-					styleName='button'>one</button>
+					onClick={ this.setBlowerMotor.bind(this, 7) }
+					styleName='blowerButton'>one</button>
 				<button
 					key="button"
-					onClick={ this.setBlowerMotor.bind(this, 2) }
-					styleName='button'>two</button>
+					onClick={ this.setBlowerMotor.bind(this, 6) }
+					styleName='blowerButton'>two</button>
 				<button
 					key="button"
-					onClick={ this.setBlowerMotor.bind(this, 3) }
-					styleName='button'>three</button>
+					onClick={ this.setBlowerMotor.bind(this, 5) }
+					styleName='blowerButton'>three</button>
 					<button
 						key="button"
 						onClick={ this.setBlowerMotor.bind(this, 4) }
-						styleName='button'>four</button>
+						styleName='blowerButton'>four</button>
 					<button
 						key="button"
-						onClick={ this.setBlowerMotor.bind(this, 5) }
-						styleName='button'>five</button>
+						onClick={ this.setBlowerMotor.bind(this, 3) }
+						styleName='blowerButton'>five</button>
 					<button
 						key="button"
-						onClick={ this.setBlowerMotor.bind(this, 6) }
-						styleName='button'>six</button>
+						onClick={ this.setBlowerMotor.bind(this, 2) }
+						styleName='blowerButton'>six</button>
 					<button
 						key="button"
-						onClick={ this.setBlowerMotor.bind(this, 7) }
-						styleName='button'>seven</button>
+						onClick={ this.setBlowerMotor.bind(this, 1) }
+						styleName='blowerButton'>seven</button>
 
 				</div>
 
