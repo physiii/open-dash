@@ -95,24 +95,24 @@ export class HVAC extends React.Component {
     const { state } = this.state;
 		return (
 			<div>
-				<div styleName='headerText'>Blower</div>
+				<div styleName='titleText'>Inside: 72 | Outside: 72</div>
 				<div style={{width:'100%', display:'flex', flexFlow: 'row nowrap'}}>
-				<button
-					key="button"
-					onClick={ this.setBlowerMotor.bind(this, 0) }
-					styleName='blowerButton'>off</button>
-				<button
-					key="button"
-					onClick={ this.setBlowerMotor.bind(this, 7) }
-					styleName='blowerButton'>one</button>
-				<button
-					key="button"
-					onClick={ this.setBlowerMotor.bind(this, 6) }
-					styleName='blowerButton'>two</button>
-				<button
-					key="button"
-					onClick={ this.setBlowerMotor.bind(this, 5) }
-					styleName='blowerButton'>three</button>
+					<button
+						key="button"
+						onClick={ this.setBlowerMotor.bind(this, 0) }
+						styleName='blowerButtonLeft'>off</button>
+					<button
+						key="button"
+						onClick={ this.setBlowerMotor.bind(this, 7) }
+						styleName='blowerButton'>one</button>
+					<button
+						key="button"
+						onClick={ this.setBlowerMotor.bind(this, 6) }
+						styleName='blowerButton'>two</button>
+					<button
+						key="button"
+						onClick={ this.setBlowerMotor.bind(this, 5) }
+						styleName='blowerButton'>three</button>
 					<button
 						key="button"
 						onClick={ this.setBlowerMotor.bind(this, 4) }
@@ -128,127 +128,69 @@ export class HVAC extends React.Component {
 					<button
 						key="button"
 						onClick={ this.setBlowerMotor.bind(this, 1) }
-						styleName='blowerButton'>seven</button>
-
+						styleName='blowerButtonRight'>seven</button>
 				</div>
 
-				<h5>Mode</h5>
+				<div style={{margin: '30px 0px 0px 0px', width:'100%', display:'flex', flexFlow: 'row nowrap'}}>
+					<button
+						key="button"
+						onClick={ this.setBlowerMotor.bind(this, 0) }
+						styleName='blowerButtonLeft'>lower</button>
+					<button
+						key="button"
+						onClick={ this.setBlowerMotor.bind(this, 7) }
+						styleName='blowerButton'>upper</button>
+					<button
+						key="button"
+						onClick={ this.setBlowerMotor.bind(this, 7) }
+						styleName='blowerButton'>lower+upper</button>
+					<button
+						key="button"
+						onClick={ this.setBlowerMotor.bind(this, 6) }
+						styleName='blowerButtonRight'>defrost</button>
+				</div>
+
+
+
 				<div style={{width:'100%', display:'flex', flexFlow: 'row nowrap'}}>
-					<Toggle
-						isOn={this.state.controllers.mode.A}
-						showLabels={false}
-						onChange={this.toggleMode.bind(this, 'A')}
-						disabled={false} />
-						<div style={{width:'30px'}}></div>
-					<Toggle
-						isOn={this.state.controllers.mode.B}
-						showLabels={false}
-						onChange={this.toggleMode.bind(this, 'B')}
-						disabled={false} />
+
+
+					<div styleName='titleTextSub'>70 / 72
+						<div style={{width:'100%', display:'flex'}}>
+							<button
+								key="button"
+								onClick={ this.setBlowerMotor.bind(this, 0) }
+								styleName='blowerButtonLeft'>cold</button>
+							<button
+								key="button"
+								onClick={ this.setBlowerMotor.bind(this, 7) }
+								styleName='blowerButton'>off</button>
+							<button
+								key="button"
+								onClick={ this.setBlowerMotor.bind(this, 6) }
+								styleName='blowerButtonRight'>hot</button>
+						</div>
+					</div>
+
+
+					<div styleName='titleTextSub'>70 / 72
+						<div style={{width:'100%', display:'flex', flexFlow: 'row nowrap'}}>
+							<button
+								key="button"
+								onClick={ this.setBlowerMotor.bind(this, 0) }
+								styleName='blowerButtonLeft'>cold</button>
+							<button
+								key="button"
+								onClick={ this.setBlowerMotor.bind(this, 7) }
+								styleName='blowerButton'>off</button>
+							<button
+								key="button"
+								onClick={ this.setBlowerMotor.bind(this, 6) }
+								styleName='blowerButtonRight'>hot</button>
+						</div>
+					</div>
 				</div>
 
-				<h5>Left Air Temperature</h5>
-				<div style={{width:'100%', display:'flex', flexFlow: 'row nowrap'}}>
-					<Toggle
-						isOn={this.state.controllers.leftAirTemp.A}
-						showLabels={false}
-						onChange={this.toggleLeftAirTemp.bind(this, 'A')}
-						disabled={false} />
-						<div style={{width:'30px'}}></div>
-					<Toggle
-						isOn={this.state.controllers.leftAirTemp.B}
-						showLabels={false}
-						onChange={this.toggleLeftAirTemp.bind(this, 'B')}
-						disabled={false} />
-				</div>
-
-				<h5>Right Air Temperature</h5>
-				<div style={{width:'100%', display:'flex', flexFlow: 'row nowrap'}}>
-					<Toggle
-						isOn={this.state.controllers.rightAirTemp.A}
-						showLabels={false}
-						onChange={this.toggleRightAirTemp.bind(this, 'A')}
-						disabled={false} />
-						<div style={{width:'30px'}}></div>
-					<Toggle
-						isOn={this.state.controllers.rightAirTemp.B}
-						showLabels={false}
-						onChange={this.toggleRightAirTemp.bind(this, 'B')}
-						disabled={false} />
-				</div>
-
-				<h5>Recirculation</h5>
-				<div style={{width:'100%', display:'flex', flexFlow: 'row nowrap'}}>
-					<Toggle
-						isOn={this.state.controllers.recirculation.A}
-						showLabels={false}
-						onChange={this.toggleRecirculation.bind(this, 'A')}
-						disabled={false} />
-						<div style={{width:'30px'}}></div>
-					<Toggle
-						isOn={this.state.controllers.recirculation.B}
-						showLabels={false}
-						onChange={this.toggleRecirculation.bind(this, 'B')}
-						disabled={false} />
-				</div>
-
-				<h5>Rear Defog</h5>
-				<div style={{width:'100%', display:'flex', flexFlow: 'row nowrap'}}>
-					<Toggle
-						isOn={this.state.controllers.rearDefog}
-						showLabels={false}
-						onChange={this.toggleRearDefog.bind(this)}
-						disabled={false} />
-						<div style={{width:'30px'}}></div>
-				</div>
-
-				<h5>Air Temp Blower</h5>
-				<div style={{width:'100%', display:'flex', flexFlow: 'row nowrap'}}>
-					<Toggle
-						isOn={this.state.controllers.airTempBlower}
-						showLabels={false}
-						onChange={this.toggleAirTempBlower.bind(this)}
-						disabled={false} />
-						<div style={{width:'30px'}}></div>
-				</div>
-
-				<h3>Air Temperatures</h3>
-				{ this.state.sensors.air_temp ?
-					<div>
-						<div style={{width:'100%'}}>
-							Ambient: { this.state.sensors.air_temp.ambient }
-						</div>
-						<div style={{width:'100%'}}>
-							Inside: { this.state.sensors.air_temp.inside }
-						</div>
-						<div style={{width:'100%'}}>
-							Upper Left { this.state.sensors.air_temp.upper.left }
-						</div>
-						<div style={{width:'100%'}}>
-							Lower Left { this.state.sensors.air_temp.lower.left }
-						</div>
-						<div style={{width:'100%'}}>
-							Upper Right { this.state.sensors.air_temp.upper.right }
-						</div>
-						<div style={{width:'100%'}}>
-							Lower Right { this.state.sensors.air_temp.lower.right }
-						</div>
-					</div> : ''
-				}
-				<h3>Light Level</h3>
-				{ this.state.sensors.light_level ?
-					<div>
-						<div style={{width:'100%'}}>
-							Ambient: { this.state.sensors.light_level.ambient }
-						</div>
-						<div style={{width:'100%'}}>
-							Driver: { this.state.sensors.light_level.driver }
-						</div>
-						<div style={{width:'100%'}}>
-							Passenger: { this.state.sensors.light_level.passenger }
-						</div>
-					</div> : ''
-				}
 			</div>
 		);
 	}

@@ -140,7 +140,7 @@ export class App extends React.Component {
 						{this.state.showHVAC ?  <HVAC back={this.props.back} sensors={this.state.hvacSensors} /> : ''}
 						{this.state.showPower ? <Power back={this.props.back} sensors={this.state.powerSensors} /> : ''}
 						{this.state.showJ1850 ? <J1850 back={this.props.back} /> : ''}
-						{this.state.showSettings ? <Settings	back={this.props.back} /> : ''}
+						{this.state.showSettings ? <Settings	back={this.props.back} sensors={this.state.hvacSensors}/> : ''}
 					</div> : ''
 				}
 
