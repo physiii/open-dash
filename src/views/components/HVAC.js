@@ -48,11 +48,23 @@ export class HVAC extends React.Component {
 		this.setState(this.state);
 	}
 
+	setLeftAirTemp (mode) {
+		let msg = {eventType:"hvac", payload: {set_left_air_temp: mode}}
+		this.props.back.emit('daughter', JSON.stringify(msg));
+		this.setState(this.state);
+	}
+
+	setRightAirTemp (mode) {
+		let msg = {eventType:"hvac", payload: {set_right_air_temp: mode}}
+		this.props.back.emit('daughter', JSON.stringify(msg));
+		this.setState(this.state);
+	}
+
 	toggleLeftAirTemp (mode) {
 		if (mode === 'A') this.state.controllers.leftAirTemp.A = !this.state.controllers.leftAirTemp.A;
 		if (mode === 'B') this.state.controllers.leftAirTemp.B = !this.state.controllers.leftAirTemp.B;
 
-		let msg = {eventType:"hvac", payload: {set_left_air_temp: this.state.controllers.leftAirTemp}}
+		let msg = {eventType:"hvac", payload: {set_left_air_temp_motor: this.state.controllers.leftAirTemp}}
 		this.props.back.emit('daughter', JSON.stringify(msg));
 		this.setState(this.state);
 	}
@@ -61,7 +73,7 @@ export class HVAC extends React.Component {
 		if (mode === 'A') this.state.controllers.rightAirTemp.A = !this.state.controllers.rightAirTemp.A;
 		if (mode === 'B') this.state.controllers.rightAirTemp.B = !this.state.controllers.rightAirTemp.B;
 
-		let msg = {eventType:"hvac", payload: {set_right_air_temp: this.state.controllers.rightAirTemp}}
+		let msg = {eventType:"hvac", payload: {set_right_air_temp_motor: this.state.controllers.rightAirTemp}}
 		this.props.back.emit('daughter', JSON.stringify(msg));
 		this.setState(this.state);
 	}
@@ -159,16 +171,16 @@ export class HVAC extends React.Component {
 						<div style={{width:'100%', display:'flex'}}>
 							<button
 								key="button"
-								onClick={ this.setBlowerMotor.bind(this, 0) }
-								styleName='blowerButtonLeft'>cold</button>
+								onClick={ this.setLeftAirTemp.bind(this, 'cool') }
+								styleName='blowerButtonLeft'>cool</button>
 							<button
 								key="button"
-								onClick={ this.setBlowerMotor.bind(this, 7) }
+								onClick={ this.setLeftAirTemp.bind(this, 'off') }
 								styleName='blowerButton'>off</button>
 							<button
 								key="button"
-								onClick={ this.setBlowerMotor.bind(this, 6) }
-								styleName='blowerButtonRight'>hot</button>
+								onClick={ this.setLeftAirTemp.bind(this, 'heat') }
+								styleName='blowerButtonRight'>heat</button>
 						</div>
 					</div>
 
@@ -177,16 +189,16 @@ export class HVAC extends React.Component {
 						<div style={{width:'100%', display:'flex', flexFlow: 'row nowrap'}}>
 							<button
 								key="button"
-								onClick={ this.setBlowerMotor.bind(this, 0) }
-								styleName='blowerButtonLeft'>cold</button>
+								onClick={ this.setRightAirTemp.bind(this, 'cool') }
+								styleName='blowerButtonLeft'>cool</button>
 							<button
 								key="button"
-								onClick={ this.setBlowerMotor.bind(this, 7) }
+								onClick={ this.setRightAirTemp.bind(this, 'off') }
 								styleName='blowerButton'>off</button>
 							<button
 								key="button"
-								onClick={ this.setBlowerMotor.bind(this, 6) }
-								styleName='blowerButtonRight'>hot</button>
+								onClick={ this.setRightAirTemp.bind(this, 'heat') }
+								styleName='blowerButtonRight'>heat</button>
 						</div>
 					</div>
 				</div>

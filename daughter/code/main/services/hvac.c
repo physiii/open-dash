@@ -81,6 +81,13 @@
 #define DRIVER_HEATED_SEAT_STATUS					B6
 #define PASSENGER_HEATED_SEAT_STATUS			B7
 
+#define HEAT_PULSE_WIDTH									384
+#define HEAT_END_PULSE_WIDTH 							892
+#define COOL_PULSE_WIDTH									384
+#define COOL_A_PULSE_WIDTH								80
+#define COOL_END_PULSE_WIDTH 							1928
+#define TEMP_INTERVAL											3200
+
 #include "../i2cdev/i2cdev.h"
 #include "drivers/mcp23017/mcp23017.c"
 #include "drivers/ads111x/ads1115.c"
@@ -99,6 +106,11 @@ bool left_air_temp_B = false;
 bool right_air_temp_A = false;
 bool right_air_temp_B = false;
 
+bool start_cooling_left = false;
+bool start_heating_left = false;
+bool start_cooling_right = false;
+bool start_heating_right = false;
+
 void printHvacData(uint16_t * adc_values, uint16_t io_values) {
 	printf("HVAC ADC\t");
 	for (int i=0; i < ADC_CHANNELS; i++)
@@ -113,19 +125,20 @@ void set_blower_level(int val)
 	set_blower_pwm_width(val);
 }
 
-void set_left_air_temp(bool valA, bool valB)
+void set_left_air_temp_motor(bool valA, bool valB)
 {
 	mcp23x17_set_level(&mcp_dev, LEFT_AIR_TEMP_CONTROL_A, valA);
 	mcp23x17_set_level(&mcp_dev, LEFT_AIR_TEMP_CONTROL_B, valB);
-	// printf("set_left_air_temp\tA:%d\tB:%d\n", valA, valB);
+	// printf("set_left_air_temp_motor\tA:%d\tB:%d\n", valA, valB);
 }
 
-void set_right_air_temp(bool valA, bool valB)
+void set_right_air_temp_motor(bool valA, bool valB)
 {
 	mcp23x17_set_level(&mcp_dev, RIGHT_AIR_TEMP_CONTROL_A, valA);
 	mcp23x17_set_level(&mcp_dev, RIGHT_AIR_TEMP_CONTROL_B, valB);
-	// printf("set_right_air_temp\tA:%d\tB:%d\n", valA, valB);
+	// printf("set_right_air_temp_motor\tA:%d\tB:%d\n", valA, valB);
 }
+
 
 void set_mode(bool valA, bool valB)
 {
@@ -248,16 +261,44 @@ void handle_hvac_message (cJSON * msg) {
 		set_blower_level(level);
 	}
 
-	if (cJSON_GetObjectItem(msg,"set_left_air_temp")) {
-		cJSON * mode = cJSON_GetObjectItem(msg,"set_left_air_temp");
+	if (cJSON_GetObjectItem(msg,"set_left_air_temp_motor")) {
+		cJSON * mode = cJSON_GetObjectItem(msg,"set_left_air_temp_motor");
 		left_air_temp_A = cJSON_IsTrue(cJSON_GetObjectItem(mode,"A"));
 		left_air_temp_B = cJSON_IsTrue(cJSON_GetObjectItem(mode,"B"));
 	}
 
-	if (cJSON_GetObjectItem(msg,"set_right_air_temp")) {
-		cJSON * mode = cJSON_GetObjectItem(msg,"set_right_air_temp");
+	if (cJSON_GetObjectItem(msg,"set_right_air_temp_motor")) {
+		cJSON * mode = cJSON_GetObjectItem(msg,"set_right_air_temp_motor");
 		right_air_temp_A = cJSON_IsTrue(cJSON_GetObjectItem(mode,"A"));
 		right_air_temp_B = cJSON_IsTrue(cJSON_GetObjectItem(mode,"B"));
+	}
+
+	if (cJSON_GetObjectItem(msg,"set_left_air_temp")) {
+		cJSON * mode_obj = cJSON_GetObjectItem(msg,"set_left_air_temp");
+		char mode[20];
+		sprintf(mode, "%s", mode_obj->valuestring);
+
+		if (strcmp(mode, "cool")==0) {
+			start_cooling_left = true;
+		}
+
+		if (strcmp(mode, "heat")==0) {
+			start_heating_left = true;
+		}
+	}
+
+	if (cJSON_GetObjectItem(msg,"set_right_air_temp")) {
+		cJSON * mode_obj = cJSON_GetObjectItem(msg,"set_right_air_temp");
+		char mode[20];
+		sprintf(mode, "%s", mode_obj->valuestring);
+
+		if (strcmp(mode, "cool")==0) {
+			start_cooling_right = true;
+		}
+
+		if (strcmp(mode, "heat")==0) {
+			start_heating_right = true;
+		}
 	}
 
 	if (cJSON_GetObjectItem(msg,"set_mode")) {
@@ -295,67 +336,213 @@ void handle_hvac_message (cJSON * msg) {
 
 static void left_air_temp_task(void* arg)
 {
-	bool prev_A = false;
-	bool prev_B = false;
-
 	while (1) {
-		bool temp_A = left_air_temp_A;
-		bool temp_B = left_air_temp_B;
+		if (start_cooling_left) {
+			printf("start_cooling_left\n");
 
-		if (temp_A) {
-			if (prev_A) {
-				set_left_air_temp(true, false);
-				vTaskDelay(actuator_A_pulse_width / portTICK_RATE_MS);
-				set_left_air_temp(false, false);
-				vTaskDelay((actuator_interval - actuator_A_pulse_width) / portTICK_RATE_MS);
-			} else {
-				set_left_air_temp(true, false);
-				vTaskDelay(actuator_A_start_pulse_width / portTICK_RATE_MS);
-				set_left_air_temp(false, false);
-				vTaskDelay((actuator_interval - actuator_A_start_pulse_width) / portTICK_RATE_MS);
+			for (int i = 0; i < 3; i++) {
+				set_left_air_temp_motor(false, true);
+				vTaskDelay(COOL_PULSE_WIDTH / portTICK_RATE_MS);
+				set_left_air_temp_motor(false, false);
+				vTaskDelay(TEMP_INTERVAL / portTICK_RATE_MS);
 			}
-		} else if (prev_A) {
-			set_left_air_temp(true, false);
-			vTaskDelay(actuator_end_pulse_width / portTICK_RATE_MS);
-			set_left_air_temp(false, false);
-			left_air_temp_A = false;
-		} else if (temp_B) {
-			if (prev_B) {
-					set_left_air_temp(false, true);
-					vTaskDelay(actuator_B_pulse_width / portTICK_RATE_MS);
-					set_left_air_temp(false, false);
-					vTaskDelay((actuator_interval - actuator_B_pulse_width) / portTICK_RATE_MS);
-			} else {
-					set_left_air_temp(false, true);
-					vTaskDelay(actuator_B_start_pulse_width / portTICK_RATE_MS);
-					set_left_air_temp(false, false);
-					vTaskDelay((actuator_interval - actuator_B_start_pulse_width) / portTICK_RATE_MS);
-			}
-		} else if (prev_B) {
-			set_left_air_temp(false, true);
-			vTaskDelay(actuator_end_pulse_width / portTICK_RATE_MS);
-			set_left_air_temp(true, false);
-			vTaskDelay(100 / portTICK_RATE_MS);
-			set_left_air_temp(false, false);
-			left_air_temp_B = false;
-		} else {
-			vTaskDelay(100 / portTICK_RATE_MS);
+
+			// some pulses have a sqaure wave on A channel at the end of the pulse
+			set_left_air_temp_motor(false, true);
+			vTaskDelay(COOL_PULSE_WIDTH / portTICK_RATE_MS);
+			set_left_air_temp_motor(false, false);
+			vTaskDelay(COOL_PULSE_WIDTH / portTICK_RATE_MS);
+			set_left_air_temp_motor(true, false);
+			vTaskDelay(COOL_A_PULSE_WIDTH / portTICK_RATE_MS);
+			set_left_air_temp_motor(false, false);
+			vTaskDelay(TEMP_INTERVAL / portTICK_RATE_MS);
+
+			set_left_air_temp_motor(false, true);
+			vTaskDelay(COOL_PULSE_WIDTH / portTICK_RATE_MS);
+			set_left_air_temp_motor(false, false);
+			vTaskDelay(TEMP_INTERVAL / portTICK_RATE_MS);
+
+			// some pulses have a sqaure wave on A channel at the end of the pulse
+			set_left_air_temp_motor(false, true);
+			vTaskDelay(COOL_PULSE_WIDTH / portTICK_RATE_MS);
+			set_left_air_temp_motor(false, false);
+			vTaskDelay(COOL_PULSE_WIDTH / portTICK_RATE_MS);
+			set_left_air_temp_motor(true, false);
+			vTaskDelay(COOL_A_PULSE_WIDTH / portTICK_RATE_MS);
+			set_left_air_temp_motor(false, false);
+			vTaskDelay(TEMP_INTERVAL / portTICK_RATE_MS);
+
+			set_left_air_temp_motor(false, true);
+			vTaskDelay(COOL_PULSE_WIDTH / portTICK_RATE_MS);
+			set_left_air_temp_motor(false, false);
+			vTaskDelay(TEMP_INTERVAL / portTICK_RATE_MS);
+
+			set_left_air_temp_motor(false, true);
+			vTaskDelay((COOL_END_PULSE_WIDTH - COOL_A_PULSE_WIDTH) / portTICK_RATE_MS);
+			set_left_air_temp_motor(true, true);
+			vTaskDelay(COOL_A_PULSE_WIDTH / portTICK_RATE_MS);
+			set_left_air_temp_motor(false, false);
+
+			start_cooling_left = false;
 		}
 
-		prev_A = temp_A;
-		prev_B = temp_B;
+		if (start_heating_left) {
+			for (int i = 0; i < 6; i++) {
+				set_left_air_temp_motor(true, false);
+				vTaskDelay(HEAT_PULSE_WIDTH / portTICK_RATE_MS);
+				set_left_air_temp_motor(false, false);
+				vTaskDelay(TEMP_INTERVAL / portTICK_RATE_MS);
+			}
+
+			set_left_air_temp_motor(true, false);
+			vTaskDelay(HEAT_END_PULSE_WIDTH / 2 / portTICK_RATE_MS);
+			set_left_air_temp_motor(true, true);
+			vTaskDelay(HEAT_END_PULSE_WIDTH / 2 / portTICK_RATE_MS);
+			set_left_air_temp_motor(false, false);
+
+			start_heating_left = false;
+		}
+
+		vTaskDelay(SERVICE_LOOP / portTICK_RATE_MS);
 	}
 }
 
 static void right_air_temp_task(void* arg)
 {
 	while (1) {
-		set_right_air_temp(right_air_temp_A, right_air_temp_B);
-		vTaskDelay(actuator_A_pulse_width / portTICK_RATE_MS);
-		set_right_air_temp(false, false);
-		vTaskDelay((actuator_interval - actuator_A_pulse_width) / portTICK_RATE_MS);
+		if (start_cooling_right) {
+			printf("start_cooling_right\n");
+
+			for (int i = 0; i < 3; i++) {
+				set_right_air_temp_motor(false, true);
+				vTaskDelay(COOL_PULSE_WIDTH / portTICK_RATE_MS);
+				set_right_air_temp_motor(false, false);
+				vTaskDelay(TEMP_INTERVAL / portTICK_RATE_MS);
+			}
+
+			// some pulses have a sqaure wave on A channel at the end of the pulse
+			set_right_air_temp_motor(false, true);
+			vTaskDelay(COOL_PULSE_WIDTH / portTICK_RATE_MS);
+			set_right_air_temp_motor(false, false);
+			vTaskDelay(COOL_PULSE_WIDTH / portTICK_RATE_MS);
+			set_right_air_temp_motor(true, false);
+			vTaskDelay(COOL_A_PULSE_WIDTH / portTICK_RATE_MS);
+			set_right_air_temp_motor(false, false);
+			vTaskDelay(TEMP_INTERVAL / portTICK_RATE_MS);
+
+			set_right_air_temp_motor(false, true);
+			vTaskDelay(COOL_PULSE_WIDTH / portTICK_RATE_MS);
+			set_right_air_temp_motor(false, false);
+			vTaskDelay(TEMP_INTERVAL / portTICK_RATE_MS);
+
+			// some pulses have a sqaure wave on A channel at the end of the pulse
+			set_right_air_temp_motor(false, true);
+			vTaskDelay(COOL_PULSE_WIDTH / portTICK_RATE_MS);
+			set_right_air_temp_motor(false, false);
+			vTaskDelay(COOL_PULSE_WIDTH / portTICK_RATE_MS);
+			set_right_air_temp_motor(true, false);
+			vTaskDelay(COOL_A_PULSE_WIDTH / portTICK_RATE_MS);
+			set_right_air_temp_motor(false, false);
+			vTaskDelay(TEMP_INTERVAL / portTICK_RATE_MS);
+
+			set_right_air_temp_motor(false, true);
+			vTaskDelay(COOL_PULSE_WIDTH / portTICK_RATE_MS);
+			set_right_air_temp_motor(false, false);
+			vTaskDelay(TEMP_INTERVAL / portTICK_RATE_MS);
+
+			set_right_air_temp_motor(false, true);
+			vTaskDelay((COOL_END_PULSE_WIDTH - COOL_A_PULSE_WIDTH) / portTICK_RATE_MS);
+			set_right_air_temp_motor(true, true);
+			vTaskDelay(COOL_A_PULSE_WIDTH / portTICK_RATE_MS);
+			set_right_air_temp_motor(false, false);
+
+			start_cooling_right = false;
+		}
+
+		if (start_heating_right) {
+			for (int i = 0; i < 6; i++) {
+				set_right_air_temp_motor(true, false);
+				vTaskDelay(HEAT_PULSE_WIDTH / portTICK_RATE_MS);
+				set_right_air_temp_motor(false, false);
+				vTaskDelay(TEMP_INTERVAL / portTICK_RATE_MS);
+			}
+
+			set_right_air_temp_motor(true, false);
+			vTaskDelay(HEAT_END_PULSE_WIDTH / 2 / portTICK_RATE_MS);
+			set_right_air_temp_motor(true, true);
+			vTaskDelay(HEAT_END_PULSE_WIDTH / 2 / portTICK_RATE_MS);
+			set_right_air_temp_motor(false, false);
+
+			start_heating_right = false;
+		}
+
+		vTaskDelay(SERVICE_LOOP / portTICK_RATE_MS);
 	}
 }
+
+// static void left_air_temp_task(void* arg)
+// {
+// 	bool prev_A = false;
+// 	bool prev_B = false;
+//
+// 	while (1) {
+// 		bool temp_A = left_air_temp_A;
+// 		bool temp_B = left_air_temp_B;
+//
+// 		if (temp_A) {
+// 			if (prev_A) {
+// 				set_left_air_temp_motor(true, false);
+// 				vTaskDelay(actuator_A_pulse_width / portTICK_RATE_MS);
+// 				set_left_air_temp_motor(false, false);
+// 				vTaskDelay((actuator_interval - actuator_A_pulse_width) / portTICK_RATE_MS);
+// 			} else {
+// 				set_left_air_temp_motor(true, false);
+// 				vTaskDelay(actuator_A_start_pulse_width / portTICK_RATE_MS);
+// 				set_left_air_temp_motor(false, false);
+// 				vTaskDelay((actuator_interval - actuator_A_start_pulse_width) / portTICK_RATE_MS);
+// 			}
+// 		} else if (prev_A) {
+// 			set_left_air_temp_motor(true, false);
+// 			vTaskDelay(actuator_end_pulse_width / portTICK_RATE_MS);
+// 			set_left_air_temp_motor(false, false);
+// 			left_air_temp_A = false;
+// 		} else if (temp_B) {
+// 			if (prev_B) {
+// 					set_left_air_temp_motor(false, true);
+// 					vTaskDelay(actuator_B_pulse_width / portTICK_RATE_MS);
+// 					set_left_air_temp_motor(false, false);
+// 					vTaskDelay((actuator_interval - actuator_B_pulse_width) / portTICK_RATE_MS);
+// 			} else {
+// 					set_left_air_temp_motor(false, true);
+// 					vTaskDelay(actuator_B_start_pulse_width / portTICK_RATE_MS);
+// 					set_left_air_temp_motor(false, false);
+// 					vTaskDelay((actuator_interval - actuator_B_start_pulse_width) / portTICK_RATE_MS);
+// 			}
+// 		} else if (prev_B) {
+// 			set_left_air_temp_motor(false, true);
+// 			vTaskDelay(actuator_end_pulse_width / portTICK_RATE_MS);
+// 			set_left_air_temp_motor(true, false);
+// 			vTaskDelay(100 / portTICK_RATE_MS);
+// 			set_left_air_temp_motor(false, false);
+// 			left_air_temp_B = false;
+// 		} else {
+// 			vTaskDelay(100 / portTICK_RATE_MS);
+// 		}
+//
+// 		prev_A = temp_A;
+// 		prev_B = temp_B;
+// 	}
+// }
+
+// static void right_air_temp_task(void* arg)
+// {
+// 	while (1) {
+// 		set_right_air_temp_motor(right_air_temp_A, right_air_temp_B);
+// 		vTaskDelay(actuator_A_pulse_width / portTICK_RATE_MS);
+// 		set_right_air_temp_motor(false, false);
+// 		vTaskDelay((actuator_interval - actuator_A_pulse_width) / portTICK_RATE_MS);
+// 	}
+// }
 
 static void hvac_task(void* arg)
 {

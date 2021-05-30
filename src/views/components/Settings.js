@@ -116,7 +116,7 @@ export class Settings extends React.Component {
 		if (mode === 'A') this.state.controllers.leftAirTemp.A = !this.state.controllers.leftAirTemp.A;
 		if (mode === 'B') this.state.controllers.leftAirTemp.B = !this.state.controllers.leftAirTemp.B;
 
-		let msg = {eventType:"hvac", payload: {set_left_air_temp: this.state.controllers.leftAirTemp}}
+		let msg = {eventType:"hvac", payload: {set_left_air_temp_motor: this.state.controllers.leftAirTemp}}
 		this.props.back.emit('daughter', JSON.stringify(msg));
 		this.setState(this.state);
 	}
@@ -125,7 +125,7 @@ export class Settings extends React.Component {
 		if (mode === 'A') this.state.controllers.rightAirTemp.A = !this.state.controllers.rightAirTemp.A;
 		if (mode === 'B') this.state.controllers.rightAirTemp.B = !this.state.controllers.rightAirTemp.B;
 
-		let msg = {eventType:"hvac", payload: {set_right_air_temp: this.state.controllers.rightAirTemp}}
+		let msg = {eventType:"hvac", payload: {set_right_air_temp_motor: this.state.controllers.rightAirTemp}}
 		this.props.back.emit('daughter', JSON.stringify(msg));
 		this.setState(this.state);
 	}
