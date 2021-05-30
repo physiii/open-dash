@@ -103,15 +103,15 @@ export class HVAC extends React.Component {
 						styleName='blowerButtonLeft'>off</button>
 					<button
 						key="button"
-						onClick={ this.setBlowerMotor.bind(this, 7) }
+						onClick={ this.setBlowerMotor.bind(this, 1) }
 						styleName='blowerButton'>one</button>
 					<button
 						key="button"
-						onClick={ this.setBlowerMotor.bind(this, 6) }
+						onClick={ this.setBlowerMotor.bind(this, 2) }
 						styleName='blowerButton'>two</button>
 					<button
 						key="button"
-						onClick={ this.setBlowerMotor.bind(this, 5) }
+						onClick={ this.setBlowerMotor.bind(this, 3) }
 						styleName='blowerButton'>three</button>
 					<button
 						key="button"
@@ -119,15 +119,15 @@ export class HVAC extends React.Component {
 						styleName='blowerButton'>four</button>
 					<button
 						key="button"
-						onClick={ this.setBlowerMotor.bind(this, 3) }
+						onClick={ this.setBlowerMotor.bind(this, 5) }
 						styleName='blowerButton'>five</button>
 					<button
 						key="button"
-						onClick={ this.setBlowerMotor.bind(this, 2) }
+						onClick={ this.setBlowerMotor.bind(this, 6) }
 						styleName='blowerButton'>six</button>
 					<button
 						key="button"
-						onClick={ this.setBlowerMotor.bind(this, 1) }
+						onClick={ this.setBlowerMotor.bind(this, 7) }
 						styleName='blowerButtonRight'>seven</button>
 				</div>
 

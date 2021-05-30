@@ -1023,7 +1023,7 @@ WHEEL_CONTROLS_SUPPLY
 Wire Wire Line
 	6600 2550 6550 2550
 $Comp
-L Open_Automation:Conn_IDE_40 J6
+L open-dash-daughterboard-rescue:Conn_IDE_40-Open_Automation J6
 U 1 1 659B5A32
 P 6250 2350
 F 0 "J6" H 6300 3467 50  0000 C CNN
@@ -1035,7 +1035,7 @@ F 4 "SBH11-PBPC-D20-ST-BK" H 6250 2350 50  0001 C CNN "Part Number"
 	1    0    0    -1  
 $EndComp
 $Comp
-L Open_Automation:Conn_IDE_40 J8
+L open-dash-daughterboard-rescue:Conn_IDE_40-Open_Automation J8
 U 1 1 659BC0F8
 P 11300 2350
 F 0 "J8" H 11350 3467 50  0000 C CNN
@@ -1075,7 +1075,7 @@ Wire Wire Line
 Wire Wire Line
 	9050 2950 9000 2950
 $Comp
-L Open_Automation:Conn_IDE_40 J7
+L open-dash-daughterboard-rescue:Conn_IDE_40-Open_Automation J7
 U 1 1 659BAB3D
 P 8700 2350
 F 0 "J7" H 8750 3467 50  0000 C CNN
@@ -1414,7 +1414,7 @@ Wire Wire Line
 Text Label 9050 2550 0    50   ~ 0
 RF-
 $Comp
-L Open_Automation:D_1N5819HW D1
+L open-dash-daughterboard-rescue:D_1N5819HW-Open_Automation D1
 U 1 1 6076B14B
 P 1700 2500
 F 0 "D1" H 1700 2284 50  0000 C CNN

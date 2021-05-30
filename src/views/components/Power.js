@@ -89,7 +89,7 @@ export class Power extends React.Component {
 				<h3>Sensors</h3>
 
 				<div style={{width:'100%'}}>
-					Ignition { this.state.sensors.ignition ? 'on' : 'off' }
+					Ignition { this.state.sensors.ignition == 'on' ? 'on' : 'off' }
 				</div>
 				<div style={{width:'100%'}}>
 					Battery Voltage { this.state.sensors.battery_voltage }

@@ -95,7 +95,7 @@ listener.sockets.on('connection',function(socket){
 		if (msg.ignition === "off") {
 			if (state.ignition === "on") {
 				state.ignition = msg.ignition;
-		  	// Exec("gnome-session-quit --power-off");
+		  	Exec("gnome-session-quit --power-off");
 				console.log("!! SHUTDOWN IN 60 SECONDS !!");
 			}
 		}

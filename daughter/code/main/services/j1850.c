@@ -63,7 +63,7 @@ uint64_t PASSIVE_ONE_MAX = 145 + 12;
 
 uint64_t SOF_NOM = 200;
 uint64_t SOF_MIN = 182;
-uint64_t SOF_MAX = 218;
+uint64_t SOF_MAX = 218 + 24;
 
 uint64_t EOD_NOM = 200;
 uint64_t EOD_MIN = 182;
@@ -78,40 +78,6 @@ uint64_t IFS_MIN = 280;
 uint64_t BREAK_NOM = 300;
 uint64_t BREAK_MIN = 280;
 uint64_t BREAK_MAX = 5000;
-
-// uint64_t ACTIVE_ZERO_NOM = 128;
-// uint64_t ACTIVE_ZERO_MIN = 112;
-// uint64_t ACTIVE_ZERO_MAX = 145;
-//
-// uint64_t ACTIVE_ONE_NOM = 64;
-// uint64_t ACTIVE_ONE_MIN = 49;
-// uint64_t ACTIVE_ONE_MAX = 79;
-//
-// uint64_t PASSIVE_ZERO_NOM = 64;
-// uint64_t PASSIVE_ZERO_MIN = 49;
-// uint64_t PASSIVE_ZERO_MAX = 79;
-//
-// uint64_t PASSIVE_ONE_NOM = 128;
-// uint64_t PASSIVE_ONE_MIN = 112;
-// uint64_t PASSIVE_ONE_MAX = 145;
-//
-// uint64_t SOF_NOM = 200;
-// uint64_t SOF_MIN = 182;
-// uint64_t SOF_MAX = 218;
-//
-// uint64_t EOD_NOM = 200;
-// uint64_t EOD_MIN = 182;
-// uint64_t EOD_MAX = 218;
-//
-// uint64_t EOF_NOM = 280;
-// uint64_t EOF_MIN = 261;
-//
-// uint64_t IFS_NOM = 300;
-// uint64_t IFS_MIN = 280;
-//
-// uint64_t BREAK_NOM = 300;
-// uint64_t BREAK_MIN = 280;
-// uint64_t BREAK_MAX = 5000;
 
 static void eof_timer_callback(void* arg);
 
@@ -196,7 +162,7 @@ static void IRAM_ATTR j1850_isr_handler(void* arg)
 	bool level = gpio_get_level(pin);
 
   esp_timer_stop(eof_timer);
-  esp_timer_start_once(eof_timer, EOF_NOM);
+  esp_timer_start_once(eof_timer, EOF_MIN);
 	err = J1850_OK;
 
 	previous_time = current_time;

@@ -39,10 +39,11 @@ esp_timer_handle_t oneshot_timer;
 
 static void oneshot_timer_callback(void* arg)
 {
-    // gpio_set_level(BLOWER_MOTOR_PIN, false);
-
-    // set_mcp_io(BLOWER_MOTOR, false);
-    mcp23x17_set_level(&mcp_dev, BLOWER_MOTOR, false);
+	if (pwm_width == LEVEL_0) {
+		mcp23x17_set_level(&mcp_dev, BLOWER_MOTOR, false);
+	} else {
+		mcp23x17_set_level(&mcp_dev, BLOWER_MOTOR, true);
+	}
 
     // int64_t time_since_boot = esp_timer_get_time();
     // ESP_LOGI(TAG, "One-shot timer called, time since boot: %lld us", time_since_boot);
@@ -57,15 +58,13 @@ static void oneshot_timer_callback(void* arg)
 
 static void periodic_timer_callback(void* arg)
 {
-    // gpio_set_level(BLOWER_MOTOR_PIN, true);
-
-    // set_mcp_io(BLOWER_MOTOR, true);
-    mcp23x17_set_level(&mcp_dev, BLOWER_MOTOR, true);
+	if (pwm_width == LEVEL_7) {
+		mcp23x17_set_level(&mcp_dev, BLOWER_MOTOR, true);
+	} else {
+	  mcp23x17_set_level(&mcp_dev, BLOWER_MOTOR, false);
+	}
 
     ESP_ERROR_CHECK(esp_timer_start_once(oneshot_timer, pwm_width));
-
-    // int64_t time_since_boot = esp_timer_get_time();
-    // ESP_LOGI(TAG, "Periodic timer called, time since boot: %lld us", time_since_boot);
 }
 
 
