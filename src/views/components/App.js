@@ -22,8 +22,23 @@ export class App extends React.Component {
 			showHome: true,
 			showHVAC: false,
 			showSettings: false,
-			showJ1850: false
+			showJ1850: false,
+			j1850State: {
+				daughterMessage: "",
+				j1850Codes: [],
+				j1850CodesCopy: [],
+				showOnlyNewCodes: false,
+				newCodes: [],
+				codeTotal: 0,
+				codeTotalRep: 0
+			}
 		};
+
+		this.showAllCodes = this.showAllCodes.bind(this);
+		this.showNewCodes = this.showNewCodes.bind(this);
+		this.sortCodes = this.sortCodes.bind(this);
+		this.clearCodes = this.clearCodes.bind(this);
+
 
 		this.props.back.on('hvac', (data) => {
 			console.log(TAG, 'Incoming hvac message', data);
@@ -36,6 +51,33 @@ export class App extends React.Component {
 			console.log(TAG, 'Incoming power message', data);
 
 			this.state.powerSensors = data;
+			this.setState(this.state)
+		});
+
+		this.props.back.on('j1850', (data) => {
+			console.log(TAG, 'Incoming message', data);
+			this.state.j1850State.codeTotalRep++;
+			let index = this.state.j1850State.j1850Codes.findIndex(code => code.j1850 === data.j1850),
+				indexNew = this.state.j1850State.newCodes.findIndex(code => code.j1850 === data.j1850),
+				indexCopy = this.state.j1850State.j1850CodesCopy.findIndex(code => code.j1850 === data.j1850);
+
+			if (index > -1) {
+					this.state.j1850State.j1850Codes[index].count++;
+			} else {
+				data.count = 1;
+				this.state.j1850State.j1850Codes.push(data);
+				this.state.j1850State.codeTotal++;
+			}
+
+			if (indexCopy < 0) {
+				if (indexNew > -1) {
+						this.state.j1850State.newCodes[indexNew].count++;
+				} else {
+					data.count = 1;
+					this.state.j1850State.newCodes.push(data);
+				}
+			}
+
 			this.setState(this.state)
 		});
 	}
@@ -106,6 +148,45 @@ export class App extends React.Component {
 		console.log(TAG, "Show Settings.");
 	}
 
+	showNewCodes () {
+		console.log(TAG, "Showing only new codes.");
+		this.state.j1850State.showOnlyNewCodes = true;
+		this.state.j1850State.newCodes = [];
+		this.state.j1850State.j1850CodesCopy = this.state.j1850State.j1850Codes;
+		this.setState(this.state.j1850State);
+	}
+
+	showAllCodes () {
+		console.log(TAG, "Showing all codes.");
+		this.state.j1850State.showOnlyNewCodes = false;
+		this.setState(this.state.j1850State);
+	}
+
+	clearCodes () {
+		console.log(TAG, "Clearing codes.");
+		this.state.j1850State.newCodes = [];
+		this.state.j1850State.j1850Codes = [];
+		this.state.j1850State.j1850CodesCopy = [];
+		this.setState(this.state.j1850State);
+	}
+
+	compare ( a, b ) {
+		if ( a.j1850 < b.j1850 ){
+			return -1;
+		}
+		if ( a.j1850 > b.j1850 ){
+			return 1;
+		}
+		return 0;
+	}
+
+	sortCodes () {
+		console.log(TAG, "Sorting codes.");
+		this.state.j1850State.j1850Codes.sort(this.compare);
+		this.state.j1850State.newCodes.sort(this.compare);
+		this.setState(this.state.j1850State);
+	}
+
 	render () {
 		return (
 			<div styleName="container">
@@ -139,7 +220,15 @@ export class App extends React.Component {
 							styleName="headerBar">Home</button>
 						{this.state.showHVAC ?  <HVAC back={this.props.back} sensors={this.state.hvacSensors} /> : ''}
 						{this.state.showPower ? <Power back={this.props.back} sensors={this.state.powerSensors} /> : ''}
-						{this.state.showJ1850 ? <J1850 back={this.props.back} /> : ''}
+						{this.state.showJ1850 ?
+							<J1850
+								back={this.props.back}
+								j1850State={this.state.j1850State}
+								showNewCodes={this.showNewCodes}
+								showAllCodes={this.showAllCodes}
+								clearCodes={this.clearCodes}
+								sortCodes={this.sortCodes}
+							/> : ''}
 						{this.state.showSettings ? <Settings	back={this.props.back} sensors={this.state.hvacSensors}/> : ''}
 					</div> : ''
 				}

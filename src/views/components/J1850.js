@@ -7,84 +7,10 @@ export class J1850 extends React.Component {
 	constructor (props) {
 		super(props);
 
-		this.state = {
-			daughterMessage: "",
-			j1850Codes: [],
-			j1850CodesCopy: [],
-			showOnlyNewCodes: false,
-			newCodes: [],
-			codeTotal: 0,
-			codeTotalRep: 0
-		};
-
-		this.props.back.on('j1850', (data) => {
-			// console.log(TAG, 'Incoming message', data);
-			this.state.codeTotalRep++;
-			let index = this.state.j1850Codes.findIndex(code => code.j1850 === data.j1850),
-				indexNew = this.state.newCodes.findIndex(code => code.j1850 === data.j1850),
-				indexCopy = this.state.j1850CodesCopy.findIndex(code => code.j1850 === data.j1850);
-
-			if (index > -1) {
-					this.state.j1850Codes[index].count++;
-			} else {
-				data.count = 1;
-				this.state.j1850Codes.push(data);
-				this.state.codeTotal++;
-			}
-
-			if (indexCopy < 0) {
-				if (indexNew > -1) {
-						this.state.newCodes[indexNew].count++;
-				} else {
-					data.count = 1;
-					this.state.newCodes.push(data);
-				}
-			}
-
-			this.setState(this.state)
-		});
+		this.state = this.props.j1850State;
 
 		this.setState(this.state);
   }
-
-	compare ( a, b ) {
-	  if ( a.j1850 < b.j1850 ){
-	    return -1;
-	  }
-	  if ( a.j1850 > b.j1850 ){
-	    return 1;
-	  }
-	  return 0;
-}
-
-	showNewCodes () {
-		console.log(TAG, "Showing only new codes.");
-		this.state.showOnlyNewCodes = true;
-		this.state.newCodes = [];
-		this.state.j1850CodesCopy = this.state.j1850Codes;
-		this.setState(this.state);
-	}
-
-	showAllCodes () {
-		console.log(TAG, "Showing all codes.");
-		this.state.showOnlyNewCodes = false;
-		this.setState(this.state);
-	}
-
-	sortCodes () {
-		console.log(TAG, "Sorting codes.");
-		this.state.j1850Codes.sort(this.compare);
-		this.state.newCodes.sort(this.compare);
-		this.setState(this.state);
-	}
-
-	clearCodes () {
-		console.log(TAG, "Clearing codes.");
-		this.state.newCodes = [];
-		this.state.j1850Codes = [];
-		this.state.j1850CodesCopy = [];
-		this.setState(this.state);
-	}
 
 	render () {
     const { j1850Codes } = this.state;
@@ -93,19 +19,19 @@ export class J1850 extends React.Component {
 				<div style={{width:'100%', display:'flex', flexFlow: 'row nowrap'}}>
 					<button
 						key="button"
-						onClick={ this.showAllCodes.bind(this) }
+						onClick={ () => this.props.showAllCodes()  }
 						styleName='blowerButtonLeft'>Show All Codes</button>
 					<button
 						key="button"
-						onClick={ this.showNewCodes.bind(this) }
+						onClick={ () => this.props.showNewCodes()  }
 						styleName='blowerButton'>Show New Codes</button>
 					<button
 						key="button"
-						onClick={ this.sortCodes.bind(this) }
+						onClick={ () => this.props.sortCodes()  }
 						styleName='blowerButton'>Sort Codes</button>
 					<button
 						key="button"
-						onClick={ this.clearCodes.bind(this) }
+						onClick={ () => this.props.clearCodes()  }
 						styleName='blowerButtonRight'>Clear Codes</button>
 				</div>
 				<br />
