@@ -6,6 +6,7 @@
 #include "freertos/queue.h"
 #include "driver/periph_ctrl.h"
 #include "driver/timer.h"
+#include "driver/rmt.h"
 
 uint8_t crcTable[256];
 uint8_t CalcCRC(uint8_t * buf, uint8_t len);
@@ -15,11 +16,14 @@ esp_timer_handle_t eof_timer;
 int64_t current_time = 0;
 int64_t previous_time = 0;
 int64_t pulse_width = 0;
+rmt_config_t config;
 
 struct J1850
 {
-  uint64_t message;
+  uint64_t messageIn;
+	char messageOut[100];
   uint64_t queue[100];
+	rmt_item32_t messageRaw[100];
 	bool readyToSend;
 	int timeout;
 	int queueCount;
@@ -45,19 +49,19 @@ bool ACTIVE = true;
 bool SOF = false;
 uint8_t byte_count = 0;
 
-uint64_t ACTIVE_ZERO_NOM = 128;
+uint64_t ACTIVE_ZERO_NOM = 128 - 24;
 uint64_t ACTIVE_ZERO_MIN = 112 - 12;
 uint64_t ACTIVE_ZERO_MAX = 145 + 12;
 
-uint64_t ACTIVE_ONE_NOM = 64;
+uint64_t ACTIVE_ONE_NOM = 64 - 32;
 uint64_t ACTIVE_ONE_MIN = 49 - 24;
 uint64_t ACTIVE_ONE_MAX = 79 + 12;
 
-uint64_t PASSIVE_ZERO_NOM = 64;
+uint64_t PASSIVE_ZERO_NOM = 64 + 32;
 uint64_t PASSIVE_ZERO_MIN = 49 - 24;
 uint64_t PASSIVE_ZERO_MAX = 79 + 12;
 
-uint64_t PASSIVE_ONE_NOM = 128;
+uint64_t PASSIVE_ONE_NOM = 128 + 24;
 uint64_t PASSIVE_ONE_MIN = 112 - 12;
 uint64_t PASSIVE_ONE_MAX = 145 + 12;
 
@@ -114,47 +118,42 @@ static void eof_timer_callback(void* arg)
     SOF = false;
     gpio_set_level(J1850_DEBUG_PIN, 0);
     char msg[1024];
-    // jMsg.queue[jMsg.queueCount] = jMsg.message;
+    // jMsg.queue[jMsg.queueCount] = jMsg.messageIn;
     // jMsg.queueCount++;
 
 		if (err == J1850_OK) {
-			if (jMsg.message) {
+			if (jMsg.messageIn) {
 				if (jMsg.bitCount < 24) return;
 				// --- CRC Check --- //
 				uint8_t bytes = jMsg.bitCount / 8 - 1;
 				uint8_t buffer[8] = { 0 };
 
 				for (int i = bytes, j = 0; i > 0; i--,j++) {
-					buffer[j] = jMsg.message >> 8 * i;
+					buffer[j] = jMsg.messageIn >> 8 * i;
 				}
 
 				uint8_t calculated_crc = CalcCRC(buffer, bytes);
-				uint8_t received_crc = jMsg.message & 0xFF;
+				uint8_t received_crc = jMsg.messageIn & 0xFF;
 
 				if (calculated_crc == received_crc) {
-					// printf("[j1850] Message (%d bits): %llX\n", jMsg.bitCount, jMsg.message,);
-
-          sprintf(msg, "{\"type\":\"j1850\", \"j1850\":\"%llX\", \"bits\":%d}\n", jMsg.message, jMsg.bitCount);
+          sprintf(msg, "{\"type\":\"j1850\", \"j1850\":\"%llX\", \"bits\":%d}\n", jMsg.messageIn, jMsg.bitCount);
 					addUartMessageToQueue(cJSON_Parse(msg));
 				} else {
-          sprintf(msg, "{\"type\":\"j1850_crc_err\", \"j1850\":\"%llX\", \"bits\":%d}\n", jMsg.message, jMsg.bitCount);
+          sprintf(msg, "{\"type\":\"j1850_crc_err\", \"j1850\":\"%llX\", \"bits\":%d}\n", jMsg.messageIn, jMsg.bitCount);
           addUartMessageToQueue(cJSON_Parse(msg));
         }
 
 				// ----------------- //
 
-				jMsg.message = 0;
+				jMsg.messageIn = 0;
 				jMsg.bitCount = 0;
 			}
 		} else {
 			(err == J1850_ERR_PULSE_OUT_OF_RANGE)
-				? printf("[j1850] Error: pulse out of range\n")
+				? printf("[j1850] Error: pulse out of range %llu\n", pulse_width)
 				:	printf("[j1850] Error: %d\n", err);
 		}
 }
-
-int64_t timings[25] = {0};
-int timingCnt = 0;
 
 static void IRAM_ATTR j1850_isr_handler(void* arg)
 {
@@ -169,31 +168,22 @@ static void IRAM_ATTR j1850_isr_handler(void* arg)
 	current_time = esp_timer_get_time();
 	pulse_width = current_time - previous_time;
 
-  if (SOF == false) {
-    if (level == ACTIVE
-        && pulse_width > SOF_MIN
-        && pulse_width < SOF_MAX
-      )
-    {
+  if (!SOF) {
+    if (level == ACTIVE && pulse_width > SOF_MIN && pulse_width < SOF_MAX) {
       SOF = true;
       gpio_set_level(J1850_DEBUG_PIN, 1);
-    }
+    } else {
+			// err = J1850_ERR_PULSE_OUT_OF_RANGE;
+		}
     return;
   }
 
-	 // gpio_set_level(J1850_DEBUG_PIN, level);
-
-	// if (timingCnt < 25) {
-	// 	timings[timingCnt] = pulse_width;
-	// 	timingCnt++;
-	// }
-
 	if (level == ACTIVE) {
 		if (pulse_width > ACTIVE_ZERO_MIN && pulse_width < ACTIVE_ZERO_MAX) {
-			jMsg.message = (jMsg.message << 1) | 0;
+			jMsg.messageIn = (jMsg.messageIn << 1) | 0;
       // gpio_set_level(J1850_DEBUG_PIN, 0);
 		} else if (pulse_width > ACTIVE_ONE_MIN && pulse_width < ACTIVE_ONE_MAX) {
-			jMsg.message = (jMsg.message << 1) | 1;
+			jMsg.messageIn = (jMsg.messageIn << 1) | 1;
       // gpio_set_level(J1850_DEBUG_PIN, 1);
 		} else {
 			err = J1850_ERR_PULSE_OUT_OF_RANGE;
@@ -201,10 +191,10 @@ static void IRAM_ATTR j1850_isr_handler(void* arg)
 		}
 	} else {
 		if (pulse_width > PASSIVE_ZERO_MIN && pulse_width < PASSIVE_ZERO_MAX) {
-			jMsg.message = (jMsg.message << 1) | 0;
+			jMsg.messageIn = (jMsg.messageIn << 1) | 0;
       // gpio_set_level(J1850_DEBUG_PIN, 0);
 		} else if (pulse_width > PASSIVE_ONE_MIN && pulse_width < PASSIVE_ONE_MAX) {
-			jMsg.message = (jMsg.message << 1) | 1;
+			jMsg.messageIn = (jMsg.messageIn << 1) | 1;
       // gpio_set_level(J1850_DEBUG_PIN, 1);
 		} else {
 			err = J1850_ERR_PULSE_OUT_OF_RANGE;
@@ -215,7 +205,7 @@ static void IRAM_ATTR j1850_isr_handler(void* arg)
     jMsg.bitCount++;
   } else {
     SOF = false;
-    jMsg.message = 0;
+    jMsg.messageIn = 0;
     jMsg.bitCount = 0;
   }
 }
@@ -256,58 +246,159 @@ void printTestData () {
 	printf("{\"j1850\":\"8AC740A1346B\", \"bits\":48}\n");
 }
 
-static void j1850_task(void* arg)
+static void j1850_rx_task(void* arg)
 {
   while (1) {
-      // if (err == J1850_OK) {
-      //   if (jMsg.message) {
-      //     if (jMsg.bitCount < 24) continue;
-			//
-      //     // --- CRC Check --- //
-      //     uint8_t bytes = jMsg.bitCount / 8 - 1;
-      //     uint8_t buffer[8] = { 0 };
-			//
-      //     for (int i = bytes, j = 0; i > 0; i--,j++) {
-      //       buffer[j] = jMsg.message >> 8 * i;
-      //     }
-			//
-      //     uint8_t calculated_crc = CalcCRC(buffer, bytes);
-      //     uint8_t received_crc = jMsg.message & 0xFF;
-			//
-      //     if (calculated_crc == received_crc) {
-      //       // printf("[j1850] Message (%d bits): %llX\n", jMsg.bitCount, jMsg.message,);
-      //       printf("{\"type\":\"j1850\", \"j1850\":\"%llX\", \"bits\":%d}\n", jMsg.message, jMsg.bitCount);
-      //     }
-			//
-      //     // ----------------- //
-			//
-      //     jMsg.message = 0;
-      //     jMsg.bitCount = 0;
-      //   }
-      //   // printf("[j1850] Message:\t");
-      //   // for (int i=0; i < 12; i++) {
-      //   // 	printf("%d ", message[i]);
-      //   // }
-      //   // printf("\n");
-      // } else {
-      //   // (err == J1850_ERR_PULSE_OUT_OF_RANGE)
-      //   // 	? printf("[j1850] Error: pulse out of range\n")
-      //   // 	:	printf("[j1850] Error: %d\n", err);
-      // }
-
-      // printTestData();
-      // printf("Message count: %d\n", jMsg.queueCount);
-
-			// if (timings[24] != 0) {
-			// 	printf("timings: ");
-			// 	for (int i = 0; i < 25; i++) {
-			// 		printf("%lld ", timings[i]);
-			// 		timings[24] = 0;
-			// 		timingCnt = 0;
-			// 	}
-			// 	printf("\n");
-			// }
       vTaskDelay(SERVICE_LOOP / portTICK_PERIOD_MS);
+  }
+}
+
+void rmt_init() {
+  // put your setup code here, to run once:
+  config.rmt_mode = RMT_MODE_TX;
+  config.channel = RMT_CHANNEL_0;
+  config.gpio_num = 4;
+  config.mem_block_num = 1;
+  config.tx_config.loop_en = 0;
+  config.tx_config.carrier_en = 0;
+  config.tx_config.idle_output_en = 1;
+  config.tx_config.idle_level = RMT_IDLE_LEVEL_LOW;
+  config.tx_config.carrier_level = RMT_CARRIER_LEVEL_HIGH;
+  config.clk_div = 80; // 80MHx / 80 = 1MHz 0r 1uS per count
+
+  rmt_config(&config);
+  rmt_driver_install(config.channel, 0, 0);  //  rmt_driver_install(rmt_channel_t channel, size_t rx_buf_size, int rmt_intr_num)
+}
+
+void setStartOfFrame() {
+	jMsg.messageRaw[0].duration0 = 1;
+	jMsg.messageRaw[0].level0 = 0;
+	jMsg.messageRaw[0].duration1 = SOF_NOM;
+	jMsg.messageRaw[0].level1 = 1;
+}
+
+void setActiveZero(bool zeroOrOne, int rmtCnt) {
+	if (zeroOrOne == 0) {
+		jMsg.messageRaw[rmtCnt].duration0 = ACTIVE_ZERO_NOM;
+		jMsg.messageRaw[rmtCnt].level0 = 1;
+	} else {
+		jMsg.messageRaw[rmtCnt].duration1 = ACTIVE_ZERO_NOM;
+		jMsg.messageRaw[rmtCnt].level1 = 1;
+	}
+}
+
+void setActiveOne(bool zeroOrOne, int rmtCnt) {
+	if (zeroOrOne == 0) {
+		jMsg.messageRaw[rmtCnt].duration0 = ACTIVE_ONE_NOM;
+		jMsg.messageRaw[rmtCnt].level0 = 1;
+	} else {
+		jMsg.messageRaw[rmtCnt].duration1 = ACTIVE_ONE_NOM;
+		jMsg.messageRaw[rmtCnt].level1 = 1;
+	}
+}
+
+void setPassiveZero(bool zeroOrOne, int rmtCnt) {
+	if (zeroOrOne == 0) {
+		jMsg.messageRaw[rmtCnt].duration0 = PASSIVE_ZERO_NOM;
+		jMsg.messageRaw[rmtCnt].level0 = 0;
+	} else {
+		jMsg.messageRaw[rmtCnt].duration1 = PASSIVE_ZERO_NOM;
+		jMsg.messageRaw[rmtCnt].level1 = 0;
+	}
+}
+
+void setPassiveOne(bool zeroOrOne, int rmtCnt) {
+	if (zeroOrOne == 0) {
+		jMsg.messageRaw[rmtCnt].duration0 = PASSIVE_ONE_NOM;
+		jMsg.messageRaw[rmtCnt].level0 = 0;
+	} else {
+		jMsg.messageRaw[rmtCnt].duration1 = PASSIVE_ONE_NOM;
+		jMsg.messageRaw[rmtCnt].level1 = 0;
+	}
+}
+
+int getMsb16(uint64_t num) {
+	int msb = 0;
+
+	for (int i = sizeof(num) * 8 - 1; i >= 0; i--) {
+		uint64_t bit = (num >> i) & 1;
+		if (bit && msb == 0) msb = i + 1;
+	}
+
+	while (msb % 8 != 0) {
+		msb++;
+	}
+	return msb;
+}
+
+void buildJ1850Message(uint64_t msg) {
+	int msb = getMsb16(msg);
+	uint64_t bit;
+
+	setStartOfFrame();
+
+	for (int i = msb - 1, rmtPos=1; i >= 0; i=i-2, rmtPos++) {
+		bit = (msg >> i) & 1;
+
+		if (bit) {
+			setPassiveOne(0, rmtPos);
+		} else {
+			setPassiveZero(0, rmtPos);
+		}
+
+		bit = (msg >> (i-1)) & 1;
+
+		if (bit) {
+			setActiveOne(1, rmtPos);
+		} else {
+			setActiveZero(1, rmtPos);
+		}
+	}
+}
+
+void sendJ1850Message(char * msg) {
+	uint64_t msgInt;
+	sscanf(msg, "%llx", &msgInt);
+	buildJ1850Message(msgInt);
+
+  rmt_write_items(config.channel, jMsg.messageRaw, 64, 0);
+}
+
+void sendHvacOnMessage() {
+	sendJ1850Message("0x88159910005D");
+	// sendJ1850Message("0xA91411501F");
+	// sendJ1850Message("0x68491110561F");
+	// sendJ1850Message("0x88151181A2");
+	// sendJ1850Message("0xAAB39902201915");
+	// sendJ1850Message("0xAAB39902203067");
+	// sendJ1850Message("0xAAB3990220476D");
+	// sendJ1850Message("0xAAB39902205E55");
+	// sendJ1850Message("0xAAB3990220751D");
+}
+
+void sendHvacOffMessage() {
+	sendJ1850Message("0x881599100140");
+	// sendJ1850Message("0xA91411501F");
+	// sendJ1850Message("0x8815110184");
+	// sendJ1850Message("0xAAB39902205E55");
+	// sendJ1850Message("0xAAB3990220476D");
+	// sendJ1850Message("0xAAB39902203067");
+	// sendJ1850Message("0xAAB39902201915");
+	// sendJ1850Message("0xAAB39902200217");
+	// sendJ1850Message("0x684911106BD4");
+}
+
+static void j1850_tx_task(void* arg)
+{
+	jMsg.readyToSend = false;
+
+	sendHvacOnMessage();
+  while (1) {
+		if (jMsg.readyToSend) {
+			sendJ1850Message(jMsg.messageOut);
+			jMsg.readyToSend = false;
+		}
+    vTaskDelay(SERVICE_LOOP / portTICK_PERIOD_MS);
   }
 }
 
@@ -324,5 +415,8 @@ void j1850_main(void)
   ESP_ERROR_CHECK(esp_timer_create(&eof_timer_args, &eof_timer));
 
 	gpio_isr_handler_add(J1850_INPUT_PIN, j1850_isr_handler, (void*) J1850_INPUT_PIN);
-	xTaskCreate(j1850_task, "j1850_task", 2048, NULL, 10, NULL);
+	xTaskCreate(j1850_rx_task, "j1850_rx_task", 2048, NULL, 10, NULL);
+
+	rmt_init();
+	xTaskCreate(j1850_tx_task, "j1850_tx_task", 2048, NULL, 10, NULL);
 }

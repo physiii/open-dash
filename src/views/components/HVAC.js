@@ -116,31 +116,31 @@ export class HVAC extends React.Component {
 					<button
 						key="button"
 						onClick={ this.setBlowerMotor.bind(this, 1) }
-						styleName='blowerButton'>one</button>
+						styleName='blowerButton'>1</button>
 					<button
 						key="button"
 						onClick={ this.setBlowerMotor.bind(this, 2) }
-						styleName='blowerButton'>two</button>
+						styleName='blowerButton'>2</button>
 					<button
 						key="button"
 						onClick={ this.setBlowerMotor.bind(this, 3) }
-						styleName='blowerButton'>three</button>
+						styleName='blowerButton'>3</button>
 					<button
 						key="button"
 						onClick={ this.setBlowerMotor.bind(this, 4) }
-						styleName='blowerButton'>four</button>
+						styleName='blowerButton'>4</button>
 					<button
 						key="button"
 						onClick={ this.setBlowerMotor.bind(this, 5) }
-						styleName='blowerButton'>five</button>
+						styleName='blowerButton'>5</button>
 					<button
 						key="button"
 						onClick={ this.setBlowerMotor.bind(this, 6) }
-						styleName='blowerButton'>six</button>
+						styleName='blowerButton'>6</button>
 					<button
 						key="button"
 						onClick={ this.setBlowerMotor.bind(this, 7) }
-						styleName='blowerButtonRight'>seven</button>
+						styleName='blowerButtonRight'>7</button>
 				</div>
 
 				<div style={{margin: '30px 0px 0px 0px', width:'100%', display:'flex', flexFlow: 'row nowrap'}}>
@@ -175,10 +175,6 @@ export class HVAC extends React.Component {
 								styleName='blowerButtonLeft'>cool</button>
 							<button
 								key="button"
-								onClick={ this.setLeftAirTemp.bind(this, 'off') }
-								styleName='blowerButton'>off</button>
-							<button
-								key="button"
 								onClick={ this.setLeftAirTemp.bind(this, 'heat') }
 								styleName='blowerButtonRight'>heat</button>
 						</div>
@@ -191,10 +187,6 @@ export class HVAC extends React.Component {
 								key="button"
 								onClick={ this.setRightAirTemp.bind(this, 'cool') }
 								styleName='blowerButtonLeft'>cool</button>
-							<button
-								key="button"
-								onClick={ this.setRightAirTemp.bind(this, 'off') }
-								styleName='blowerButton'>off</button>
 							<button
 								key="button"
 								onClick={ this.setRightAirTemp.bind(this, 'heat') }

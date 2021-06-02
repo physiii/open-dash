@@ -1,5 +1,5 @@
 import React from 'react';
-import './GameBoard.css';
+import './HVAC.css';
 
 const TAG = "[J1850]";
 
@@ -90,22 +90,24 @@ export class J1850 extends React.Component {
     const { j1850Codes } = this.state;
 		return (
 			<div>
-				<button
-					key="button"
-					onClick={ this.showAllCodes.bind(this) }
-					styleName='button'>Show All Codes</button>
-				<button
-					key="button"
-					onClick={ this.showNewCodes.bind(this) }
-					styleName='button'>Show New Codes</button>
-				<button
-					key="button"
-					onClick={ this.sortCodes.bind(this) }
-					styleName='button'>Sort Codes</button>
-				<button
-					key="button"
-					onClick={ this.clearCodes.bind(this) }
-					styleName='button'>Clear Codes</button>
+				<div style={{width:'100%', display:'flex', flexFlow: 'row nowrap'}}>
+					<button
+						key="button"
+						onClick={ this.showAllCodes.bind(this) }
+						styleName='blowerButtonLeft'>Show All Codes</button>
+					<button
+						key="button"
+						onClick={ this.showNewCodes.bind(this) }
+						styleName='blowerButton'>Show New Codes</button>
+					<button
+						key="button"
+						onClick={ this.sortCodes.bind(this) }
+						styleName='blowerButton'>Sort Codes</button>
+					<button
+						key="button"
+						onClick={ this.clearCodes.bind(this) }
+						styleName='blowerButtonRight'>Clear Codes</button>
+				</div>
 				<br />
 				Total: { this.state.codeTotal } ({ this.state.codeTotalRep })
 				<br />

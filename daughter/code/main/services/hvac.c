@@ -259,6 +259,7 @@ void handle_hvac_message (cJSON * msg) {
 	if (cJSON_GetObjectItem(msg,"set_blower_motor")) {
 		int level = cJSON_GetObjectItem(msg,"set_blower_motor")->valueint;
 		set_blower_level(level);
+		if (level == 0) sendHvacOffMessage();
 	}
 
 	if (cJSON_GetObjectItem(msg,"set_left_air_temp_motor")) {
@@ -279,6 +280,7 @@ void handle_hvac_message (cJSON * msg) {
 		sprintf(mode, "%s", mode_obj->valuestring);
 
 		if (strcmp(mode, "cool")==0) {
+			sendHvacOnMessage();
 			start_cooling_left = true;
 		}
 
@@ -293,6 +295,7 @@ void handle_hvac_message (cJSON * msg) {
 		sprintf(mode, "%s", mode_obj->valuestring);
 
 		if (strcmp(mode, "cool")==0) {
+			sendHvacOnMessage();
 			start_cooling_right = true;
 		}
 
@@ -337,7 +340,7 @@ void handle_hvac_message (cJSON * msg) {
 static void left_air_temp_task(void* arg)
 {
 	while (1) {
-		if (start_cooling_left) {
+		if (start_heating_left) {
 			printf("start_cooling_left\n");
 
 			for (int i = 0; i < 3; i++) {
@@ -383,10 +386,10 @@ static void left_air_temp_task(void* arg)
 			vTaskDelay(COOL_A_PULSE_WIDTH / portTICK_RATE_MS);
 			set_left_air_temp_motor(false, false);
 
-			start_cooling_left = false;
+			start_heating_left = false;
 		}
 
-		if (start_heating_left) {
+		if (start_cooling_left) {
 			for (int i = 0; i < 6; i++) {
 				set_left_air_temp_motor(true, false);
 				vTaskDelay(HEAT_PULSE_WIDTH / portTICK_RATE_MS);
@@ -400,7 +403,7 @@ static void left_air_temp_task(void* arg)
 			vTaskDelay(HEAT_END_PULSE_WIDTH / 2 / portTICK_RATE_MS);
 			set_left_air_temp_motor(false, false);
 
-			start_heating_left = false;
+			start_cooling_left = false;
 		}
 
 		vTaskDelay(SERVICE_LOOP / portTICK_RATE_MS);
