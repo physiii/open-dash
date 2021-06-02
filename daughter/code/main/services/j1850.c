@@ -61,11 +61,11 @@ uint64_t PASSIVE_ZERO_NOM = 64 + 32;
 uint64_t PASSIVE_ZERO_MIN = 49 - 24;
 uint64_t PASSIVE_ZERO_MAX = 79 + 12;
 
-uint64_t PASSIVE_ONE_NOM = 128 + 24;
+uint64_t PASSIVE_ONE_NOM = 128 + 32;
 uint64_t PASSIVE_ONE_MIN = 112 - 12;
 uint64_t PASSIVE_ONE_MAX = 145 + 12;
 
-uint64_t SOF_NOM = 200;
+uint64_t SOF_NOM = 200 - 16;
 uint64_t SOF_MIN = 182;
 uint64_t SOF_MAX = 218 + 24;
 
@@ -365,6 +365,8 @@ void sendJ1850Message(char * msg) {
 }
 
 void sendHvacOnMessage() {
+	while (SOF) {}
+
 	sendJ1850Message("0x88159910005D");
 	// sendJ1850Message("0xA91411501F");
 	// sendJ1850Message("0x68491110561F");
@@ -374,9 +376,12 @@ void sendHvacOnMessage() {
 	// sendJ1850Message("0xAAB3990220476D");
 	// sendJ1850Message("0xAAB39902205E55");
 	// sendJ1850Message("0xAAB3990220751D");
+
 }
 
 void sendHvacOffMessage() {
+	while (SOF) {}
+
 	sendJ1850Message("0x881599100140");
 	// sendJ1850Message("0xA91411501F");
 	// sendJ1850Message("0x8815110184");
@@ -386,6 +391,7 @@ void sendHvacOffMessage() {
 	// sendJ1850Message("0xAAB39902201915");
 	// sendJ1850Message("0xAAB39902200217");
 	// sendJ1850Message("0x684911106BD4");
+
 }
 
 static void j1850_tx_task(void* arg)
@@ -393,8 +399,10 @@ static void j1850_tx_task(void* arg)
 	jMsg.readyToSend = false;
 
 	sendHvacOnMessage();
+
   while (1) {
 		if (jMsg.readyToSend) {
+			while (SOF) {}
 			sendJ1850Message(jMsg.messageOut);
 			jMsg.readyToSend = false;
 		}
