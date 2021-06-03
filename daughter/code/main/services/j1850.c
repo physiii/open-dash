@@ -1,3 +1,6 @@
+#define J1850_QUEUE_SIZE		100
+#define J1850_MESSAGE_SIZE	100
+
 #include <stdio.h>
 #include <inttypes.h>
 #include "esp_types.h"
@@ -21,9 +24,9 @@ rmt_config_t config;
 struct J1850
 {
   uint64_t messageIn;
-	char messageOut[100];
-  uint64_t queue[100];
-	rmt_item32_t messageRaw[100];
+	char messageOut[J1850_MESSAGE_SIZE];
+	char messageQueue[J1850_QUEUE_SIZE][J1850_MESSAGE_SIZE];
+	rmt_item32_t messageRaw[J1850_MESSAGE_SIZE];
 	bool readyToSend;
 	int timeout;
 	int queueCount;
@@ -49,15 +52,15 @@ bool ACTIVE = true;
 bool SOF = false;
 uint8_t byte_count = 0;
 
-uint64_t ACTIVE_ZERO_NOM = 128 - 24;
+uint64_t ACTIVE_ZERO_NOM = 128 - 48;
 uint64_t ACTIVE_ZERO_MIN = 112 - 12;
 uint64_t ACTIVE_ZERO_MAX = 145 + 12;
 
-uint64_t ACTIVE_ONE_NOM = 64 - 32;
+uint64_t ACTIVE_ONE_NOM = 64 - 40;
 uint64_t ACTIVE_ONE_MIN = 49 - 24;
 uint64_t ACTIVE_ONE_MAX = 79 + 12;
 
-uint64_t PASSIVE_ZERO_NOM = 64 + 32;
+uint64_t PASSIVE_ZERO_NOM = 64 + 36;
 uint64_t PASSIVE_ZERO_MIN = 49 - 24;
 uint64_t PASSIVE_ZERO_MAX = 79 + 12;
 
@@ -113,6 +116,8 @@ void CRCInit(void) {
         }
 }
 
+int valid = 1;
+int error = 1;
 static void eof_timer_callback(void* arg)
 {
     SOF = false;
@@ -138,9 +143,11 @@ static void eof_timer_callback(void* arg)
 				if (calculated_crc == received_crc) {
           sprintf(msg, "{\"type\":\"j1850\", \"j1850\":\"%llX\", \"bits\":%d}\n", jMsg.messageIn, jMsg.bitCount);
 					addUartMessageToQueue(cJSON_Parse(msg));
+					valid++;
 				} else {
           sprintf(msg, "{\"type\":\"j1850_crc_err\", \"j1850\":\"%llX\", \"bits\":%d}\n", jMsg.messageIn, jMsg.bitCount);
           addUartMessageToQueue(cJSON_Parse(msg));
+					error++;
         }
 
 				// ----------------- //
@@ -149,6 +156,7 @@ static void eof_timer_callback(void* arg)
 				jMsg.bitCount = 0;
 			}
 		} else {
+			error++;
 			(err == J1850_ERR_PULSE_OUT_OF_RANGE)
 				? printf("[j1850] Error: pulse out of range %llu\n", pulse_width)
 				:	printf("[j1850] Error: %d\n", err);
@@ -325,13 +333,14 @@ int getMsb16(uint64_t num) {
 		if (bit && msb == 0) msb = i + 1;
 	}
 
-	while (msb % 8 != 0) {
+	while (msb % 4 != 0) {
 		msb++;
 	}
+
 	return msb;
 }
 
-void buildJ1850Message(uint64_t msg) {
+int buildJ1850Message(uint64_t msg) {
 	int msb = getMsb16(msg);
 	uint64_t bit;
 
@@ -354,59 +363,74 @@ void buildJ1850Message(uint64_t msg) {
 			setActiveZero(1, rmtPos);
 		}
 	}
+
+	return msb;
 }
 
 void sendJ1850Message(char * msg) {
 	uint64_t msgInt;
 	sscanf(msg, "%llx", &msgInt);
-	buildJ1850Message(msgInt);
+	int size = buildJ1850Message(msgInt);
 
-  rmt_write_items(config.channel, jMsg.messageRaw, 64, 0);
+  rmt_write_items(config.channel, jMsg.messageRaw, size / 2 + 1, 0);
+	for (int i = 0; i < 100; i++) {
+		jMsg.messageRaw[i].duration0 = 0;
+		jMsg.messageRaw[i].level0 = 0;
+		jMsg.messageRaw[i].duration1 = 0;
+		jMsg.messageRaw[i].level1 = 0;
+	}
+}
+
+
+void addJ1850MessageToQueue(char *message)
+{
+	if (jMsg.queueCount >= J1850_QUEUE_SIZE) {
+		printf("[addJ1850MessageToQueue] Queue is full (%d) %s\n", jMsg.queueCount, message);
+		return;
+	}
+	jMsg.queueCount++;
+	printf("addJ1850MessageToQueue (%d) %s\n", jMsg.queueCount, message);
+	strcpy(jMsg.messageQueue[jMsg.queueCount], message);
 }
 
 void sendHvacOnMessage() {
-	while (SOF) {}
-
-	sendJ1850Message("0x88159910005D");
-	// sendJ1850Message("0xA91411501F");
-	// sendJ1850Message("0x68491110561F");
-	// sendJ1850Message("0x88151181A2");
-	// sendJ1850Message("0xAAB39902201915");
-	// sendJ1850Message("0xAAB39902203067");
-	// sendJ1850Message("0xAAB3990220476D");
-	// sendJ1850Message("0xAAB39902205E55");
-	// sendJ1850Message("0xAAB3990220751D");
-
+	addJ1850MessageToQueue("0x88159910005D");
+	addJ1850MessageToQueue("0xA91411501F");
+	addJ1850MessageToQueue("0x68491110561F");
+	addJ1850MessageToQueue("0x88151181A2");
+	addJ1850MessageToQueue("0xAAB39902201915");
+	addJ1850MessageToQueue("0xAAB39902203067");
+	addJ1850MessageToQueue("0xAAB3990220476D");
+	addJ1850MessageToQueue("0xAAB39902205E55");
+	addJ1850MessageToQueue("0xAAB3990220751D");
 }
 
 void sendHvacOffMessage() {
-	while (SOF) {}
-
-	sendJ1850Message("0x881599100140");
-	// sendJ1850Message("0xA91411501F");
-	// sendJ1850Message("0x8815110184");
-	// sendJ1850Message("0xAAB39902205E55");
-	// sendJ1850Message("0xAAB3990220476D");
-	// sendJ1850Message("0xAAB39902203067");
-	// sendJ1850Message("0xAAB39902201915");
-	// sendJ1850Message("0xAAB39902200217");
-	// sendJ1850Message("0x684911106BD4");
+	addJ1850MessageToQueue("0x881599100140");
+	// addJ1850MessageToQueue("0xA91411501F");
+	// addJ1850MessageToQueue("0x8815110184");
+	// addJ1850MessageToQueue("0xAAB39902205E55");
+	// addJ1850MessageToQueue("0xAAB3990220476D");
+	// addJ1850MessageToQueue("0xAAB39902203067");
+	// addJ1850MessageToQueue("0xAAB39902201915");
+	// addJ1850MessageToQueue("0xAAB39902200217");
+	// addJ1850MessageToQueue("0x684911106BD4");
 
 }
 
 static void j1850_tx_task(void* arg)
 {
-	jMsg.readyToSend = false;
-
 	sendHvacOnMessage();
-
+	int cnt = 0;
   while (1) {
-		if (jMsg.readyToSend) {
+  	vTaskDelay(SERVICE_LOOP / portTICK_PERIOD_MS);
+
+		if (jMsg.queueCount > 0) {
+			strcpy(jMsg.messageOut, jMsg.messageQueue[jMsg.queueCount]);
 			while (SOF) {}
 			sendJ1850Message(jMsg.messageOut);
-			jMsg.readyToSend = false;
+			jMsg.queueCount--;
 		}
-    vTaskDelay(SERVICE_LOOP / portTICK_PERIOD_MS);
   }
 }
 
