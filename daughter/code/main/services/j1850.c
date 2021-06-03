@@ -52,11 +52,11 @@ bool ACTIVE = true;
 bool SOF = false;
 uint8_t byte_count = 0;
 
-uint64_t ACTIVE_ZERO_NOM = 128 - 48;
+uint64_t ACTIVE_ZERO_NOM = 128 - 32;
 uint64_t ACTIVE_ZERO_MIN = 112 - 12;
 uint64_t ACTIVE_ZERO_MAX = 145 + 12;
 
-uint64_t ACTIVE_ONE_NOM = 64 - 40;
+uint64_t ACTIVE_ONE_NOM = 64 - 32;
 uint64_t ACTIVE_ONE_MIN = 49 - 24;
 uint64_t ACTIVE_ONE_MAX = 79 + 12;
 
@@ -373,7 +373,7 @@ void sendJ1850Message(char * msg) {
 	int size = buildJ1850Message(msgInt);
 
   rmt_write_items(config.channel, jMsg.messageRaw, size / 2 + 1, 0);
-	for (int i = 0; i < 100; i++) {
+	for (int i = 0; i < J1850_MESSAGE_SIZE; i++) {
 		jMsg.messageRaw[i].duration0 = 0;
 		jMsg.messageRaw[i].level0 = 0;
 		jMsg.messageRaw[i].duration1 = 0;
@@ -394,15 +394,15 @@ void addJ1850MessageToQueue(char *message)
 }
 
 void sendHvacOnMessage() {
-	addJ1850MessageToQueue("0x88159910005D");
-	addJ1850MessageToQueue("0xA91411501F");
-	addJ1850MessageToQueue("0x68491110561F");
-	addJ1850MessageToQueue("0x88151181A2");
-	addJ1850MessageToQueue("0xAAB39902201915");
-	addJ1850MessageToQueue("0xAAB39902203067");
-	addJ1850MessageToQueue("0xAAB3990220476D");
-	addJ1850MessageToQueue("0xAAB39902205E55");
 	addJ1850MessageToQueue("0xAAB3990220751D");
+	addJ1850MessageToQueue("0xAAB39902205E55");
+	addJ1850MessageToQueue("0xAAB3990220476D");
+	addJ1850MessageToQueue("0xAAB39902203067");
+	addJ1850MessageToQueue("0xAAB39902201915");
+	addJ1850MessageToQueue("0x88151181A2");
+	addJ1850MessageToQueue("0x68491110561F");
+	addJ1850MessageToQueue("0xA91411501F");
+	addJ1850MessageToQueue("0x88159910005D");
 }
 
 void sendHvacOffMessage() {
