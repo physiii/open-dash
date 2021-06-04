@@ -52,23 +52,23 @@ bool ACTIVE = true;
 bool SOF = false;
 uint8_t byte_count = 0;
 
-uint64_t ACTIVE_ZERO_NOM = 128 - 32;
+uint64_t ACTIVE_ZERO_NOM = 128 - 8;
 uint64_t ACTIVE_ZERO_MIN = 112 - 12;
 uint64_t ACTIVE_ZERO_MAX = 145 + 12;
 
-uint64_t ACTIVE_ONE_NOM = 64 - 32;
+uint64_t ACTIVE_ONE_NOM = 64 - 8;
 uint64_t ACTIVE_ONE_MIN = 49 - 24;
 uint64_t ACTIVE_ONE_MAX = 79 + 12;
 
-uint64_t PASSIVE_ZERO_NOM = 64 + 36;
+uint64_t PASSIVE_ZERO_NOM = 64 + 16;
 uint64_t PASSIVE_ZERO_MIN = 49 - 24;
 uint64_t PASSIVE_ZERO_MAX = 79 + 12;
 
-uint64_t PASSIVE_ONE_NOM = 128 + 32;
+uint64_t PASSIVE_ONE_NOM = 128 + 16;
 uint64_t PASSIVE_ONE_MIN = 112 - 12;
 uint64_t PASSIVE_ONE_MAX = 145 + 12;
 
-uint64_t SOF_NOM = 200 - 16;
+uint64_t SOF_NOM = 200 + 8;
 uint64_t SOF_MIN = 182;
 uint64_t SOF_MAX = 218 + 24;
 
@@ -121,7 +121,7 @@ int error = 1;
 static void eof_timer_callback(void* arg)
 {
     SOF = false;
-    gpio_set_level(J1850_DEBUG_PIN, 0);
+    // gpio_set_level(J1850_DEBUG_PIN, 0);
     char msg[1024];
     // jMsg.queue[jMsg.queueCount] = jMsg.messageIn;
     // jMsg.queueCount++;
@@ -167,7 +167,7 @@ static void IRAM_ATTR j1850_isr_handler(void* arg)
 {
 	uint32_t pin = (uint32_t) arg;
 	bool level = gpio_get_level(pin);
-
+  return;
   esp_timer_stop(eof_timer);
   esp_timer_start_once(eof_timer, EOF_MIN);
 	err = J1850_OK;
@@ -179,7 +179,7 @@ static void IRAM_ATTR j1850_isr_handler(void* arg)
   if (!SOF) {
     if (level == ACTIVE && pulse_width > SOF_MIN && pulse_width < SOF_MAX) {
       SOF = true;
-      gpio_set_level(J1850_DEBUG_PIN, 1);
+      // gpio_set_level(J1850_DEBUG_PIN, 1);
     } else {
 			// err = J1850_ERR_PULSE_OUT_OF_RANGE;
 		}
@@ -372,7 +372,9 @@ void sendJ1850Message(char * msg) {
 	sscanf(msg, "%llx", &msgInt);
 	int size = buildJ1850Message(msgInt);
 
+  gpio_set_level(J1850_DEBUG_PIN, 1);
   rmt_write_items(config.channel, jMsg.messageRaw, size / 2 + 1, 0);
+  gpio_set_level(J1850_DEBUG_PIN, 0);
 	for (int i = 0; i < J1850_MESSAGE_SIZE; i++) {
 		jMsg.messageRaw[i].duration0 = 0;
 		jMsg.messageRaw[i].level0 = 0;
@@ -394,20 +396,20 @@ void addJ1850MessageToQueue(char *message)
 }
 
 void sendHvacOnMessage() {
-	addJ1850MessageToQueue("0xAAB3990220751D");
-	addJ1850MessageToQueue("0xAAB39902205E55");
-	addJ1850MessageToQueue("0xAAB3990220476D");
-	addJ1850MessageToQueue("0xAAB39902203067");
-	addJ1850MessageToQueue("0xAAB39902201915");
-	addJ1850MessageToQueue("0x88151181A2");
-	addJ1850MessageToQueue("0x68491110561F");
+	// addJ1850MessageToQueue("0xAAB3990220751D");
+	// addJ1850MessageToQueue("0xAAB39902205E55");
+	// addJ1850MessageToQueue("0xAAB3990220476D");
+	// addJ1850MessageToQueue("0xAAB39902203067");
+	// addJ1850MessageToQueue("0xAAB39902201915");
+	// addJ1850MessageToQueue("0x88151181A2");
+	// addJ1850MessageToQueue("0x68491110561F");
 	addJ1850MessageToQueue("0xA91411501F");
 	addJ1850MessageToQueue("0x88159910005D");
 }
 
 void sendHvacOffMessage() {
+addJ1850MessageToQueue("0xA91411501F");
 	addJ1850MessageToQueue("0x881599100140");
-	// addJ1850MessageToQueue("0xA91411501F");
 	// addJ1850MessageToQueue("0x8815110184");
 	// addJ1850MessageToQueue("0xAAB39902205E55");
 	// addJ1850MessageToQueue("0xAAB3990220476D");
@@ -420,7 +422,7 @@ void sendHvacOffMessage() {
 
 static void j1850_tx_task(void* arg)
 {
-	sendHvacOnMessage();
+	// sendHvacOnMessage();
 	int cnt = 0;
   while (1) {
   	vTaskDelay(SERVICE_LOOP / portTICK_PERIOD_MS);

@@ -111,6 +111,8 @@ bool start_heating_left = false;
 bool start_cooling_right = false;
 bool start_heating_right = false;
 
+bool cooling = true;
+
 void printHvacData(uint16_t * adc_values, uint16_t io_values) {
 	printf("HVAC ADC\t");
 	for (int i=0; i < ADC_CHANNELS; i++)
@@ -282,10 +284,12 @@ void handle_hvac_message (cJSON * msg) {
 		if (strcmp(mode, "cool")==0) {
 			sendHvacOnMessage();
 			start_cooling_left = true;
+			cooling = true;
 		}
 
 		if (strcmp(mode, "heat")==0) {
 			start_heating_left = true;
+			cooling = false;
 		}
 	}
 
@@ -561,6 +565,19 @@ static void hvac_task(void* arg)
 	}
 }
 
+static void cooling_task(void* arg)
+{
+	while(1) {
+		if (cooling) {
+			printf("Sending coooling j1850 messages.\n");
+			sendHvacOnMessage();
+		} else {
+			sendHvacOffMessage();
+		}
+		vTaskDelay(5 * 1000 / portTICK_RATE_MS);
+	}
+}
+
 void hvac_main(void)
 {
 	// {"type":"hvac", "payload":{"get_state":true}}
@@ -593,5 +610,7 @@ void hvac_main(void)
 
 	xTaskCreate(left_air_temp_task, "left_air_temp_task", 1024 * 5, NULL, 10, NULL);
 	xTaskCreate(right_air_temp_task, "right_air_temp_task", 1024 * 5, NULL, 10, NULL);
+
+	xTaskCreate(cooling_task, "cooling_task", 1024 * 2, NULL, 10, NULL);
 	xTaskCreate(hvac_task, "hvac_task", 1024 * 5, NULL, 10, NULL);
 }
