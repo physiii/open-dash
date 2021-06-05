@@ -31,6 +31,12 @@ export class HVAC extends React.Component {
 	 }
  	}
 
+	setMode (mode) {
+		let msg = {eventType:"hvac", payload: {setMode: mode}}
+		this.props.back.emit('daughter', JSON.stringify(msg));
+		this.setState(this.state);
+	}
+
 	setBlowerMotor (level) {
 		this.state.controllers.blowerMotor = level;
 
@@ -146,19 +152,19 @@ export class HVAC extends React.Component {
 				<div style={{margin: '30px 0px 0px 0px', width:'100%', display:'flex', flexFlow: 'row nowrap'}}>
 					<button
 						key="button"
-						onClick={ this.setBlowerMotor.bind(this, 0) }
-						styleName='blowerButtonLeft'>lower</button>
+						onClick={ this.setMode.bind(this, 'head') }
+						styleName='blowerButtonLeft'>head</button>
 					<button
 						key="button"
-						onClick={ this.setBlowerMotor.bind(this, 7) }
-						styleName='blowerButton'>upper</button>
+						onClick={ this.setMode.bind(this, 'feet') }
+						styleName='blowerButton'>feet</button>
 					<button
 						key="button"
-						onClick={ this.setBlowerMotor.bind(this, 7) }
-						styleName='blowerButton'>lower+upper</button>
+						onClick={ this.setMode.bind(this, 'both') }
+						styleName='blowerButton'>both</button>
 					<button
 						key="button"
-						onClick={ this.setBlowerMotor.bind(this, 6) }
+						onClick={ this.setMode.bind(this, 'defrost') }
 						styleName='blowerButtonRight'>defrost</button>
 				</div>
 

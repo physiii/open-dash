@@ -88,12 +88,19 @@
 #define COOL_END_PULSE_WIDTH 							1928
 #define TEMP_INTERVAL											3200
 
+#define HEAD															0
+#define BOTH															4300
+#define FEET								 							6100
+#define DEFROST														7800
+
 #include "../i2cdev/i2cdev.h"
 #include "drivers/mcp23017/mcp23017.c"
 #include "drivers/ads111x/ads1115.c"
 #include "drivers/timer.c"
 
 int actuator_interval = 3200;
+int mode_motor_pos = 0;
+int spin_motor_duration = 0;
 
 int actuator_A_start_pulse_width = 500;
 int actuator_B_start_pulse_width = 500;
@@ -142,12 +149,69 @@ void set_right_air_temp_motor(bool valA, bool valB)
 }
 
 
-void set_mode(bool valA, bool valB)
+void set_mode_motor(bool valA, bool valB)
 {
 	mcp23x17_set_level(&mcp_dev, MODE_A, valA);
 	mcp23x17_set_level(&mcp_dev, MODE_B, valB);
 
-	printf("Set Mode\tA:%d\tB:%d\n", valA, valB);
+	printf("Set Mode Motor\tA:%d\tB:%d\n", valA, valB);
+}
+
+
+void spin_mode_motor(int duration)
+{
+	mode_motor_pos += duration;
+	spin_motor_duration = duration;
+}
+
+void set_mode(char * mode)
+{
+	if (strcmp(mode, "init") == 0) {
+		spin_mode_motor(DEFROST);
+		mode_motor_pos = DEFROST;
+		spin_mode_motor(FEET - mode_motor_pos);
+	}
+
+	if (strcmp(mode, "head") == 0) {
+		spin_mode_motor(HEAD - mode_motor_pos);
+	}
+
+	if (strcmp(mode, "both") == 0) {
+		spin_mode_motor(BOTH - mode_motor_pos);
+	}
+
+	if (strcmp(mode, "feet") == 0) {
+		spin_mode_motor(FEET - mode_motor_pos);
+	}
+
+	if (strcmp(mode, "defrost") == 0) {
+		spin_mode_motor(DEFROST - mode_motor_pos);
+	}
+
+	printf("Set Mode\t%s\n", mode);
+}
+
+static void mode_motor_task(void* arg)
+{
+	while(1) {
+		if (spin_motor_duration > 0) {
+			printf("Spinning motor cw for %d ms.\n", spin_motor_duration >= 0 ? spin_motor_duration : -1*spin_motor_duration);
+			set_mode_motor(true, false);
+			vTaskDelay(spin_motor_duration / portTICK_RATE_MS);
+			set_mode_motor(false, false);
+			printf("Current motor position is %d\n", mode_motor_pos);
+		} else if (spin_motor_duration < 0) {
+			printf("Spinning motor ccw for %d ms.\n", spin_motor_duration >= 0 ? spin_motor_duration : -1*spin_motor_duration);
+			spin_motor_duration *= -1;
+			set_mode_motor(false, true);
+			vTaskDelay(spin_motor_duration / portTICK_RATE_MS);
+			set_mode_motor(false, false);
+			printf("Current motor position is %d\n", mode_motor_pos);
+		}
+		spin_motor_duration = 0;
+
+		vTaskDelay(SERVICE_LOOP / portTICK_RATE_MS);
+	}
 }
 
 void set_recirculation(bool valA, bool valB)
@@ -308,12 +372,19 @@ void handle_hvac_message (cJSON * msg) {
 		}
 	}
 
-	if (cJSON_GetObjectItem(msg,"set_mode")) {
-		cJSON * mode = cJSON_GetObjectItem(msg,"set_mode");
+	if (cJSON_GetObjectItem(msg,"set_mode_motor")) {
+		cJSON * mode = cJSON_GetObjectItem(msg,"set_mode_motor");
 		bool modeA = cJSON_IsTrue(cJSON_GetObjectItem(mode,"A"));
 		bool modeB = cJSON_IsTrue(cJSON_GetObjectItem(mode,"B"));
 
-		set_mode(modeA, modeB);
+		set_mode_motor(modeA, modeB);
+	}
+
+	if (cJSON_GetObjectItem(msg,"setMode")) {
+		cJSON * mode_obj = cJSON_GetObjectItem(msg,"setMode");
+		char mode[20];
+		sprintf(mode, "%s", mode_obj->valuestring);
+		set_mode(mode);
 	}
 
 	if (cJSON_GetObjectItem(msg,"set_recirculation")) {
@@ -487,70 +558,6 @@ static void right_air_temp_task(void* arg)
 	}
 }
 
-// static void left_air_temp_task(void* arg)
-// {
-// 	bool prev_A = false;
-// 	bool prev_B = false;
-//
-// 	while (1) {
-// 		bool temp_A = left_air_temp_A;
-// 		bool temp_B = left_air_temp_B;
-//
-// 		if (temp_A) {
-// 			if (prev_A) {
-// 				set_left_air_temp_motor(true, false);
-// 				vTaskDelay(actuator_A_pulse_width / portTICK_RATE_MS);
-// 				set_left_air_temp_motor(false, false);
-// 				vTaskDelay((actuator_interval - actuator_A_pulse_width) / portTICK_RATE_MS);
-// 			} else {
-// 				set_left_air_temp_motor(true, false);
-// 				vTaskDelay(actuator_A_start_pulse_width / portTICK_RATE_MS);
-// 				set_left_air_temp_motor(false, false);
-// 				vTaskDelay((actuator_interval - actuator_A_start_pulse_width) / portTICK_RATE_MS);
-// 			}
-// 		} else if (prev_A) {
-// 			set_left_air_temp_motor(true, false);
-// 			vTaskDelay(actuator_end_pulse_width / portTICK_RATE_MS);
-// 			set_left_air_temp_motor(false, false);
-// 			left_air_temp_A = false;
-// 		} else if (temp_B) {
-// 			if (prev_B) {
-// 					set_left_air_temp_motor(false, true);
-// 					vTaskDelay(actuator_B_pulse_width / portTICK_RATE_MS);
-// 					set_left_air_temp_motor(false, false);
-// 					vTaskDelay((actuator_interval - actuator_B_pulse_width) / portTICK_RATE_MS);
-// 			} else {
-// 					set_left_air_temp_motor(false, true);
-// 					vTaskDelay(actuator_B_start_pulse_width / portTICK_RATE_MS);
-// 					set_left_air_temp_motor(false, false);
-// 					vTaskDelay((actuator_interval - actuator_B_start_pulse_width) / portTICK_RATE_MS);
-// 			}
-// 		} else if (prev_B) {
-// 			set_left_air_temp_motor(false, true);
-// 			vTaskDelay(actuator_end_pulse_width / portTICK_RATE_MS);
-// 			set_left_air_temp_motor(true, false);
-// 			vTaskDelay(100 / portTICK_RATE_MS);
-// 			set_left_air_temp_motor(false, false);
-// 			left_air_temp_B = false;
-// 		} else {
-// 			vTaskDelay(100 / portTICK_RATE_MS);
-// 		}
-//
-// 		prev_A = temp_A;
-// 		prev_B = temp_B;
-// 	}
-// }
-
-// static void right_air_temp_task(void* arg)
-// {
-// 	while (1) {
-// 		set_right_air_temp_motor(right_air_temp_A, right_air_temp_B);
-// 		vTaskDelay(actuator_A_pulse_width / portTICK_RATE_MS);
-// 		set_right_air_temp_motor(false, false);
-// 		vTaskDelay((actuator_interval - actuator_A_pulse_width) / portTICK_RATE_MS);
-// 	}
-// }
-
 static void hvac_task(void* arg)
 {
 	char type[100];
@@ -584,8 +591,8 @@ void hvac_main(void)
   ESP_ERROR_CHECK(i2cdev_init());
 	ads1115_main();
 	mcp23017_main();
-
 	timer_main();
+	set_mode("init");
 
   mcp23x17_set_mode(&mcp_dev, DRIVER_HEATED_SEAT_STATUS, MCP23X17_GPIO_INPUT);
   mcp23x17_set_mode(&mcp_dev, PASSENGER_HEATED_SEAT_STATUS, MCP23X17_GPIO_INPUT);
@@ -609,8 +616,9 @@ void hvac_main(void)
   mcp23x17_set_interrupt(&mcp_dev, PASSENGER_HEATED_SEAT_STATUS, MCP23X17_INT_ANY_EDGE);
 
 	xTaskCreate(left_air_temp_task, "left_air_temp_task", 1024 * 5, NULL, 10, NULL);
-	xTaskCreate(right_air_temp_task, "right_air_temp_task", 1024 * 5, NULL, 10, NULL);
 
-	xTaskCreate(cooling_task, "cooling_task", 1024 * 2, NULL, 10, NULL);
+	xTaskCreate(right_air_temp_task, "right_air_temp_task", 1024 * 5, NULL, 10, NULL);
+	xTaskCreate(cooling_task, "cooling_task", 1024 * 5, NULL, 10, NULL);
 	xTaskCreate(hvac_task, "hvac_task", 1024 * 5, NULL, 10, NULL);
+	xTaskCreate(mode_motor_task, "mode_motor_task", 1024 * 2, NULL, 10, NULL);
 }

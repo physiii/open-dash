@@ -123,8 +123,6 @@ static void eof_timer_callback(void* arg)
     SOF = false;
     // gpio_set_level(J1850_DEBUG_PIN, 0);
     char msg[1024];
-    // jMsg.queue[jMsg.queueCount] = jMsg.messageIn;
-    // jMsg.queueCount++;
 
 		if (err == J1850_OK) {
 			if (jMsg.messageIn) {
