@@ -88,10 +88,10 @@
 #define COOL_END_PULSE_WIDTH 							1928
 #define TEMP_INTERVAL											3200
 
-#define HEAD															0
-#define BOTH															4300
-#define FEET								 							6100
-#define DEFROST														7800
+#define DEFROST														0
+#define FEET								 							1700
+#define BOTH															3600
+#define HEAD															7900
 
 #include "../i2cdev/i2cdev.h"
 #include "drivers/mcp23017/mcp23017.c"
@@ -160,6 +160,9 @@ void set_mode_motor(bool valA, bool valB)
 
 void spin_mode_motor(int duration)
 {
+	while (spin_motor_duration) {
+		vTaskDelay(SERVICE_LOOP / portTICK_RATE_MS);
+	}
 	mode_motor_pos += duration;
 	spin_motor_duration = duration;
 }
@@ -167,7 +170,7 @@ void spin_mode_motor(int duration)
 void set_mode(char * mode)
 {
 	if (strcmp(mode, "init") == 0) {
-		spin_mode_motor(DEFROST);
+		spin_mode_motor(DEFROST - HEAD);
 		mode_motor_pos = DEFROST;
 		spin_mode_motor(FEET - mode_motor_pos);
 	}
@@ -305,16 +308,13 @@ void send_hvac_state () {
 				"{\"type\": \"hvac\", \"air_temp\": {\"ambient\": %d, \"inside\": %d,"
 				" \"upper\":{\"left\": %d, \"right\": %d},"
 				" \"lower\":{\"left\": %d, \"right\": %d}}, "
-				"\"light_level\":{\"ambient\": %d, \"driver\": %d, \"passenger\": %d}}"
-				"\n",
+				"\"light_level\":{\"ambient\": %d, \"driver\": %d, \"passenger\": %d}}",
 				get_ambient_air_temp(), get_inside_air_temp(),
 				get_upper_left_air_temp(), get_upper_right_air_temp(),
 				get_lower_left_air_temp(), get_lower_right_air_temp(),
 				get_ambient_light_level(), get_driver_sunload(), get_passenger_sunload());
-		// outgoing_uart_message = cJSON_Parse(msg);
-		// printf("send_hvac_state %s\n", msg);
+
 		addUartMessageToQueue(cJSON_Parse(msg));
-		// printf("%s\n", msg);
 }
 
 void handle_hvac_message (cJSON * msg) {
@@ -365,10 +365,12 @@ void handle_hvac_message (cJSON * msg) {
 		if (strcmp(mode, "cool")==0) {
 			sendHvacOnMessage();
 			start_cooling_right = true;
+			cooling = true;
 		}
 
 		if (strcmp(mode, "heat")==0) {
 			start_heating_right = true;
+			cooling = false;
 		}
 	}
 
@@ -576,7 +578,7 @@ static void cooling_task(void* arg)
 {
 	while(1) {
 		if (cooling) {
-			printf("Sending coooling j1850 messages.\n");
+			// printf("Sending coooling j1850 messages.\n");
 			sendHvacOnMessage();
 		} else {
 			sendHvacOffMessage();
@@ -592,7 +594,6 @@ void hvac_main(void)
 	ads1115_main();
 	mcp23017_main();
 	timer_main();
-	set_mode("init");
 
   mcp23x17_set_mode(&mcp_dev, DRIVER_HEATED_SEAT_STATUS, MCP23X17_GPIO_INPUT);
   mcp23x17_set_mode(&mcp_dev, PASSENGER_HEATED_SEAT_STATUS, MCP23X17_GPIO_INPUT);
@@ -615,10 +616,11 @@ void hvac_main(void)
   mcp23x17_set_interrupt(&mcp_dev, DRIVER_HEATED_SEAT_STATUS, MCP23X17_INT_ANY_EDGE);
   mcp23x17_set_interrupt(&mcp_dev, PASSENGER_HEATED_SEAT_STATUS, MCP23X17_INT_ANY_EDGE);
 
+	xTaskCreate(mode_motor_task, "mode_motor_task", 1024 * 2, NULL, 10, NULL);
 	xTaskCreate(left_air_temp_task, "left_air_temp_task", 1024 * 5, NULL, 10, NULL);
-
 	xTaskCreate(right_air_temp_task, "right_air_temp_task", 1024 * 5, NULL, 10, NULL);
 	xTaskCreate(cooling_task, "cooling_task", 1024 * 5, NULL, 10, NULL);
 	xTaskCreate(hvac_task, "hvac_task", 1024 * 5, NULL, 10, NULL);
-	xTaskCreate(mode_motor_task, "mode_motor_task", 1024 * 2, NULL, 10, NULL);
+
+	set_mode("init");
 }

@@ -17,7 +17,7 @@
 static const int RX_BUF_SIZE = 2000;
 char received_message[2048];
 cJSON * outgoing_uart_message;
-char outgoing_message_str[2048];
+char outgoing_message_str[1024];
 
 #define TXD_PIN (GPIO_NUM_1)
 #define RXD_PIN (GPIO_NUM_3)
@@ -70,12 +70,10 @@ static void uartMessageTask(void *arg)
   while (1) {
 		if (uartMessage.queueCount > 0) {
 			uartMessage.message = uartMessage.messageQueue[uartMessage.queueCount];
-			char *msg = cJSON_PrintUnformatted(uartMessage.message);
-			sprintf(outgoing_message_str, "%s\n", msg);
+			sprintf(outgoing_message_str, "%s\n", cJSON_PrintUnformatted(uartMessage.message));
 			len = strlen(outgoing_message_str);
 			txBytes = uart_write_bytes(UART_NUM_0, outgoing_message_str, len);
 			cJSON_Delete(uartMessage.message);
-			free(msg);
 			uartMessage.queueCount--;
 		}
 

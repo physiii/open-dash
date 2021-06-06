@@ -139,11 +139,11 @@ static void eof_timer_callback(void* arg)
 				uint8_t received_crc = jMsg.messageIn & 0xFF;
 
 				if (calculated_crc == received_crc) {
-          sprintf(msg, "{\"type\":\"j1850\", \"j1850\":\"%llX\", \"bits\":%d}\n", jMsg.messageIn, jMsg.bitCount);
+          sprintf(msg, "{\"type\":\"j1850\", \"j1850\":\"%llX\", \"bits\":%d}", jMsg.messageIn, jMsg.bitCount);
 					addUartMessageToQueue(cJSON_Parse(msg));
 					valid++;
 				} else {
-          sprintf(msg, "{\"type\":\"j1850_crc_err\", \"j1850\":\"%llX\", \"bits\":%d}\n", jMsg.messageIn, jMsg.bitCount);
+          sprintf(msg, "{\"type\":\"j1850_crc_err\", \"j1850\":\"%llX\", \"bits\":%d}", jMsg.messageIn, jMsg.bitCount);
           addUartMessageToQueue(cJSON_Parse(msg));
 					error++;
         }
@@ -165,7 +165,7 @@ static void IRAM_ATTR j1850_isr_handler(void* arg)
 {
 	uint32_t pin = (uint32_t) arg;
 	bool level = gpio_get_level(pin);
-  return;
+  // return;
   esp_timer_stop(eof_timer);
   esp_timer_start_once(eof_timer, EOF_MIN);
 	err = J1850_OK;
@@ -389,7 +389,7 @@ void addJ1850MessageToQueue(char *message)
 		return;
 	}
 	jMsg.queueCount++;
-	printf("addJ1850MessageToQueue (%d) %s\n", jMsg.queueCount, message);
+	// printf("addJ1850MessageToQueue (%d) %s\n", jMsg.queueCount, message);
 	strcpy(jMsg.messageQueue[jMsg.queueCount], message);
 }
 
@@ -401,12 +401,12 @@ void sendHvacOnMessage() {
 	// addJ1850MessageToQueue("0xAAB39902201915");
 	// addJ1850MessageToQueue("0x88151181A2");
 	// addJ1850MessageToQueue("0x68491110561F");
-	addJ1850MessageToQueue("0xA91411501F");
+	// addJ1850MessageToQueue("0xA91411501F");
 	addJ1850MessageToQueue("0x88159910005D");
 }
 
 void sendHvacOffMessage() {
-addJ1850MessageToQueue("0xA91411501F");
+// addJ1850MessageToQueue("0xA91411501F");
 	addJ1850MessageToQueue("0x881599100140");
 	// addJ1850MessageToQueue("0x8815110184");
 	// addJ1850MessageToQueue("0xAAB39902205E55");

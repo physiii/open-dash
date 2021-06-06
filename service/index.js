@@ -78,34 +78,31 @@ listener.sockets.on('connection',function(socket){
 	}
 
 	function parseMessage(msg) {
-		console.log(JSON.stringify(msg));
-
 		if (msg.type == "j1850") {
 			io.emit('j1850', msg);
-		}
-
+  		// console.log(JSON.stringify(msg));
+		} else
 		if (msg.type == "hvac") {
 			io.emit('hvac', msg);
-		}
-
+    	console.log(JSON.stringify(msg));
+		} else
 		if (msg.type == "power") {
 			io.emit('power', msg);
-		}
-
-		if (msg.ignition === "off") {
-			if (state.ignition === "on") {
-				state.ignition = msg.ignition;
-		  	Exec("gnome-session-quit --power-off");
-				console.log("!! SHUTDOWN IN 60 SECONDS !!");
-			}
-		}
-
-		if (msg.ignition === "on") {
-			if (state.ignition === "off") {
-				state.ignition = msg.ignition;
-				Exec("xdotool key 0xff1b");
-				console.log("!! CANCEL SHUTDOWN !!");
-			}
+  		console.log(JSON.stringify(msg));
+      if (msg.ignition === "off") {
+        if (state.ignition === "on") {
+          state.ignition = msg.ignition;
+          Exec("gnome-session-quit --power-off");
+          console.log("!! SHUTDOWN IN 60 SECONDS !!");
+        }
+      } else
+      if (msg.ignition === "on") {
+        if (state.ignition === "off") {
+          state.ignition = msg.ignition;
+          Exec("xdotool key 0xff1b");
+          console.log("!! CANCEL SHUTDOWN !!");
+        }
+      }
 		}
 	}
 
@@ -135,12 +132,12 @@ listener.sockets.on('connection',function(socket){
 		let get_state = {eventType: "power", payload: {get_state: true}};
 
 		// console.log("sending.....", JSON.stringify(get_state));
-		port.write(JSON.stringify(get_state));
+		// port.write(JSON.stringify(get_state));
   }, 5 * 1000);
 
   setInterval(()=>{
 		let get_state = {eventType: "hvac", payload: {get_state: true}};
 
 		// console.log("sending.....", JSON.stringify(get_state));
-		port.write(JSON.stringify(get_state));
+		// port.write(JSON.stringify(get_state));
   }, 5.1 * 1000);

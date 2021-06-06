@@ -62,12 +62,10 @@ void send_power_state () {
 
 		sprintf(msg,
 				"{\"type\": \"power\", \"ignition\": \"%s\", \"audio\": %s, \"display\": %s, \"main\": %s, "
-				"\"battery_voltage\":%d, \"main_current\":%d, \"wheel\":%d}"
-				"\n",
+				"\"battery_voltage\":%d, \"main_current\":%d, \"wheel\":%d}",
 				get_ignition(), get_audio_power(), get_display_power(), get_main_power(),
 				get_battery_voltage(), get_main_current(), get_wheel_state());
 
-		// outgoing_uart_message = cJSON_Parse(msg);
 		addUartMessageToQueue(cJSON_Parse(msg));
 }
 
