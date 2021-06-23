@@ -29,26 +29,19 @@ sudo apt install -y ffmpeg openssh-server nodejs udev nmap mongodb git python-pi
 sudo npm install -g nw-gyp  
 sudo snap install atom --classic  
 
+
 ### NW.JS
 sudo chmod 777 /usr/local/src  
 cd /usr/local/src  
-wget https://dl.nwjs.io/v0.43.6/nwjs-sdk-v0.43.6-linux-x64.tar.gz  
+wget https://dl.nwjs.io/v0.54.0/nwjs-sdk-v0.54.0-linux-x64.tar.gz
 tar -zxvf nwjs-sdk*  
 cd nwjs-sdk*  
-sudo ln -s /usr/local/src/nwjs-sdk-v0.43.6-linux-x64/nw /usr/bin/nw  
+sudo ln -s /usr/local/src/nwjs-sdk-v0.54.0-linux-x64/nw /usr/bin/nw  
 
 ### Daughter Board Setup
-sudo apt-get install git wget flex bison gperf python python-pip python-setuptools \
+sudo apt-get install git wget flex bison gperf python python-setuptools \
   python-serial python-click python-cryptography python-future python-pyparsing \
   python-pyelftools cmake ninja-build ccache libffi-dev libssl-dev  
-
-mkdir ~/esp  
-cd ~/esp  
-git clone --recursive https://github.com/espressif/esp-idf.git  
-cd ~/esp/esp-idf  
-./install.sh  
-. ./export.sh  
-echo '. ${HOME}/esp/esp-idf/export.sh' >> ~/.bashrc  
 
 ### Install Game Machine Software
 cd ~  
