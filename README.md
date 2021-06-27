@@ -21,8 +21,8 @@ sudo usermod -a -G audio $USER
 ```
 Add startup programs  
 ```
-pm2 start ~/devices/open-dash/service/index.js --time --name dash
-nw ~/devices/open-dash
+pm2 start /usr/local/src/open-dash/service/index.js --time --name dash
+nw /usr/local/src/open-dash
 ```
 
 ### Display
@@ -178,9 +178,10 @@ sudo ln -s /usr/local/src/nwjs-sdk-v0.54.0-linux-x64/nw /usr/bin/nw
 ```
 ### Install Software
 ```
-mkdir ~/devices
-cd ~/devices/open-dash
-git clone https://github.com/physiii/open-dash  
-cd open-dash 
-npm install  
+sudo chmod 777 /usr/local/src
+cd /usr/local/src
+git clone https://github.com/physiii/open-dash
+cd open-dash
+npm install
+npm run build
 ```
