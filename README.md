@@ -19,6 +19,11 @@ sudo visudo /etc/sudoers:
 sudo usermod -a -G dialout $USER
 sudo usermod -a -G audio $USER
 ```
+Add startup programs  
+```
+pm2 start ~/devices/open-dash/service/index.js --time --name dash
+nw ~/devices/open-dash
+```
 
 ### Display
 
@@ -108,8 +113,7 @@ git clone --recursive https://github.com/espressif/esp-idf.git
 cd ~/esp/esp-idf
 ./install.sh
 
-nano ~/.bashrc
-  alias get_idf='. $HOME/esp/esp-idf/export.sh'
+echo "alias get_idf='. $HOME/esp/esp-idf/export.sh'" >> ~/.bashrc
 
 source ~/.bashrc
 get_idf
