@@ -170,7 +170,7 @@ static void power_task(void* arg)
 	while(1) {
 		handle_power_message(checkServiceMessage("power"));
 		check_power_state();
-		vTaskDelay(SERVICE_LOOP / portTICK_RATE_MS);
+		vTaskDelay(8 * SERVICE_LOOP / portTICK_RATE_MS);
 	}
 }
 
