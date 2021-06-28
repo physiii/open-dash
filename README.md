@@ -1,5 +1,5 @@
 ### Install OS
-Download ubuntu 19.10  
+Download ubuntu 21.04 and create boot disk  
 Press esc to get to boot menu  
 Boot manager  
 Choose flash drive  
@@ -8,84 +8,180 @@ Choose erase disk and install ubuntu
 Remove flash drive and reboot  
 
 ### Setup OS
-Disable Power Savings.  
+Set no keyring passwd  
+Disable Power Savings   
 sudo visudo /etc/sudoers: 
 ```
 %sudo   ALL=(ALL:ALL) NOPASSWD:ALL  
 ```
 
-sudo nano /etc/udev/rules.d/10-local.rules
 ```
-SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6001", SYMLINK+="game_bill_acceptor"
-SUBSYSTEM=="tty", ATTRS{manufacturer}=="Prolific Technology Inc. ", ATTRS{product}=="USB-Serial Controller D", SYMLINK+="game_touchscreen"
-SUBSYSTEM=="tty", ATTRS{manufacturer}=="Prolific Technology Inc.", ATTRS{product}=="USB-Serial Controller", SYMLINK+="game_daughter"
-SUBSYSTEM=="video4linux", ATTRS{idVendor}=="1e4e", ATTRS{idProduct}=="7016", SYMLINK+="game_video"
+sudo usermod -a -G dialout $USER
+sudo usermod -a -G audio $USER
+```
+Add startup programs  
+```
+pm2 start /usr/local/src/open-dash/service/index.js --time --name dash
+nw /usr/local/src/open-dash
+```
+
+### Display
+
+Set scale to 200%  
+Rotate to portrait mode
+Settings > Appearance > Position on screen: Bottom
+nano ~/.profile
+```
+xinput set-prop "ILITEK ILITEK-TP Mouse" 'Coordinate Transformation Matrix' 0 -1 1 1 0 0 0 0 1
+xinput set-prop "ILITEK ILITEK-TP" 'Coordinate Transformation Matrix' 0 -1 1 1 0 0 0 0 1
 ```
 
 ### Install Dependencies
-sudo apt install -y curl
-curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - 
-sudo apt install -y ffmpeg openssh-server nodejs udev nmap mongodb git python-pip vlc openssh-server tmux webpack  
-sudo npm install -g nw-gyp  
-sudo snap install atom --classic  
 
+
+```
+sudo apt install -y curl
+curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+sudo apt update
+```
+
+```
+sudo wget -qnc https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/nordvpn-release_1.0.0_all.deb
+sudo dpkg -i ./nordvpn-release_1.0.0_all.deb
+```
+```
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | sudo tee /etc/apt/sources.list.d/google-chrome.list
+sudo apt update
+```
+
+```
+sudo apt-get -y install gnupg
+wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
+echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
+```
+
+```
+sudo apt update && sudo apt upgrade -y
+
+sudo apt install -y \
+  tmux git nodejs sshfs nmap cmake pv vlc pithos gimp librecad resolvconf openssh-server \
+  net-tools v4l-utils clementine net-tools kodi nordvpn vlc-plugin-bittorrent \
+  libgconf-2-4 sshpass git nodejs dnsmasq hostapd tmux xdotool libudev-dev \
+  python-setuptools python3-dev libssl-dev libasound2-dev nmap ffmpeg \
+  build-essential cmake pkg-config libjpeg-dev libtiff5-dev libatomic1 \
+  libavcodec-dev libavformat-dev libswscale-dev libv4l-dev libxvidcore-dev libx264-dev libfreetype6-dev \
+  libatlas-base-dev gfortran python3-dev libavcodec-dev libavformat-dev python3-pip \
+  libasound-dev portaudio19-dev libportaudio2 libportaudiocpp0 \
+  google-chrome-stable speedtest-cli mongodb-org \
+
+```
+
+```
+sudo npm install -g nw-gyp
+sudo npm install -g pm2 --unsafe-perm=true --allow-root
+sudo snap install atom --classic
+sudo snap install blender --channel=beta --classic
+```
+
+```
+sudo apt install -y apt-transport-https curl
+sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+sudo apt update
+sudo apt install -y brave-browser
+```
+### kicad
+```
+sudo add-apt-repository --yes ppa:js-reynaud/kicad-5.1
+sudo apt update
+sudo apt install -y --install-suggests kicad
+
+mkdir ~/circuits
+cd ~/circuits
+git clone https://github.com/physiii/kicad-parts
+# add symbol and footprint paths
+```
+### esp32
+```
+sudo ln -s /usr/bin/python3 /usr/bin/python
+
+mkdir -p ~/esp
+cd ~/esp
+git clone --recursive https://github.com/espressif/esp-idf.git
+
+cd ~/esp/esp-idf
+./install.sh
+
+echo "alias get_idf='. $HOME/esp/esp-idf/export.sh'" >> ~/.bashrc
+
+source ~/.bashrc
+get_idf
+
+cd ~/esp
+cp -r $IDF_PATH/examples/get-started/hello_world .
+cd ~/esp/hello_world
+idf.py set-target esp32
+idf.py menuconfig
+```
+
+### audio
+```
+cd ~
+git clone https://github.com/physiii/ardour-sessions
+
+```
+sudo nano /etc/security/limits.conf
+```
+  @audio          -       rtprio          99
+```
+```
+sudo apt install -y qjackctl pulseaudio-module-jack libjack0 jackd jack-tools \
+linux-lowlatency ardour a2jmidid libjack-dev pavucontrol \
+```
+## Jack
+set interface  
+Settings -> MIDI Driver: seq  
+Options -> execute script after startup: pactl load-module module-jack-sink;pactl load-module module-jack-source;pactl set-default-sink jack_out  
+Misc -> start JACK audio service on application startup  
+```
+pamcd set-default-sink jack_out
+```
+```
+sudo apt install -y \
+calf-plugins libtool autoconf libexpat1-dev libglib2.0-dev libfluidsynth-dev \
+jackd libjack-dev libglade2-dev lv2-dev yoshimi ams \
+blop caps cmt fil-plugins rev-plugins swh-plugins tap-plugins \
+invada-studio-plugins-lv2 mda-lv2 swh-lv2 \
+blepvco mcp-plugins omins so-synth-lv2 lingot \
+```
+## MIDI
+
+pip3 install python-rtmidi pyserial mido
+git clone https://github.com/physiii/wireless-midi
+
+###  Popcorn
+```
+https://popcorntime.app/linux
+rm -rf ~/.config/Popcorn-Time/Default/data
+ln -s /media/mass/Software/Popcorn/Popcorn-Time-Backup/Default/data ~/.config/Popcorn-Time/Default/data
+sudo rm ~/.config/Popcorn-Time/Default/data/settings.db
+```
 ### NW.JS
+```
 sudo chmod 777 /usr/local/src  
 cd /usr/local/src  
-wget https://dl.nwjs.io/v0.43.6/nwjs-sdk-v0.43.6-linux-x64.tar.gz  
+wget https://dl.nwjs.io/v0.54.0/nwjs-sdk-v0.54.0-linux-x64.tar.gz
 tar -zxvf nwjs-sdk*  
 cd nwjs-sdk*  
-sudo ln -s /usr/local/src/nwjs-sdk-v0.43.6-linux-x64/nw /usr/bin/nw  
-
-### Daughter Board Setup
-sudo apt-get install git wget flex bison gperf python python-pip python-setuptools \
-  python-serial python-click python-cryptography python-future python-pyparsing \
-  python-pyelftools cmake ninja-build ccache libffi-dev libssl-dev  
-
-mkdir ~/esp  
-cd ~/esp  
-git clone --recursive https://github.com/espressif/esp-idf.git  
-cd ~/esp/esp-idf  
-./install.sh  
-. ./export.sh  
-echo '. ${HOME}/esp/esp-idf/export.sh' >> ~/.bashrc  
-
-### Install Game Machine Software
-cd ~  
-git clone -b dev https://github.com/physiii/GameMachine  
-cd GameMachine  
-npm install  
-webpack  
-
-cp config.local.json config.json  
-nano config.json  
+sudo ln -s /usr/local/src/nwjs-sdk-v0.54.0-linux-x64/nw /usr/bin/nw  
 ```
-config.local.json:
-
-{
-  "relay_server":"192.168.1.5",
-  "relay_port" : 4443,
-  "use_dev" : true,
-  "use_ssl" : true,
-  "manufacturer" : "Pyfi Technologies",
-  "acceptor_dir":"/home/game/gamemachine/src/bill-acceptor/bill-acceptor.py",
-  "bill_acceptor_port" : "/dev/game_bill_acceptor",
-  "game_board_video_device": "/dev/game_video",
-  "daughter_port":"/dev/game_daughter",
-  "game_board_touchscreen_port": "/dev/game_touchscreen"
-}
-
-config.json
-{
-  "relay_server":"dev.pyfi.org",
-  "relay_port" : 5050,
-  "use_dev" : true,
-  "use_ssl" : true,
-  "enable_rightclick" : false,
-  "manufacturer" : "Pyfi Technologies",
-  "acceptor_dir":"/home/game/gamemachine/src/bill-acceptor/bill-acceptor.py",
-  "bill_acceptor_port" : "/dev/game_bill_acceptor",
-  "game_board_video_device": "/dev/game_video",
-  "daughter_port":"/dev/game_daughter",
-  "game_board_touchscreen_port": "/dev/game_touchscreen"
-}
+### Install Software
+```
+sudo chmod 777 /usr/local/src
+cd /usr/local/src
+git clone https://github.com/physiii/open-dash
+cd open-dash
+npm install
+npm run build
+```
