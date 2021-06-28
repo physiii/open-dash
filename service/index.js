@@ -132,12 +132,12 @@ listener.sockets.on('connection',function(socket){
 		let get_state = {eventType: "power", payload: {get_state: true}};
 
 		// console.log("sending.....", JSON.stringify(get_state));
-		// port.write(JSON.stringify(get_state));
-  }, 5 * 1000);
+		port.write(JSON.stringify(get_state));
+  }, 4 * 1000);
 
   setInterval(()=>{
 		let get_state = {eventType: "hvac", payload: {get_state: true}};
 
 		// console.log("sending.....", JSON.stringify(get_state));
-		// port.write(JSON.stringify(get_state));
-  }, 5.1 * 1000);
+		port.write(JSON.stringify(get_state));
+  }, 4.1 * 1000);
