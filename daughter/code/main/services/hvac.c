@@ -118,6 +118,7 @@ bool start_heating_left = false;
 bool start_cooling_right = false;
 bool start_heating_right = false;
 
+bool ac_on = false;
 bool cooling = true;
 
 void printHvacData(uint16_t * adc_values, uint16_t io_values) {
@@ -127,6 +128,10 @@ void printHvacData(uint16_t * adc_values, uint16_t io_values) {
 	printf("\n");
 
 	printf("HVAC IO\t\t%d\n", io_values);
+}
+
+void setAcOn(bool val) {
+	ac_on = val;
 }
 
 void set_blower_level(int val)
@@ -325,7 +330,11 @@ void handle_hvac_message (cJSON * msg) {
 	if (cJSON_GetObjectItem(msg,"set_blower_motor")) {
 		int level = cJSON_GetObjectItem(msg,"set_blower_motor")->valueint;
 		set_blower_level(level);
-		if (level == 0) sendHvacOffMessage();
+		setAcOn(true);
+		if (level == 0) {
+			sendHvacOffMessage();
+			setAcOn(false);
+		}
 	}
 
 	if (cJSON_GetObjectItem(msg,"set_left_air_temp_motor")) {
@@ -341,6 +350,7 @@ void handle_hvac_message (cJSON * msg) {
 	}
 
 	if (cJSON_GetObjectItem(msg,"set_left_air_temp")) {
+		setAcOn(true);
 		cJSON * mode_obj = cJSON_GetObjectItem(msg,"set_left_air_temp");
 		char mode[20];
 		sprintf(mode, "%s", mode_obj->valuestring);
@@ -358,12 +368,12 @@ void handle_hvac_message (cJSON * msg) {
 	}
 
 	if (cJSON_GetObjectItem(msg,"set_right_air_temp")) {
+		setAcOn(true);
 		cJSON * mode_obj = cJSON_GetObjectItem(msg,"set_right_air_temp");
 		char mode[20];
 		sprintf(mode, "%s", mode_obj->valuestring);
 
 		if (strcmp(mode, "cool")==0) {
-			sendHvacOnMessage();
 			start_cooling_right = true;
 			cooling = true;
 		}
@@ -383,6 +393,7 @@ void handle_hvac_message (cJSON * msg) {
 	}
 
 	if (cJSON_GetObjectItem(msg,"setMode")) {
+		setAcOn(true);
 		cJSON * mode_obj = cJSON_GetObjectItem(msg,"setMode");
 		char mode[20];
 		sprintf(mode, "%s", mode_obj->valuestring);
@@ -577,6 +588,11 @@ static void hvac_task(void* arg)
 static void cooling_task(void* arg)
 {
 	while(1) {
+		if (!ac_on) {
+			vTaskDelay(1000 / portTICK_RATE_MS);
+			continue;
+		}
+
 		if (cooling) {
 			// printf("Sending coooling j1850 messages.\n");
 			sendHvacOnMessage();

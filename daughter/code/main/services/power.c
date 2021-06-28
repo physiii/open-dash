@@ -13,8 +13,6 @@ bool display_power_state = false;
 bool main_power_state = true;
 int shutdown_cnt = 0;
 
-
-
 void set_main_power(bool);
 
 static void IRAM_ATTR ignition_isr_handler(void* arg)
@@ -125,6 +123,7 @@ void check_power_state() {
 		start_shutdown_timer(false);
 	} else {
 		start_shutdown_timer(true);
+		setAcOn(false);
 	}
 
 	send_power_state();
