@@ -82,7 +82,7 @@ serviceMessageTask (void *pvParameter)
 				serviceMessage.queueCount--;
 			}
 		}
-		else if (timeout_cnt > 10) {
+		else if (timeout_cnt > 100) {
 			printf("serviceMessageTask timeout reached.\n");
 			cJSON_Delete(serviceMessage.message);
 			serviceMessage.read = true;
@@ -92,7 +92,7 @@ serviceMessageTask (void *pvParameter)
 			timeout_cnt++;
 		}
 
-    vTaskDelay(SERVICE_LOOP / portTICK_PERIOD_MS);
+    vTaskDelay(SERVICE_LOOP_SHORT / portTICK_PERIOD_MS);
   }
 }
 

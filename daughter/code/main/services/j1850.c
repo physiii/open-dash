@@ -252,13 +252,6 @@ void printTestData () {
 	printf("{\"j1850\":\"8AC740A1346B\", \"bits\":48}\n");
 }
 
-static void j1850_rx_task(void* arg)
-{
-  while (1) {
-      vTaskDelay(SERVICE_LOOP / portTICK_PERIOD_MS);
-  }
-}
-
 void rmt_init() {
   // put your setup code here, to run once:
   config.rmt_mode = RMT_MODE_TX;
@@ -447,8 +440,6 @@ void j1850_main(void)
   ESP_ERROR_CHECK(esp_timer_create(&eof_timer_args, &eof_timer));
 
 	gpio_isr_handler_add(J1850_INPUT_PIN, j1850_isr_handler, (void*) J1850_INPUT_PIN);
-	xTaskCreate(j1850_rx_task, "j1850_rx_task", 2048, NULL, 10, NULL);
-
 	rmt_init();
 	xTaskCreate(j1850_tx_task, "j1850_tx_task", 2048, NULL, 10, NULL);
 }

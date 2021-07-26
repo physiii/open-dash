@@ -58,13 +58,23 @@ uint32_t get_wheel_state(){
 void send_power_state () {
 		char msg[1024];
 
+		// sprintf(msg,
+		// 		"{\"type\": \"power\", \"ignition\": \"%s\", \"audio\": %s, \"display\": %s, \"main\": %s, "
+		// 		"\"battery_voltage\":%d, \"main_current\":%d, \"wheel\":%d}",
+		// 		get_ignition(), get_audio_power(), get_display_power(), get_main_power(),
+		// 		get_battery_voltage(), get_main_current(), get_wheel_state());
+
 		sprintf(msg,
-				"{\"type\": \"power\", \"ignition\": \"%s\", \"audio\": %s, \"display\": %s, \"main\": %s, "
-				"\"battery_voltage\":%d, \"main_current\":%d, \"wheel\":%d}",
-				get_ignition(), get_audio_power(), get_display_power(), get_main_power(),
-				get_battery_voltage(), get_main_current(), get_wheel_state());
+				"{\"type\": \"power\", \"ignition\": \"%s\", \"audio\": %s, \"display\": %s, \"main\": %s}",
+						get_ignition(), get_audio_power(), get_display_power(), get_main_power());
 
 		addUartMessageToQueue(cJSON_Parse(msg));
+
+		// sprintf(msg,
+		// 		"{\"type\": \"power\", \"battery_voltage\":%d, \"main_current\":%d, \"wheel\":%d}",
+		// 		get_battery_voltage(), get_main_current(), get_wheel_state());
+		//
+		// addUartMessageToQueue(cJSON_Parse(msg));
 }
 
 void set_display_power(bool val)
@@ -176,6 +186,8 @@ static void power_task(void* arg)
 
 void power_main(void)
 {
+	ignition_state = gpio_get_level(IGNITION_WIRE_IO);
+
 	set_main_power(true);
 	set_display_power(true);
 	set_audio_power(true);

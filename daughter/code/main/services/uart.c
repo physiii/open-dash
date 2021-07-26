@@ -71,7 +71,9 @@ static void uartMessageTask(void *arg)
 		if (uartMessage.queueCount > 0) {
 			uartMessage.message = uartMessage.messageQueue[uartMessage.queueCount];
 			char *msg = cJSON_PrintUnformatted(uartMessage.message);
-			sprintf(outgoing_message_str, "%s\n", msg);
+			strcpy(outgoing_message_str, "");
+			strcpy(outgoing_message_str, msg);
+			strcat(outgoing_message_str, "\n");
 			len = strlen(outgoing_message_str);
 			txBytes = uart_write_bytes(UART_NUM_0, outgoing_message_str, len);
 			cJSON_Delete(uartMessage.message);

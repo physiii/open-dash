@@ -130,13 +130,16 @@ void printHvacData(uint16_t * adc_values, uint16_t io_values) {
 	printf("HVAC IO\t\t%d\n", io_values);
 }
 
-void setAcOn(bool val) {
-	ac_on = val;
-}
-
 void set_blower_level(int val)
 {
 	set_blower_pwm_width(val);
+}
+
+void setAcOn(bool val) {
+	ac_on = val;
+	if (!val) {
+		set_blower_level(0);
+	}
 }
 
 void set_left_air_temp_motor(bool valA, bool valB)
@@ -309,14 +312,34 @@ uint16_t get_passenger_sunload()
 
 void send_hvac_state () {
 		char msg[1024];
+		// sprintf(msg,
+				// "{\"type\": \"hvac\", \"air_temp\": {\"ambient\": %d, \"inside\": %d,"
+				// " \"upper\":{\"left\": %d, \"right\": %d},"
+				// " \"lower\":{\"left\": %d, \"right\": %d}}, "
+				// "\"light_level\":{\"ambient\": %d, \"driver\": %d, \"passenger\": %d}}",
+				// get_ambient_air_temp(), get_inside_air_temp(),
+				// get_upper_left_air_temp(), get_upper_right_air_temp(),
+				// get_lower_left_air_temp(), get_lower_right_air_temp(),
+				// get_ambient_light_level(), get_driver_sunload(), get_passenger_sunload());
+
 		sprintf(msg,
-				"{\"type\": \"hvac\", \"air_temp\": {\"ambient\": %d, \"inside\": %d,"
+				"{\"type\": \"hvac\", \"air_temp\": {\"ambient\": %d, \"inside\": %d}}",
+				get_ambient_air_temp(), get_inside_air_temp());
+
+		addUartMessageToQueue(cJSON_Parse(msg));
+
+		sprintf(msg,
+				"{\"type\": \"hvac\", \"air_temp\": {"
 				" \"upper\":{\"left\": %d, \"right\": %d},"
-				" \"lower\":{\"left\": %d, \"right\": %d}}, "
-				"\"light_level\":{\"ambient\": %d, \"driver\": %d, \"passenger\": %d}}",
-				get_ambient_air_temp(), get_inside_air_temp(),
+				" \"lower\":{\"left\": %d, \"right\": %d}}}, ",
 				get_upper_left_air_temp(), get_upper_right_air_temp(),
-				get_lower_left_air_temp(), get_lower_right_air_temp(),
+				get_lower_left_air_temp(), get_lower_right_air_temp());
+
+		addUartMessageToQueue(cJSON_Parse(msg));
+
+		sprintf(msg,
+				"{\"type\": \"hvac\", "
+				"\"light_level\":{\"ambient\": %d, \"driver\": %d, \"passenger\": %d}}",
 				get_ambient_light_level(), get_driver_sunload(), get_passenger_sunload());
 
 		addUartMessageToQueue(cJSON_Parse(msg));
