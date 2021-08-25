@@ -32,7 +32,7 @@ export class Settings extends React.Component {
 
 		this.props.back.on('settings', (data) => {
 			console.log(TAG, 'Incoming message', data);
-			this.setState(this.state)
+			// this.setState(this.state)
 		});
 
 		this.setState(this.state);

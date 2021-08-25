@@ -43,15 +43,15 @@ export class App extends React.Component {
 		this.props.back.on('hvac', (data) => {
 			console.log(TAG, 'Incoming hvac message', data);
 
-			this.state.hvacSensors = data;
-			this.setState(this.state)
+			// this.state.hvacSensors = data;
+			// this.setState(this.state)
 		});
 
 		this.props.back.on('power', (data) => {
 			console.log(TAG, 'Incoming power message', data);
 
-			this.state.powerSensors = data;
-			this.setState(this.state)
+			// this.state.powerSensors = data;
+			// this.setState(this.state)
 		});
 
 		this.props.back.on('j1850', (data) => {
