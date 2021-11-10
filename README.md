@@ -1,9 +1,9 @@
 ### Install OS
-Download ubuntu 21.04 and create boot disk  
+Download ubuntu 21.10 and create boot disk  
 Press esc to get to boot menu  
 Boot manager  
 Choose flash drive  
-Choose Install lununtu  
+Choose Install ubuntu
 Choose erase disk and install ubuntu  
 Remove flash drive and reboot  
 
@@ -30,15 +30,11 @@ nw /usr/local/src/open-dash
 Set scale to 200%  
 Rotate to portrait mode
 Settings > Appearance > Position on screen: Bottom
-nano ~/.profile
 ```
-xinput set-prop "ILITEK ILITEK-TP Mouse" 'Coordinate Transformation Matrix' 0 -1 1 1 0 0 0 0 1
-xinput set-prop "ILITEK ILITEK-TP" 'Coordinate Transformation Matrix' 0 -1 1 1 0 0 0 0 1
+sudo cp /usr/local/src/open-dash/scripts/99-touch.rules /etc/udev/rules.d/99-touch.rules
 ```
 
 ### Install Dependencies
-
-
 ```
 sudo apt install -y curl
 curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
@@ -157,19 +153,26 @@ blepvco mcp-plugins omins so-synth-lv2 lingot \
 ```
 ## MIDI
 
+```
 pip3 install python-rtmidi pyserial mido
 git clone https://github.com/physiii/wireless-midi
+```
 
 ###  Popcorn
 ```
-https://popcorntime.app/linux
-rm -rf ~/.config/Popcorn-Time/Default/data
-ln -s /media/mass/Software/Popcorn/Popcorn-Time-Backup/Default/data ~/.config/Popcorn-Time/Default/data
-sudo rm ~/.config/Popcorn-Time/Default/data/settings.db
+sudo chown -R ${USER}:${USER} /usr/local/src
+cd /usr/local/src
+git clone https://github.com/popcorn-official/popcorn-desktop
+cd popcorn-desktop
+sudo npm install -g gulp
+npm install
+gulp build
+gulp run
+nw .
 ```
 ### NW.JS
 ```
-sudo chmod 777 /usr/local/src  
+sudo chown -R ${USER}:${USER} /usr/local/src
 cd /usr/local/src  
 wget https://dl.nwjs.io/v0.54.0/nwjs-sdk-v0.54.0-linux-x64.tar.gz
 tar -zxvf nwjs-sdk*  
@@ -178,7 +181,7 @@ sudo ln -s /usr/local/src/nwjs-sdk-v0.54.0-linux-x64/nw /usr/bin/nw
 ```
 ### Install Software
 ```
-sudo chmod 777 /usr/local/src
+sudo chown -R ${USER}:${USER} /usr/local/src
 cd /usr/local/src
 git clone https://github.com/physiii/open-dash
 cd open-dash
