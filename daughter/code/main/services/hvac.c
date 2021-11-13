@@ -136,110 +136,11 @@ void set_blower_level(int val)
 	set_blower_pwm_width(val);
 }
 
-void setAcOn(bool val) {
-	ac_on = val;
-	set_blower_level(0);
-}
-
-void set_left_air_temp_motor(bool valA, bool valB)
-{
-	mcp23x17_set_level(&mcp_dev, LEFT_AIR_TEMP_CONTROL_A, valA);
-	mcp23x17_set_level(&mcp_dev, LEFT_AIR_TEMP_CONTROL_B, valB);
-	// printf("set_left_air_temp_motor\tA:%d\tB:%d\n", valA, valB);
-}
-
-void set_right_air_temp_motor(bool valA, bool valB)
-{
-	mcp23x17_set_level(&mcp_dev, RIGHT_AIR_TEMP_CONTROL_A, valA);
-	mcp23x17_set_level(&mcp_dev, RIGHT_AIR_TEMP_CONTROL_B, valB);
-	// printf("set_right_air_temp_motor\tA:%d\tB:%d\n", valA, valB);
-}
-
-
-void set_mode_motor(bool valA, bool valB)
-{
-	mcp23x17_set_level(&mcp_dev, MODE_A, valA);
-	mcp23x17_set_level(&mcp_dev, MODE_B, valB);
-
-	printf("Set Mode Motor\tA:%d\tB:%d\n", valA, valB);
-}
-
-
-void spin_mode_motor(int duration)
-{
-	while (spin_motor_duration) {
-		vTaskDelay(SERVICE_LOOP / portTICK_RATE_MS);
-	}
-	mode_motor_pos += duration;
-	spin_motor_duration = duration;
-}
-
-void set_mode(char * mode)
-{
-	if (strcmp(mode, "init") == 0) {
-		spin_mode_motor(DEFROST - HEAD);
-		mode_motor_pos = DEFROST;
-		spin_mode_motor(FEET - mode_motor_pos);
-	}
-
-	if (strcmp(mode, "head") == 0) {
-		spin_mode_motor(HEAD - mode_motor_pos);
-	}
-
-	if (strcmp(mode, "both") == 0) {
-		spin_mode_motor(BOTH - mode_motor_pos);
-	}
-
-	if (strcmp(mode, "feet") == 0) {
-		spin_mode_motor(FEET - mode_motor_pos);
-	}
-
-	if (strcmp(mode, "defrost") == 0) {
-		spin_mode_motor(DEFROST - mode_motor_pos);
-	}
-
-	printf("Set Mode\t%s\n", mode);
-}
-
-static void mode_motor_task(void* arg)
-{
-	while(1) {
-		if (spin_motor_duration > 0) {
-			printf("Spinning motor cw for %d ms.\n", spin_motor_duration >= 0 ? spin_motor_duration : -1*spin_motor_duration);
-
-			while (spin_motor_duration > 0) {
-				set_mode_motor(true, false);
-				vTaskDelay(1000 / portTICK_RATE_MS);
-				set_mode_motor(false, false);
-				vTaskDelay(1000 / portTICK_RATE_MS);
-				spin_motor_duration = spin_motor_duration - 1000;
-			}
-
-			printf("Current motor position is %d\n", mode_motor_pos);
-		} else if (spin_motor_duration < 0) {
-			printf("Spinning motor ccw for %d ms.\n", spin_motor_duration >= 0 ? spin_motor_duration : -1*spin_motor_duration);
-			spin_motor_duration *= -1;
-
-			while (spin_motor_duration > 0) {
-				set_mode_motor(false, true);
-				vTaskDelay(1000 / portTICK_RATE_MS);
-				set_mode_motor(false, false);
-				vTaskDelay(1000 / portTICK_RATE_MS);
-				spin_motor_duration = spin_motor_duration - 1000;
-			}
-
-			printf("Current motor position is %d\n", mode_motor_pos);
-		}
-		spin_motor_duration = 0;
-
-		vTaskDelay(SERVICE_LOOP / portTICK_RATE_MS);
-=======
 void setAcOn(bool val)
 {
 	ac_on = val;
 	if (!val) {
 		set_blower_level(0);
->>>>>>> 4d5015689d32c116a7df8eaa225666e1dbe7ea91
 	}
 }
 
@@ -407,28 +308,16 @@ void handle_hvac_message (cJSON * msg)
 
 	if (cJSON_GetObjectItem(msg,"set_left_air_temp_motor")) {
 		cJSON * mode = cJSON_GetObjectItem(msg,"set_left_air_temp_motor");
-<<<<<<< HEAD
-		left_air_temp_A = cJSON_IsTrue(cJSON_GetObjectItem(mode,"A"));
-		left_air_temp_B = cJSON_IsTrue(cJSON_GetObjectItem(mode,"B"));
-		set_left_air_temp_motor(left_air_temp_A, left_air_temp_B);
-=======
 		bool left_air_temp_A = cJSON_IsTrue(cJSON_GetObjectItem(mode,"A"));
 		bool left_air_temp_B = cJSON_IsTrue(cJSON_GetObjectItem(mode,"B"));
 		set_actuator(&actuators[LEFT_AIR], left_air_temp_A, left_air_temp_B);
 		printf("msg:\t%s\n", cJSON_PrintUnformatted(msg));
->>>>>>> 4d5015689d32c116a7df8eaa225666e1dbe7ea91
 	}
 
 	if (cJSON_GetObjectItem(msg,"set_right_air_temp_motor")) {
 		cJSON * mode = cJSON_GetObjectItem(msg,"set_right_air_temp_motor");
-<<<<<<< HEAD
-		right_air_temp_A = cJSON_IsTrue(cJSON_GetObjectItem(mode,"A"));
-		right_air_temp_B = cJSON_IsTrue(cJSON_GetObjectItem(mode,"B"));
-		set_right_air_temp_motor(right_air_temp_A, right_air_temp_B);
-=======
 		bool right_air_temp_A = cJSON_IsTrue(cJSON_GetObjectItem(mode,"A"));
 		bool right_air_temp_B = cJSON_IsTrue(cJSON_GetObjectItem(mode,"B"));
->>>>>>> 4d5015689d32c116a7df8eaa225666e1dbe7ea91
 	}
 
 	if (cJSON_GetObjectItem(msg,"set_left_air_temp")) {
@@ -598,14 +487,6 @@ static void right_air_temp_task(void* arg)
 
 static void mode_motor_task(void* arg)
 {
-	char type[100];
-	cJSON * payload = NULL;
-
-	mcp23x17_set_mode(&mcp_dev, DRIVER_HEATED_SEAT_STATUS, MCP23X17_GPIO_INPUT);
-	mcp23x17_set_mode(&mcp_dev, PASSENGER_HEATED_SEAT_STATUS, MCP23X17_GPIO_INPUT);
-
-	set_mode("init");
-
 	while(1) {
 		if (actuators[MODE].currentPosition != actuators[MODE].targetPosition) {
 			start_actuator(&actuators[MODE]);
@@ -640,6 +521,8 @@ static void hvac_task(void* arg)
 
 	mcp23x17_set_mode(&mcp_dev, DRIVER_HEATED_SEAT_STATUS, MCP23X17_GPIO_INPUT);
 	mcp23x17_set_mode(&mcp_dev, PASSENGER_HEATED_SEAT_STATUS, MCP23X17_GPIO_INPUT);
+
+	set_mode("init");
 
 	while(1) {
 		handle_hvac_message(checkServiceMessage("hvac"));

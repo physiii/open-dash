@@ -190,7 +190,7 @@ void power_main(void)
 {
 	ignition_state = gpio_get_level(IGNITION_WIRE_IO);
 	mcp23x17_set_mode(&mcp_dev, C_OUT3, MCP23X17_GPIO_OUTPUT);
-
+	
 	set_main_power(true);
 	set_display_power(true);
 	set_audio_power(false);
@@ -199,6 +199,6 @@ void power_main(void)
 
 	gpio_evt_queue = xQueueCreate(10, sizeof(uint32_t));
 	gpio_isr_handler_add(IGNITION_WIRE_IO, ignition_isr_handler, (void*) IGNITION_WIRE_IO);
-	xTaskCreate(power_task, "power_task", 1024 * 5, NULL, 10, NULL);
+	xTaskCreate(power_task, "ignition_task", 1024 * 5, NULL, 10, NULL);
   xTaskCreate(shutdown_timer, "shutdown_timer", 2048, NULL, 10, NULL);
 }
