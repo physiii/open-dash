@@ -49,15 +49,7 @@ Wire Wire Line
 	8000 3950 8100 3950
 Connection ~ 8100 3950
 Wire Wire Line
-	7900 3900 7900 3950
-Wire Wire Line
-	7900 3950 8000 3950
-Connection ~ 8000 3950
-Wire Wire Line
 	7800 3900 7800 3950
-Wire Wire Line
-	7800 3950 7900 3950
-Connection ~ 7900 3950
 Wire Wire Line
 	7250 2800 7200 2800
 Text Label 7200 2700 2    50   ~ 0
@@ -303,19 +295,6 @@ Wire Wire Line
 Connection ~ 7950 1850
 Connection ~ 8250 1850
 $Comp
-L open-dash-daughterboard-rescue:R_1K-Open_Automation R23
-U 1 1 5CC13A39
-P 6150 3200
-F 0 "R23" V 6050 3200 50  0000 C CNN
-F 1 "R_1K" V 6150 3200 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 6080 3200 50  0001 C CNN
-F 3 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-3GEYJ102V/P1.0KGDKR-ND/577615" V 6230 3200 50  0001 C CNN
-F 4 "ERJ-3GEYJ102V" V 6330 3300 60  0001 C CNN "Part Number"
-F 5 " C21190" H 1650 -1150 50  0001 C CNN "LCSC"
-	1    6150 3200
-	0    1    1    0   
-$EndComp
-$Comp
 L open-dash-daughterboard-rescue:GND-power #PWR059
 U 1 1 5CC4D3C7
 P 3800 2800
@@ -468,45 +447,6 @@ F 3 "" H 8300 4000 50  0000 C CNN
 	1    8300 4000
 	1    0    0    -1  
 $EndComp
-$Comp
-L open-dash-daughterboard-rescue:R_1K-Open_Automation R24
-U 1 1 60274D86
-P 6150 3450
-F 0 "R24" V 6050 3450 50  0000 C CNN
-F 1 "R_1K" V 6150 3450 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 6080 3450 50  0001 C CNN
-F 3 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-3GEYJ102V/P1.0KGDKR-ND/577615" V 6230 3450 50  0001 C CNN
-F 4 "ERJ-3GEYJ102V" V 6330 3550 60  0001 C CNN "Part Number"
-F 5 " C21190" H 1650 -1150 50  0001 C CNN "LCSC"
-	1    6150 3450
-	0    1    1    0   
-$EndComp
-$Comp
-L open-dash-daughterboard-rescue:R_1K-Open_Automation R25
-U 1 1 6027525B
-P 6150 3700
-F 0 "R25" V 6050 3700 50  0000 C CNN
-F 1 "R_1K" V 6150 3700 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 6080 3700 50  0001 C CNN
-F 3 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-3GEYJ102V/P1.0KGDKR-ND/577615" V 6230 3700 50  0001 C CNN
-F 4 "ERJ-3GEYJ102V" V 6330 3800 60  0001 C CNN "Part Number"
-F 5 " C21190" H 1650 -1150 50  0001 C CNN "LCSC"
-	1    6150 3700
-	0    1    1    0   
-$EndComp
-$Comp
-L open-dash-daughterboard-rescue:R_1K-Open_Automation R26
-U 1 1 602754FA
-P 6150 3950
-F 0 "R26" V 6050 3950 50  0000 C CNN
-F 1 "R_1K" V 6150 3950 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 6080 3950 50  0001 C CNN
-F 3 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-3GEYJ102V/P1.0KGDKR-ND/577615" V 6230 3950 50  0001 C CNN
-F 4 "ERJ-3GEYJ102V" V 6330 4050 60  0001 C CNN "Part Number"
-F 5 " C21190" H 1650 -1150 50  0001 C CNN "LCSC"
-	1    6150 3950
-	0    1    1    0   
-$EndComp
 Text HLabel 1750 1500 0    60   Input ~ 0
 AMP_IN2
 Text HLabel 1750 1700 0    60   Input ~ 0
@@ -544,17 +484,6 @@ Text Label 2350 4700 0    50   ~ 0
 AUDIO_GND1
 Text Label 3550 4700 0    50   ~ 0
 AUDIO_GND2
-$Comp
-L open-dash-daughterboard-rescue:GND-power #PWR056
-U 1 1 62C04F2E
-P 2500 6200
-F 0 "#PWR056" H 2500 5950 50  0001 C CNN
-F 1 "GND" V 2500 6000 50  0000 C CNN
-F 2 "" H 2500 6200 50  0000 C CNN
-F 3 "" H 2500 6200 50  0000 C CNN
-	1    2500 6200
-	0    -1   -1   0   
-$EndComp
 Wire Wire Line
 	2500 6200 2450 6200
 Text Label 2500 5800 0    50   ~ 0
@@ -578,17 +507,6 @@ Wire Wire Line
 	1600 6550 1650 6550
 Wire Wire Line
 	1550 6950 1650 6950
-$Comp
-L open-dash-daughterboard-rescue:GND-power #PWR057
-U 1 1 62C27863
-P 2500 6950
-F 0 "#PWR057" H 2500 6700 50  0001 C CNN
-F 1 "GND" V 2500 6750 50  0000 C CNN
-F 2 "" H 2500 6950 50  0000 C CNN
-F 3 "" H 2500 6950 50  0000 C CNN
-	1    2500 6950
-	0    -1   -1   0   
-$EndComp
 Wire Wire Line
 	2500 6950 2450 6950
 Text Label 2500 6550 0    50   ~ 0
@@ -612,17 +530,6 @@ Wire Wire Line
 	3550 5800 3600 5800
 Wire Wire Line
 	3500 6200 3600 6200
-$Comp
-L open-dash-daughterboard-rescue:GND-power #PWR060
-U 1 1 62C31FFF
-P 4450 6200
-F 0 "#PWR060" H 4450 5950 50  0001 C CNN
-F 1 "GND" V 4450 6000 50  0000 C CNN
-F 2 "" H 4450 6200 50  0000 C CNN
-F 3 "" H 4450 6200 50  0000 C CNN
-	1    4450 6200
-	0    -1   -1   0   
-$EndComp
 Wire Wire Line
 	4450 6200 4400 6200
 Text Label 4450 5800 0    50   ~ 0
@@ -646,17 +553,6 @@ Wire Wire Line
 	3550 6550 3600 6550
 Wire Wire Line
 	3500 6950 3600 6950
-$Comp
-L open-dash-daughterboard-rescue:GND-power #PWR061
-U 1 1 62C3201A
-P 4450 6950
-F 0 "#PWR061" H 4450 6700 50  0001 C CNN
-F 1 "GND" V 4450 6750 50  0000 C CNN
-F 2 "" H 4450 6950 50  0000 C CNN
-F 3 "" H 4450 6950 50  0000 C CNN
-	1    4450 6950
-	0    -1   -1   0   
-$EndComp
 Wire Wire Line
 	4450 6950 4400 6950
 Text Label 1550 6200 2    50   ~ 0
@@ -762,7 +658,7 @@ $Comp
 L Open_Automation:C_0.1uF C13
 U 1 1 605275DE
 P 6500 3200
-F 0 "C13" V 6450 3100 50  0000 C CNN
+F 0 "C13" V 6550 3350 50  0000 C CNN
 F 1 "C_0.1uF" V 6450 3400 50  0000 C CNN
 F 2 "Capacitor_SMD:C_0402_1005Metric_Pad0.74x0.62mm_HandSolder" H 6600 3500 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/Samsung-Electro-Mechanics-CL05B104KO5NNNC_C1525.pdf" H 6500 2950 50  0001 C CNN
@@ -775,7 +671,7 @@ $Comp
 L Open_Automation:C_0.1uF C14
 U 1 1 6052A102
 P 6500 3450
-F 0 "C14" V 6450 3350 50  0000 C CNN
+F 0 "C14" V 6550 3600 50  0000 C CNN
 F 1 "C_0.1uF" V 6450 3650 50  0000 C CNN
 F 2 "Capacitor_SMD:C_0402_1005Metric_Pad0.74x0.62mm_HandSolder" H 6600 3750 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/Samsung-Electro-Mechanics-CL05B104KO5NNNC_C1525.pdf" H 6500 3200 50  0001 C CNN
@@ -788,7 +684,7 @@ $Comp
 L Open_Automation:C_0.1uF C15
 U 1 1 6052ABFB
 P 6500 3700
-F 0 "C15" V 6450 3600 50  0000 C CNN
+F 0 "C15" V 6550 3850 50  0000 C CNN
 F 1 "C_0.1uF" V 6450 3900 50  0000 C CNN
 F 2 "Capacitor_SMD:C_0402_1005Metric_Pad0.74x0.62mm_HandSolder" H 6600 4000 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/Samsung-Electro-Mechanics-CL05B104KO5NNNC_C1525.pdf" H 6500 3450 50  0001 C CNN
@@ -801,7 +697,7 @@ $Comp
 L Open_Automation:C_0.1uF C16
 U 1 1 6052AC07
 P 6500 3950
-F 0 "C16" V 6450 3850 50  0000 C CNN
+F 0 "C16" V 6550 4100 50  0000 C CNN
 F 1 "C_0.1uF" V 6450 4150 50  0000 C CNN
 F 2 "Capacitor_SMD:C_0402_1005Metric_Pad0.74x0.62mm_HandSolder" H 6600 4250 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/Samsung-Electro-Mechanics-CL05B104KO5NNNC_C1525.pdf" H 6500 3700 50  0001 C CNN
@@ -897,4 +793,116 @@ Text Label 5950 3950 2    50   ~ 0
 AMP_IN4
 Text Label 4450 6550 0    50   ~ 0
 AMP_IN4
+$Comp
+L Open_Automation:R_1K_0402 R23
+U 1 1 619ADBEE
+P 6150 3200
+F 0 "R23" V 6150 3200 50  0000 C CNN
+F 1 "R_1K_0402" V 6250 3200 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder" V 6080 3200 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-3GEYJ102V/P1.0KGDKR-ND/577615" V 6230 3200 50  0001 C CNN
+F 4 "0402WGF1001TCE" V 6330 3300 60  0001 C CNN "Part Number"
+F 5 "C11702" H 6150 3200 50  0001 C CNN "LCSC"
+	1    6150 3200
+	0    1    1    0   
+$EndComp
+$Comp
+L Open_Automation:R_1K_0402 R24
+U 1 1 619B019A
+P 6150 3450
+F 0 "R24" V 6150 3450 50  0000 C CNN
+F 1 "R_1K_0402" V 6250 3450 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder" V 6080 3450 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-3GEYJ102V/P1.0KGDKR-ND/577615" V 6230 3450 50  0001 C CNN
+F 4 "0402WGF1001TCE" V 6330 3550 60  0001 C CNN "Part Number"
+F 5 "C11702" H 6150 3450 50  0001 C CNN "LCSC"
+	1    6150 3450
+	0    1    1    0   
+$EndComp
+$Comp
+L Open_Automation:R_1K_0402 R25
+U 1 1 619B0C77
+P 6150 3700
+F 0 "R25" V 6150 3700 50  0000 C CNN
+F 1 "R_1K_0402" V 6250 3700 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder" V 6080 3700 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-3GEYJ102V/P1.0KGDKR-ND/577615" V 6230 3700 50  0001 C CNN
+F 4 "0402WGF1001TCE" V 6330 3800 60  0001 C CNN "Part Number"
+F 5 "C11702" H 6150 3700 50  0001 C CNN "LCSC"
+	1    6150 3700
+	0    1    1    0   
+$EndComp
+$Comp
+L Open_Automation:R_1K_0402 R26
+U 1 1 619B1093
+P 6150 3950
+F 0 "R26" V 6150 3950 50  0000 C CNN
+F 1 "R_1K_0402" V 6250 3950 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder" V 6080 3950 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-3GEYJ102V/P1.0KGDKR-ND/577615" V 6230 3950 50  0001 C CNN
+F 4 "0402WGF1001TCE" V 6330 4050 60  0001 C CNN "Part Number"
+F 5 "C11702" H 6150 3950 50  0001 C CNN "LCSC"
+	1    6150 3950
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GNDS #PWR0151
+U 1 1 619E09BC
+P 7900 4000
+F 0 "#PWR0151" H 7900 3750 50  0001 C CNN
+F 1 "GNDS" H 7905 3827 50  0000 C CNN
+F 2 "" H 7900 4000 50  0001 C CNN
+F 3 "" H 7900 4000 50  0001 C CNN
+	1    7900 4000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7900 3900 7900 4000
+Connection ~ 8000 3950
+Wire Wire Line
+	7800 3950 8000 3950
+$Comp
+L power:GNDS #PWR0152
+U 1 1 619EC47D
+P 2500 6950
+F 0 "#PWR0152" H 2500 6700 50  0001 C CNN
+F 1 "GNDS" V 2505 6822 50  0000 R CNN
+F 2 "" H 2500 6950 50  0001 C CNN
+F 3 "" H 2500 6950 50  0001 C CNN
+	1    2500 6950
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:GNDS #PWR0153
+U 1 1 619F385D
+P 2500 6200
+F 0 "#PWR0153" H 2500 5950 50  0001 C CNN
+F 1 "GNDS" V 2505 6072 50  0000 R CNN
+F 2 "" H 2500 6200 50  0001 C CNN
+F 3 "" H 2500 6200 50  0001 C CNN
+	1    2500 6200
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:GNDS #PWR0154
+U 1 1 619F3E43
+P 4450 6200
+F 0 "#PWR0154" H 4450 5950 50  0001 C CNN
+F 1 "GNDS" V 4455 6072 50  0000 R CNN
+F 2 "" H 4450 6200 50  0001 C CNN
+F 3 "" H 4450 6200 50  0001 C CNN
+	1    4450 6200
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:GNDS #PWR0155
+U 1 1 619F550E
+P 4450 6950
+F 0 "#PWR0155" H 4450 6700 50  0001 C CNN
+F 1 "GNDS" V 4455 6822 50  0000 R CNN
+F 2 "" H 4450 6950 50  0001 C CNN
+F 3 "" H 4450 6950 50  0001 C CNN
+	1    4450 6950
+	0    -1   -1   0   
+$EndComp
 $EndSCHEMATC

@@ -1059,22 +1059,6 @@ Wire Wire Line
 	11000 4300 10950 4300
 Wire Wire Line
 	11000 4200 10950 4200
-$Comp
-L open-dash-daughterboard-rescue:GND-power #PWR?
-U 1 1 6073066F
-P 10400 5300
-AR Path="/5ABD187E/6073066F" Ref="#PWR?"  Part="1" 
-AR Path="/6073066F" Ref="#PWR?"  Part="1" 
-AR Path="/5A7BADB8/6073066F" Ref="#PWR?"  Part="1" 
-AR Path="/62CC146C/6073066F" Ref="#PWR?"  Part="1" 
-AR Path="/657571BE/6073066F" Ref="#PWR0127"  Part="1" 
-F 0 "#PWR0127" H 10400 5050 50  0001 C CNN
-F 1 "GND" V 10400 5100 50  0000 C CNN
-F 2 "" H 10400 5300 50  0001 C CNN
-F 3 "" H 10400 5300 50  0001 C CNN
-	1    10400 5300
-	0    1    1    0   
-$EndComp
 Wire Wire Line
 	10400 5300 10450 5300
 Wire Wire Line
@@ -2114,4 +2098,14 @@ F 3 "" H 1600 1900 50  0001 C CNN
 	1    1600 1900
 	0    -1   -1   0   
 $EndComp
+Text Label 10400 5300 2    50   ~ 0
+EXT_AMP_ON
+Text Label 13250 3050 0    50   ~ 0
+EXT_AMP_ON
+Wire Wire Line
+	13250 3050 13200 3050
+Text Label 13150 1350 0    50   ~ 0
+EXT_AMP_ON
+Wire Wire Line
+	13150 1350 13100 1350
 $EndSCHEMATC

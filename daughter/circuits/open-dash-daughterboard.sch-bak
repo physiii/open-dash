@@ -425,7 +425,7 @@ REAR_DEFOG
 Text Label 11200 4850 2    50   ~ 0
 BATTERY
 Text Label 12450 6100 0    50   ~ 0
-C_OUT3
+EXT_AMP_ON
 Text Label 11200 5350 2    50   ~ 0
 INSIDE_AIR_TEMP
 Text Label 11200 5450 2    50   ~ 0
@@ -957,21 +957,6 @@ Wire Wire Line
 	11650 1550 11600 1550
 Wire Wire Line
 	11650 1450 11600 1450
-$Comp
-L open-dash-daughterboard-rescue:GND-power #PWR?
-U 1 1 6387A525
-P 11050 2550
-AR Path="/5ABD187E/6387A525" Ref="#PWR?"  Part="1" 
-AR Path="/6387A525" Ref="#PWR015"  Part="1" 
-AR Path="/5A7BADB8/6387A525" Ref="#PWR?"  Part="1" 
-AR Path="/62CC146C/6387A525" Ref="#PWR?"  Part="1" 
-F 0 "#PWR015" H 11050 2300 50  0001 C CNN
-F 1 "GND" V 11050 2350 50  0000 C CNN
-F 2 "" H 11050 2550 50  0001 C CNN
-F 3 "" H 11050 2550 50  0001 C CNN
-	1    11050 2550
-	0    1    1    0   
-$EndComp
 Wire Wire Line
 	11050 2550 11100 2550
 Wire Wire Line
@@ -1055,7 +1040,7 @@ Wire Wire Line
 Text Label 2300 3750 0    50   ~ 0
 3V3
 Text Label 1700 3950 2    50   ~ 0
-C_OUT3
+EXT_AMP_ON
 Wire Wire Line
 	1700 3950 1750 3950
 Text Label 9050 2750 0    50   ~ 0
@@ -1426,4 +1411,60 @@ F 5 "C82544" H 1700 2900 50  0001 C CNN "LCSC"
 	1    1700 2500
 	-1   0    0    1   
 $EndComp
+Text Label 1550 2700 2    50   ~ 0
+WHEEL_CONTROLS_SIGNAL
+$Comp
+L Open_Automation:R_1K_0402 R8
+U 1 1 618E7527
+P 1750 2700
+F 0 "R8" V 1750 2700 50  0000 C CNN
+F 1 "R_1K_0402" V 1850 2700 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder" V 1680 2700 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-3GEYJ102V/P1.0KGDKR-ND/577615" V 1830 2700 50  0001 C CNN
+F 4 "0402WGF1001TCE" V 1930 2800 60  0001 C CNN "Part Number"
+F 5 "C11702" H 1750 2700 50  0001 C CNN "LCSC"
+	1    1750 2700
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	1550 2700 1600 2700
+$Comp
+L open-dash-daughterboard-rescue:GND-power #PWR?
+U 1 1 619049B0
+P 1950 2700
+AR Path="/5ABD187E/619049B0" Ref="#PWR?"  Part="1" 
+AR Path="/619049B0" Ref="#PWR0149"  Part="1" 
+AR Path="/5A7BADB8/619049B0" Ref="#PWR?"  Part="1" 
+F 0 "#PWR0149" H 1950 2450 50  0001 C CNN
+F 1 "GND" V 1900 2550 50  0000 C CNN
+F 2 "" H 1950 2700 50  0001 C CNN
+F 3 "" H 1950 2700 50  0001 C CNN
+	1    1950 2700
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	1950 2700 1900 2700
+$Comp
+L Open_Automation:R_1K_0402 R84
+U 1 1 61961BCF
+P 1750 2950
+F 0 "R84" V 1750 2950 50  0000 C CNN
+F 1 "R_1K_0402" V 1850 2950 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder" V 1680 2950 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-3GEYJ102V/P1.0KGDKR-ND/577615" V 1830 2950 50  0001 C CNN
+F 4 "0402WGF1001TCE" V 1930 3050 60  0001 C CNN "Part Number"
+F 5 "C11702" H 1750 2950 50  0001 C CNN "LCSC"
+	1    1750 2950
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	1550 2950 1600 2950
+Wire Wire Line
+	1950 2950 1900 2950
+Text Label 1550 2950 2    50   ~ 0
+EXT_AMP_ON
+Text Label 1950 2950 0    50   ~ 0
+BATTERY
+Text Label 11050 2550 2    50   ~ 0
+EXT_AMP_ON
 $EndSCHEMATC

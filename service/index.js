@@ -128,6 +128,11 @@ listener.sockets.on('connection',function(socket){
 		}
 	})
 
+	port.on('open', function() {
+		let msg = {eventType:"power", payload: {set_audio_power: true}}
+		port.write(JSON.stringify(msg));
+	})
+
 	let interval = 4000;
   setInterval(()=>{
 		let get_state = {eventType: "power", payload: {get_state: true}};

@@ -16,7 +16,7 @@ $EndDescr
 Text HLabel 1500 1000 0    50   Input ~ 0
 5V
 Wire Wire Line
-	5550 2450 5550 2525
+	5550 2400 5550 2475
 Text HLabel 1500 1200 0    50   Input ~ 0
 CAN_RX
 Text HLabel 1500 1100 0    50   Input ~ 0
@@ -59,18 +59,18 @@ Wire Wire Line
 	1500 1100 1550 1100
 Text Label 6200 4150 2    50   ~ 0
 CANL
-Text Label 5100 1650 2    50   ~ 0
+Text Label 5100 1700 2    50   ~ 0
 CANH
 Wire Wire Line
-	5100 2500 5100 2450
+	5100 2450 5100 2400
 Wire Wire Line
 	6800 4050 6750 4050
 Wire Wire Line
-	5100 1650 5100 1700
-Text Label 5550 1650 2    50   ~ 0
+	5100 1700 5100 1750
+Text Label 5550 1700 2    50   ~ 0
 CANL
 Wire Wire Line
-	5550 1650 5550 1700
+	5550 1700 5550 1750
 Text Label 6200 3950 2    50   ~ 0
 CANH
 Wire Wire Line
@@ -92,9 +92,9 @@ Wire Wire Line
 Wire Wire Line
 	5450 4500 5450 4450
 Wire Wire Line
-	5550 2150 5550 2100
+	5550 2100 5550 2050
 Wire Wire Line
-	5100 2150 5100 2100
+	5100 2100 5100 2050
 $Comp
 L open-dash-daughterboard-rescue:GND-power #PWR?
 U 1 1 5ADD74BB
@@ -124,14 +124,14 @@ $EndComp
 $Comp
 L open-dash-daughterboard-rescue:GND-power #PWR?
 U 1 1 5ADD7680
-P 5550 2525
+P 5550 2475
 AR Path="/5A8CA1AF/5ADD7680" Ref="#PWR?"  Part="1" 
 AR Path="/60D3331D/5ADD7680" Ref="#PWR086"  Part="1" 
-F 0 "#PWR086" H 5550 2275 50  0001 C CNN
-F 1 "GND" H 5555 2352 50  0000 C CNN
-F 2 "" H 5550 2525 50  0001 C CNN
-F 3 "" H 5550 2525 50  0001 C CNN
-	1    5550 2525
+F 0 "#PWR086" H 5550 2225 50  0001 C CNN
+F 1 "GND" H 5555 2302 50  0000 C CNN
+F 2 "" H 5550 2475 50  0001 C CNN
+F 3 "" H 5550 2475 50  0001 C CNN
+	1    5550 2475
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -150,14 +150,14 @@ $EndComp
 $Comp
 L open-dash-daughterboard-rescue:GND-power #PWR?
 U 1 1 5CC02094
-P 5100 2500
+P 5100 2450
 AR Path="/5A8CA1AF/5CC02094" Ref="#PWR?"  Part="1" 
 AR Path="/60D3331D/5CC02094" Ref="#PWR084"  Part="1" 
-F 0 "#PWR084" H 5100 2250 50  0001 C CNN
-F 1 "GND" H 5105 2327 50  0000 C CNN
-F 2 "" H 5100 2500 50  0001 C CNN
-F 3 "" H 5100 2500 50  0001 C CNN
-	1    5100 2500
+F 0 "#PWR084" H 5100 2200 50  0001 C CNN
+F 1 "GND" H 5105 2277 50  0000 C CNN
+F 2 "" H 5100 2450 50  0001 C CNN
+F 3 "" H 5100 2450 50  0001 C CNN
+	1    5100 2450
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -271,27 +271,27 @@ $EndComp
 $Comp
 L Open_Automation:C_470pF C27
 U 1 1 6047599C
-P 5550 2300
-F 0 "C27" H 5650 2300 50  0000 L CNN
-F 1 "C_470pF" H 5550 2200 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder" H 5650 2600 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/Guangdong-Fenghua-Advanced-Tech-0402B471K500NT_C1537.pdf" H 5550 2050 50  0001 C CNN
-F 4 "0402B471K500NT" H 5675 2500 60  0001 C CNN "Part Number"
-F 5 "C1537" H 5550 2700 50  0001 C CNN "LCSC"
-	1    5550 2300
+P 5550 2250
+F 0 "C27" H 5650 2250 50  0000 L CNN
+F 1 "C_470pF" H 5550 2150 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder" H 5650 2550 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Guangdong-Fenghua-Advanced-Tech-0402B471K500NT_C1537.pdf" H 5550 2000 50  0001 C CNN
+F 4 "0402B471K500NT" H 5675 2450 60  0001 C CNN "Part Number"
+F 5 "C1537" H 5550 2650 50  0001 C CNN "LCSC"
+	1    5550 2250
 	1    0    0    -1  
 $EndComp
 $Comp
 L Open_Automation:C_470pF C26
 U 1 1 604775F0
-P 5100 2300
-F 0 "C26" H 4900 2300 50  0000 L CNN
-F 1 "C_470pF" H 4750 2200 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder" H 5200 2600 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/Guangdong-Fenghua-Advanced-Tech-0402B471K500NT_C1537.pdf" H 5100 2050 50  0001 C CNN
-F 4 "0402B471K500NT" H 5225 2500 60  0001 C CNN "Part Number"
-F 5 "C1537" H 5100 2700 50  0001 C CNN "LCSC"
-	1    5100 2300
+P 5100 2250
+F 0 "C26" H 4900 2250 50  0000 L CNN
+F 1 "C_470pF" H 4750 2150 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder" H 5200 2550 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Guangdong-Fenghua-Advanced-Tech-0402B471K500NT_C1537.pdf" H 5100 2000 50  0001 C CNN
+F 4 "0402B471K500NT" H 5225 2450 60  0001 C CNN "Part Number"
+F 5 "C1537" H 5100 2650 50  0001 C CNN "LCSC"
+	1    5100 2250
 	1    0    0    -1  
 $EndComp
 $Comp

@@ -1147,19 +1147,6 @@ F 5 " C21190" H 2450 3400 50  0001 C CNN "LCSC"
 	-1   0    0    1   
 $EndComp
 $Comp
-L Open_Automation:R_100K R3
-U 1 1 6044C59E
-P 1950 3000
-F 0 "R3" V 1950 2950 50  0000 L CNN
-F 1 "R_100K" V 2050 2900 50  0000 L CNN
-F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 1880 3000 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/Uniroyal-Elec-0603WAF1003T5E_C25803.pdf" V 2030 3000 50  0001 C CNN
-F 4 "0603WAF1003T5E" V 2130 3100 60  0001 C CNN "Part Number"
-F 5 "C25803" V 1800 3000 50  0001 C CNN "LCSC"
-	1    1950 3000
-	1    0    0    -1  
-$EndComp
-$Comp
 L Open_Automation:R_10K_0402 R11
 U 1 1 604588E2
 P 8000 5550
@@ -1416,6 +1403,19 @@ F 3 "https://datasheet.lcsc.com/szlcsc/1811201117_Advanced-Monolithic-Systems-AM
 F 4 "AMS1117-3.3" H 5025 3375 60  0001 C CNN "Part Number"
 F 5 "C6186" H 4950 3450 50  0001 C CNN "LCSC"
 	1    5000 3050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Open_Automation:R_100K_0402 R3
+U 1 1 61AC8D3E
+P 1950 3000
+F 0 "R3" V 1950 2950 50  0000 L CNN
+F 1 "R_100K_0402" V 1850 2750 50  0000 L CNN
+F 2 "Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder" V 1880 3000 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/lcsc/1810111814_UNI-ROYAL-Uniroyal-Elec-0402WGF1003TCE_C25741.pdf" V 2030 3000 50  0001 C CNN
+F 4 "0402WGF1003TCE" V 2130 3100 60  0001 C CNN "Part Number"
+F 5 "C25741" V 1800 3000 50  0001 C CNN "LCSC"
+	1    1950 3000
 	1    0    0    -1  
 $EndComp
 $EndSCHEMATC

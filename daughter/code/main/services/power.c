@@ -4,6 +4,7 @@
 #define IGN_ON  false
 #define SHUTDOWN_DELAY 70
 #define ONE_SECOND_IN_MILLISECONDS 1000
+#define C_OUT3														B5
 
 static xQueueHandle gpio_evt_queue = NULL;
 bool ignition_state = IGN_ON;
@@ -91,6 +92,7 @@ void set_audio_power(bool val)
 
 	gpio_set_level(AUDIO_STBY_IO, val);
 	gpio_set_level(AUDIO_MUTE_IO, val);
+	mcp23x17_set_level(&mcp_dev, C_OUT3, !val);
 	send_power_state();
 }
 
@@ -187,15 +189,16 @@ static void power_task(void* arg)
 void power_main(void)
 {
 	ignition_state = gpio_get_level(IGNITION_WIRE_IO);
+	mcp23x17_set_mode(&mcp_dev, C_OUT3, MCP23X17_GPIO_OUTPUT);
 
 	set_main_power(true);
 	set_display_power(true);
-	set_audio_power(true);
+	set_audio_power(false);
 
 	adc_main();
 
 	gpio_evt_queue = xQueueCreate(10, sizeof(uint32_t));
 	gpio_isr_handler_add(IGNITION_WIRE_IO, ignition_isr_handler, (void*) IGNITION_WIRE_IO);
-	xTaskCreate(power_task, "ignition_task", 1024 * 5, NULL, 10, NULL);
+	xTaskCreate(power_task, "power_task", 1024 * 5, NULL, 10, NULL);
   xTaskCreate(shutdown_timer, "shutdown_timer", 2048, NULL, 10, NULL);
 }
