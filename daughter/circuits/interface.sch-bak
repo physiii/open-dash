@@ -2100,10 +2100,10 @@ F 3 "" H 1600 1900 50  0001 C CNN
 $EndComp
 Text Label 10400 5300 2    50   ~ 0
 EXT_AMP_ON
-Text Label 13250 3050 0    50   ~ 0
+Text Label 13250 2750 0    50   ~ 0
 EXT_AMP_ON
 Wire Wire Line
-	13250 3050 13200 3050
+	13250 2750 13200 2750
 Text Label 13150 1350 0    50   ~ 0
 EXT_AMP_ON
 Wire Wire Line

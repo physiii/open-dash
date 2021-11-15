@@ -9,6 +9,7 @@
 static xQueueHandle gpio_evt_queue = NULL;
 bool ignition_state = IGN_ON;
 bool prev_ignition_state = false;
+int prev_wheel_state = 0;
 bool audio_power_state = false;
 bool display_power_state = false;
 bool main_power_state = true;
@@ -59,23 +60,17 @@ uint32_t get_wheel_state(){
 void send_power_state () {
 		char msg[1024];
 
-		// sprintf(msg,
-		// 		"{\"type\": \"power\", \"ignition\": \"%s\", \"audio\": %s, \"display\": %s, \"main\": %s, "
-		// 		"\"battery_voltage\":%d, \"main_current\":%d, \"wheel\":%d}",
-		// 		get_ignition(), get_audio_power(), get_display_power(), get_main_power(),
-		// 		get_battery_voltage(), get_main_current(), get_wheel_state());
-
 		sprintf(msg,
-				"{\"type\": \"power\", \"ignition\": \"%s\", \"audio\": %s, \"display\": %s, \"main\": %s}",
-						get_ignition(), get_audio_power(), get_display_power(), get_main_power());
+				"{\"type\": \"power\", \"ignition\": \"%s\", \"audio\": %s, \"display\": %s, \"main\": %s, "
+				"\"battery_voltage\":%d, \"main_current\":%d}",
+				get_ignition(), get_audio_power(), get_display_power(), get_main_power(),
+				get_battery_voltage(), get_main_current());
+
+		// sprintf(msg,
+		// 		"{\"type\": \"power\", \"ignition\": \"%s\", \"audio\": %s, \"display\": %s, \"main\": %s}",
+		// 				get_ignition(), get_audio_power(), get_display_power(), get_main_power());
 
 		addUartMessageToQueue(cJSON_Parse(msg));
-
-		// sprintf(msg,
-		// 		"{\"type\": \"power\", \"battery_voltage\":%d, \"main_current\":%d, \"wheel\":%d}",
-		// 		get_battery_voltage(), get_main_current(), get_wheel_state());
-		//
-		// addUartMessageToQueue(cJSON_Parse(msg));
 }
 
 void set_display_power(bool val)
@@ -128,6 +123,7 @@ shutdown_timer (void *pvParameter)
 }
 
 void check_power_state() {
+
 	if (ignition_state == prev_ignition_state) return;
 
 	if (ignition_state == IGN_ON) {
@@ -140,6 +136,19 @@ void check_power_state() {
 
 	send_power_state();
 	prev_ignition_state = ignition_state;
+}
+
+void check_wheel_state() {
+	int wheel_state = get_wheel_state();
+	if (wheel_state > 5 * 1000) return; // fix this!
+	if (wheel_state < prev_wheel_state + 20 && wheel_state > prev_wheel_state - 20) return;
+
+	char msg[1024];
+	sprintf(msg,
+			"{\"type\": \"wheel\", \"value\":%d}",
+			get_wheel_state());
+	addUartMessageToQueue(cJSON_Parse(msg));
+	prev_wheel_state = wheel_state;
 }
 
 void handle_power_message (cJSON * msg) {
@@ -186,11 +195,19 @@ static void power_task(void* arg)
 	}
 }
 
+static void wheel_task(void* arg)
+{
+	while(1) {
+		check_wheel_state();
+		vTaskDelay(SERVICE_LOOP / portTICK_RATE_MS);
+	}
+}
+
 void power_main(void)
 {
 	ignition_state = gpio_get_level(IGNITION_WIRE_IO);
 	mcp23x17_set_mode(&mcp_dev, C_OUT3, MCP23X17_GPIO_OUTPUT);
-	
+
 	set_main_power(true);
 	set_display_power(true);
 	set_audio_power(false);
@@ -200,5 +217,6 @@ void power_main(void)
 	gpio_evt_queue = xQueueCreate(10, sizeof(uint32_t));
 	gpio_isr_handler_add(IGNITION_WIRE_IO, ignition_isr_handler, (void*) IGNITION_WIRE_IO);
 	xTaskCreate(power_task, "ignition_task", 1024 * 5, NULL, 10, NULL);
+	xTaskCreate(wheel_task, "wheel_task", 1024 * 5, NULL, 10, NULL);
   xTaskCreate(shutdown_timer, "shutdown_timer", 2048, NULL, 10, NULL);
 }
