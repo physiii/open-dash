@@ -4,7 +4,7 @@
 #define IGN_ON  false
 #define SHUTDOWN_DELAY 70
 #define ONE_SECOND_IN_MILLISECONDS 1000
-#define C_OUT3														B5
+#define EXT_AMP_TRIG 27
 
 static xQueueHandle gpio_evt_queue = NULL;
 bool ignition_state = IGN_ON;
@@ -87,7 +87,7 @@ void set_audio_power(bool val)
 
 	gpio_set_level(AUDIO_STBY_IO, val);
 	gpio_set_level(AUDIO_MUTE_IO, val);
-	mcp23x17_set_level(&mcp_dev, C_OUT3, !val);
+	gpio_set_level(EXT_AMP_IO, val);
 	send_power_state();
 }
 
@@ -206,7 +206,6 @@ static void wheel_task(void* arg)
 void power_main(void)
 {
 	ignition_state = gpio_get_level(IGNITION_WIRE_IO);
-	mcp23x17_set_mode(&mcp_dev, C_OUT3, MCP23X17_GPIO_OUTPUT);
 
 	set_main_power(true);
 	set_display_power(true);

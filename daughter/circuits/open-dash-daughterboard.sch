@@ -354,7 +354,7 @@ Text Label 1800 2100 2    50   ~ 0
 LOW_REF
 Wire Wire Line
 	1850 2100 1800 2100
-Text Label 2300 3650 0    50   ~ 0
+Text Label 2050 4500 0    50   ~ 0
 5V
 $Comp
 L open-dash-daughterboard-rescue:GND-power #PWR?
@@ -383,13 +383,13 @@ Wire Wire Line
 Wire Wire Line
 	7600 8350 7650 8350
 Wire Wire Line
-	1750 3750 1700 3750
-Text Label 1700 3750 2    50   ~ 0
+	1500 4600 1450 4600
+Text Label 1450 4600 2    50   ~ 0
 3V3
 Wire Wire Line
-	2300 3650 2250 3650
+	2050 4500 2000 4500
 Wire Wire Line
-	1700 3550 1750 3550
+	1450 4400 1500 4400
 Text Label 7400 6300 2    50   ~ 0
 FACT
 Wire Wire Line
@@ -424,8 +424,6 @@ Text Label 12450 6000 0    50   ~ 0
 REAR_DEFOG
 Text Label 11200 4850 2    50   ~ 0
 BATTERY
-Text Label 12450 6100 0    50   ~ 0
-EXT_AMP_ON
 Text Label 11200 5350 2    50   ~ 0
 INSIDE_AIR_TEMP
 Text Label 11200 5450 2    50   ~ 0
@@ -495,8 +493,6 @@ Wire Wire Line
 Wire Wire Line
 	12400 6250 12450 6250
 Wire Wire Line
-	12450 6100 12400 6100
-Wire Wire Line
 	12400 6000 12450 6000
 Wire Wire Line
 	12450 5900 12400 5900
@@ -520,13 +516,13 @@ Wire Wire Line
 	12400 5000 12450 5000
 Wire Wire Line
 	12450 4850 12400 4850
-Text Label 1700 3650 2    50   ~ 0
+Text Label 1450 4500 2    50   ~ 0
 5V
 Wire Wire Line
-	1700 3650 1750 3650
+	1450 4500 1500 4500
 Text Label 7400 6150 2    50   ~ 0
 BATTERY_VOLTAGE_SENSE
-Text Label 1700 3550 2    50   ~ 0
+Text Label 1450 4400 2    50   ~ 0
 BATTERY
 Text Label 7400 5850 2    50   ~ 0
 IGNITION_SENSE
@@ -1032,17 +1028,15 @@ F 4 "SBH11-PBPC-D20-ST-BK" H 11300 2350 50  0001 C CNN "Part Number"
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	2300 3550 2250 3550
-Text Label 2300 3550 0    50   ~ 0
+	2050 4400 2000 4400
+Text Label 2050 4400 0    50   ~ 0
 BATTERY
 Wire Wire Line
-	2250 3750 2300 3750
-Text Label 2300 3750 0    50   ~ 0
+	2000 4600 2050 4600
+Text Label 2050 4600 0    50   ~ 0
 3V3
-Text Label 1700 3950 2    50   ~ 0
-EXT_AMP_ON
 Wire Wire Line
-	1700 3950 1750 3950
+	1450 4800 1500 4800
 Text Label 9050 2750 0    50   ~ 0
 AUDIO_IN3
 Text Label 9050 2650 0    50   ~ 0
@@ -1262,104 +1256,104 @@ Connection ~ 9000 3350
 $Comp
 L open-dash-daughterboard-rescue:Conn_02x02_Counter_Clockwise-Connector_Generic J?
 U 1 1 62018099
-P 1950 4500
+P 1700 5350
 AR Path="/60DDD162/62018099" Ref="J?"  Part="1" 
 AR Path="/62018099" Ref="J43"  Part="1" 
-F 0 "J43" H 2000 4717 50  0000 C CNN
-F 1 "Conn_02x02_Counter_Clockwise" H 2000 4626 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_2x02_P2.54mm_Vertical_SMD" H 1950 4500 50  0001 C CNN
-F 3 "~" H 1950 4500 50  0001 C CNN
-	1    1950 4500
+F 0 "J43" H 1750 5567 50  0000 C CNN
+F 1 "Conn_02x02_Counter_Clockwise" H 1750 5476 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x02_P2.54mm_Vertical_SMD" H 1700 5350 50  0001 C CNN
+F 3 "~" H 1700 5350 50  0001 C CNN
+	1    1700 5350
 	1    0    0    -1  
 $EndComp
 $Comp
 L open-dash-daughterboard-rescue:GND-power #PWR?
 U 1 1 6201809F
-P 1700 4500
+P 1450 5350
 AR Path="/5ABD187E/6201809F" Ref="#PWR?"  Part="1" 
 AR Path="/6201809F" Ref="#PWR0159"  Part="1" 
 AR Path="/5A7BADB8/6201809F" Ref="#PWR?"  Part="1" 
 AR Path="/60DDD162/6201809F" Ref="#PWR?"  Part="1" 
-F 0 "#PWR0159" H 1700 4250 50  0001 C CNN
-F 1 "GND" V 1700 4300 50  0000 C CNN
-F 2 "" H 1700 4500 50  0000 C CNN
-F 3 "" H 1700 4500 50  0000 C CNN
-	1    1700 4500
+F 0 "#PWR0159" H 1450 5100 50  0001 C CNN
+F 1 "GND" V 1450 5150 50  0000 C CNN
+F 2 "" H 1450 5350 50  0000 C CNN
+F 3 "" H 1450 5350 50  0000 C CNN
+	1    1450 5350
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	1700 4500 1750 4500
+	1450 5350 1500 5350
 Wire Wire Line
-	1700 4600 1750 4600
+	1450 5450 1500 5450
 Wire Wire Line
-	2250 4600 2300 4600
+	2000 5450 2050 5450
 Wire Wire Line
-	2300 4500 2250 4500
-Text Label 2300 4500 0    50   ~ 0
+	2050 5350 2000 5350
+Text Label 2050 5350 0    50   ~ 0
 SCL
-Text Label 2300 4600 0    50   ~ 0
+Text Label 2050 5450 0    50   ~ 0
 SDA
-Text Label 1700 4600 2    50   ~ 0
+Text Label 1450 5450 2    50   ~ 0
 3V3
 $Comp
 L open-dash-daughterboard-rescue:GND-power #PWR?
 U 1 1 5FE25541
-P 2350 4050
+P 2100 4900
 AR Path="/5ABD187E/5FE25541" Ref="#PWR?"  Part="1" 
 AR Path="/5FE25541" Ref="#PWR02"  Part="1" 
 AR Path="/5A7BADDB/5FE25541" Ref="#PWR?"  Part="1" 
 AR Path="/6077D777/5FE25541" Ref="#PWR?"  Part="1" 
-F 0 "#PWR02" H 2350 3800 50  0001 C CNN
-F 1 "GND" V 2350 3850 50  0000 C CNN
-F 2 "" H 2350 4050 50  0001 C CNN
-F 3 "" H 2350 4050 50  0001 C CNN
-	1    2350 4050
+F 0 "#PWR02" H 2100 4650 50  0001 C CNN
+F 1 "GND" V 2100 4700 50  0000 C CNN
+F 2 "" H 2100 4900 50  0001 C CNN
+F 3 "" H 2100 4900 50  0001 C CNN
+	1    2100 4900
 	0    -1   -1   0   
 $EndComp
-Text Label 2300 3950 0    50   ~ 0
+Text Label 2050 4800 0    50   ~ 0
 AIN9
-Text Label 2300 3850 0    50   ~ 0
+Text Label 2050 4700 0    50   ~ 0
 AIN10
 Wire Wire Line
-	2300 3850 2250 3850
+	2050 4700 2000 4700
 Wire Wire Line
-	2350 4050 2250 4050
+	2100 4900 2000 4900
 Wire Wire Line
-	2250 3950 2300 3950
+	2000 4800 2050 4800
 Wire Wire Line
-	1750 4050 1700 4050
+	1500 4900 1450 4900
 $Comp
 L open-dash-daughterboard-rescue:GND-power #PWR?
 U 1 1 5FE25547
-P 1700 4050
+P 1450 4900
 AR Path="/5ABD187E/5FE25547" Ref="#PWR?"  Part="1" 
 AR Path="/5FE25547" Ref="#PWR03"  Part="1" 
 AR Path="/5A7BADDB/5FE25547" Ref="#PWR?"  Part="1" 
 AR Path="/6077D777/5FE25547" Ref="#PWR?"  Part="1" 
-F 0 "#PWR03" H 1700 3800 50  0001 C CNN
-F 1 "GND" V 1650 3900 50  0000 C CNN
-F 2 "" H 1700 4050 50  0001 C CNN
-F 3 "" H 1700 4050 50  0001 C CNN
-	1    1700 4050
+F 0 "#PWR03" H 1450 4650 50  0001 C CNN
+F 1 "GND" V 1400 4750 50  0000 C CNN
+F 2 "" H 1450 4900 50  0001 C CNN
+F 3 "" H 1450 4900 50  0001 C CNN
+	1    1450 4900
 	0    1    1    0   
 $EndComp
 $Comp
 L Connector_Generic:Conn_02x06_Odd_Even J5
 U 1 1 6203B62F
-P 1950 3750
-F 0 "J5" H 2000 4167 50  0000 C CNN
-F 1 "Conn_02x06_Odd_Even" H 2000 4076 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_2x06_P2.54mm_Vertical_SMD" H 1950 3750 50  0001 C CNN
-F 3 "~" H 1950 3750 50  0001 C CNN
-	1    1950 3750
+P 1700 4600
+F 0 "J5" H 1750 5017 50  0000 C CNN
+F 1 "Conn_02x06_Odd_Even" H 1750 4926 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x06_P2.54mm_Vertical_SMD" H 1700 4600 50  0001 C CNN
+F 3 "~" H 1700 4600 50  0001 C CNN
+	1    1700 4600
 	1    0    0    -1  
 $EndComp
-Text Label 1700 3850 2    50   ~ 0
+Text Label 1450 4700 2    50   ~ 0
 FACT
 Wire Wire Line
-	1700 3850 1750 3850
+	1450 4700 1500 4700
 $Sheet
-S 1550 5000 900  750 
+S 1300 5850 900  750 
 U 657571BE
 F0 "Interface" 50
 F1 "interface.sch" 50
@@ -1447,24 +1441,121 @@ Wire Wire Line
 $Comp
 L Open_Automation:R_1K_0402 R84
 U 1 1 61961BCF
-P 1750 2950
-F 0 "R84" V 1750 2950 50  0000 C CNN
-F 1 "R_1K_0402" V 1850 2950 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder" V 1680 2950 50  0001 C CNN
-F 3 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-3GEYJ102V/P1.0KGDKR-ND/577615" V 1830 2950 50  0001 C CNN
-F 4 "0402WGF1001TCE" V 1930 3050 60  0001 C CNN "Part Number"
-F 5 "C11702" H 1750 2950 50  0001 C CNN "LCSC"
-	1    1750 2950
+P 3400 3500
+F 0 "R84" V 3400 3500 50  0000 C CNN
+F 1 "R_1K_0402" V 3300 3600 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder" V 3330 3500 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-3GEYJ102V/P1.0KGDKR-ND/577615" V 3480 3500 50  0001 C CNN
+F 4 "0402WGF1001TCE" V 3580 3600 60  0001 C CNN "Part Number"
+F 5 "C11702" H 3400 3500 50  0001 C CNN "LCSC"
+	1    3400 3500
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	1550 2950 1600 2950
-Wire Wire Line
-	1950 2950 1900 2950
-Text Label 1550 2950 2    50   ~ 0
+	3600 3500 3550 3500
+Text Label 3900 3800 0    50   ~ 0
 EXT_AMP_ON
-Text Label 1950 2950 0    50   ~ 0
+Text Label 3900 3250 0    50   ~ 0
 BATTERY
 Text Label 11050 2550 2    50   ~ 0
 EXT_AMP_ON
+$Comp
+L Open_Automation:Q_SS8550 Q?
+U 1 1 61B061F7
+P 3800 3500
+F 0 "Q?" H 3990 3454 50  0000 L CNN
+F 1 "Q_SS8550" H 3990 3545 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 4000 3425 50  0001 L CIN
+F 3 "https://datasheet.lcsc.com/szlcsc/Changjiang-Electronics-Tech-CJ-SS8550_C8542.pdf" H 3800 3500 50  0001 L CNN
+F 4 "SS8550" H 3800 3500 50  0001 C CNN "Part Number"
+F 5 "C8542" H 3800 3500 50  0001 C CNN "LCSC"
+	1    3800 3500
+	1    0    0    1   
+$EndComp
+Wire Wire Line
+	3900 3250 3900 3300
+Wire Wire Line
+	3900 3700 3900 3800
+Wire Wire Line
+	12450 6100 12400 6100
+Text Label 12450 6100 0    50   ~ 0
+C_OUT3
+Text Label 2500 3750 2    50   ~ 0
+EXT_AMP_TRIG
+Text Label 7400 5750 2    50   ~ 0
+EXT_AMP_TRIG
+Wire Wire Line
+	7400 5750 7450 5750
+Text Label 1450 4800 2    50   ~ 0
+C_OUT3
+$Comp
+L Open_Automation:Q_SS8050 Q?
+U 1 1 61C8D87B
+P 3100 3750
+F 0 "Q?" H 3290 3796 50  0000 L CNN
+F 1 "Q_SS8050" H 3290 3705 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 3300 3850 29  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Changjiang-Electronics-Tech-CJ-SS8050_C2150.pdf" H 3100 3750 60  0001 C CNN
+F 4 "SS8050" H 3100 3750 50  0001 C CNN "Part Number"
+F 5 "C2150" H 3100 3750 50  0001 C CNN "LCSC"
+	1    3100 3750
+	1    0    0    -1  
+$EndComp
+$Comp
+L Open_Automation:R_1K_0402 R?
+U 1 1 61CCFD29
+P 2700 3750
+F 0 "R?" V 2700 3750 50  0000 C CNN
+F 1 "R_1K_0402" V 2800 3750 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder" V 2630 3750 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-3GEYJ102V/P1.0KGDKR-ND/577615" V 2780 3750 50  0001 C CNN
+F 4 "0402WGF1001TCE" V 2880 3850 60  0001 C CNN "Part Number"
+F 5 "C11702" H 2700 3750 50  0001 C CNN "LCSC"
+	1    2700 3750
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	2500 3750 2550 3750
+Wire Wire Line
+	2850 3750 2900 3750
+$Comp
+L open-dash-daughterboard-rescue:GND-power #PWR?
+U 1 1 61D0F0CE
+P 3200 4000
+AR Path="/5ABD187E/61D0F0CE" Ref="#PWR?"  Part="1" 
+AR Path="/61D0F0CE" Ref="#PWR?"  Part="1" 
+AR Path="/5A7BADB8/61D0F0CE" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 3200 3750 50  0001 C CNN
+F 1 "GND" V 3150 3850 50  0000 C CNN
+F 2 "" H 3200 4000 50  0001 C CNN
+F 3 "" H 3200 4000 50  0001 C CNN
+	1    3200 4000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3200 3950 3200 4000
+$Comp
+L Open_Automation:R_1K_0402 R?
+U 1 1 61D31172
+P 3200 3300
+F 0 "R?" V 3200 3300 50  0000 C CNN
+F 1 "R_1K_0402" V 3300 3300 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder" V 3130 3300 50  0001 C CNN
+F 3 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-3GEYJ102V/P1.0KGDKR-ND/577615" V 3280 3300 50  0001 C CNN
+F 4 "0402WGF1001TCE" V 3380 3400 60  0001 C CNN "Part Number"
+F 5 "C11702" H 3200 3300 50  0001 C CNN "LCSC"
+	1    3200 3300
+	-1   0    0    1   
+$EndComp
+Text Label 3200 3100 0    50   ~ 0
+BATTERY
+Wire Wire Line
+	3200 3100 3200 3150
+Wire Wire Line
+	3200 3450 3200 3500
+Wire Wire Line
+	3250 3500 3200 3500
+Connection ~ 3200 3500
+Wire Wire Line
+	3200 3500 3200 3550
 $EndSCHEMATC
