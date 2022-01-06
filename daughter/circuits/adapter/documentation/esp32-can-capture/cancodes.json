@@ -1,0 +1,22 @@
+{
+  "2018": {
+    "Dodge": {
+      "ProMaster": {
+        "Ignition": {
+           "ormask": 0x0000f00000ffff0f,
+          "andmask": 0xffff0fffff0000f0,
+          "state": {
+            "on": 0x00bff0000fffff0f,
+            "off": 0x000bf00000ffff0f
+          }
+        },
+        "Engine": {
+          "mask": 0xffffffffffffffff,
+          "state": {
+            "on": 0x000b440000400400
+          }
+        }
+      }
+    }
+  }
+}
