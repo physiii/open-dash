@@ -3,7 +3,7 @@ EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 9 14
+Sheet 13 14
 Title ""
 Date ""
 Rev ""
@@ -265,7 +265,7 @@ F 3 "https://datasheet.lcsc.com/lcsc/1810171817_Alpha-&-Omega-Semicon-AO3401A_C1
 F 4 "AO3401A" H 5700 2100 60  0001 C CNN "Part Number"
 F 5 "C15127" H 5700 2200 50  0001 C CNN "LCSC"
 	1    5400 1950
-	1    0    0    -1  
+	1    0    0    1   
 $EndComp
 $Comp
 L Open_Automation:Q_AO3400A Q14
@@ -301,7 +301,7 @@ F 3 "https://datasheet.lcsc.com/lcsc/1810171817_Alpha-&-Omega-Semicon-AO3401A_C1
 F 4 "AO3401A" H 6200 2100 60  0001 C CNN "Part Number"
 F 5 "C15127" H 6200 2200 50  0001 C CNN "LCSC"
 	1    5900 1950
-	-1   0    0    -1  
+	-1   0    0    1   
 $EndComp
 $Comp
 L Open_Automation:Q_AO3400A Q20

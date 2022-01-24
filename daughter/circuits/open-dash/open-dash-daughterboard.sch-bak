@@ -1355,7 +1355,7 @@ FACT
 Wire Wire Line
 	1450 4700 1500 4700
 $Sheet
-S 1300 5850 900  750 
+S 1300 6250 900  750 
 U 657571BE
 F0 "Interface" 50
 F1 "interface.sch" 50
@@ -1394,19 +1394,6 @@ Wire Wire Line
 	9050 2350 9000 2350
 Text Label 9050 2550 0    50   ~ 0
 RF-
-$Comp
-L open-dash-daughterboard-rescue:D_1N5819HW-Open_Automation D1
-U 1 1 6076B14B
-P 1700 2500
-F 0 "D1" H 1700 2284 50  0000 C CNN
-F 1 "D_1N5819HW" H 1700 2375 50  0000 C CNN
-F 2 "Diode_SMD:D_SOD-123" H 1700 2325 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/Diodes-Incorporated-1N5819HW-7-F_C82544.pdf" H 1700 2500 50  0001 C CNN
-F 4 "1N5819HW-7-F" H 1700 2800 50  0001 C CNN "Part Number"
-F 5 "C82544" H 1700 2900 50  0001 C CNN "LCSC"
-	1    1700 2500
-	-1   0    0    1   
-$EndComp
 Text Label 1550 2700 2    50   ~ 0
 WHEEL_CONTROLS_SIGNAL
 $Comp
@@ -1521,4 +1508,59 @@ Text Label 4800 8000 2    50   ~ 0
 3V3
 Wire Wire Line
 	4800 8000 4850 8000
+$Comp
+L Open_Automation:D_B5819W D1
+U 1 1 61DA990B
+P 1700 2500
+F 0 "D1" H 1700 2284 50  0000 C CNN
+F 1 "D_B5819W" H 1700 2375 50  0000 C CNN
+F 2 "Diode_SMD:D_SOD-123" H 1700 2325 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/lcsc/1809140216_Changjiang-Electronics-Tech--CJ-B5819W-SL_C8598.pdf" H 1700 2500 50  0001 C CNN
+F 4 "B5819W SL" H 1700 2800 50  0001 C CNN "Part Number"
+F 5 "C8598" H 1700 2900 50  0001 C CNN "LCSC"
+	1    1700 2500
+	-1   0    0    1   
+$EndComp
+$Comp
+L open-dash-daughterboard-rescue:Conn_02x02_Counter_Clockwise-Connector_Generic J?
+U 1 1 621B051F
+P 1700 5850
+AR Path="/60DDD162/621B051F" Ref="J?"  Part="1" 
+AR Path="/621B051F" Ref="J?"  Part="1" 
+F 0 "J?" H 1750 6067 50  0000 C CNN
+F 1 "Conn_02x02_Counter_Clockwise" H 1750 5976 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x02_P2.54mm_Vertical_SMD" H 1700 5850 50  0001 C CNN
+F 3 "~" H 1700 5850 50  0001 C CNN
+	1    1700 5850
+	1    0    0    -1  
+$EndComp
+$Comp
+L open-dash-daughterboard-rescue:GND-power #PWR?
+U 1 1 621B077D
+P 1450 5850
+AR Path="/5ABD187E/621B077D" Ref="#PWR?"  Part="1" 
+AR Path="/621B077D" Ref="#PWR?"  Part="1" 
+AR Path="/5A7BADB8/621B077D" Ref="#PWR?"  Part="1" 
+AR Path="/60DDD162/621B077D" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 1450 5600 50  0001 C CNN
+F 1 "GND" V 1450 5650 50  0000 C CNN
+F 2 "" H 1450 5850 50  0000 C CNN
+F 3 "" H 1450 5850 50  0000 C CNN
+	1    1450 5850
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	1450 5850 1500 5850
+Wire Wire Line
+	1450 5950 1500 5950
+Text Label 2050 5850 0    50   ~ 0
+TXD
+Text Label 2050 5950 0    50   ~ 0
+RXD
+Wire Wire Line
+	2000 5950 2050 5950
+Wire Wire Line
+	2050 5850 2000 5850
+Text Label 1450 5950 2    50   ~ 0
+5V
 $EndSCHEMATC

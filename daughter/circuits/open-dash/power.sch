@@ -1367,8 +1367,6 @@ F 3 "" H 4300 3300 50  0000 C CNN
 	1    4300 3300
 	1    0    0    -1  
 $EndComp
-Text Label 4400 2950 2    50   ~ 0
-5V
 Wire Wire Line
 	4300 3250 4300 3300
 Wire Wire Line
@@ -1383,19 +1381,6 @@ Connection ~ 4300 3300
 Wire Wire Line
 	5350 3050 5500 3050
 Connection ~ 5500 3050
-$Comp
-L Open_Automation:REG_AMS1117-3.3 U11
-U 1 1 607097AC
-P 5000 3050
-F 0 "U11" H 4975 3375 50  0000 C CNN
-F 1 "REG_AMS1117-3.3" H 4975 3284 50  0000 C CNN
-F 2 "Package_TO_SOT_SMD:SOT-223-3_TabPin2" H 4950 2775 50  0001 C CIN
-F 3 "https://datasheet.lcsc.com/szlcsc/1811201117_Advanced-Monolithic-Systems-AMS-AMS1117-3-3_C6186.pdf" H 4975 2700 50  0001 C CNN
-F 4 "AMS1117-3.3" H 5025 3375 60  0001 C CNN "Part Number"
-F 5 "C6186" H 4950 3450 50  0001 C CNN "LCSC"
-	1    5000 3050
-	1    0    0    -1  
-$EndComp
 $Comp
 L Open_Automation:R_100K_0402 R3
 U 1 1 61AC8D3E
@@ -1442,4 +1427,19 @@ Wire Wire Line
 	1700 1700 1750 1700
 Text HLabel 1700 1700 0    60   Input ~ 0
 5V_EN
+$Comp
+L Open_Automation:REG_AMS1117-3.3 U11
+U 1 1 61F30C06
+P 5000 3050
+F 0 "U11" H 4975 3375 50  0000 C CNN
+F 1 "REG_AMS1117-3.3" H 4975 3284 50  0000 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-223-3_TabPin2" H 4950 2775 50  0001 C CIN
+F 3 "https://datasheet.lcsc.com/szlcsc/1811201117_Advanced-Monolithic-Systems-AMS-AMS1117-3-3_C6186.pdf" H 4975 2700 50  0001 C CNN
+F 4 "AMS1117-3.3" H 5025 3375 60  0001 C CNN "Part Number"
+F 5 "C347222" H 4950 3450 50  0001 C CNN "LCSC"
+	1    5000 3050
+	1    0    0    -1  
+$EndComp
+Text Label 4450 2950 2    50   ~ 0
+POWER_IN
 $EndSCHEMATC

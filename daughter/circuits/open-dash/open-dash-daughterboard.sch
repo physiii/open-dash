@@ -1355,7 +1355,7 @@ FACT
 Wire Wire Line
 	1450 4700 1500 4700
 $Sheet
-S 1300 5850 900  750 
+S 1300 6250 900  750 
 U 657571BE
 F0 "Interface" 50
 F1 "interface.sch" 50
@@ -1521,4 +1521,46 @@ F 5 "C8598" H 1700 2900 50  0001 C CNN "LCSC"
 	1    1700 2500
 	-1   0    0    1   
 $EndComp
+$Comp
+L open-dash-daughterboard-rescue:Conn_02x02_Counter_Clockwise-Connector_Generic J?
+U 1 1 621B051F
+P 1700 5850
+AR Path="/60DDD162/621B051F" Ref="J?"  Part="1" 
+AR Path="/621B051F" Ref="J46"  Part="1" 
+F 0 "J46" H 1750 6067 50  0000 C CNN
+F 1 "Conn_02x02_Counter_Clockwise" H 1750 5976 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x02_P2.54mm_Vertical_SMD" H 1700 5850 50  0001 C CNN
+F 3 "~" H 1700 5850 50  0001 C CNN
+	1    1700 5850
+	1    0    0    -1  
+$EndComp
+$Comp
+L open-dash-daughterboard-rescue:GND-power #PWR?
+U 1 1 621B077D
+P 1450 5850
+AR Path="/5ABD187E/621B077D" Ref="#PWR?"  Part="1" 
+AR Path="/621B077D" Ref="#PWR0177"  Part="1" 
+AR Path="/5A7BADB8/621B077D" Ref="#PWR?"  Part="1" 
+AR Path="/60DDD162/621B077D" Ref="#PWR?"  Part="1" 
+F 0 "#PWR0177" H 1450 5600 50  0001 C CNN
+F 1 "GND" V 1450 5650 50  0000 C CNN
+F 2 "" H 1450 5850 50  0000 C CNN
+F 3 "" H 1450 5850 50  0000 C CNN
+	1    1450 5850
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	1450 5850 1500 5850
+Wire Wire Line
+	1450 5950 1500 5950
+Text Label 2050 5950 0    50   ~ 0
+TXD
+Text Label 2050 5850 0    50   ~ 0
+RXD
+Wire Wire Line
+	2000 5850 2050 5850
+Wire Wire Line
+	2050 5950 2000 5950
+Text Label 1450 5950 2    50   ~ 0
+5V
 $EndSCHEMATC

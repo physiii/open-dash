@@ -748,6 +748,6 @@ F 5 "CL05A105KA5NQNC" H 3975 2250 60  0001 C CNN "Part Number"
 	1    3850 2050
 	1    0    0    -1  
 $EndComp
-Text Label 3850 1850 2    50   ~ 0
-EN
+Text Label 3850 1850 0    50   ~ 0
+PROG
 $EndSCHEMATC
