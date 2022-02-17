@@ -32,9 +32,11 @@ void app_main(void)
 	xTaskCreate(serviceMessageTask, "serviceMessageTask", 5000, NULL, 10, NULL);
 
 	while(1) {
-			printf("\n\nUptime: %d minutes\n\n", cnt++);
-			printf("\n\nMinimum free heap size: %d bytes\n\n", esp_get_minimum_free_heap_size());
+			printf("\nUptime: %d minutes\n", cnt++);
+			// printf("\n\nMinimum free heap size: %d bytes\n\n", esp_get_minimum_free_heap_size());
 
+			printf("gpio_set_level io:%d\tval: %d\n", MODE_A, cnt%2);
+			mcp23x17_set_level(&mcp_dev, MODE_A, cnt%2);
 			vTaskDelay(60 * 1000 / portTICK_RATE_MS);
 	}
 }

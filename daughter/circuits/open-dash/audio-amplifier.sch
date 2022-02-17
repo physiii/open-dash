@@ -672,19 +672,6 @@ F 5 "C1525" H 6500 3600 50  0001 C CNN "LCSC"
 	0    1    1    0   
 $EndComp
 $Comp
-L Open_Automation:C_10uF C17
-U 1 1 6051CBF8
-P 7300 5500
-F 0 "C17" H 7200 5600 50  0000 L CNN
-F 1 "C_10uF" H 7000 5400 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder" H 7550 5950 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/Samsung-Electro-Mechanics-CL21A106KAYNNNE_C15850.pdf" H 7300 5250 50  0001 C CNN
-F 4 "CL21A106KAYNNNE" H 7350 6050 60  0001 C CNN "Part Number"
-F 5 "C15850" H 7300 6150 50  0001 C CNN "LCSC"
-	1    7300 5500
-	1    0    0    -1  
-$EndComp
-$Comp
 L Open_Automation:C_0.1uF C21
 U 1 1 605193C1
 P 8250 1650
@@ -1035,4 +1022,38 @@ Wire Wire Line
 Wire Wire Line
 	1200 3300 1200 3400
 Connection ~ 1200 3400
+$Comp
+L Open_Automation:C_47uF C28
+U 1 1 6200CB35
+P 7300 5500
+F 0 "C28" H 7100 5500 50  0000 L CNN
+F 1 "C_47uF" H 7000 5400 50  0000 L CNN
+F 2 "Capacitor_SMD:C_1210_3225Metric_Pad1.33x2.70mm_HandSolder" H 7400 5800 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/2007130932_Taiyo-Yuden-TMK325ABJ476MM-P_C90142.pdf" H 7300 5250 50  0001 C CNN
+F 4 "C90142" H 7300 5900 50  0001 C CNN "LCSC"
+F 5 "TMK325ABJ476MM-P" H 7425 5700 60  0001 C CNN "Part Number"
+	1    7300 5500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Open_Automation:C_1uF C17
+U 1 1 6200ED21
+P 6850 5500
+F 0 "C17" H 6650 5500 50  0000 L CNN
+F 1 "C_1uF" H 6600 5400 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0402_1005Metric_Pad0.74x0.62mm_HandSolder" H 6950 5800 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Samsung-Electro-Mechanics-CL05A105KA5NQNC_C52923.pdf" H 6850 5250 50  0001 C CNN
+F 4 "C52923" H 6850 5900 50  0001 C CNN "LCSC"
+F 5 "CL05A105KA5NQNC" H 6975 5700 60  0001 C CNN "Part Number"
+	1    6850 5500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6850 5650 6850 5700
+Wire Wire Line
+	6850 5700 7300 5700
+Connection ~ 7300 5700
+Wire Wire Line
+	6850 5350 7300 5350
+Connection ~ 7300 5350
 $EndSCHEMATC

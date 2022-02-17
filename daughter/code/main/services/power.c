@@ -66,11 +66,9 @@ void send_power_state () {
 				get_ignition(), get_audio_power(), get_display_power(), get_main_power(),
 				get_battery_voltage(), get_main_current());
 
-		// sprintf(msg,
-		// 		"{\"type\": \"power\", \"ignition\": \"%s\", \"audio\": %s, \"display\": %s, \"main\": %s}",
-		// 				get_ignition(), get_audio_power(), get_display_power(), get_main_power());
+		printf("[send_power_state] %s\n", msg);
 
-		addUartMessageToQueue(cJSON_Parse(msg));
+		// addUartMessageToQueue(cJSON_Parse(msg));
 }
 
 void set_display_power(bool val)
@@ -89,6 +87,9 @@ void set_audio_power(bool val)
 	gpio_set_level(AUDIO_MUTE_IO, val);
 	gpio_set_level(EXT_AMP_IO, val);
 	send_power_state();
+	printf("[set_audio_power] val: %d\n", val);
+	printf("[set_audio_power] stby: %d\n", AUDIO_STBY_IO);
+	printf("[set_audio_power] mute: %d\n", AUDIO_MUTE_IO);
 }
 
 void set_main_power(bool val)
@@ -209,7 +210,7 @@ void power_main(void)
 
 	set_main_power(true);
 	set_display_power(true);
-	set_audio_power(false);
+	set_audio_power(true);
 
 	adc_main();
 

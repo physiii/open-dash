@@ -692,6 +692,30 @@ X ~ 2 0 -150 130 U 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
+# Open_Automation_C_47uF
+#
+DEF Open_Automation_C_47uF C 0 10 N Y 1 F N
+F0 "C" 25 100 50 H V L CNN
+F1 "Open_Automation_C_47uF" -225 -100 50 H V L CNN
+F2 "Capacitor_SMD:C_1210_3225Metric_Pad1.33x2.70mm_HandSolder" 100 300 50 H I C CNN
+F3 "" 0 -250 50 H I C CNN
+F4 "C90142" 0 400 50 H I C CNN "LCSC"
+F5 "TMK325ABJ476MM-P" 125 200 60 H I C CNN "Part Number"
+$FPLIST
+ C?
+ C_????_*
+ C_????
+ SMD*_c
+ Capacitor*
+$ENDFPLIST
+DRAW
+P 2 0 1 20 -80 -30 80 -30 N
+P 2 0 1 20 -80 30 80 30 N
+X ~ 1 0 150 110 D 50 50 1 1 P
+X ~ 2 0 -150 110 U 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
 # Open_Automation_Conn_IDE_40
 #
 DEF Open_Automation_Conn_IDE_40 J 0 40 Y N 1 F N
