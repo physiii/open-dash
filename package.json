@@ -13,8 +13,7 @@
     "url": "https://github.com/physiii/GameMachine"
   },
   "window": {
-    "width": 600,
-    "height": 900
+    "kiosk": true
   },
   "chromium-args": "--allow-file-access-from-files --allow-file-access --user-data-dir",
   "private": true,

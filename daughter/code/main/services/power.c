@@ -87,7 +87,8 @@ void set_audio_power(bool val)
 
 	gpio_set_level(AUDIO_STBY_IO, val);
 	gpio_set_level(AUDIO_MUTE_IO, val);
-	gpio_set_level(EXT_AMP_IO, val);
+	gpio_set_level(DISPLAY_POWER_IO, val);
+	// gpio_set_level(EXT_AMP_IO, val);
 	send_power_state();
 }
 
@@ -132,6 +133,7 @@ void check_power_state() {
 	} else {
 		start_shutdown_timer(true);
 		setAcOn(false);
+		set_audio_power(false);
 	}
 
 	send_power_state();

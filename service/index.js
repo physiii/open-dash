@@ -15,13 +15,20 @@ const
 	socketPort = 3030,
 	VARIANCE = 100,
 	wheelActions = [
-		{triggerValue: 800, exec:() => {Exec("xdotool key Super_L")}},
-		{triggerValue: 1600, exec:() => {Exec("xdotool key \"ctrl+alt+Down\"")}},
-		{triggerValue: 2400, exec:() => {Exec("xdotool key \"ctrl+alt+Up\"")}},
+		{triggerValue: 1550, exec:() => {execKeyCommand(["KEY_LEFTMETA"])}},
+		{triggerValue: 1940, exec:() => {execKeyCommand(["KEY_LEFTCTRL", "KEY_LEFTALT", "KEY_LEFT"])}},
+		{triggerValue: 2300, exec:() => {execKeyCommand(["KEY_LEFTCTRL", "KEY_LEFTALT", "KEY_RIGHT"])}},
+		{triggerValue: 3020, exec:() => {execKeyCommand(["KEY_VOLUMEUP"])}},
+		{triggerValue: 2650, exec:() => {execKeyCommand(["KEY_VOLUMEDOWN"])}}
+	],
+	wheelActionsX = [
+		{triggerValue: 1550, exec:() => {Exec("xdotool key Super_L")}},
+		{triggerValue: 1940, exec:() => {Exec("xdotool key \"ctrl+alt+Down\"")}},
+		{triggerValue: 2300, exec:() => {Exec("xdotool key \"ctrl+alt+Up\"")}},
 		// {triggerValue: 3000, exec:() => {Exec("xdotool key ctrl+alt+Right")}},
 		// {triggerValue: 2000, exec:() => {Exec("xdotool key ctrl+alt+Left")}},
-		{triggerValue: 3200, exec:() => {Exec("xdotool key XF86AudioRaiseVolume")}},
-		{triggerValue: 4000, exec:() => {Exec("xdotool key XF86AudioLowerVolume")}}
+		{triggerValue: 3020, exec:() => {Exec("xdotool key XF86AudioRaiseVolume")}},
+		{triggerValue: 2650, exec:() => {Exec("xdotool key XF86AudioLowerVolume")}}
 	];
 
 let state = {
@@ -78,6 +85,20 @@ listener.sockets.on('connection',function(socket){
 	});
 });
 // ------------------------------- //
+
+function execKeyCommand(keys) {
+	for (let i = 0; i < keys.length; i++) {
+		let cmd = "sudo evemu-event /dev/input/event2 --type EV_KEY --code " + keys[i] + " --value 1 --sync "
+		Exec(cmd);
+		console.log(cmd);
+	}
+
+	for (let i = 0; i < keys.length; i++) {
+		let cmd = "sudo evemu-event /dev/input/event2 --type EV_KEY --code " + keys[i] + " --value 0 --sync "
+		Exec(cmd);
+		console.log(cmd);
+	}
+}
 
 function checkWheelControl(val) {
 	wheelActions.map((action) => {
