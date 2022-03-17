@@ -1,0 +1,11 @@
+starting state: door is open, key removed from ignition, ignition is off
+1: begin capture (it is silent)
+2: press unlock on keyfob, observe ~1500 frames
+3: press unlock again on keyfob, observe ~1500 frames
+4: press lock on keyfob, observe a bunch of frames
+5: press lock again, observe a bunch of frames
+6: shut door, get frames
+7: press lock, get frames
+8: press lock, get frames
+9: press unlock, get frames
+10: open door, get frames

@@ -1,0 +1,440 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 8 8
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Transistor_BJT:BC846 Q?
+U 1 1 5FFBF849
+P 7350 4350
+AR Path="/5FBF1F61/5FFBF849" Ref="Q?"  Part="1" 
+AR Path="/5FFBD8EA/5FFBF849" Ref="Q?"  Part="1" 
+F 0 "Q?" H 7250 4200 50  0000 L CNN
+F 1 "BC846" H 7100 4100 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 7550 4275 50  0001 L CIN
+F 3 "https://assets.nexperia.com/documents/data-sheet/BC846_SER.pdf" H 7350 4350 50  0001 L CNN
+	1    7350 4350
+	1    0    0    -1  
+$EndComp
+$Comp
+L open-automation:R_10K R?
+U 1 1 5FFBF850
+P 6900 4350
+AR Path="/5FBF1F61/5FFBF850" Ref="R?"  Part="1" 
+AR Path="/5FFBD8EA/5FFBF850" Ref="R?"  Part="1" 
+F 0 "R?" V 6900 4350 50  0000 C CNN
+F 1 "R_10K" V 6800 4350 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 6830 4350 50  0001 C CNN
+F 3 "" V 6980 4350 50  0001 C CNN
+F 4 "RC0603JR-0710KL" V 7080 4450 60  0001 C CNN "Part Number"
+	1    6900 4350
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	7100 4350 7150 4350
+Wire Wire Line
+	6650 4350 6700 4350
+$Comp
+L open-automation:GND #PWR?
+U 1 1 5FFBF858
+P 7450 4600
+AR Path="/5ABD187E/5FFBF858" Ref="#PWR?"  Part="1" 
+AR Path="/5FFBF858" Ref="#PWR?"  Part="1" 
+AR Path="/5FBF1F61/5FFBF858" Ref="#PWR?"  Part="1" 
+AR Path="/5FFBD8EA/5FFBF858" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 7450 4350 50  0001 C CNN
+F 1 "GND" H 7450 4450 50  0000 C CNN
+F 2 "" H 7450 4600 50  0000 C CNN
+F 3 "" H 7450 4600 50  0000 C CNN
+	1    7450 4600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7450 4600 7450 4550
+Text Label 6650 4350 2    50   ~ 0
+A6
+$Comp
+L open-automation:R_10K R?
+U 1 1 5FFBF861
+P 7200 4100
+AR Path="/5FBF1F61/5FFBF861" Ref="R?"  Part="1" 
+AR Path="/5FFBD8EA/5FFBF861" Ref="R?"  Part="1" 
+F 0 "R?" V 7200 4100 50  0000 C CNN
+F 1 "R_10K" V 7100 4100 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 7130 4100 50  0001 C CNN
+F 3 "" V 7280 4100 50  0001 C CNN
+F 4 "RC0603JR-0710KL" V 7380 4200 60  0001 C CNN "Part Number"
+	1    7200 4100
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	7800 3850 7800 3900
+Wire Wire Line
+	7800 4350 7800 4300
+Wire Wire Line
+	7500 4100 7450 4100
+Wire Wire Line
+	7450 4100 7450 4150
+Wire Wire Line
+	6950 4100 7000 4100
+Wire Wire Line
+	7400 4100 7450 4100
+Connection ~ 7450 4100
+Text Label 6950 4100 2    50   ~ 0
+3V3
+$Comp
+L Transistor_BJT:BC846 Q?
+U 1 1 5FFBF875
+P 7350 3350
+AR Path="/5FBF1F61/5FFBF875" Ref="Q?"  Part="1" 
+AR Path="/5FFBD8EA/5FFBF875" Ref="Q?"  Part="1" 
+F 0 "Q?" H 7250 3200 50  0000 L CNN
+F 1 "BC846" H 7100 3100 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 7550 3275 50  0001 L CIN
+F 3 "https://assets.nexperia.com/documents/data-sheet/BC846_SER.pdf" H 7350 3350 50  0001 L CNN
+	1    7350 3350
+	1    0    0    -1  
+$EndComp
+$Comp
+L open-automation:R_10K R?
+U 1 1 5FFBF87C
+P 6900 3350
+AR Path="/5FBF1F61/5FFBF87C" Ref="R?"  Part="1" 
+AR Path="/5FFBD8EA/5FFBF87C" Ref="R?"  Part="1" 
+F 0 "R?" V 6900 3350 50  0000 C CNN
+F 1 "R_10K" V 6800 3350 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 6830 3350 50  0001 C CNN
+F 3 "" V 6980 3350 50  0001 C CNN
+F 4 "RC0603JR-0710KL" V 7080 3450 60  0001 C CNN "Part Number"
+	1    6900 3350
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	7100 3350 7150 3350
+Wire Wire Line
+	6650 3350 6700 3350
+$Comp
+L open-automation:GND #PWR?
+U 1 1 5FFBF884
+P 7450 3600
+AR Path="/5ABD187E/5FFBF884" Ref="#PWR?"  Part="1" 
+AR Path="/5FFBF884" Ref="#PWR?"  Part="1" 
+AR Path="/5FBF1F61/5FFBF884" Ref="#PWR?"  Part="1" 
+AR Path="/5FFBD8EA/5FFBF884" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 7450 3350 50  0001 C CNN
+F 1 "GND" H 7450 3450 50  0000 C CNN
+F 2 "" H 7450 3600 50  0000 C CNN
+F 3 "" H 7450 3600 50  0000 C CNN
+	1    7450 3600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7450 3600 7450 3550
+Text Label 6650 3350 2    50   ~ 0
+A7
+$Comp
+L open-automation:R_10K R?
+U 1 1 5FFBF88D
+P 7200 3100
+AR Path="/5FBF1F61/5FFBF88D" Ref="R?"  Part="1" 
+AR Path="/5FFBD8EA/5FFBF88D" Ref="R?"  Part="1" 
+F 0 "R?" V 7200 3100 50  0000 C CNN
+F 1 "R_10K" V 7100 3100 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 7130 3100 50  0001 C CNN
+F 3 "" V 7280 3100 50  0001 C CNN
+F 4 "RC0603JR-0710KL" V 7380 3200 60  0001 C CNN "Part Number"
+	1    7200 3100
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	7800 2850 7800 2900
+Wire Wire Line
+	7800 3350 7800 3300
+Wire Wire Line
+	7500 3100 7450 3100
+Wire Wire Line
+	7450 3100 7450 3150
+Wire Wire Line
+	6950 3100 7000 3100
+Wire Wire Line
+	7400 3100 7450 3100
+Connection ~ 7450 3100
+Text Label 6950 3100 2    50   ~ 0
+3V3
+$Comp
+L Transistor_FET:BSS84 Q?
+U 1 1 5FFBF8A3
+P 7700 3100
+AR Path="/5FBF1F61/5FFBF8A3" Ref="Q?"  Part="1" 
+AR Path="/5FFBD8EA/5FFBF8A3" Ref="Q?"  Part="1" 
+F 0 "Q?" H 7904 3146 50  0000 L CNN
+F 1 "BSS84" H 7904 3055 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 7900 3025 50  0001 L CIN
+F 3 "http://assets.nexperia.com/documents/data-sheet/BSS84.pdf" H 7700 3100 50  0001 L CNN
+	1    7700 3100
+	1    0    0    -1  
+$EndComp
+$Comp
+L Transistor_FET:BSS84 Q?
+U 1 1 5FFBF8A9
+P 7700 4100
+AR Path="/5FBF1F61/5FFBF8A9" Ref="Q?"  Part="1" 
+AR Path="/5FFBD8EA/5FFBF8A9" Ref="Q?"  Part="1" 
+F 0 "Q?" H 7904 4146 50  0000 L CNN
+F 1 "BSS84" H 7904 4055 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 7900 4025 50  0001 L CIN
+F 3 "http://assets.nexperia.com/documents/data-sheet/BSS84.pdf" H 7700 4100 50  0001 L CNN
+	1    7700 4100
+	1    0    0    -1  
+$EndComp
+Text Label 2450 1100 0    50   ~ 0
+PASSENGER_HEATED_SEAT_STATUS
+Text Label 2450 1200 0    50   ~ 0
+DRIVER_HEATED_SEAT_STATUS
+Text Label 2450 1350 0    50   ~ 0
+PASSENGER_SEAT_TEMP_CONTROL
+Text Label 2450 1450 0    50   ~ 0
+DRIVER_SEAT_TEMP_CONTROL
+Text HLabel 2400 1100 0    60   Input ~ 0
+PASSENGER_HEATED_SEAT_STATUS
+Text HLabel 2400 1200 0    60   Input ~ 0
+DRIVER_HEATED_SEAT_STATUS
+Text HLabel 2400 1350 0    60   Input ~ 0
+PASSENGER_SEAT_TEMP_CONTROL
+Text HLabel 2400 1450 0    60   Input ~ 0
+DRIVER_SEAT_TEMP_CONTROL
+Wire Wire Line
+	2400 1100 2450 1100
+Wire Wire Line
+	2450 1200 2400 1200
+Wire Wire Line
+	2450 1350 2400 1350
+Wire Wire Line
+	2400 1450 2450 1450
+Text Label 2450 700  0    50   ~ 0
+INSTRUMENT_SUPPLY_VOLTAGE_4
+Text HLabel 2400 700  0    60   Input ~ 0
+INSTRUMENT_SUPPLY_VOLTAGE_4
+Wire Wire Line
+	2400 700  2450 700 
+Text Label 7800 3350 0    50   ~ 0
+DRIVER_SEAT_TEMP_CONTROL
+Text Label 7800 4350 0    50   ~ 0
+PASSENGER_SEAT_TEMP_CONTROL
+Text Label 7800 3850 0    50   ~ 0
+INSTRUMENT_SUPPLY_VOLTAGE_4
+Text Label 7800 2850 0    50   ~ 0
+INSTRUMENT_SUPPLY_VOLTAGE_4
+$Comp
+L Isolator:LTV-817S U?
+U 1 1 5FC44959
+P 4050 3400
+F 0 "U?" H 4050 3725 50  0000 C CNN
+F 1 "LTV-817S" H 4050 3634 50  0000 C CNN
+F 2 "Package_DIP:SMDIP-4_W9.53mm" H 4050 3100 50  0001 C CNN
+F 3 "http://www.us.liteon.com/downloads/LTV-817-827-847.PDF" H 3700 3700 50  0001 C CNN
+	1    4050 3400
+	1    0    0    -1  
+$EndComp
+$Comp
+L open-automation:R_10K R?
+U 1 1 5FC45D5F
+P 3500 3300
+AR Path="/5FBF1F61/5FC45D5F" Ref="R?"  Part="1" 
+AR Path="/5FFBD8EA/5FC45D5F" Ref="R?"  Part="1" 
+F 0 "R?" V 3500 3300 50  0000 C CNN
+F 1 "R_10K" V 3400 3300 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 3430 3300 50  0001 C CNN
+F 3 "" V 3580 3300 50  0001 C CNN
+F 4 "RC0603JR-0710KL" V 3680 3400 60  0001 C CNN "Part Number"
+	1    3500 3300
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3700 3300 3750 3300
+Text Label 3250 3300 2    50   ~ 0
+PASSENGER_HEATED_SEAT_STATUS
+Wire Wire Line
+	3250 3300 3300 3300
+$Comp
+L open-automation:GND #PWR?
+U 1 1 5FC4AFC3
+P 3700 3500
+AR Path="/5ABD187E/5FC4AFC3" Ref="#PWR?"  Part="1" 
+AR Path="/5FC4AFC3" Ref="#PWR?"  Part="1" 
+AR Path="/5FBF1F61/5FC4AFC3" Ref="#PWR?"  Part="1" 
+AR Path="/5FFBD8EA/5FC4AFC3" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 3700 3250 50  0001 C CNN
+F 1 "GND" H 3700 3350 50  0000 C CNN
+F 2 "" H 3700 3500 50  0000 C CNN
+F 3 "" H 3700 3500 50  0000 C CNN
+	1    3700 3500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3750 3500 3700 3500
+$Comp
+L open-automation:GND #PWR?
+U 1 1 5FC4C4B4
+P 4400 3500
+AR Path="/5ABD187E/5FC4C4B4" Ref="#PWR?"  Part="1" 
+AR Path="/5FC4C4B4" Ref="#PWR?"  Part="1" 
+AR Path="/5FBF1F61/5FC4C4B4" Ref="#PWR?"  Part="1" 
+AR Path="/5FFBD8EA/5FC4C4B4" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 4400 3250 50  0001 C CNN
+F 1 "GND" H 4400 3350 50  0000 C CNN
+F 2 "" H 4400 3500 50  0000 C CNN
+F 3 "" H 4400 3500 50  0000 C CNN
+	1    4400 3500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4400 3500 4350 3500
+Text Label 2450 850  0    50   ~ 0
+PASSENGER_HEATED_SEAT_STATUS_IO
+Text Label 2450 950  0    50   ~ 0
+DRIVER_HEATED_SEAT_STATUS_IO
+Text HLabel 2400 850  0    60   Input ~ 0
+PASSENGER_HEATED_SEAT_STATUS_IO
+Text HLabel 2400 950  0    60   Input ~ 0
+DRIVER_HEATED_SEAT_STATUS_IO
+Wire Wire Line
+	2400 850  2450 850 
+Wire Wire Line
+	2450 950  2400 950 
+$Comp
+L open-automation:R_10K R?
+U 1 1 5FC58D4E
+P 4650 3300
+AR Path="/5FBF1F61/5FC58D4E" Ref="R?"  Part="1" 
+AR Path="/5FFBD8EA/5FC58D4E" Ref="R?"  Part="1" 
+F 0 "R?" V 4650 3300 50  0000 C CNN
+F 1 "R_10K" V 4550 3300 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 4580 3300 50  0001 C CNN
+F 3 "" V 4730 3300 50  0001 C CNN
+F 4 "RC0603JR-0710KL" V 4830 3400 60  0001 C CNN "Part Number"
+	1    4650 3300
+	0    -1   -1   0   
+$EndComp
+Text Label 4400 3200 0    50   ~ 0
+PASSENGER_HEATED_SEAT_STATUS_IO
+Wire Wire Line
+	4350 3300 4400 3300
+Wire Wire Line
+	4400 3200 4400 3300
+Connection ~ 4400 3300
+Wire Wire Line
+	4400 3300 4450 3300
+Text Label 2450 600  0    50   ~ 0
+3V3
+Text HLabel 2400 600  0    60   Input ~ 0
+3V3
+Wire Wire Line
+	2400 600  2450 600 
+Text Label 4900 3300 0    50   ~ 0
+3V3
+Wire Wire Line
+	4900 3300 4850 3300
+$Comp
+L Isolator:LTV-817S U?
+U 1 1 5FC7C49D
+P 4050 4200
+F 0 "U?" H 4050 4525 50  0000 C CNN
+F 1 "LTV-817S" H 4050 4434 50  0000 C CNN
+F 2 "Package_DIP:SMDIP-4_W9.53mm" H 4050 3900 50  0001 C CNN
+F 3 "http://www.us.liteon.com/downloads/LTV-817-827-847.PDF" H 3700 4500 50  0001 C CNN
+	1    4050 4200
+	1    0    0    -1  
+$EndComp
+$Comp
+L open-automation:R_10K R?
+U 1 1 5FC7C638
+P 3500 4100
+AR Path="/5FBF1F61/5FC7C638" Ref="R?"  Part="1" 
+AR Path="/5FFBD8EA/5FC7C638" Ref="R?"  Part="1" 
+F 0 "R?" V 3500 4100 50  0000 C CNN
+F 1 "R_10K" V 3400 4100 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 3430 4100 50  0001 C CNN
+F 3 "" V 3580 4100 50  0001 C CNN
+F 4 "RC0603JR-0710KL" V 3680 4200 60  0001 C CNN "Part Number"
+	1    3500 4100
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3700 4100 3750 4100
+Text Label 3250 4100 2    50   ~ 0
+DRIVER_HEATED_SEAT_STATUS
+Wire Wire Line
+	3250 4100 3300 4100
+$Comp
+L open-automation:GND #PWR?
+U 1 1 5FC7C645
+P 3700 4300
+AR Path="/5ABD187E/5FC7C645" Ref="#PWR?"  Part="1" 
+AR Path="/5FC7C645" Ref="#PWR?"  Part="1" 
+AR Path="/5FBF1F61/5FC7C645" Ref="#PWR?"  Part="1" 
+AR Path="/5FFBD8EA/5FC7C645" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 3700 4050 50  0001 C CNN
+F 1 "GND" H 3700 4150 50  0000 C CNN
+F 2 "" H 3700 4300 50  0000 C CNN
+F 3 "" H 3700 4300 50  0000 C CNN
+	1    3700 4300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3750 4300 3700 4300
+$Comp
+L open-automation:GND #PWR?
+U 1 1 5FC7C650
+P 4400 4300
+AR Path="/5ABD187E/5FC7C650" Ref="#PWR?"  Part="1" 
+AR Path="/5FC7C650" Ref="#PWR?"  Part="1" 
+AR Path="/5FBF1F61/5FC7C650" Ref="#PWR?"  Part="1" 
+AR Path="/5FFBD8EA/5FC7C650" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 4400 4050 50  0001 C CNN
+F 1 "GND" H 4400 4150 50  0000 C CNN
+F 2 "" H 4400 4300 50  0000 C CNN
+F 3 "" H 4400 4300 50  0000 C CNN
+	1    4400 4300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4400 4300 4350 4300
+$Comp
+L open-automation:R_10K R?
+U 1 1 5FC7C65C
+P 4650 4100
+AR Path="/5FBF1F61/5FC7C65C" Ref="R?"  Part="1" 
+AR Path="/5FFBD8EA/5FC7C65C" Ref="R?"  Part="1" 
+F 0 "R?" V 4650 4100 50  0000 C CNN
+F 1 "R_10K" V 4550 4100 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 4580 4100 50  0001 C CNN
+F 3 "" V 4730 4100 50  0001 C CNN
+F 4 "RC0603JR-0710KL" V 4830 4200 60  0001 C CNN "Part Number"
+	1    4650 4100
+	0    -1   -1   0   
+$EndComp
+Text Label 4400 4000 0    50   ~ 0
+DRIVER_HEATED_SEAT_STATUS_IO
+Wire Wire Line
+	4350 4100 4400 4100
+Wire Wire Line
+	4400 4000 4400 4100
+Connection ~ 4400 4100
+Wire Wire Line
+	4400 4100 4450 4100
+Text Label 4900 4100 0    50   ~ 0
+3V3
+Wire Wire Line
+	4900 4100 4850 4100
+$EndSCHEMATC
