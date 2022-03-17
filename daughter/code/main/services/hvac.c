@@ -607,9 +607,9 @@ void hvac_main(void)
   mcp23x17_set_interrupt(&mcp_dev, DRIVER_HEATED_SEAT_STATUS, MCP23X17_INT_ANY_EDGE);
   mcp23x17_set_interrupt(&mcp_dev, PASSENGER_HEATED_SEAT_STATUS, MCP23X17_INT_ANY_EDGE);
 
-	xTaskCreate(mode_motor_task, "mode_motor_task", 1024 * 2, NULL, 10, NULL);
-	xTaskCreate(left_air_temp_task, "left_air_temp_task", 1024 * 5, NULL, 10, NULL);
-	xTaskCreate(right_air_temp_task, "right_air_temp_task", 1024 * 5, NULL, 10, NULL);
-	xTaskCreate(cooling_task, "cooling_task", 1024 * 5, NULL, 10, NULL);
+	// xTaskCreate(mode_motor_task, "mode_motor_task", 1024 * 2, NULL, 10, NULL);
+	// xTaskCreate(left_air_temp_task, "left_air_temp_task", 1024 * 5, NULL, 10, NULL);
+	// xTaskCreate(right_air_temp_task, "right_air_temp_task", 1024 * 5, NULL, 10, NULL);
+	// xTaskCreate(cooling_task, "cooling_task", 1024 * 5, NULL, 10, NULL);
 	xTaskCreate(hvac_task, "hvac_task", 1024 * 5, NULL, 10, NULL);
 }
