@@ -5,7 +5,7 @@ Provide an open source platform for vehicle information and entertainment.
 
 Daughterboard firmware is designed around FreeRTOS. Supports CANbus and J1850 protocols and many functions such as HVAC control, battery monitoring, vehicle status and statistics over wifi. Uses driver circuits for various actuators around the car. 
 
-This software is designed to run on Linux. I recommend Ubuntu for the main computer. 
+Front end software is designed to run on Linux. I recommend Ubuntu for the main computer. 
 
 GUI is made using NodeWebkit and communicates with a custom daughterboard for interfacing with the vehicle.
 
