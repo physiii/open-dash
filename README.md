@@ -1,3 +1,15 @@
+### Objective
+
+
+Provide an open source platform for vehicle information and entertainment. 
+
+This software is designed to run on Linux. I recommend Ubuntu for the main computer. Daughterboard firmware is designed around FreeRTOS. The gui is made using NodeWebkit and communicates with a custom daughterboard for interfacing with the vehicle. Supports CANbus and J1850 protocols. Daughterboard supports many functions such as HVAC control, battery monitoring, vehicle status and statistics over wifi, driver circuits for various actuators around the car. 
+
+![Alt text](/images/dash-pcb.png?raw=true "Saving files")
+
+![Alt text](/images/dash-schematic.png?raw=true "Saving files")
+
+
 ### Install OS
 Download ubuntu 21.10 and create boot disk  
 Press esc to get to boot menu  
