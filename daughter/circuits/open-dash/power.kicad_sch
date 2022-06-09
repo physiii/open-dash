@@ -2947,7 +2947,7 @@
     (pin "3" (uuid 186cf002-bafb-4518-a4f7-985d13883de2))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 48.26 128.27 270)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 48.26 128.27 270) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-00005fd5e397)
     (property "Reference" "#PWR027" (id 0) (at 41.91 128.27 0)
@@ -2959,7 +2959,7 @@
     (pin "1" (uuid d26c0188-a8c0-40f8-947a-e0efe65dd5bd))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 48.26 138.43 0)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 48.26 138.43 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-00005fd5e39d)
     (property "Reference" "#PWR028" (id 0) (at 48.26 144.78 0)
@@ -2971,7 +2971,7 @@
     (pin "1" (uuid 4b680c6f-6bf5-42bc-954e-399a8095278c))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 66.04 138.43 0)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 66.04 138.43 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-00005fd5e3a7)
     (property "Reference" "#PWR032" (id 0) (at 66.04 144.78 0)
@@ -2983,7 +2983,7 @@
     (pin "1" (uuid 934f6b2e-d892-4606-8ba6-f8b20bec47c8))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 66.04 128.27 90)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 66.04 128.27 90) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-00005fd5e3b0)
     (property "Reference" "#PWR031" (id 0) (at 72.39 128.27 0)
@@ -2995,7 +2995,7 @@
     (pin "1" (uuid 5760e242-d884-4525-b413-5cdf8762836e))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 49.53 93.98 0)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 49.53 93.98 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-00005fee393f)
     (property "Reference" "#PWR029" (id 0) (at 49.53 100.33 0)
@@ -3007,7 +3007,7 @@
     (pin "1" (uuid 4824cc17-4fe1-4945-ad51-0aeea24cae8e))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 234.95 54.61 0)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 234.95 54.61 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-00006020d0d7)
     (property "Reference" "#PWR047" (id 0) (at 234.95 60.96 0)
@@ -3019,7 +3019,7 @@
     (pin "1" (uuid 2410cb12-10cd-45ed-a4e0-13df7fd75755))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 246.38 64.77 0)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 246.38 64.77 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-00006020d92c)
     (property "Reference" "#PWR050" (id 0) (at 246.38 71.12 0)
@@ -3031,7 +3031,7 @@
     (pin "1" (uuid 5d335cde-5d82-409a-94b4-460411cc13b4))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 256.54 64.77 0)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 256.54 64.77 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-00006020e1f7)
     (property "Reference" "#PWR053" (id 0) (at 256.54 71.12 0)
@@ -3043,7 +3043,7 @@
     (pin "1" (uuid 3c27dc86-1701-4cfb-9ebf-f044da440656))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 247.65 113.03 0)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 247.65 113.03 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-00006020e9c6)
     (property "Reference" "#PWR051" (id 0) (at 247.65 119.38 0)
@@ -3055,7 +3055,7 @@
     (pin "1" (uuid a94bff12-7060-4bcd-bf86-841cb9e69064))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 236.22 102.87 0)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 236.22 102.87 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-000060210483)
     (property "Reference" "#PWR048" (id 0) (at 236.22 109.22 0)
@@ -3067,7 +3067,7 @@
     (pin "1" (uuid 624700dd-baae-4a20-a2e6-b73e4b0e622b))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 191.77 102.87 0)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 191.77 102.87 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000602109a6)
     (property "Reference" "#PWR041" (id 0) (at 191.77 109.22 0)
@@ -3079,7 +3079,7 @@
     (pin "1" (uuid 710a512b-7b56-4f7f-bfcb-35465a2e76f9))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 237.49 144.78 0)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 237.49 144.78 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-000060211b85)
     (property "Reference" "#PWR049" (id 0) (at 237.49 151.13 0)
@@ -3091,7 +3091,7 @@
     (pin "1" (uuid d1747514-84b8-48bd-8139-cb62e6af9645))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 248.92 154.94 0)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 248.92 154.94 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-00006021249f)
     (property "Reference" "#PWR052" (id 0) (at 248.92 161.29 0)
@@ -3103,7 +3103,7 @@
     (pin "1" (uuid a578d721-17ff-4726-b495-f28c5276fca2))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 207.01 138.43 0)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 207.01 138.43 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-00006021316e)
     (property "Reference" "#PWR046" (id 0) (at 207.01 144.78 0)
@@ -3679,10 +3679,10 @@
     (property "LCSC" "C722233" (id 5) (at 55.88 111.76 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid a3fe4351-40c5-439f-b2ce-943ba00790a3))
-    (pin "1" (uuid c5ddb5b3-ad5c-4b95-988a-1085ab1e494b))
-    (pin "2" (uuid 3be24049-710e-4c21-b592-150779e27859))
-    (pin "2" (uuid 4e171e27-0952-4a5f-bd26-afc8662a6d9a))
+    (pin "1" (uuid c5ddb5b3-ad5c-4b95-988a-1085ab1e494c))
+    (pin "1" (uuid c5ddb5b3-ad5c-4b95-988a-1085ab1e494c))
+    (pin "2" (uuid 4e171e27-0952-4a5f-bd26-afc8662a6d9b))
+    (pin "2" (uuid 4e171e27-0952-4a5f-bd26-afc8662a6d9b))
     (pin "3" (uuid 90eccc84-68e3-440b-b8e7-b46a28e3379b))
     (pin "4" (uuid cec5c91b-0f2e-497a-af3e-a5a152b16bf2))
     (pin "5" (uuid 659c7120-8885-4090-b510-a594ad335b4b))
@@ -3755,8 +3755,8 @@
       (effects (font (size 1.27 1.27)) hide)
     )
     (pin "1" (uuid ec7993b9-2e80-41d7-a9e6-32c1a4acb73d))
-    (pin "2" (uuid 09039133-a4cd-4c87-ad15-e7527470ab7c))
-    (pin "2" (uuid be28da98-0ed6-46a8-981d-24fa2887e168))
+    (pin "2" (uuid be28da98-0ed6-46a8-981d-24fa2887e169))
+    (pin "2" (uuid be28da98-0ed6-46a8-981d-24fa2887e169))
     (pin "3" (uuid d5ce9073-f652-421d-afde-0d7f90c33390))
   )
 
@@ -3809,7 +3809,7 @@
     (pin "2" (uuid e16a5506-6cbd-46c1-9176-20c73f3404a6))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 191.77 54.61 0)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 191.77 54.61 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-000063705d95)
     (property "Reference" "#PWR043" (id 0) (at 191.77 60.96 0)
@@ -3821,7 +3821,7 @@
     (pin "1" (uuid 0f30fcbb-b329-4f41-9ecf-e9563f7bad41))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 204.47 48.26 0)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 204.47 48.26 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-000063705d96)
     (property "Reference" "#PWR044" (id 0) (at 204.47 54.61 0)
@@ -3833,7 +3833,7 @@
     (pin "1" (uuid 5338c7e8-2840-4211-817d-a6a02bfa9066))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 193.04 144.78 0)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 193.04 144.78 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-000063705d98)
     (property "Reference" "#PWR042" (id 0) (at 193.04 151.13 0)

@@ -3829,7 +3829,7 @@
     (uuid ff3e9ca9-6dc0-4496-aebe-20f4a6d61445)
   )
 
-  (symbol (lib_id "Connector:Conn_01x01_Female") (at 34.29 20.32 0)
+  (symbol (lib_id "Connector:Conn_01x01_Female") (at 34.29 20.32 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000604eaa50)
     (property "Reference" "J38" (id 0) (at 35.0012 19.6596 0)
@@ -3847,7 +3847,7 @@
     (pin "1" (uuid ea6b98e2-a2ec-4613-9464-fbb4b8668dde))
   )
 
-  (symbol (lib_id "Connector:Conn_01x01_Female") (at 34.29 25.4 0)
+  (symbol (lib_id "Connector:Conn_01x01_Female") (at 34.29 25.4 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000604eaa56)
     (property "Reference" "J39" (id 0) (at 35.0012 24.7396 0)
@@ -3865,7 +3865,7 @@
     (pin "1" (uuid 76004765-6e34-42e5-bef2-e8d5daedc3a7))
   )
 
-  (symbol (lib_id "Connector:Conn_01x01_Female") (at 34.29 30.48 0)
+  (symbol (lib_id "Connector:Conn_01x01_Female") (at 34.29 30.48 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000604eaa5c)
     (property "Reference" "J40" (id 0) (at 35.0012 29.8196 0)
@@ -3883,7 +3883,7 @@
     (pin "1" (uuid b710020c-0f3a-4776-a938-eddc58b26b95))
   )
 
-  (symbol (lib_id "Connector:Conn_01x01_Female") (at 34.29 35.56 0)
+  (symbol (lib_id "Connector:Conn_01x01_Female") (at 34.29 35.56 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000604eaa62)
     (property "Reference" "J41" (id 0) (at 35.0012 34.8996 0)
@@ -3901,7 +3901,7 @@
     (pin "1" (uuid 1865e3cc-eab3-47af-9960-88cfba1e9259))
   )
 
-  (symbol (lib_id "power:GND") (at 27.94 36.83 0)
+  (symbol (lib_id "power:GND") (at 27.94 36.83 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000604eaa68)
     (property "Reference" "#PWR0172" (id 0) (at 27.94 43.18 0)
@@ -3919,7 +3919,7 @@
     (pin "1" (uuid d4cd87e2-b977-4912-8c02-b958c3339182))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 212.09 156.21 0)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 212.09 156.21 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000607305f7)
     (property "Reference" "#PWR0122" (id 0) (at 212.09 162.56 0)
@@ -3935,7 +3935,7 @@
     (pin "1" (uuid 6d7a616c-ac20-4197-b8c5-9e5133e13b25))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 278.13 156.21 0)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 278.13 156.21 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-00006073061d)
     (property "Reference" "#PWR0123" (id 0) (at 278.13 162.56 0)
@@ -3951,7 +3951,7 @@
     (pin "1" (uuid 2194fffb-efb2-4804-822b-bc479e4ddd6a))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 149.86 156.21 0)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 149.86 156.21 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-000060730634)
     (property "Reference" "#PWR0124" (id 0) (at 149.86 162.56 0)
@@ -3963,7 +3963,7 @@
     (pin "1" (uuid 119cd2ee-6025-406f-acfc-adcac3592135))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 199.39 156.21 0)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 199.39 156.21 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-00006073063a)
     (property "Reference" "#PWR0125" (id 0) (at 199.39 162.56 0)
@@ -3975,7 +3975,7 @@
     (pin "1" (uuid 0b95d5f8-be59-4aa4-9e3b-2ddb0751a97c))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 279.4 134.62 90)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 279.4 134.62 90) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-000060730657)
     (property "Reference" "#PWR0126" (id 0) (at 285.75 134.62 0)
@@ -3991,7 +3991,7 @@
     (pin "1" (uuid f722ea3c-0557-407a-b5bf-641f8a291a63))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 151.13 142.24 90)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 151.13 142.24 90) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000607306e6)
     (property "Reference" "#PWR0128" (id 0) (at 157.48 142.24 0)
@@ -4003,7 +4003,7 @@
     (pin "1" (uuid 4605c20a-6c32-4ba9-9d98-157265e5d2d4))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 265.43 156.21 0)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 265.43 156.21 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000607306f5)
     (property "Reference" "#PWR0129" (id 0) (at 265.43 162.56 0)
@@ -4019,7 +4019,7 @@
     (pin "1" (uuid e22a8115-21c4-4079-b548-13d39057d641))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 92.71 226.06 0)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 92.71 226.06 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-000060b67a93)
     (property "Reference" "#PWR0130" (id 0) (at 92.71 232.41 0)
@@ -4031,7 +4031,7 @@
     (pin "1" (uuid d04e4a25-fea8-400a-b78a-19b8bbedb78b))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 137.16 156.21 0)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 137.16 156.21 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-000060b92f78)
     (property "Reference" "#PWR0131" (id 0) (at 137.16 162.56 0)
@@ -4043,7 +4043,7 @@
     (pin "1" (uuid a587fbd2-119d-431c-964c-d65c1fee09ba))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 109.22 226.06 0)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 109.22 226.06 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-000060c2fea1)
     (property "Reference" "#PWR0132" (id 0) (at 109.22 232.41 0)
@@ -4055,7 +4055,7 @@
     (pin "1" (uuid a3049de8-f8f1-485d-b5d4-7c1d239712c3))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 110.49 212.09 90)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 110.49 212.09 90) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-000060c2fec4)
     (property "Reference" "#PWR0133" (id 0) (at 116.84 212.09 0)
@@ -4067,7 +4067,7 @@
     (pin "1" (uuid 07756cb7-21df-421d-ad3f-fe92ab64ed3b))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 199.39 226.06 0)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 199.39 226.06 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-000060d314fc)
     (property "Reference" "#PWR0134" (id 0) (at 199.39 232.41 0)
@@ -4079,7 +4079,7 @@
     (pin "1" (uuid 8ba9c3fb-46f6-4875-a664-e313ccfeba0c))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 215.9 226.06 0)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 215.9 226.06 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-000060d65b42)
     (property "Reference" "#PWR0135" (id 0) (at 215.9 232.41 0)
@@ -4095,7 +4095,7 @@
     (pin "1" (uuid f03478ba-f8e8-4ce7-a1fa-dca7b15de97a))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 275.59 204.47 270)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 275.59 204.47 270) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-000060dd6157)
     (property "Reference" "#PWR0136" (id 0) (at 269.24 204.47 0)
@@ -4111,7 +4111,7 @@
     (pin "1" (uuid 0887eb27-c795-47c8-8b85-804ff1430157))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 276.86 226.06 0)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 276.86 226.06 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-000060dd6178)
     (property "Reference" "#PWR0137" (id 0) (at 276.86 232.41 0)
@@ -4127,7 +4127,7 @@
     (pin "1" (uuid f2b8258f-65e5-419b-9b3b-e90f689aca3a))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 293.37 226.06 0)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 293.37 226.06 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-000060e179c2)
     (property "Reference" "#PWR0138" (id 0) (at 293.37 232.41 0)
@@ -4143,7 +4143,7 @@
     (pin "1" (uuid 8abaee25-a262-4309-8b76-32f8b2d7e0ff))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 294.64 204.47 90)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 294.64 204.47 90) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-000060e179d1)
     (property "Reference" "#PWR0139" (id 0) (at 300.99 204.47 0)
@@ -4159,7 +4159,7 @@
     (pin "1" (uuid a3830df9-d1d3-4c2b-bae2-e61676fadddd))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 40.64 48.26 90)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 40.64 48.26 90) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-000060ecd4c1)
     (property "Reference" "#PWR0142" (id 0) (at 46.99 48.26 0)
@@ -4175,7 +4175,7 @@
     (pin "1" (uuid 874c218a-578e-4a62-a8c1-fe8414dd125f))
   )
 
-  (symbol (lib_id "Open_Automation:Conn_IDE_40") (at 142.24 129.54 0)
+  (symbol (lib_id "Open_Automation:Conn_IDE_40") (at 142.24 129.54 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000621c461a)
     (property "Reference" "J22" (id 0) (at 143.51 101.1682 0))
@@ -4231,7 +4231,7 @@
     (pin "9" (uuid 37d3bf2b-1361-43a6-a660-8e584912f573))
   )
 
-  (symbol (lib_id "Open_Automation:Conn_IDE_40") (at 270.51 129.54 0)
+  (symbol (lib_id "Open_Automation:Conn_IDE_40") (at 270.51 129.54 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000621c4621)
     (property "Reference" "J32" (id 0) (at 271.78 101.1682 0))
@@ -4287,7 +4287,7 @@
     (pin "9" (uuid 3c5f9d0f-421a-4a95-82bb-a1d8b812a4c6))
   )
 
-  (symbol (lib_id "Open_Automation:Conn_IDE_40") (at 204.47 129.54 0)
+  (symbol (lib_id "Open_Automation:Conn_IDE_40") (at 204.47 129.54 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000621c4630)
     (property "Reference" "J27" (id 0) (at 205.74 101.1682 0))
@@ -4343,7 +4343,7 @@
     (pin "9" (uuid 7b669a9c-8885-4737-8192-e35d45fe2c93))
   )
 
-  (symbol (lib_id "Connector_Generic:Conn_02x08_Top_Bottom") (at 81.28 46.99 0)
+  (symbol (lib_id "Connector_Generic:Conn_02x08_Top_Bottom") (at 81.28 46.99 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000657e0ed9)
     (property "Reference" "J18" (id 0) (at 82.55 33.8582 0))
@@ -4372,7 +4372,7 @@
     (pin "9" (uuid ce5a0737-4574-43c4-8820-2d26c3912c9e))
   )
 
-  (symbol (lib_id "Connector_Generic:Conn_02x08_Top_Bottom") (at 157.48 49.53 0)
+  (symbol (lib_id "Connector_Generic:Conn_02x08_Top_Bottom") (at 157.48 49.53 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000657e0edf)
     (property "Reference" "J24" (id 0) (at 158.75 36.3982 0))
@@ -4401,7 +4401,7 @@
     (pin "9" (uuid 131f8ef3-4ce9-4a79-b966-2078febcf498))
   )
 
-  (symbol (lib_id "Connector_Generic:Conn_02x08_Top_Bottom") (at 246.38 49.53 0)
+  (symbol (lib_id "Connector_Generic:Conn_02x08_Top_Bottom") (at 246.38 49.53 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000657e0ee5)
     (property "Reference" "J30" (id 0) (at 247.65 36.3982 0))
@@ -4430,7 +4430,7 @@
     (pin "9" (uuid f4b1cc82-032f-46e4-b914-51c04d09819d))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 74.93 39.37 270)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 74.93 39.37 270) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000657e0eeb)
     (property "Reference" "#PWR0121" (id 0) (at 68.58 39.37 0)
@@ -4446,7 +4446,7 @@
     (pin "1" (uuid b28ef261-063d-448f-8ef0-25d86b62b1da))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 318.77 57.15 270)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 318.77 57.15 270) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000657e0f36)
     (property "Reference" "#PWR0167" (id 0) (at 312.42 57.15 0)
@@ -4458,7 +4458,7 @@
     (pin "1" (uuid 18e3600f-2088-4659-97d0-c83b17047ead))
   )
 
-  (symbol (lib_id "Connector_Generic:Conn_02x12_Top_Bottom") (at 325.12 41.91 0)
+  (symbol (lib_id "Connector_Generic:Conn_02x12_Top_Bottom") (at 325.12 41.91 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000657e0f3d)
     (property "Reference" "J36" (id 0) (at 326.39 23.6982 0))
@@ -4495,7 +4495,7 @@
     (pin "9" (uuid 250658cf-3442-4875-98b9-880ff77de779))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 318.77 49.53 270)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 318.77 49.53 270) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000657e0f4a)
     (property "Reference" "#PWR0165" (id 0) (at 312.42 49.53 0)
@@ -4507,7 +4507,7 @@
     (pin "1" (uuid 4007d7d0-a61d-41fc-9edf-2524d58da09a))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 318.77 52.07 270)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 318.77 52.07 270) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000657e0f51)
     (property "Reference" "#PWR0166" (id 0) (at 312.42 52.07 0)
@@ -4519,7 +4519,7 @@
     (pin "1" (uuid 633327ee-5c92-4cdd-8991-349aa39eaddb))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 334.01 49.53 90) (mirror x)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 334.01 49.53 90) (mirror x) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000657e0f5a)
     (property "Reference" "#PWR0168" (id 0) (at 340.36 49.53 0)
@@ -4531,7 +4531,7 @@
     (pin "1" (uuid 63889b5b-319a-4ec7-9d88-38746b1ff624))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 334.01 52.07 90) (mirror x)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 334.01 52.07 90) (mirror x) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000657e0f61)
     (property "Reference" "#PWR0169" (id 0) (at 340.36 52.07 0)
@@ -4543,7 +4543,7 @@
     (pin "1" (uuid 851a5144-622e-4e9b-84aa-b2177ea53c92))
   )
 
-  (symbol (lib_id "Connector_Generic:Conn_01x08") (at 77.47 76.2 0)
+  (symbol (lib_id "Connector_Generic:Conn_01x08") (at 77.47 76.2 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000657e0f69)
     (property "Reference" "J17" (id 0) (at 76.2 66.04 0)
@@ -4568,7 +4568,7 @@
     (pin "8" (uuid e956ff4d-e455-4edd-96aa-f86004139587))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 71.12 68.58 270)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 71.12 68.58 270) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000657e0f6f)
     (property "Reference" "#PWR0120" (id 0) (at 64.77 68.58 0)
@@ -4584,7 +4584,7 @@
     (pin "1" (uuid ca75c077-f24e-4105-bb17-e07a86a020b8))
   )
 
-  (symbol (lib_id "Connector_Generic:Conn_01x08") (at 83.82 76.2 0) (mirror y)
+  (symbol (lib_id "Connector_Generic:Conn_01x08") (at 83.82 76.2 0) (mirror y) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000657e0f88)
     (property "Reference" "J19" (id 0) (at 85.09 66.04 0)
@@ -4609,7 +4609,7 @@
     (pin "8" (uuid 754bf98a-8769-4626-8a48-f7ea25e97916))
   )
 
-  (symbol (lib_id "Connector_Generic:Conn_01x08") (at 154.94 73.66 0)
+  (symbol (lib_id "Connector_Generic:Conn_01x08") (at 154.94 73.66 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000657e0f8e)
     (property "Reference" "J23" (id 0) (at 153.67 63.5 0)
@@ -4634,7 +4634,7 @@
     (pin "8" (uuid efbb107e-c155-45b9-a022-6056017c473f))
   )
 
-  (symbol (lib_id "Connector_Generic:Conn_01x08") (at 161.29 73.66 0) (mirror y)
+  (symbol (lib_id "Connector_Generic:Conn_01x08") (at 161.29 73.66 0) (mirror y) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000657e0f94)
     (property "Reference" "J25" (id 0) (at 162.56 63.5 0)
@@ -4659,7 +4659,7 @@
     (pin "8" (uuid ed6eac1d-cbe2-4fed-8bae-5f5999b4509d))
   )
 
-  (symbol (lib_id "Connector_Generic:Conn_01x08") (at 243.84 73.66 0)
+  (symbol (lib_id "Connector_Generic:Conn_01x08") (at 243.84 73.66 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000657e0fae)
     (property "Reference" "J29" (id 0) (at 242.57 63.5 0)
@@ -4684,7 +4684,7 @@
     (pin "8" (uuid 983433cc-102b-4b43-a9ae-d81e4e410214))
   )
 
-  (symbol (lib_id "Connector_Generic:Conn_01x08") (at 250.19 73.66 0) (mirror y)
+  (symbol (lib_id "Connector_Generic:Conn_01x08") (at 250.19 73.66 0) (mirror y) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000657e0fb4)
     (property "Reference" "J31" (id 0) (at 251.46 63.5 0)
@@ -4709,7 +4709,7 @@
     (pin "8" (uuid e75dd901-2fb2-4ad2-9bd3-4f38583036d1))
   )
 
-  (symbol (lib_id "Connector_Generic:Conn_01x12") (at 321.31 77.47 0)
+  (symbol (lib_id "Connector_Generic:Conn_01x12") (at 321.31 77.47 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000657e0fd2)
     (property "Reference" "J35" (id 0) (at 320.04 62.23 0)
@@ -4738,7 +4738,7 @@
     (pin "9" (uuid 9d0ff84c-655a-47d5-bae8-4ebccf128b98))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 314.96 92.71 270)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 314.96 92.71 270) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000657e0fde)
     (property "Reference" "#PWR0164" (id 0) (at 308.61 92.71 0)
@@ -4750,7 +4750,7 @@
     (pin "1" (uuid 149f0dc4-9b74-4a1a-a37b-7eb355956a7a))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 314.96 85.09 270)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 314.96 85.09 270) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000657e0fe9)
     (property "Reference" "#PWR0162" (id 0) (at 308.61 85.09 0)
@@ -4762,7 +4762,7 @@
     (pin "1" (uuid df0f39c5-ac25-4662-916a-1037e83cf195))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 314.96 87.63 270)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 314.96 87.63 270) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000657e0ff0)
     (property "Reference" "#PWR0163" (id 0) (at 308.61 87.63 0)
@@ -4774,7 +4774,7 @@
     (pin "1" (uuid 59005896-4816-4eaa-bcde-06df3c15d37e))
   )
 
-  (symbol (lib_id "Connector_Generic:Conn_01x12") (at 330.2 77.47 0) (mirror y)
+  (symbol (lib_id "Connector_Generic:Conn_01x12") (at 330.2 77.47 0) (mirror y) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000657e0ff7)
     (property "Reference" "J37" (id 0) (at 331.47 62.23 0)
@@ -4803,7 +4803,7 @@
     (pin "9" (uuid a0f76d93-112e-417c-b52c-3672f2d1d60a))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 336.55 85.09 90) (mirror x)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 336.55 85.09 90) (mirror x) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000657e1002)
     (property "Reference" "#PWR0170" (id 0) (at 342.9 85.09 0)
@@ -4815,7 +4815,7 @@
     (pin "1" (uuid a1434e3b-aba4-410a-858d-823582b176a7))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 336.55 87.63 90) (mirror x)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 336.55 87.63 90) (mirror x) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000657e1009)
     (property "Reference" "#PWR0171" (id 0) (at 342.9 87.63 0)
@@ -4827,7 +4827,7 @@
     (pin "1" (uuid cd3851c8-43a7-44ba-a57d-7da51bf4d405))
   )
 
-  (symbol (lib_id "Connector_Generic:Conn_01x20") (at 97.79 199.39 0)
+  (symbol (lib_id "Connector_Generic:Conn_01x20") (at 97.79 199.39 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000657e1011)
     (property "Reference" "J20" (id 0) (at 96.52 173.99 0)
@@ -4864,7 +4864,7 @@
     (pin "9" (uuid 439e57fb-3fda-43db-b0fd-ac5b4eacc4c0))
   )
 
-  (symbol (lib_id "Connector_Generic:Conn_01x20") (at 104.14 199.39 0) (mirror y)
+  (symbol (lib_id "Connector_Generic:Conn_01x20") (at 104.14 199.39 0) (mirror y) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000657e1017)
     (property "Reference" "J21" (id 0) (at 105.41 173.99 0)
@@ -4901,7 +4901,7 @@
     (pin "9" (uuid 4c614581-218c-490b-91c8-5ade65ca0f20))
   )
 
-  (symbol (lib_id "Connector_Generic:Conn_01x20") (at 204.47 199.39 0)
+  (symbol (lib_id "Connector_Generic:Conn_01x20") (at 204.47 199.39 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000657e109f)
     (property "Reference" "J26" (id 0) (at 203.2 173.99 0)
@@ -4938,7 +4938,7 @@
     (pin "9" (uuid 49371403-6674-4834-91b2-f03f0da5c9df))
   )
 
-  (symbol (lib_id "Connector_Generic:Conn_01x20") (at 210.82 199.39 0) (mirror y)
+  (symbol (lib_id "Connector_Generic:Conn_01x20") (at 210.82 199.39 0) (mirror y) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000657e10a5)
     (property "Reference" "J28" (id 0) (at 212.09 173.99 0)
@@ -4975,7 +4975,7 @@
     (pin "9" (uuid 8c334f51-6a0b-406c-9f2c-47b0eaeba7c1))
   )
 
-  (symbol (lib_id "Connector_Generic:Conn_01x20") (at 281.94 199.39 0)
+  (symbol (lib_id "Connector_Generic:Conn_01x20") (at 281.94 199.39 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000657e10ab)
     (property "Reference" "J33" (id 0) (at 280.67 172.72 0)
@@ -5012,7 +5012,7 @@
     (pin "9" (uuid d190d7a3-7bf5-42db-8c6f-15b2790a1189))
   )
 
-  (symbol (lib_id "Connector_Generic:Conn_01x20") (at 288.29 199.39 0) (mirror y)
+  (symbol (lib_id "Connector_Generic:Conn_01x20") (at 288.29 199.39 0) (mirror y) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000657e10b1)
     (property "Reference" "J34" (id 0) (at 289.56 172.72 0)

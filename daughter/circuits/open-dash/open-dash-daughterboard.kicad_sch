@@ -2987,7 +2987,7 @@
     (uuid fd146ca2-8fb8-4c71-9277-84f69bc5d3fc)
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 53.34 124.46 90)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 53.34 124.46 90) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-00005fe25541)
     (property "Reference" "#PWR02" (id 0) (at 59.69 124.46 0)
@@ -3003,7 +3003,7 @@
     (pin "1" (uuid 591e969d-7122-41e3-8c35-363e2a9714ca))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 36.83 124.46 270)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 36.83 124.46 270) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-00005fe25547)
     (property "Reference" "#PWR03" (id 0) (at 30.48 124.46 0)
@@ -3019,7 +3019,7 @@
     (pin "1" (uuid f33443d6-9ce0-4906-9dc6-ee5820aacaec))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 46.99 53.34 90)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 46.99 53.34 90) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000601bfaaa)
     (property "Reference" "#PWR04" (id 0) (at 53.34 53.34 0)
@@ -3056,7 +3056,7 @@
     (pin "2" (uuid 77006be8-e871-4875-98bd-df9b9f9c71da))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 49.53 68.58 90)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 49.53 68.58 90) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000619049b0)
     (property "Reference" "#PWR0149" (id 0) (at 55.88 68.58 0)
@@ -3072,25 +3072,25 @@
     (pin "1" (uuid b199093d-fc35-4a57-84d4-9203d9dc1821))
   )
 
-  (symbol (lib_id "Open_Automation:Q_AO3401A") (at 46.99 90.17 0)
+  (symbol (lib_id "Open_Automation:Q_AO3401A") (at 46.99 90.17 0) (mirror x) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-000061ab5d14)
-    (property "Reference" "Q40" (id 0) (at 41.91 88.9 0)
+    (property "Reference" "Q40" (id 0) (at 52.07 90.17 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Value" "Q_AO3401A" (id 1) (at 38.1 93.98 0)
+    (property "Value" "Q_AO3401A" (id 1) (at 52.07 87.63 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "Package_TO_SOT_SMD:SOT-23" (id 2) (at 52.07 87.63 0)
+    (property "Footprint" "Package_TO_SOT_SMD:SOT-23" (id 2) (at 52.07 92.71 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Datasheet" "https://datasheet.lcsc.com/lcsc/1810171817_Alpha-&-Omega-Semicon-AO3401A_C15127.pdf" (id 3) (at 52.07 88.9 0)
+    (property "Datasheet" "https://datasheet.lcsc.com/lcsc/1810171817_Alpha-&-Omega-Semicon-AO3401A_C15127.pdf" (id 3) (at 52.07 91.44 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Part Number" "AO3401A" (id 4) (at 54.61 86.36 0)
+    (property "Part Number" "AO3401A" (id 4) (at 54.61 93.98 0)
       (effects (font (size 1.524 1.524)) hide)
     )
-    (property "LCSC" "C15127" (id 5) (at 54.61 83.82 0)
+    (property "LCSC" "C15127" (id 5) (at 54.61 96.52 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (pin "1" (uuid c5a264c8-44bb-476b-be97-40b7df78e32c))
@@ -3098,7 +3098,7 @@
     (pin "3" (uuid ce5b66e8-b710-4452-b68c-9cd786041b99))
   )
 
-  (symbol (lib_id "Open_Automation:R_10K_0402") (at 43.18 82.55 270)
+  (symbol (lib_id "Open_Automation:R_10K_0402") (at 43.18 82.55 270) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-000061b7bb84)
     (property "Reference" "R84" (id 0) (at 41.91 82.55 90)
@@ -3123,7 +3123,7 @@
     (pin "2" (uuid 4f31b0d0-0de7-4d85-a8da-1c8e3e9ff5fd))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 167.64 72.39 90)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 167.64 72.39 90) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-000061bab1be)
     (property "Reference" "#PWR0158" (id 0) (at 173.99 72.39 0)
@@ -3156,7 +3156,7 @@
     (pin "2" (uuid a873e942-d614-4558-aa34-f59b59912653))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:Conn_02x02_Counter_Clockwise-Connector_Generic") (at 43.18 135.89 0)
+  (symbol (lib_id "open-dash-daughterboard-rescue:Conn_02x02_Counter_Clockwise-Connector_Generic") (at 43.18 135.89 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-000062018099)
     (property "Reference" "J43" (id 0) (at 44.45 130.3782 0))
@@ -3173,7 +3173,7 @@
     (pin "4" (uuid 813ef75f-ec48-44cb-be47-ea5dce18d1d4))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 36.83 135.89 270)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 36.83 135.89 270) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-00006201809f)
     (property "Reference" "#PWR0159" (id 0) (at 30.48 135.89 0)
@@ -3210,7 +3210,7 @@
     (pin "9" (uuid 0b8ceece-c05d-4f0e-b938-e90c8b58ba81))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:Conn_02x02_Counter_Clockwise-Connector_Generic") (at 43.18 148.59 0)
+  (symbol (lib_id "open-dash-daughterboard-rescue:Conn_02x02_Counter_Clockwise-Connector_Generic") (at 43.18 148.59 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000621b051f)
     (property "Reference" "J46" (id 0) (at 44.45 143.0782 0))
@@ -3227,7 +3227,7 @@
     (pin "4" (uuid 54d50405-241d-4e78-88f6-83e047880581))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 36.83 148.59 270)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 36.83 148.59 270) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000621b077d)
     (property "Reference" "#PWR0177" (id 0) (at 30.48 148.59 0)
@@ -3311,7 +3311,7 @@
     (pin "1" (uuid a7cf9252-7b9d-4fb8-9c38-9f8f0d721bbd))
   )
 
-  (symbol (lib_id "power:GND") (at 27.94 36.83 0)
+  (symbol (lib_id "power:GND") (at 27.94 36.83 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-0000625e6b73)
     (property "Reference" "#PWR01" (id 0) (at 27.94 43.18 0)
@@ -3329,7 +3329,7 @@
     (pin "1" (uuid 54ca8ca9-4f16-40cf-97a4-31a0081cfa8b))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 228.6 86.36 0)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 228.6 86.36 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-00006387a42f)
     (property "Reference" "#PWR014" (id 0) (at 228.6 92.71 0)
@@ -3345,7 +3345,7 @@
     (pin "1" (uuid f5eefedd-0db6-4b1a-9794-8335a9efcb3e))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 281.94 86.36 0)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 281.94 86.36 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-00006387a484)
     (property "Reference" "#PWR019" (id 0) (at 281.94 92.71 0)
@@ -3361,7 +3361,7 @@
     (pin "1" (uuid 2bd2d474-3a38-4ffe-b461-01e9a7bfe422))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 294.64 86.36 0)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 294.64 86.36 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-00006387a48f)
     (property "Reference" "#PWR024" (id 0) (at 294.64 92.71 0)
@@ -3377,7 +3377,7 @@
     (pin "1" (uuid 2bd6b25f-a519-4224-8dd9-2e42d262ce2e))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 153.67 86.36 0)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 153.67 86.36 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-00006387a4a6)
     (property "Reference" "#PWR07" (id 0) (at 153.67 92.71 0)
@@ -3389,7 +3389,7 @@
     (pin "1" (uuid 077c7713-5f8a-46ad-9e1e-0a158b076dfa))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 166.37 86.36 0)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 166.37 86.36 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-00006387a4b5)
     (property "Reference" "#PWR010" (id 0) (at 166.37 92.71 0)
@@ -3401,7 +3401,7 @@
     (pin "1" (uuid 8b92f201-07d8-4821-a7c1-053fe8198e60))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 215.9 86.36 0)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-open-automation") (at 215.9 86.36 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-00006387a4bf)
     (property "Reference" "#PWR012" (id 0) (at 215.9 92.71 0)
@@ -3413,7 +3413,7 @@
     (pin "1" (uuid ae4aa54e-a780-4e26-8a76-8295f04ee892))
   )
 
-  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 295.91 64.77 90)
+  (symbol (lib_id "open-dash-daughterboard-rescue:GND-power") (at 295.91 64.77 90) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-00006387a509)
     (property "Reference" "#PWR020" (id 0) (at 302.26 64.77 0)
@@ -4720,17 +4720,11 @@
     (path "/00000000-0000-0000-0000-00006063934a/00000000-0000-0000-0000-000061da410e"
       (reference "D9") (unit 1) (value "D_B5819W") (footprint "Diode_SMD:D_SOD-123")
     )
-    (path "/00000000-0000-0000-0000-00006077d777/00000000-0000-0000-0000-00005cc255be"
-      (reference "D10") (unit 1) (value "LED_G") (footprint "Diode_SMD:D_0603_1608Metric_Pad1.05x0.95mm_HandSolder")
-    )
-    (path "/00000000-0000-0000-0000-00006077d777/00000000-0000-0000-0000-00005cc26acf"
-      (reference "D11") (unit 1) (value "LED_G") (footprint "Diode_SMD:D_0603_1608Metric_Pad1.05x0.95mm_HandSolder")
-    )
-    (path "/00000000-0000-0000-0000-00006077d777/00000000-0000-0000-0000-00005cc27619"
-      (reference "D12") (unit 1) (value "LED_G") (footprint "Diode_SMD:D_0603_1608Metric_Pad1.05x0.95mm_HandSolder")
-    )
     (path "/00000000-0000-0000-0000-000060d3331d/00000000-0000-0000-0000-00005ccc0b80"
       (reference "D13") (unit 1) (value "PESD1CAN-UX") (footprint "Package_TO_SOT_SMD:SOT-23")
+    )
+    (path "/00000000-0000-0000-0000-000060ddd162/0649ff2a-0437-40ca-bb4d-ef8d356a0cbb"
+      (reference "D?") (unit 1) (value "D_MURA120") (footprint "Diode_SMD:D_SMA_Handsoldering")
     )
     (path "/00000000-0000-0000-0000-00006077d777/00000000-0000-0000-0000-00005cc89c1f"
       (reference "EN1") (unit 1) (value "SW_PUSH") (footprint "Button_Switch_SMD:SW_SPST_PTS645")
